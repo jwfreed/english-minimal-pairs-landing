@@ -913,7 +913,15 @@ export function applyTranslations(lang) {
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
     if (t[key]) {
-      element.textContent = t[key];
+      // Special handling for FAQ answers - update the <p> child, not the container div
+      if (element.classList.contains('faq-answer')) {
+        const p = element.querySelector('p');
+        if (p) {
+          p.textContent = t[key];
+        }
+      } else {
+        element.textContent = t[key];
+      }
     }
   });
   
