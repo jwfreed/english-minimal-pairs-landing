@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentLang = getCurrentLanguage();
   applyTranslations(currentLang);
   
-  console.log('Minimal Pairs Trainer - Landing Page Loaded');
+  console.log('Soundwise - Landing Page Loaded');
   console.log(`Current language: ${currentLang}`);
   console.log('Built with mobile-first design and conversion optimization');
   
@@ -348,7 +348,7 @@ ctaButtons.forEach(button => {
 // Initialize Demo State
 // ===========================
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Minimal Pairs Trainer - Landing Page Loaded');
+  console.log('Soundwise - Landing Page Loaded');
   console.log('Built with mobile-first design and conversion optimization');
   
   // Set initial state
@@ -384,4 +384,4 @@ if ('PerformanceObserver' in window) {
 // Placeholder for mobile hamburger menu functionality
 // Can be expanded if navigation grows
 
-console.log('🎧 Minimal Pairs Trainer ready!');
+console.log('🎧 Soundwise ready!');

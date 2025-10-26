@@ -1,6 +1,6 @@
-# Minimal Pairs Trainer - Landing Page
+# Soundwise - Landing Page
 
-A conversion-optimized, mobile-first landing page for the Minimal Pairs Trainer pronunciation perception app.
+A conversion-optimized, mobile-first landing page for the Soundwise pronunciation perception app.
 
 ## Features
 
@@ -97,5 +97,5 @@ The page automatically:
 
 ## Credits
 
-Based on the Minimal Pairs Trainer app by Jonathan Freed.
+Based on the Soundwise app by Jonathan Freed.
 Translations aligned with `app/constants/alternateLanguages.ts` from the main app repository.

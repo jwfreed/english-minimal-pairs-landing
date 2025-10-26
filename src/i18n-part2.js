@@ -44,7 +44,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'A Solução',
     solutionTitle: 'Treine Seu Ouvido Primeiro, a Fala Vem Depois',
-    solutionDescription: 'Minimal Pairs Trainer usa prática de audição focada para reconectar sua percepção auditiva. Através de milhares de comparações estratégicas, seu cérebro aprende a distinguir sons que anteriormente não conseguia detectar.',
+  solutionDescription: 'Soundwise usa prática de audição focada para reconectar sua percepção auditiva. Através de milhares de comparações estratégicas, seu cérebro aprende a distinguir sons que anteriormente não conseguia detectar.',
     feature1: 'Ouvir e comparar - Não é necessário falar',
     feature2: 'Notação IPA incluída - Veja símbolos fonéticos exatos para cada som',
     feature3: 'Feedback visual imediato - Saiba instantaneamente se está correto',
@@ -112,12 +112,12 @@ export const additionalTranslations = {
     faq3Question: 'É adequado para meu idioma nativo?',
     faq3Answer: 'Sim! O app inclui pares mínimos direcionados para falantes de japonês, mandarim, espanhol, tailandês, coreano, árabe, vietnamita e muitos outros idiomas. Os exercícios se adaptam aos desafios fonêmicos específicos de seu contexto L1.',
     faq4Question: 'Posso usar isso junto com outros métodos de aprendizagem?',
-    faq4Answer: 'Absolutamente! Minimal Pairs Trainer complementa qualquer programa de aprendizagem de inglês. Pense nisso como treinamento especializado de ouvido que torna toda sua outra prática mais eficaz. Uma vez que você pode ouvir as diferenças, a prática de fala se torna muito mais produtiva.',
+  faq4Answer: 'Absolutamente! Soundwise complementa qualquer programa de aprendizagem de inglês. Pense nisso como treinamento especializado de ouvido que torna toda sua outra prática mais eficaz. Uma vez que você pode ouvir as diferenças, a prática de fala se torna muito mais produtiva.',
     faq5Question: 'E se eu for um aluno avançado?',
     faq5Answer: 'Mesmo falantes avançados frequentemente têm pontos cegos de percepção de seu L1. O algoritmo adaptativo do app identificará rapidamente seus desafios específicos e focará neles, tornando-o valioso em qualquer nível.',
     
     ctaTitle: 'Pronto Para Finalmente Ouvir a Diferença?',
-    ctaSubtitle: 'Comece seu teste gratuito hoje. Não é necessário cartão de crédito.',
+  ctaSubtitle: 'Comece seu teste gratuito hoje.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Baixar na',
@@ -135,7 +135,7 @@ export const additionalTranslations = {
     footerPrivacy: 'Política de Privacidade',
     footerTerms: 'Termos de Serviço',
     footerContact: 'Contato',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. Todos os direitos reservados.',
+  footerCopyright: '© 2025 Soundwise. Todos os direitos reservados.',
   },
   
   'русский язык': {
@@ -180,7 +180,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'Решение',
     solutionTitle: 'Сначала тренируйте слух, речь последует',
-    solutionDescription: 'Minimal Pairs Trainer использует целенаправленную практику аудирования для переподключения вашего слухового восприятия. Через тысячи стратегических сравнений ваш мозг учится различать звуки, которые раньше не мог обнаружить.',
+  solutionDescription: 'Soundwise использует целенаправленную практику аудирования для переподключения вашего слухового восприятия. Через тысячи стратегических сравнений ваш мозг учится различать звуки, которые раньше не мог обнаружить.',
     feature1: 'Слушать и сравнивать - говорить не нужно',
     feature2: 'Включена нотация IPA - Видеть точные фонетические символы для каждого звука',
     feature3: 'Немедленная визуальная обратная связь - мгновенно узнаете правильно ли',
@@ -248,12 +248,12 @@ export const additionalTranslations = {
     faq3Question: 'Подходит ли это для моего родного языка?',
     faq3Answer: 'Да! Приложение включает целевые минимальные пары для носителей японского, китайского, испанского, тайского, корейского, арабского, вьетнамского и многих других языков. Упражнения адаптируются к конкретным фонемическим проблемам вашего L1 фона.',
     faq4Question: 'Могу ли я использовать это вместе с другими методами обучения?',
-    faq4Answer: 'Абсолютно! Minimal Pairs Trainer дополняет любую программу изучения английского. Думайте о нем как о специализированной тренировке слуха которая делает всю вашу другую практику более эффективной. Как только вы можете слышать различия, практика речи становится гораздо более продуктивной.',
+  faq4Answer: 'Абсолютно! Soundwise дополняет любую программу изучения английского. Думайте о нем как о специализированной тренировке слуха которая делает всю вашу другую практику более эффективной. Как только вы можете слышать различия, практика речи становится гораздо более продуктивной.',
     faq5Question: 'Что если я продвинутый учащийся?',
     faq5Answer: 'Даже продвинутые говорящие часто имеют слепые зоны восприятия из своего L1. Адаптивный алгоритм приложения быстро определит ваши конкретные проблемы и сфокусируется на них, делая его ценным на любом уровне.',
     
     ctaTitle: 'Готовы наконец услышать разницу?',
-    ctaSubtitle: 'Начните бесплатную пробную версию сегодня. Кредитная карта не требуется.',
+  ctaSubtitle: 'Начните бесплатную пробную версию сегодня.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Загрузить в',
@@ -271,7 +271,7 @@ export const additionalTranslations = {
     footerPrivacy: 'Политика конфиденциальности',
     footerTerms: 'Условия использования',
     footerContact: 'Контакт',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. Все права защищены.',
+  footerCopyright: '© 2025 Soundwise. Все права защищены.',
   },
 
   'اللغة العربية': {
@@ -316,7 +316,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'الحل',
     solutionTitle: 'درّب أذنك أولًا، وسيتبعها النطق',
-    solutionDescription: 'يستخدم Minimal Pairs Trainer تمارين استماع مركّزة لإعادة برمجة إدراكك السمعي. من خلال آلاف المقارنات الاستراتيجية يتعلم دماغك التمييز بين الأصوات التي لم يكن يكتشفها سابقًا.',
+  solutionDescription: 'يستخدم Soundwise تمارين استماع مركّزة لإعادة برمجة إدراكك السمعي. من خلال آلاف المقارنات الاستراتيجية يتعلم دماغك التمييز بين الأصوات التي لم يكن يكتشفها سابقًا.',
     feature1: 'استمع وقارن - لا حاجة للتحدث',
     feature2: 'يتضمن رموز IPA - شاهد الرموز الصوتية الدقيقة لكل صوت',
     feature3: 'ملاحظات مرئية فورية - تعرف فورًا إن كنت على صواب',
@@ -384,12 +384,12 @@ export const additionalTranslations = {
     faq3Question: 'هل يناسب لغتي الأم؟',
     faq3Answer: 'نعم! يتضمن التطبيق أزواجًا دنيا مستهدفة لليابانية والصينية والإسبانية والتايلاندية والكورية والعربية والفيتنامية وغيرها. تتكيف التمارين مع تحدياتك الفونيمية الخاصة.',
     faq4Question: 'هل يمكنني استخدامه مع طرق تعلم أخرى؟',
-    faq4Answer: 'بالتأكيد! Minimal Pairs Trainer يكمل أي برنامج لتعلم الإنجليزية. اعتبره تدريبًا خاصًا للأذن يجعل باقي ممارستك أكثر فاعلية. عندما تسمع الفروق يصبح الكلام أسهل بكثير.',
+  faq4Answer: 'بالتأكيد! Soundwise يكمل أي برنامج لتعلم الإنجليزية. اعتبره تدريبًا خاصًا للأذن يجعل باقي ممارستك أكثر فاعلية. عندما تسمع الفروق يصبح الكلام أسهل بكثير.',
     faq5Question: 'ماذا لو كنت متعلمًا متقدمًا؟',
     faq5Answer: 'حتى المتحدثين المتقدمين لديهم نقاط عمياء في الإدراك قادمة من لغتهم الأم. يحدد خوارزم التطبيق التكيفي مشاكلك بسرعة ويركز عليها، مما يجعله مفيدًا لأي مستوى.',
     
     ctaTitle: 'جاهز أخيرًا لسماع الفرق؟',
-    ctaSubtitle: 'ابدأ النسخة التجريبية المجانية اليوم. لا تحتاج إلى بطاقة ائتمان.',
+  ctaSubtitle: 'ابدأ النسخة التجريبية المجانية اليوم.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'حمّل من',
@@ -407,7 +407,7 @@ export const additionalTranslations = {
     footerPrivacy: 'سياسة الخصوصية',
     footerTerms: 'شروط الخدمة',
     footerContact: 'تواصل',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. جميع الحقوق محفوظة.',
+  footerCopyright: '© 2025 Soundwise. جميع الحقوق محفوظة.',
   },
 
   'Tiếng Việt': {
@@ -452,7 +452,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'Giải pháp',
     solutionTitle: 'Luyện tai trước, lời nói sẽ theo sau',
-    solutionDescription: 'Minimal Pairs Trainer sử dụng bài luyện nghe tập trung để tái kết nối khả năng cảm nhận âm thanh. Thông qua hàng nghìn lần so sánh chiến lược, não bạn học cách phân biệt những âm từng bỏ lỡ.',
+  solutionDescription: 'Soundwise sử dụng bài luyện nghe tập trung để tái kết nối khả năng cảm nhận âm thanh. Thông qua hàng nghìn lần so sánh chiến lược, não bạn học cách phân biệt những âm từng bỏ lỡ.',
     feature1: 'Nghe và so sánh - Không cần nói',
     feature2: 'Kèm ký hiệu IPA - Thấy ký hiệu ngữ âm chính xác cho từng âm',
     feature3: 'Phản hồi trực quan tức thì - Biết ngay mình đúng hay sai',
@@ -520,12 +520,12 @@ export const additionalTranslations = {
     faq3Question: 'Ứng dụng có phù hợp với tiếng mẹ đẻ của tôi không?',
     faq3Answer: 'Có! Ứng dụng bao gồm các cặp tối thiểu dành riêng cho người nói tiếng Nhật, Trung, Tây Ban Nha, Thái, Hàn, Ả Rập, Việt và nhiều ngôn ngữ khác. Bài tập tự điều chỉnh theo khó khăn âm vị của L1 bạn.',
     faq4Question: 'Tôi có thể dùng cùng các phương pháp học khác không?',
-    faq4Answer: 'Chắc chắn! Minimal Pairs Trainer bổ trợ cho mọi chương trình học tiếng Anh. Hãy coi nó như bài tập thính giác chuyên biệt giúp mọi buổi luyện khác hiệu quả hơn. Khi nghe được sự khác biệt, luyện nói trở nên dễ hơn nhiều.',
+  faq4Answer: 'Chắc chắn! Soundwise bổ trợ cho mọi chương trình học tiếng Anh. Hãy coi nó như bài tập thính giác chuyên biệt giúp mọi buổi luyện khác hiệu quả hơn. Khi nghe được sự khác biệt, luyện nói trở nên dễ hơn nhiều.',
     faq5Question: 'Nếu tôi đã ở trình độ cao thì sao?',
     faq5Answer: 'Ngay cả người nói thành thạo vẫn có điểm mù thính giác từ L1. Thuật toán thích ứng sẽ nhanh chóng tìm ra vấn đề của bạn và tập trung luyện chúng, nên ứng dụng hữu ích cho mọi trình độ.',
     
     ctaTitle: 'Sẵn sàng nghe thấy sự khác biệt?',
-    ctaSubtitle: 'Bắt đầu dùng thử miễn phí ngay hôm nay. Không cần thẻ tín dụng.',
+  ctaSubtitle: 'Bắt đầu dùng thử miễn phí ngay hôm nay.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Tải trên',
@@ -547,7 +547,7 @@ export const additionalTranslations = {
     footerContact_OLD: 'Giới thiệu',
     footerPrivacy: 'Bảo mật',
     footerTerms: 'Điều khoản',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. Mọi quyền được bảo lưu.',
+  footerCopyright: '© 2025 Soundwise. Mọi quyền được bảo lưu.',
   },
 
   'हिंदी/اردو': {
@@ -592,7 +592,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'समाधान',
     solutionTitle: 'पहले कान प्रशिक्षित करें, बोलना अपने आप सुधरेगा',
-    solutionDescription: 'Minimal Pairs Trainer लक्षित लिसनिंग प्रैक्टिस से आपके श्रवण-प्रत्यय को दोबारा तैयार करता है. हज़ारों रणनीतिक तुलना के जरिये आपका मस्तिष्क उन ध्वनियों में फर्क पहचानना सीखता है जिन्हें वो पहले चूक जाता था.',
+  solutionDescription: 'Soundwise लक्षित लिसनिंग प्रैक्टिस से आपके श्रवण-प्रत्यय को दोबारा तैयार करता है. हज़ारों रणनीतिक तुलना के जरिये आपका मस्तिष्क उन ध्वनियों में फर्क पहचानना सीखता है जिन्हें वो पहले चूक जाता था.',
     feature1: 'सुनें और तुलना करें - बोलने की आवश्यकता नहीं',
     feature2: 'IPA संकेत शामिल - हर ध्वनि के सटीक ध्वन्यात्मक चिह्न देखें',
     feature3: 'तुरंत दृश्य प्रतिक्रिया - तुरंत जानें आप सही हैं या नहीं',
@@ -660,12 +660,12 @@ export const additionalTranslations = {
     faq3Question: 'क्या यह मेरी मातृभाषा के लिए भी उपयुक्त है?',
     faq3Answer: 'हाँ! ऐप में जापानी, चीनी, स्पेनिश, थाई, कोरियन, अरबी, वियतनामी और कई अन्य भाषाओं के लिए लक्षित मिनिमल पेयर्स शामिल हैं. अभ्यास आपके L1 की विशिष्ट ध्वन्यात्मक चुनौतियों पर अनुकूलित होता है.',
     faq4Question: 'क्या मैं इसे दूसरे तरीकों के साथ इस्तेमाल कर सकता/सकती हूँ?',
-    faq4Answer: 'बिल्कुल! Minimal Pairs Trainer किसी भी इंग्लिश-लर्निंग प्रोग्राम को पूरक बनाता है. इसे विशेष सुनने के प्रशिक्षण की तरह समझें जो बाकी अभ्यास को अधिक प्रभावी बनाता है. जब आप अंतर सुन लेते हैं तो बोलना बहुत आसान हो जाता है.',
+  faq4Answer: 'बिल्कुल! Soundwise किसी भी इंग्लिश-लर्निंग प्रोग्राम को पूरक बनाता है. इसे विशेष सुनने के प्रशिक्षण की तरह समझें जो बाकी अभ्यास को अधिक प्रभावी बनाता है. जब आप अंतर सुन लेते हैं तो बोलना बहुत आसान हो जाता है.',
     faq5Question: 'अगर मैं पहले से उन्नत स्तर पर हूँ तो?',
     faq5Answer: 'उन्नत बोलने वालों को भी अपने L1 से आई सुनने की ब्लाइंड स्पॉट्स होती हैं. ऐप का अनुकूली एल्गोरिद्म आपकी समस्याओं को जल्दी पहचानकर उन्हीं पर ध्यान देता है, इसलिए यह हर स्तर के लिए मूल्यवान है.',
     
     ctaTitle: 'आख़िरकार फ़र्क़ सुनने के लिए तैयार हैं?',
-    ctaSubtitle: 'आज ही मुफ़्त परीक्षण शुरू करें. क्रेडिट कार्ड की ज़रूरत नहीं.',
+  ctaSubtitle: 'आज ही मुफ़्त परीक्षण शुरू करें.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'यहाँ डाउनलोड करें',
@@ -687,7 +687,7 @@ export const additionalTranslations = {
     footerContact_OLD: 'हमारे बारे में',
     footerPrivacy: 'गोपनीयता',
     footerTerms: 'शर्तें',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. सर्वाधिकार सुरक्षित.',
+  footerCopyright: '© 2025 Soundwise. सर्वाधिकार सुरक्षित.',
   },
   
   'Türkçe': {
@@ -732,7 +732,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'Çözüm',
     solutionTitle: 'Önce Kulağını Eğit, Konuşma Arkadan Gelir',
-    solutionDescription: 'Minimal Pairs Trainer, odaklı dinleme pratiğiyle işitsel algını yeniden yapılandırır. Binlerce stratejik karşılaştırma sayesinde beynin, eskiden fark edemediğin sesleri ayırt etmeyi öğrenir.',
+  solutionDescription: 'Soundwise, odaklı dinleme pratiğiyle işitsel algını yeniden yapılandırır. Binlerce stratejik karşılaştırma sayesinde beynin, eskiden fark edemediğin sesleri ayırt etmeyi öğrenir.',
     feature1: 'Dinle ve karşılaştır - Konuşman gerekmez',
     feature2: 'IPA notasyonu dahil - Her sesin tam fonetik sembollerini gör',
     feature3: 'Anında görsel geri bildirim - Doğru olup olmadığını hemen öğren',
@@ -800,12 +800,12 @@ export const additionalTranslations = {
     faq3Question: 'Bu benim anadilime uygun mu?',
     faq3Answer: 'Evet! Uygulama Japonca, Çince, İspanyolca, Tayca, Korece, Arapça, Vietnamca ve daha birçok dil için hedefli minimal çiftler içerir. Egzersizler L1 geçmişinin fonemik sorunlarına uyum sağlar.',
     faq4Question: 'Bunu diğer öğrenme yöntemleriyle birlikte kullanabilir miyim?',
-    faq4Answer: 'Kesinlikle! Minimal Pairs Trainer her İngilizce programını tamamlar. Onu, diğer çalışmalarını daha verimli kılan özel bir kulak eğitimi olarak düşün. Farkı duyduğunda konuşma pratiği çok daha üretken olur.',
+  faq4Answer: 'Kesinlikle! Soundwise her İngilizce programını tamamlar. Onu, diğer çalışmalarını daha verimli kılan özel bir kulak eğitimi olarak düşün. Farkı duyduğunda konuşma pratiği çok daha üretken olur.',
     faq5Question: 'İleri seviyedeysem ne olacak?',
     faq5Answer: 'İleri konuşurlar bile anadillerinden gelen işitsel kör noktalar yaşar. Uyarlanabilir algoritma hızla sorunlarını bulur ve onlara odaklanır; bu yüzden her seviyede değerlidir.',
     
     ctaTitle: 'Artık Farkı Duymaya Hazır mısın?',
-    ctaSubtitle: 'Bugün ücretsiz denemeyi başlat. Kredi kartı gerekmez.',
+  ctaSubtitle: 'Bugün ücretsiz denemeyi başlat.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Şuradan indir',
@@ -827,7 +827,7 @@ export const additionalTranslations = {
     footerContact_OLD: 'Hakkında',
     footerPrivacy: 'Gizlilik',
     footerTerms: 'Şartlar',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. Tüm hakları saklıdır.',
+  footerCopyright: '© 2025 Soundwise. Tüm hakları saklıdır.',
   },
   
   'زبان فارسی': {
@@ -872,7 +872,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'راه‌حل',
     solutionTitle: 'اول گوش خود را تمرین دهید، گفتار بعداً می‌آید',
-    solutionDescription: 'Minimal Pairs Trainer با تمرین شنیداری متمرکز، درک شنیداری شما را بازتنظیم می‌کند. با هزاران مقایسه هدفمند، مغز شما یاد می‌گیرد صداهایی را که قبلاً از دست می‌داد تشخیص دهد.',
+  solutionDescription: 'Soundwise با تمرین شنیداری متمرکز، درک شنیداری شما را بازتنظیم می‌کند. با هزاران مقایسه هدفمند، مغز شما یاد می‌گیرد صداهایی را که قبلاً از دست می‌داد تشخیص دهد.',
     feature1: 'گوش بده و مقایسه کن - نیازی به صحبت نیست',
     feature2: 'نمادهای IPA موجود است - نماد دقیق هر صدا را ببینید',
     feature3: 'بازخورد تصویری فوری - بلافاصله متوجه درست یا غلط بودن می‌شوید',
@@ -940,12 +940,12 @@ export const additionalTranslations = {
     faq3Question: 'آیا برای زبان من مناسب است؟',
     faq3Answer: 'بله! اپ شامل جفت‌های کمینه هدفمند برای ژاپنی، چینی، اسپانیایی، تایلندی, کره‌ای, عربی, ویتنامی و بسیاری زبان‌های دیگر است. تمرین‌ها با چالش‌های واجی L1 شما تطبیق می‌یابد.',
     faq4Question: 'می‌توانم همراه روش‌های دیگر استفاده کنم؟',
-    faq4Answer: 'قطعاً! Minimal Pairs Trainer مکمل هر برنامه یادگیری انگلیسی است. آن را تمرین تخصصی گوش بدانید که باقی تمرین‌ها را مؤثرتر می‌کند. وقتی تفاوت را می‌شنوید، تمرین گفتار بسیار آسان‌تر می‌شود.',
+  faq4Answer: 'قطعاً! Soundwise مکمل هر برنامه یادگیری انگلیسی است. آن را تمرین تخصصی گوش بدانید که باقی تمرین‌ها را مؤثرتر می‌کند. وقتی تفاوت را می‌شنوید، تمرین گفتار بسیار آسان‌تر می‌شود.',
     faq5Question: 'اگر سطح من پیشرفته است چه؟',
     faq5Answer: 'حتی گویشوران پیشرفته نیز به دلیل زبان مادری‌شان نقاط کور شنیداری دارند. الگوریتم تطبیقی برنامه سریعاً چالش‌های شما را شناسایی و روی همان‌ها تمرکز می‌کند، بنابراین در هر سطحی مفید است.',
     
     ctaTitle: 'آماده‌اید بالاخره تفاوت را بشنوید؟',
-    ctaSubtitle: 'امروز دوره آزمایشی رایگان را شروع کنید. نیاز به کارت اعتباری نیست.',
+  ctaSubtitle: 'امروز دوره آزمایشی رایگان را شروع کنید.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'دانلود از',
@@ -967,7 +967,7 @@ export const additionalTranslations = {
     footerContact_OLD: 'درباره ما',
     footerPrivacy: 'حریم خصوصی',
     footerTerms: 'شرایط',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. تمامی حقوق محفوظ است.',
+  footerCopyright: '© 2025 Soundwise. تمامی حقوق محفوظ است.',
   },
   
   '廣東話': {
@@ -1012,7 +1012,7 @@ export const additionalTranslations = {
     
     solutionBadge: '解決方案',
     solutionTitle: '先訓練耳朵，口語自然跟上',
-    solutionDescription: 'Minimal Pairs Trainer 透過集中聆聽練習重新連線聽覺。經過數以千計的策略比較，你的大腦會學懂辨認以往察覺不到的聲音。',
+  solutionDescription: 'Soundwise 透過集中聆聽練習重新連線聽覺。經過數以千計的策略比較，你的大腦會學懂辨認以往察覺不到的聲音。',
     feature1: '聽與比較 - 無需開口',
     feature2: '附 IPA 記號 - 清楚看到每個聲音的符號',
     feature3: '即時視覺回饋 - 立即知道自己是否正確',
@@ -1080,12 +1080,12 @@ export const additionalTranslations = {
     faq3Question: '適合我的母語嗎？',
     faq3Answer: '適合！App 針對日語、中文、西班牙語、泰語、韓語、阿拉伯語、越南語等多種母語提供專屬練習，並依 L1 難點自動調整。',
     faq4Question: '可以跟其他學習方式一起用嗎？',
-    faq4Answer: '當然可以！Minimal Pairs Trainer 是任何英語課程的最佳補充，專注聽覺訓練讓其他練習更有效。當你聽到差別後，口說會進步得更快。',
+  faq4Answer: '當然可以！Soundwise 是任何英語課程的最佳補充，專注聽覺訓練讓其他練習更有效。當你聽到差別後，口說會進步得更快。',
     faq5Question: '如果我已經很進階呢？',
     faq5Answer: '進階學習者同樣有來自母語的聽覺盲點。自適應演算法會快速找出並集中訓練，因此所有程度都受惠。',
     
     ctaTitle: '準備好終於聽出分別？',
-    ctaSubtitle: '立即開啟 7 天免費試用，無需信用卡。',
+  ctaSubtitle: '立即開啟 7 天免費試用。',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: '下載自',
@@ -1107,7 +1107,7 @@ export const additionalTranslations = {
     footerContact_OLD: '關於我們',
     footerPrivacy: '隱私',
     footerTerms: '條款',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. 保留所有權利.',
+  footerCopyright: '© 2025 Soundwise. 保留所有權利.',
   },
   
   'bahasa Indo': {
@@ -1152,7 +1152,7 @@ export const additionalTranslations = {
     
     solutionBadge: 'Solusinya',
     solutionTitle: 'Latih telinga dulu, bicara menyusul',
-    solutionDescription: 'Minimal Pairs Trainer memakai latihan mendengarkan terarah untuk menyetel ulang persepsi auditori. Lewat ribuan perbandingan strategis, otakmu belajar mengenali bunyi yang sebelumnya tak terdeteksi.',
+  solutionDescription: 'Soundwise memakai latihan mendengarkan terarah untuk menyetel ulang persepsi auditori. Lewat ribuan perbandingan strategis, otakmu belajar mengenali bunyi yang sebelumnya tak terdeteksi.',
     feature1: 'Dengar dan bandingkan - tanpa perlu bicara',
     feature2: 'Ada notasi IPA - lihat simbol fonetik tiap bunyi',
     feature3: 'Umpan balik visual instan - langsung tahu benar atau salah',
@@ -1220,12 +1220,12 @@ export const additionalTranslations = {
     faq3Question: 'Apakah cocok untuk bahasa ibu saya?',
     faq3Answer: 'Ya! App ini mencakup pasangan minimal untuk penutur Jepang, Mandarin, Spanyol, Thai, Korea, Arab, Vietnam, dan banyak bahasa lain. Latihan menyesuaikan tantangan fonemik L1 kamu.',
     faq4Question: 'Bisa digunakan bersama metode lain?',
-    faq4Answer: 'Tentu! Minimal Pairs Trainer melengkapi program belajar Inggris apa pun. Anggap sebagai latihan telinga khusus yang membuat semua latihan lain lebih efektif. Setelah mendengar bedanya, latihan bicara jauh lebih mudah.',
+  faq4Answer: 'Tentu! Soundwise melengkapi program belajar Inggris apa pun. Anggap sebagai latihan telinga khusus yang membuat semua latihan lain lebih efektif. Setelah mendengar bedanya, latihan bicara jauh lebih mudah.',
     faq5Question: 'Bagaimana kalau saya sudah tingkat lanjut?',
     faq5Answer: 'Penutur mahir pun sering punya titik buta dari bahasa pertama mereka. Algoritma adaptif aplikasi cepat menemukan tantanganmu dan berfokus di sana, sehingga bermanfaat di semua level.',
     
     ctaTitle: 'Siap akhirnya mendengar perbedaannya?',
-    ctaSubtitle: 'Mulai uji coba gratis hari ini. Tidak perlu kartu kredit.',
+  ctaSubtitle: 'Mulai uji coba gratis hari ini.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Unduh di',
@@ -1247,6 +1247,6 @@ export const additionalTranslations = {
     footerContact_OLD: 'Tentang',
     footerPrivacy: 'Privasi',
     footerTerms: 'Ketentuan',
-    footerCopyright: '© 2025 Minimal Pairs Trainer. Hak cipta dilindungi.',
+  footerCopyright: '© 2025 Soundwise. Hak cipta dilindungi.',
   },
 };
