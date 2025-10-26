@@ -200,7 +200,8 @@ body {
 }
 
 .logo-icon {
-  font-size: 1.5rem;
+  height: 2rem;
+  width: auto;
 }
 
 .logo-text {
