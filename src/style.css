@@ -183,6 +183,12 @@ body {
   flex-shrink: 0;
 }
 
+.lang-flags {
+  display: flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
 .lang-name {
   font-size: 0.9375rem;
   color: var(--text-primary);

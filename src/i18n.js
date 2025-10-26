@@ -817,9 +817,63 @@ export const translations = {
   ...additionalTranslations,
 };
 
-// Get current language from localStorage or default to English
+// Language mapping from browser locale codes to our language keys
+const languageMap = {
+  'en': 'en',
+  'ja': '日本語',
+  'zh': '中文',
+  'zh-CN': '中文',
+  'zh-TW': '中文',
+  'zh-HK': '廣東話',
+  'yue': '廣東話',
+  'es': 'idioma español',
+  'th': 'ภาษาไทย',
+  'ko': '한국어',
+  'pt': 'Português',
+  'ru': 'русский язык',
+  'ar': 'اللغة العربية',
+  'vi': 'Tiếng Việt',
+  'hi': 'हिंदी/اردو',
+  'ur': 'हिंदी/اردو',
+  'tr': 'Türkçe',
+  'fa': 'زبان فارسی',
+  'id': 'bahasa Indo',
+};
+
+// Detect browser language and map to supported language
+function detectBrowserLanguage() {
+  // Get browser language (e.g., 'en-US', 'ja', 'zh-CN')
+  const browserLang = navigator.language || navigator.userLanguage;
+  
+  // Try full locale first (e.g., 'zh-CN')
+  if (languageMap[browserLang]) {
+    return languageMap[browserLang];
+  }
+  
+  // Try just the language code (e.g., 'zh' from 'zh-CN')
+  const langCode = browserLang.split('-')[0];
+  if (languageMap[langCode]) {
+    return languageMap[langCode];
+  }
+  
+  // Default to English if no match
+  return 'en';
+}
+
+// Get current language from localStorage or detect from browser
 export function getCurrentLanguage() {
-  return localStorage.getItem('language') || 'en';
+  const storedLang = localStorage.getItem('language');
+  
+  // If user has previously selected a language, use that
+  if (storedLang) {
+    return storedLang;
+  }
+  
+  // Otherwise, detect from browser and save it
+  const detectedLang = detectBrowserLanguage();
+  localStorage.setItem('language', detectedLang);
+  
+  return detectedLang;
 }
 
 // Set language and save to localStorage
