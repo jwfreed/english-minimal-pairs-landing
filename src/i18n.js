@@ -6,7 +6,7 @@ import { additionalTranslations } from './i18n-part2.js';
 const baseTranslations = {
   en: {
     name: 'English',
-    flag: '🇬🇧',
+    flag: '🇬🇧 🇺🇸',
     
     // Navigation
     navCta: 'Get Started Free',
