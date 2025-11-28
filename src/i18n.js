@@ -9,7 +9,7 @@ const baseTranslations = {
     flag: '🇬🇧 🇺🇸',
     
     // Navigation
-    navCta: 'Get Started Free',
+    navCta: 'Get Started',
     
   // Hero Section
     heroBadge: 'Science-Backed Learning',
@@ -29,7 +29,7 @@ const baseTranslations = {
     nativeLangOther: 'Other',
     pairIntro: 'Common challenge for you:',
     pairChallenge: 'Can you hear the difference?',
-    ctaPrimary: 'Start Training Free',
+    ctaPrimary: 'Start Training',
     ctaSecondary: 'See How It Works',
     
     // Social Proof
@@ -133,13 +133,13 @@ const baseTranslations = {
     
   // Final CTA
     ctaTitle: 'Ready to Finally Hear the Difference?',
-  ctaSubtitle: 'Start your free trial today.',
+  ctaSubtitle: 'Get lifetime access for just $4.99.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Download on the',
     getItOn: 'Get it on',
-    ctaFeature1: 'Free 7-day trial',
-    ctaFeature2: 'Cancel anytime',
+    ctaFeature1: 'One-time payment',
+    ctaFeature2: 'No subscription',
     ctaFeature3: 'Works on all devices',
     
   // Footer
@@ -157,7 +157,7 @@ const baseTranslations = {
   '日本語': {
     name: '日本語',
     flag: '🇯🇵',
-    navCta: '無料で始める',
+    navCta: '今すぐ始める',
     heroBadge: '科学的根拠に基づく学習',
     heroTitle: 'ついに違いを聞き取れるように',
     heroHighlight1: '「Right」',
@@ -175,7 +175,7 @@ const baseTranslations = {
     nativeLangOther: 'その他',
     pairIntro: 'よくある課題:',
     pairChallenge: '違いが聞き取れますか？',
-    ctaPrimary: '無料でトレーニング開始',
+    ctaPrimary: 'トレーニングを開始',
     ctaSecondary: '仕組みを見る',
     
     stat1Number: '5万+',
@@ -269,13 +269,13 @@ const baseTranslations = {
     faq5Answer: '上級話者でも、L1からの認識の盲点があることがよくあります。アプリの適応型アルゴリズムは、あなたの特定の課題をすばやく特定し、それらに焦点を当てるため、どのレベルでも価値があります。',
     
     ctaTitle: 'ついに違いを聞き取る準備はできましたか？',
-  ctaSubtitle: '今日から無料トライアルを開始。',
+  ctaSubtitle: 'たった$4.99で生涯アクセスを取得。',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'ダウンロード',
     getItOn: '入手先',
-    ctaFeature1: '7日間無料トライアル',
-    ctaFeature2: 'いつでもキャンセル可能',
+    ctaFeature1: '一回限りの支払い',
+    ctaFeature2: 'サブスクリプションなし',
     ctaFeature3: 'すべてのデバイスで動作',
     
     footerTagline: '世界中の英語学習者のための科学的根拠に基づく発音認識トレーニング。',
@@ -293,7 +293,7 @@ const baseTranslations = {
   '中文': {
     name: '中文',
     flag: '🇨🇳',
-    navCta: '免费开始',
+    navCta: '立即开始',
     heroBadge: '科学支持的学习',
     heroTitle: '终于能听出区别',
     heroHighlight1: '「Right」',
@@ -311,7 +311,7 @@ const baseTranslations = {
     nativeLangOther: '其他',
     pairIntro: '您常见的挑战:',
     pairChallenge: '能听出区别吗？',
-    ctaPrimary: '免费开始训练',
+    ctaPrimary: '开始训练',
     ctaSecondary: '了解工作原理',
     
     stat1Number: '5万+',
@@ -405,13 +405,13 @@ const baseTranslations = {
     faq5Answer: '即使是高级使用者通常也有来自L1的感知盲点。应用的自适应算法将快速识别你的特定挑战并专注于这些，使其在任何级别都有价值。',
     
     ctaTitle: '准备好终于听出区别了吗？',
-  ctaSubtitle: '今天开始免费试用。',
+  ctaSubtitle: '仅需$4.99即可获得终身访问权限。',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: '下载于',
     getItOn: '获取于',
-    ctaFeature1: '7天免费试用',
-    ctaFeature2: '随时取消',
+    ctaFeature1: '一次性付款',
+    ctaFeature2: '无订阅',
     ctaFeature3: '适用于所有设备',
     
     footerTagline: '面向全球英语学习者的科学支持的发音感知训练。',
@@ -429,7 +429,7 @@ const baseTranslations = {
   'idioma español': {
     name: 'Español',
     flag: '🇪🇸',
-    navCta: 'Empezar Gratis',
+    navCta: 'Empezar',
     heroBadge: 'Aprendizaje Respaldado por la Ciencia',
     heroTitle: 'Finalmente Escucha la Diferencia Entre',
     heroHighlight1: '"Ship"',
@@ -447,7 +447,7 @@ const baseTranslations = {
     nativeLangOther: 'Otro',
     pairIntro: 'Desafío común para ti:',
     pairChallenge: '¿Puedes escuchar la diferencia?',
-    ctaPrimary: 'Comenzar Entrenamiento Gratis',
+    ctaPrimary: 'Comenzar Entrenamiento',
     ctaSecondary: 'Ver Cómo Funciona',
     
     stat1Number: '50K+',
@@ -541,13 +541,13 @@ const baseTranslations = {
     faq5Answer: 'Incluso los hablantes avanzados a menudo tienen puntos ciegos de percepción de su L1. El algoritmo adaptativo de la app identificará rápidamente tus desafíos específicos y se enfocará en ellos, haciéndolo valioso en cualquier nivel.',
     
     ctaTitle: '¿Listo Para Finalmente Escuchar la Diferencia?',
-  ctaSubtitle: 'Comienza tu prueba gratuita hoy.',
+  ctaSubtitle: 'Obtén acceso de por vida por solo $4.99.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Descargar en',
     getItOn: 'Disponible en',
-    ctaFeature1: 'Prueba gratuita de 7 días',
-    ctaFeature2: 'Cancela en cualquier momento',
+    ctaFeature1: 'Pago único',
+    ctaFeature2: 'Sin suscripción',
     ctaFeature3: 'Funciona en todos los dispositivos',
     
     footerTagline: 'Entrenamiento de percepción de pronunciación respaldado por la ciencia para estudiantes de inglés en todo el mundo.',
@@ -565,7 +565,7 @@ const baseTranslations = {
   'ภาษาไทย': {
     name: 'ภาษาไทย',
     flag: '🇹🇭',
-    navCta: 'เริ่มฟรี',
+    navCta: 'เริ่มต้น',
     heroBadge: 'การเรียนรู้ที่ได้รับการสนับสนุนทางวิทยาศาสตร์',
     heroTitle: 'ได้ยินความแตกต่างในที่สุด',
     heroHighlight1: '"Right"',
@@ -583,7 +583,7 @@ const baseTranslations = {
     nativeLangOther: 'อื่นๆ',
     pairIntro: 'ความท้าทายทั่วไปสำหรับคุณ:',
     pairChallenge: 'คุณได้ยินความแตกต่างหรือไม่?',
-    ctaPrimary: 'เริ่มฝึกฟรี',
+    ctaPrimary: 'เริ่มฝึกฝน',
     ctaSecondary: 'ดูวิธีการทำงาน',
     
     stat1Number: '50K+',
@@ -677,13 +677,13 @@ const baseTranslations = {
     faq5Answer: 'แม้แต่ผู้พูดระดับสูงก็มักมีจุดบอดในการรับรู้จาก L1 ของพวกเขา อัลกอริทึมปรับตัวของแอปจะระบุความท้าทายเฉพาะของคุณอย่างรวดเร็วและเน้นที่สิ่งเหล่านั้น ทำให้มีคุณค่าในทุกระดับ',
     
     ctaTitle: 'พร้อมที่จะได้ยินความแตกต่างในที่สุดแล้วหรือยัง?',
-  ctaSubtitle: 'เริ่มทดลองใช้ฟรีวันนี้',
+  ctaSubtitle: 'รับสิทธิ์เข้าถึงตลอดชีพเพียง $4.99',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'ดาวน์โหลดที่',
     getItOn: 'รับที่',
-    ctaFeature1: 'ทดลองใช้ฟรี 7 วัน',
-    ctaFeature2: 'ยกเลิกได้ตลอดเวลา',
+    ctaFeature1: 'ชำระเงินครั้งเดียว',
+    ctaFeature2: 'ไม่มีการสมัครสมาชิก',
     ctaFeature3: 'ใช้งานได้บนทุกอุปกรณ์',
     
     footerTagline: 'การฝึกการรับรู้การออกเสียงที่ได้รับการสนับสนุนทางวิทยาศาสตร์สำหรับผู้เรียนภาษาอังกฤษทั่วโลก',
@@ -701,7 +701,7 @@ const baseTranslations = {
   '한국어': {
     name: '한국어',
     flag: '🇰🇷',
-    navCta: '무료로 시작하기',
+    navCta: '시작하기',
     heroBadge: '과학 기반 학습',
     heroTitle: '마침내 차이를 들을 수 있습니다',
     heroHighlight1: '"Right"',
@@ -719,7 +719,7 @@ const baseTranslations = {
     nativeLangOther: '기타',
     pairIntro: '일반적인 과제:',
     pairChallenge: '차이를 들을 수 있나요?',
-    ctaPrimary: '무료 훈련 시작',
+    ctaPrimary: '훈련 시작',
     ctaSecondary: '작동 방식 보기',
     
     stat1Number: '50K+',
@@ -813,13 +813,13 @@ const baseTranslations = {
     faq5Answer: '고급 사용자도 L1에서 인식 맹점이 있는 경우가 많습니다. 앱의 적응형 알고리즘은 특정 과제를 빠르게 식별하고 집중하므로 모든 수준에서 가치가 있습니다.',
     
     ctaTitle: '마침내 차이를 들을 준비가 되셨나요?',
-  ctaSubtitle: '오늘 무료 평가판을 시작하세요.',
+  ctaSubtitle: '단 $4.99로 평생 이용권을 받으세요.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: '다운로드',
     getItOn: '받기',
-    ctaFeature1: '7일 무료 평가판',
-    ctaFeature2: '언제든지 취소',
+    ctaFeature1: '일회성 결제',
+    ctaFeature2: '구독 없음',
     ctaFeature3: '모든 기기에서 작동',
     
     footerTagline: '전 세계 영어 학습자를 위한 과학 기반 발음 인식 훈련.',

@@ -5,7 +5,7 @@ export const additionalTranslations = {
   'Português': {
     name: 'Português',
     flag: '🇵🇹',
-    navCta: 'Começar Grátis',
+    navCta: 'Começar',
     heroBadge: 'Aprendizagem Baseada em Ciência',
     heroTitle: 'Finalmente Ouvir a Diferença Entre',
     heroHighlight1: '"Ship"',
@@ -23,7 +23,7 @@ export const additionalTranslations = {
     nativeLangOther: 'Outro',
     pairIntro: 'Desafio comum para você:',
     pairChallenge: 'Você consegue ouvir a diferença?',
-    ctaPrimary: 'Começar Treinamento Grátis',
+    ctaPrimary: 'Começar Treinamento',
     ctaSecondary: 'Ver Como Funciona',
     
     stat1Number: '50K+',
@@ -117,13 +117,13 @@ export const additionalTranslations = {
     faq5Answer: 'Mesmo falantes avançados frequentemente têm pontos cegos de percepção de seu L1. O algoritmo adaptativo do app identificará rapidamente seus desafios específicos e focará neles, tornando-o valioso em qualquer nível.',
     
     ctaTitle: 'Pronto Para Finalmente Ouvir a Diferença?',
-  ctaSubtitle: 'Comece seu teste gratuito hoje.',
+  ctaSubtitle: 'Obtenha acesso vitalício por apenas $4.99.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Baixar na',
     getItOn: 'Disponível no',
-    ctaFeature1: 'Teste gratuito de 7 dias',
-    ctaFeature2: 'Cancele a qualquer momento',
+    ctaFeature1: 'Pagamento único',
+    ctaFeature2: 'Sem assinatura',
     ctaFeature3: 'Funciona em todos os dispositivos',
     
     footerTagline: 'Treinamento de percepção de pronúncia baseado em ciência para aprendizes de inglês em todo o mundo.',
@@ -141,7 +141,7 @@ export const additionalTranslations = {
   'русский язык': {
     name: 'Русский',
     flag: '🇷🇺',
-    navCta: 'Начать бесплатно',
+    navCta: 'Начать',
     heroBadge: 'Научно обоснованное обучение',
     heroTitle: 'Наконец услышьте разницу между',
     heroHighlight1: '"Right"',
@@ -159,7 +159,7 @@ export const additionalTranslations = {
     nativeLangOther: 'Другой',
     pairIntro: 'Обычная проблема для вас:',
     pairChallenge: 'Слышите разницу?',
-    ctaPrimary: 'Начать тренировку бесплатно',
+    ctaPrimary: 'Начать тренировку',
     ctaSecondary: 'Как это работает',
     
     stat1Number: '50K+',
@@ -253,13 +253,13 @@ export const additionalTranslations = {
     faq5Answer: 'Даже продвинутые говорящие часто имеют слепые зоны восприятия из своего L1. Адаптивный алгоритм приложения быстро определит ваши конкретные проблемы и сфокусируется на них, делая его ценным на любом уровне.',
     
     ctaTitle: 'Готовы наконец услышать разницу?',
-  ctaSubtitle: 'Начните бесплатную пробную версию сегодня.',
+  ctaSubtitle: 'Получите пожизненный доступ всего за $4.99.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Загрузить в',
     getItOn: 'Доступно в',
-    ctaFeature1: '7-дневная бесплатная пробная версия',
-    ctaFeature2: 'Отменить в любое время',
+    ctaFeature1: 'Единовременный платеж',
+    ctaFeature2: 'Без подписки',
     ctaFeature3: 'Работает на всех устройствах',
     
     footerTagline: 'Научно обоснованная тренировка восприятия произношения для учащихся английского по всему миру.',
@@ -277,7 +277,7 @@ export const additionalTranslations = {
   'اللغة العربية': {
     name: 'العربية',
     flag: '🇸🇦',
-    navCta: 'ابدأ مجانًا',
+    navCta: 'ابدأ الآن',
     heroBadge: 'تعلم مدعوم بالعلم',
     heroTitle: 'أخيرًا اسمع الفرق بين',
     heroHighlight1: '"Right"',
@@ -295,7 +295,7 @@ export const additionalTranslations = {
     nativeLangOther: 'أخرى',
     pairIntro: 'تحدٍ شائع بالنسبة لك:',
     pairChallenge: 'هل يمكنك سماع الفرق؟',
-    ctaPrimary: 'ابدأ التدريب مجانًا',
+    ctaPrimary: 'ابدأ التدريب',
     ctaSecondary: 'شاهد كيف يعمل',
     
     stat1Number: '50K+',
@@ -389,13 +389,13 @@ export const additionalTranslations = {
     faq5Answer: 'حتى المتحدثين المتقدمين لديهم نقاط عمياء في الإدراك قادمة من لغتهم الأم. يحدد خوارزم التطبيق التكيفي مشاكلك بسرعة ويركز عليها، مما يجعله مفيدًا لأي مستوى.',
     
     ctaTitle: 'جاهز أخيرًا لسماع الفرق؟',
-  ctaSubtitle: 'ابدأ النسخة التجريبية المجانية اليوم.',
+  ctaSubtitle: 'احصل على وصول مدى الحياة مقابل 4.99 دولار فقط.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'حمّل من',
     getItOn: 'متوفر على',
-    ctaFeature1: 'تجربة مجانية لمدة 7 أيام',
-    ctaFeature2: 'يمكن الإلغاء في أي وقت',
+    ctaFeature1: 'دفع لمرة واحدة',
+    ctaFeature2: 'بدون اشتراك',
     ctaFeature3: 'يعمل على جميع الأجهزة',
     
     footerTagline: 'تدريب إدراك النطق المدعوم بالعلم لمتعلمي الإنجليزية حول العالم.',
@@ -413,7 +413,7 @@ export const additionalTranslations = {
   'Tiếng Việt': {
     name: 'Tiếng Việt',
     flag: '🇻🇳',
-    navCta: 'Bắt đầu miễn phí',
+    navCta: 'Bắt đầu ngay',
     heroBadge: 'Học dựa trên khoa học',
     heroTitle: 'Cuối cùng cũng nghe được sự khác biệt giữa',
     heroHighlight1: '"Right"',
@@ -431,7 +431,7 @@ export const additionalTranslations = {
     nativeLangOther: 'Khác',
     pairIntro: 'Thử thách phổ biến với bạn:',
     pairChallenge: 'Bạn có nghe được sự khác biệt không?',
-    ctaPrimary: 'Bắt đầu luyện miễn phí',
+    ctaPrimary: 'Bắt đầu luyện tập',
     ctaSecondary: 'Xem cách hoạt động',
     
     stat1Number: '50K+',
@@ -525,13 +525,13 @@ export const additionalTranslations = {
     faq5Answer: 'Ngay cả người nói thành thạo vẫn có điểm mù thính giác từ L1. Thuật toán thích ứng sẽ nhanh chóng tìm ra vấn đề của bạn và tập trung luyện chúng, nên ứng dụng hữu ích cho mọi trình độ.',
     
     ctaTitle: 'Sẵn sàng nghe thấy sự khác biệt?',
-  ctaSubtitle: 'Bắt đầu dùng thử miễn phí ngay hôm nay.',
+  ctaSubtitle: 'Nhận quyền truy cập trọn đời chỉ với $4.99.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Tải trên',
     getItOn: 'Tải tại',
-    ctaFeature1: 'Dùng thử 7 ngày miễn phí',
-    ctaFeature2: 'Hủy bất cứ lúc nào',
+    ctaFeature1: 'Thanh toán một lần',
+    ctaFeature2: 'Không đăng ký',
     ctaFeature3: 'Hoạt động trên mọi thiết bị',
     
     footerTagline: 'Đào tạo cảm nhận phát âm dựa trên khoa học dành cho người học tiếng Anh toàn cầu.',
@@ -553,7 +553,7 @@ export const additionalTranslations = {
   'हिंदी/اردو': {
     name: 'हिंदी / اردو',
     flag: '🇮🇳',
-    navCta: 'मुफ़्त में शुरू करें',
+    navCta: 'शुरू करें',
     heroBadge: 'विज्ञान पर आधारित सीखना',
     heroTitle: 'आख़िरकार इनके बीच का अंतर सुनें',
     heroHighlight1: '"Right"',
@@ -571,7 +571,7 @@ export const additionalTranslations = {
     nativeLangOther: 'अन्य',
     pairIntro: 'आपके लिए आम चुनौती:',
     pairChallenge: 'क्या आप फ़र्क़ सुन सकते हैं?',
-    ctaPrimary: 'मुफ़्त प्रशिक्षण शुरू करें',
+    ctaPrimary: 'प्रशिक्षण शुरू करें',
     ctaSecondary: 'कैसे काम करता है देखें',
     
     stat1Number: '50K+',
@@ -665,13 +665,13 @@ export const additionalTranslations = {
     faq5Answer: 'उन्नत बोलने वालों को भी अपने L1 से आई सुनने की ब्लाइंड स्पॉट्स होती हैं. ऐप का अनुकूली एल्गोरिद्म आपकी समस्याओं को जल्दी पहचानकर उन्हीं पर ध्यान देता है, इसलिए यह हर स्तर के लिए मूल्यवान है.',
     
     ctaTitle: 'आख़िरकार फ़र्क़ सुनने के लिए तैयार हैं?',
-  ctaSubtitle: 'आज ही मुफ़्त परीक्षण शुरू करें.',
+  ctaSubtitle: 'सिर्फ $4.99 में आजीवन एक्सेस प्राप्त करें.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'यहाँ डाउनलोड करें',
     getItOn: 'यहाँ से पाएँ',
-    ctaFeature1: '7 दिन की मुफ़्त ट्रायल',
-    ctaFeature2: 'कभी भी रद्द करें',
+    ctaFeature1: 'एक बार का भुगतान',
+    ctaFeature2: 'कोई सदस्यता नहीं',
     ctaFeature3: 'हर डिवाइस पर काम करता है',
     
     footerTagline: 'दुनिया भर के अंग्रेज़ी शिक्षार्थियों के लिए विज्ञान-समर्थित उच्चारण धारणा प्रशिक्षण.',
@@ -693,7 +693,7 @@ export const additionalTranslations = {
   'Türkçe': {
     name: 'Türkçe',
     flag: '🇹🇷',
-    navCta: 'Ücretsiz Başla',
+    navCta: 'Hemen Başla',
     heroBadge: 'Bilim Destekli Öğrenme',
     heroTitle: 'Sonunda Şunların Arasındaki Farkı Duy',
     heroHighlight1: '"Right"',
@@ -711,7 +711,7 @@ export const additionalTranslations = {
     nativeLangOther: 'Diğer',
     pairIntro: 'Senin için yaygın zorluk:',
     pairChallenge: 'Farkı duyabiliyor musun?',
-    ctaPrimary: 'Ücretsiz Eğitime Başla',
+    ctaPrimary: 'Eğitime Başla',
     ctaSecondary: 'Nasıl Çalıştığını Gör',
     
     stat1Number: '50K+',
@@ -805,13 +805,13 @@ export const additionalTranslations = {
     faq5Answer: 'İleri konuşurlar bile anadillerinden gelen işitsel kör noktalar yaşar. Uyarlanabilir algoritma hızla sorunlarını bulur ve onlara odaklanır; bu yüzden her seviyede değerlidir.',
     
     ctaTitle: 'Artık Farkı Duymaya Hazır mısın?',
-  ctaSubtitle: 'Bugün ücretsiz denemeyi başlat.',
+  ctaSubtitle: 'Sadece 4.99$ karşılığında ömür boyu erişim elde edin.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Şuradan indir',
     getItOn: 'Şuradan edin',
-    ctaFeature1: '7 günlük ücretsiz deneme',
-    ctaFeature2: 'İstediğin zaman iptal et',
+    ctaFeature1: 'Tek seferlik ödeme',
+    ctaFeature2: 'Abonelik yok',
     ctaFeature3: 'Tüm cihazlarda çalışır',
     
     footerTagline: 'Dünya çapındaki İngilizce öğrenenler için bilim destekli telaffuz algısı eğitimi.',
@@ -833,7 +833,7 @@ export const additionalTranslations = {
   'زبان فارسی': {
     name: 'فارسی',
     flag: '🇮🇷',
-    navCta: 'شروع رایگان',
+    navCta: 'شروع کنید',
     heroBadge: 'یادگیری مبتنی بر علم',
     heroTitle: 'بالاخره تفاوت بین این‌ها را بشنوید',
     heroHighlight1: '"Right"',
@@ -851,7 +851,7 @@ export const additionalTranslations = {
     nativeLangOther: 'دیگر',
     pairIntro: 'چالشی رایج برای شما:',
     pairChallenge: 'می‌توانید تفاوت را بشنوید؟',
-    ctaPrimary: 'تمرین رایگان را شروع کنید',
+    ctaPrimary: 'تمرین را شروع کنید',
     ctaSecondary: 'ببینید چگونه کار می‌کند',
     
     stat1Number: '50K+',
@@ -945,13 +945,13 @@ export const additionalTranslations = {
     faq5Answer: 'حتی گویشوران پیشرفته نیز به دلیل زبان مادری‌شان نقاط کور شنیداری دارند. الگوریتم تطبیقی برنامه سریعاً چالش‌های شما را شناسایی و روی همان‌ها تمرکز می‌کند، بنابراین در هر سطحی مفید است.',
     
     ctaTitle: 'آماده‌اید بالاخره تفاوت را بشنوید؟',
-  ctaSubtitle: 'امروز دوره آزمایشی رایگان را شروع کنید.',
+  ctaSubtitle: 'دسترسی مادام‌العمر را فقط با ۴.۹۹ دلار دریافت کنید.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'دانلود از',
     getItOn: 'دریافت از',
-    ctaFeature1: 'آزمایش رایگان 7 روزه',
-    ctaFeature2: 'امکان لغو در هر زمان',
+    ctaFeature1: 'پرداخت یک‌باره',
+    ctaFeature2: 'بدون اشتراك',
     ctaFeature3: 'روی همه دستگاه‌ها کار می‌کند',
     
     footerTagline: 'آموزش درک تلفظ مبتنی بر علم برای زبان‌آموزان انگلیسی در سراسر جهان.',
@@ -973,7 +973,7 @@ export const additionalTranslations = {
   '廣東話': {
     name: '廣東話',
     flag: '🇭🇰',
-    navCta: '免費開始',
+    navCta: '立即開始',
     heroBadge: '科學驗證學習',
     heroTitle: '終於聽出以下之間的差別',
     heroHighlight1: '"Right"',
@@ -991,7 +991,7 @@ export const additionalTranslations = {
     nativeLangOther: '其他',
     pairIntro: '你常見的挑戰：',
     pairChallenge: '聽得出分別嗎？',
-    ctaPrimary: '免費開始訓練',
+    ctaPrimary: '開始訓練',
     ctaSecondary: '了解運作方式',
     
     stat1Number: '50K+',
@@ -1085,13 +1085,13 @@ export const additionalTranslations = {
     faq5Answer: '進階學習者同樣有來自母語的聽覺盲點。自適應演算法會快速找出並集中訓練，因此所有程度都受惠。',
     
     ctaTitle: '準備好終於聽出分別？',
-  ctaSubtitle: '立即開啟 7 天免費試用。',
+  ctaSubtitle: '只需 $4.99 即可獲得終身訪問權限。',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: '下載自',
     getItOn: '取得於',
-    ctaFeature1: '7 天免費試用',
-    ctaFeature2: '隨時可取消',
+    ctaFeature1: '一次性付款',
+    ctaFeature2: '無訂閱',
     ctaFeature3: '支援所有裝置',
     
     footerTagline: '為全球英語學習者打造的科學化發音聆聽訓練。',
@@ -1113,7 +1113,7 @@ export const additionalTranslations = {
   'bahasa Indo': {
     name: 'Bahasa Indonesia',
     flag: '🇮🇩',
-    navCta: 'Mulai Gratis',
+    navCta: 'Mulai Sekarang',
     heroBadge: 'Belajar Berbasis Sains',
     heroTitle: 'Akhirnya dengar perbedaan antara',
     heroHighlight1: '"Right"',
@@ -1131,7 +1131,7 @@ export const additionalTranslations = {
     nativeLangOther: 'Lainnya',
     pairIntro: 'Tantangan umum untukmu:',
     pairChallenge: 'Bisa dengar perbedaannya?',
-    ctaPrimary: 'Mulai Latihan Gratis',
+    ctaPrimary: 'Mulai Latihan',
     ctaSecondary: 'Lihat Cara Kerjanya',
     
     stat1Number: '50K+',
@@ -1225,13 +1225,13 @@ export const additionalTranslations = {
     faq5Answer: 'Penutur mahir pun sering punya titik buta dari bahasa pertama mereka. Algoritma adaptif aplikasi cepat menemukan tantanganmu dan berfokus di sana, sehingga bermanfaat di semua level.',
     
     ctaTitle: 'Siap akhirnya mendengar perbedaannya?',
-  ctaSubtitle: 'Mulai uji coba gratis hari ini.',
+  ctaSubtitle: 'Dapatkan akses seumur hidup hanya dengan $4.99.',
     appStore: 'App Store',
     googlePlay: 'Google Play',
     downloadOn: 'Unduh di',
     getItOn: 'Dapatkan di',
-    ctaFeature1: 'Uji coba gratis 7 hari',
-    ctaFeature2: 'Bisa dibatalkan kapan saja',
+    ctaFeature1: 'Pembayaran satu kali',
+    ctaFeature2: 'Tanpa langganan',
     ctaFeature3: 'Berfungsi di semua perangkat',
     
     footerTagline: 'Latihan persepsi pelafalan berbasis sains untuk pelajar bahasa Inggris di seluruh dunia.',
