@@ -1733,3 +1733,72 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* ===========================
+   Support Page
+   =========================== */
+.support-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.support-container h1 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.support-container h2 {
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.support-container h3 {
+  color: var(--text-primary);
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.support-container p {
+  margin-bottom: 1rem;
+}
+
+.support-container a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.support-container a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.contact-box {
+  background-color: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  margin-top: 1rem;
+  border-left: 4px solid var(--primary);
+}
+
+.legal-links {
+  list-style: none;
+  padding: 0;
+}
+
+.legal-links li {
+  margin-bottom: 0.5rem;
+}
