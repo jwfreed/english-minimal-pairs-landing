@@ -919,15 +919,28 @@ export function applyTranslations(lang) {
   // Update all elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
-    if (t[key]) {
+    const translation = t[key];
+    
+    if (translation !== undefined) {
+      // Handle list items that should be hidden if translation is empty
+      // Specific to the features list in the solution section
+      const listItem = element.closest('ul.feature-list li');
+      if (listItem) {
+        if (translation === '') {
+          listItem.style.display = 'none';
+        } else {
+          listItem.style.display = ''; // Restore default display
+        }
+      }
+      
       // Special handling for FAQ answers - update the <p> child, not the container div
       if (element.classList.contains('faq-answer')) {
         const p = element.querySelector('p');
         if (p) {
-          p.innerHTML = t[key];
+          p.innerHTML = translation;
         }
       } else {
-        element.innerHTML = t[key];
+        element.innerHTML = translation;
       }
     }
   });
