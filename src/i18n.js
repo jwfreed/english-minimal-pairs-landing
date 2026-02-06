@@ -712,7 +712,7 @@ const baseTranslations = {
     heroTitle: '들리지 않던 영어가 들리는 기적, 당신의 ‘언어 자본’을 깨우세요',
     heroHighlight1: '"Right"',
     heroHighlight2: '"Light"',
-    heroSubtitle: '과학으로 재설계하는 청각 지능. 대한민국 학습자들이 겪는 발음 고민의 핵심은 ‘노력’이 아닌 ‘청각 모델링’의 부재입니다. 마이크 없이, 오직 귀를 훈련하여 모국어(한국어)에 존재하지 않는 영어의 미세한 음역대를 정복하세요.',
+    heroSubtitle: '과학으로 재설계하는 듣기 훈련. 대한민국 학습자들이 겪는 발음 고민의 핵심은 ‘노력’이 아닌 ‘청각 모델링’의 부재입니다. 마이크 없이 오직 듣기 훈련만으로 모국어(한국어)에 존재하지 않는 영어의 미세한 음역대를 마스터하세요.',
     availableOn: 'iOS 및 Android 지원',
     languageSelectorLabel: '모국어:',
     languagePlaceholder: '모국어를 선택하세요',
