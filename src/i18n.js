@@ -754,13 +754,13 @@ const baseTranslations = {
     feature4: '',
     feature5: '',
     
-    howItWorksTitle: '지능형 적응 학습(Intelligent Adaptive Learning): 3단계 뉴럴 트레이닝',
+    howItWorksTitle: '지능형 적응 학습: 3단계 뉴럴 트레이닝',
     howItWorksSubtitle: '',
-    step1Title: '1. 청취 (Listen)',
+    step1Title: '청취 (Listen)',
     step1Text: '한국인에게 특화된 고난도 음소 쌍(Minimal Pairs)을 듣습니다.',
-    step2Title: '2. 선택 (Select)',
+    step2Title: '선택 (Select)',
     step2Text: '미세한 음성 차이를 직관적으로 구분하여 선택합니다.',
-    step3Title: '3. 학습 및 강화 (Learn)',
+    step3Title: '학습 및 강화 (Learn)',
     step3Text: 'AI 알고리즘이 당신의 취약점을 실시간 분석하여 다음 연습 과제를 최적화합니다.',
     
     progressBadge: '개선 사항 추적',
