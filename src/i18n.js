@@ -570,7 +570,7 @@ const baseTranslations = {
   'ภาษาไทย': {
     name: 'ภาษาไทย',
     flag: '🇹🇭',
-    navCta: 'เริ่มต้นเรียนฟรี',
+    navCta: 'จ่ายครั้งเดียวจบ',
     heroBadge: 'การเรียนรู้ที่ได้รับการสนับสนุนทางวิทยาศาสตร์',
     heroTitle: 'เปลี่ยน "การฟัง" ให้เป็น "อนาคต": เก่งอังกฤษอย่างเป็นธรรมชาติ',
     heroHighlight1: '"Right"',
@@ -589,7 +589,7 @@ const baseTranslations = {
     nativeLangOther: 'อื่นๆ',
     pairIntro: 'ความท้าทายทั่วไปสำหรับคุณ:',
     pairChallenge: 'คุณได้ยินความแตกต่างหรือไม่?',
-    ctaPrimary: 'เริ่มต้นเรียนฟรีวันนี้',
+    ctaPrimary: 'จ่ายครั้งเดียวจบวันนี้',
     ctaSecondary: 'ดูวิธีการทำงาน',
     
     stat1Number: '50K+',
