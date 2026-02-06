@@ -1817,3 +1817,10 @@ button:focus-visible {
   font-weight: 500;
   opacity: 0.9;
 }
+
+/* Korean Typography Improvements */
+html[lang="한국어"] body {
+  font-family: "Alibaba PuHuiTi", "Source Han Sans K", "Source Han Sans KR", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  line-height: 1.5;
+  word-break: keep-all; 
+}
