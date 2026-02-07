@@ -81,7 +81,7 @@ export const additionalTranslations = {
     scienceCard3Text: 'Estudos mostram que breves sessões diárias são suficientes para reconstruir seus mapas perceptivos.',
     
     testimonialsTitle: 'Brasileiros e Portugueses "Destravando" o Inglês',
-    testimonial1: 'Passei 5 anos confundindo "right" e "light". Com o Soundwise, em 3 semanas, meu ouvido "clicou". Mudou minha confiança nas reuniões de trabalho!',
+    testimonial1: 'Passei 5 anos confundindo "ship" e "sheep". Com o Soundwise, em 3 semanas, meu ouvido "clicou". Mudou minha confiança nas reuniões de trabalho!',
     testimonial1Author: 'Tiago S.',
     testimonial1Location: 'São Paulo, Brasil',
     testimonial2: 'Finalmente percebo a diferença entre os sons "th" e "s". É a base que faltava para eu deixar de ter sotaque de estudante.',
