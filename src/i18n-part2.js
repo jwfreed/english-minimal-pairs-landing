@@ -84,7 +84,7 @@ export const additionalTranslations = {
     testimonial1: 'Passei 5 anos confundindo "ship" e "sheep". Com o Soundwise, em 3 semanas, meu ouvido "clicou". Mudou minha confiança nas reuniões de trabalho!',
     testimonial1Author: 'Tiago S.',
     testimonial1Location: 'São Paulo, Brasil',
-    testimonial2: 'Finalmente percebo a diferença entre os sons "th" e "s". É a base que faltava para eu deixar de ter sotaque de estudante.',
+    testimonial2: 'Finalmente percebo a diferença entre os sons "th" e "d". É a base que faltava para eu deixar de ter sotaque de estudante.',
     testimonial2Author: 'Margarida F.',
     testimonial2Location: 'Lisboa, Portugal',
     testimonial3: 'Nenhum outro app foca na AUDIÇÃO primeiro. É exatamente o que precisamos. Simples e incrivelmente eficaz.',
