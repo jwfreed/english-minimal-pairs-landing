@@ -4,7 +4,7 @@
 export const additionalTranslations = {
   'Português': {
     name: 'Português',
-    flag: '�🇷',
+    flag: '🇧🇷',
     navCta: 'Começar',
     heroBadge: 'Baseado em Neurociência',
     heroTitle: 'Domine o Inglês, Conquiste o Mundo',
