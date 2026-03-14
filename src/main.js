@@ -109,13 +109,15 @@ nativeLanguageDropdown?.addEventListener('change', (e) => {
   
   if (selectedLanguage && minimalPairs[selectedLanguage]) {
     const pair = minimalPairs[selectedLanguage];
+    const currentLang = getCurrentLanguage();
+    const t = translations[currentLang] || translations.en;
     
     // Update the words
     word1El.textContent = pair.words[0];
     word2El.textContent = pair.words[1];
     
     // Update the intro text
-    pairIntro.textContent = `Common challenge for you: ${pair.challenge}`;
+    pairIntro.textContent = `${t.pairIntro} ${pair.challenge}`;
     
     // Show the example with animation
     pairExample.classList.remove('hidden');

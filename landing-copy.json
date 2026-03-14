@@ -68,7 +68,7 @@
     },
     "mandarin": {
       "HERO_HEADLINE": "不再猜测，一次听懂地道英语",
-      "HERO_DESCRIPTION": "数百万学习者即便通过了考试，仍难以在真实对话中自如应对。Soundwise 用真实口音、真实单词和自适应难度训练你的耳朵——让会议、面试和日常对话变得轻松。无需麦克风，只需你的双耳。",
+      "HERO_DESCRIPTION": "很多学习者即使通过了 CET-4、CET-6，到了会议、面试和真实对话里，还是常常听得吃力。Soundwise 用真实口音、真实单词和自适应难度训练你的耳朵——帮你跨过考试英语和真实英语之间的那道坎。无需麦克风，只需你的双耳。",
       "HERO_PRIMARY_CTA": "开始训练听力",
       "HERO_SECONDARY_CTA": "了解运作原理",
       "TRUST_METRIC_1": "5万+ 活跃学习者",
@@ -379,7 +379,7 @@
       "FEATURE_REAL_ACCENTS": "Gerçek aksanlar — Amerikan, İngiliz, Avustralya, erkek ve kadın anadil konuşurları",
       "FEATURE_REAL_WORDS": "Sadece gerçek kelimeler — her egzersiz yalnızca bir sesi değiştirir",
       "FINAL_CTA_HEADLINE": "Net Duy, Güvenle Kullan",
-      "FINAL_CTA_SUBTEXT": "Sohbetler kolaylaşır, sunumlar güvenli olur, kaygı azalır. Sadece $4.99 ile ömür boyu erişim.",
+      "FINAL_CTA_SUBTEXT": "Sohbetler daha rahat akar, sunumlarda kendine daha çok güvenirsin, kaygın azalır. Sadece $4.99 ile ömür boyu erişim.",
       "microcopy": {
         "cta_hover_primary": "Ücretsiz dinleme egzersizi dene",
         "cta_hover_secondary": "Kısa bir demo izle",
@@ -471,7 +471,7 @@
       "TRUST_METRIC_2": "15 menit per hari",
       "TRUST_METRIC_3": "120+ Negara",
       "PROBLEM_HEADLINE": "Mengapa masih kesulitan bicara jelas meski sudah berusaha keras?",
-      "PROBLEM_DESCRIPTION": "Bahasa Indonesia punya pola suara yang berbeda dengan Inggris. Otak Anda belum terbiasa membedakan bunyi yang tidak ada dalam bahasa ibu kita.",
+      "PROBLEM_DESCRIPTION": "Bahasa Indonesia punya pola bunyi yang berbeda dari bahasa Inggris. Otakmu belum terbiasa membedakan bunyi yang tidak ada dalam bahasa ibumu.",
       "SOLUTION_HEADLINE": "Bahasa Inggris Bukan Satu Suara — Kenapa Hanya Latihan Satu?",
       "PROCESS_SUBTITLE": "Tanpa grammar, tanpa penjelasan rumit — cukup tiga langkah.",
       "FEATURE_BUILT_FOR_LANGUAGE": "Dirancang untuk orang Indonesia — /θ/ vs /t/, konsonan akhir, kluster konsonan",

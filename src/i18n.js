@@ -1,4 +1,5 @@
 import { additionalTranslations } from './i18n-part2.js';
+import { buildRuntimeTranslations, getRuntimeLocaleMeta } from './landing-copy-adapter.js';
 
 // Multi-language support for Soundwise landing page
 // Based on alternateLanguages.ts from the main app
@@ -842,10 +843,12 @@ const baseTranslations = {
   },
 };
 
-export const translations = {
+const legacyTranslations = {
   ...baseTranslations,
   ...additionalTranslations,
 };
+
+export const translations = buildRuntimeTranslations(legacyTranslations);
 
 // Language mapping from browser locale codes to our language keys
 const languageMap = {
@@ -915,6 +918,7 @@ export function setLanguage(lang) {
 // Apply translations to the page
 export function applyTranslations(lang) {
   const t = translations[lang] || translations.en;
+  const { htmlLang, isRtl } = getRuntimeLocaleMeta(lang);
   
   // Update all elements with data-i18n attribute
   document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -938,9 +942,24 @@ export function applyTranslations(lang) {
         const p = element.querySelector('p');
         if (p) {
           p.innerHTML = translation;
+          if (isRtl) {
+            p.setAttribute('dir', 'auto');
+            p.style.unicodeBidi = 'plaintext';
+          } else {
+            p.removeAttribute('dir');
+            p.style.unicodeBidi = '';
+          }
         }
       } else {
         element.innerHTML = translation;
+      }
+
+      if (isRtl) {
+        element.setAttribute('dir', 'auto');
+        element.style.unicodeBidi = 'plaintext';
+      } else {
+        element.removeAttribute('dir');
+        element.style.unicodeBidi = '';
       }
     }
   });
@@ -957,8 +976,15 @@ export function applyTranslations(lang) {
   const langSelector = document.getElementById('language-selector');
   if (langSelector && translations[lang]) {
     langSelector.textContent = `${translations[lang].flag} ${translations[lang].name}`;
+    if (isRtl) {
+      langSelector.setAttribute('dir', 'auto');
+      langSelector.style.unicodeBidi = 'plaintext';
+    } else {
+      langSelector.removeAttribute('dir');
+      langSelector.style.unicodeBidi = '';
+    }
   }
   
   // Store current language in HTML lang attribute
-  document.documentElement.lang = lang === 'en' ? 'en' : lang;
+  document.documentElement.lang = htmlLang;
 }
