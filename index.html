@@ -116,6 +116,7 @@
           <h1 class="hero-title">
             <span data-i18n="heroTitle">Hear English Like a Native</span>
           </h1>
+          <p class="hero-primer" data-i18n="heroDemoPrimer">Try a 10-second listening test.</p>
           <p class="hero-subtitle" data-i18n="heroSubtitle">
             Soundwise retrains your brain to recognize English sounds automatically through short, focused listening drills. 
             No microphone needed — just listen, learn, and hear the difference.
@@ -126,45 +127,71 @@
             <label for="native-language" data-i18n="languageSelectorLabel">I speak:</label>
             <select id="native-language" class="language-dropdown">
               <option value="" data-i18n="languagePlaceholder">Select your native language</option>
-              <option value="japanese" data-i18n="nativeLangJapanese">Japanese</option>
-              <option value="mandarin" data-i18n="nativeLangMandarin">Mandarin Chinese</option>
-              <option value="thai" data-i18n="nativeLangThai">Thai</option>
-              <option value="spanish" data-i18n="nativeLangSpanish">Spanish</option>
-              <option value="korean" data-i18n="nativeLangKorean">Korean</option>
-              <option value="arabic" data-i18n="nativeLangArabic">Arabic</option>
-              <option value="vietnamese" data-i18n="nativeLangVietnamese">Vietnamese</option>
-              <option value="other" data-i18n="nativeLangOther">Other</option>
             </select>
           </div>
 
-          <div id="pair-example" class="pair-example hidden">
-            <p class="pair-intro" data-i18n="pairIntro">Common challenge for you:</p>
-            <div class="sound-pairs">
-              <button class="sound-button" data-sound="word1">
-                <span class="sound-icon">🔊</span>
-                <span class="sound-word" id="word1">Play</span>
-              </button>
-              <span class="vs">vs</span>
-              <button class="sound-button" data-sound="word2">
-                <span class="sound-icon">🔊</span>
-                <span class="sound-word" id="word2">Play</span>
-              </button>
+          <div id="hero-demo" class="hero-demo-card" aria-labelledby="hero-demo-title">
+            <div class="hero-demo-header">
+              <div>
+                <p id="hero-demo-round" class="hero-demo-round">Round 1 of 2</p>
+                <h2 id="hero-demo-title" class="hero-demo-title">Preview your hardest contrast</h2>
+              </div>
+              <div id="hero-demo-contrast" class="hero-demo-contrast">/ɪ/ vs /iː/</div>
             </div>
-            <p class="pair-challenge" data-i18n="pairChallenge">Can you hear the difference?</p>
+
+            <div id="hero-demo-preview" class="hero-demo-stage">
+              <p id="hero-demo-prompt" class="hero-demo-prompt" data-i18n="demoHearDifference">Hear the difference.</p>
+              <div id="hero-demo-preview-words" class="hero-demo-choices" role="group" aria-labelledby="hero-demo-prompt"></div>
+              <button id="hero-demo-start" class="hero-demo-action" type="button" data-i18n="demoStartTest">Start the test</button>
+            </div>
+
+            <div id="hero-demo-test" class="hero-demo-stage hero-demo-stage-hidden">
+              <p id="hero-demo-test-prompt" class="hero-demo-prompt" data-i18n="demoListenPrompt">Now listen carefully. Which word did you hear?</p>
+              <button id="hero-demo-play" class="hero-demo-action hero-demo-action-secondary" type="button" data-i18n="demoPlaySample">Play the sample</button>
+              <div id="hero-demo-guess-words" class="hero-demo-choices" role="group" aria-labelledby="hero-demo-test-prompt"></div>
+            </div>
+
+            <div id="hero-demo-feedback" class="hero-demo-feedback hero-demo-stage-hidden" dir="auto">
+              <p id="hero-demo-feedback-copy" class="hero-demo-feedback-copy"></p>
+              <div id="hero-demo-replay" class="hero-demo-replay"></div>
+              <button id="hero-demo-next" class="hero-demo-action hero-demo-stage-hidden" type="button" data-i18n="demoNextRound">Try one more round</button>
+            </div>
+
+            <div id="hero-demo-summary" class="hero-demo-summary hero-demo-stage-hidden" dir="auto">
+              <p id="hero-demo-score" class="hero-demo-score"></p>
+              <p id="hero-demo-conversion" class="hero-demo-conversion" data-i18n="demoConversionLine">These are exactly the listening mistakes Soundwise helps you fix.</p>
+            </div>
+
+            <p id="hero-demo-live" class="sr-only" aria-live="polite"></p>
           </div>
 
           <div class="cta-buttons">
-            <a href="#download" class="btn btn-primary btn-large">
-              <span data-i18n="ctaPrimary">Start Training</span>
+            <a href="#download" id="hero-primary-cta" class="btn btn-primary btn-large is-muted">
+              <span id="hero-primary-cta-text" data-i18n="ctaPrimary">Start Training</span>
               <span class="btn-icon">→</span>
             </a>
             <a href="#how-it-works" class="btn btn-secondary btn-large" data-i18n="ctaSecondary">
               See How It Works
             </a>
           </div>
+
+          <div class="hero-reassurance" aria-label="Purchase reassurance">
+            <span class="hero-reassurance-item">
+              <span class="hero-reassurance-check" aria-hidden="true">✔</span>
+              <span data-i18n="ctaFeature1">One-time purchase</span>
+            </span>
+            <span class="hero-reassurance-item">
+              <span class="hero-reassurance-check" aria-hidden="true">✔</span>
+              <span data-i18n="ctaFeature2">No subscription</span>
+            </span>
+            <span class="hero-reassurance-item">
+              <span class="hero-reassurance-check" aria-hidden="true">✔</span>
+              <span data-i18n="ctaFeature3">Works on iPhone and iPad</span>
+            </span>
+          </div>
           
     <div class="hero-trust">
-      <span class="trust-text" data-i18n="availableOn">Available on iOS and Android</span>
+      <span class="trust-text" data-i18n="availableOn">Available on iPhone and iPad<br />Android coming soon</span>
     </div>          <div class="social-proof">
             <div class="proof-stats">
               <div class="stat">

@@ -7,6 +7,7 @@ const jsonPath = path.join(root, 'landing-copy.json');
 const htmlPath = path.join(root, 'index.html');
 const runtimeModuleUrl = pathToFileURL(path.join(root, 'src', 'i18n.js')).href;
 const canonicalModuleUrl = pathToFileURL(path.join(root, 'src', 'landing-copy-runtime.js')).href;
+const heroDemoModuleUrl = pathToFileURL(path.join(root, 'src', 'hero-demo-translations.js')).href;
 
 const CANONICAL_ARTIFACT_KEYS = [
   'HERO_HEADLINE',
@@ -159,9 +160,10 @@ async function main() {
   const runtimeKeys = extractRuntimeKeys(html);
   const runtimeModule = await import(runtimeModuleUrl);
   const canonicalModule = await import(canonicalModuleUrl);
+  const heroDemoModule = await import(heroDemoModuleUrl);
   const result = collectIssues(
     languages,
-    runtimeKeys,
+    [...new Set([...runtimeKeys, ...heroDemoModule.HERO_DEMO_TRANSLATION_KEYS])],
     runtimeModule.translations,
     canonicalModule.CANONICAL_RUNTIME_KEYS,
     canonicalModule.getRuntimeLocaleMeta,
