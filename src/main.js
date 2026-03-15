@@ -253,11 +253,12 @@ function renderSummary() {
 function renderDemo() {
   const { config } = getDemoConfig(heroDemoState.runtimeLocale);
   const { isRtl } = getRuntimeLocaleMeta(heroDemoState.runtimeLocale);
+  const visibleRound = Math.min(heroDemoState.round, DEMO_MAX_ROUNDS);
 
   dom.nativeLanguage.value = heroDemoState.runtimeLocale;
   dom.heroDemoRound.textContent = formatMessage(
     getTranslation(heroDemoState.runtimeLocale, 'demoRoundLabel'),
-    { current: heroDemoState.round, total: DEMO_MAX_ROUNDS }
+    { current: visibleRound, total: DEMO_MAX_ROUNDS }
   );
   dom.heroDemoTitle.textContent = `${config.words[0].text.toUpperCase()} / ${config.words[1].text.toUpperCase()}`;
   dom.heroDemoContrast.textContent = config.contrast;
@@ -317,6 +318,10 @@ async function handleGuess(selectedIndex) {
 }
 
 function nextRound() {
+  if (heroDemoState.stage !== 'feedback' || heroDemoState.round >= DEMO_MAX_ROUNDS) {
+    return;
+  }
+
   heroDemoState.round += 1;
   heroDemoState.targetIndex = null;
   heroDemoState.stage = 'preview';
