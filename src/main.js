@@ -9,16 +9,24 @@ import {
 
 const DEMO_MAX_ROUNDS = 2;
 const CTA_UNLOCKED_CLASS = 'is-muted';
+const CHALLENGE_QUERY_PARAM = 'challenge';
+const CHALLENGE_LANG_PARAM = 'lang';
+const CHALLENGE_MODE_CLASS = 'challenge-mode';
 
 const heroDemoState = {
   runtimeLocale: 'en',
   demoLocale: 'english',
+  forcedDemoLocale: null,
   round: 1,
   correct: 0,
   targetIndex: null,
   stage: 'preview',
   ctaActivated: false,
   playbackToken: 0,
+  audioUnlocked: false,
+  hasCompletedDemo: false,
+  isChallengeMode: false,
+  challengeSlug: null,
 };
 
 const dom = {};
@@ -34,12 +42,49 @@ function formatMessage(template, replacements = {}) {
   );
 }
 
-function getDemoConfig(runtimeLocale) {
-  const demoLocale = RUNTIME_LOCALE_TO_DEMO_LOCALE[runtimeLocale] || 'english';
+function dispatchDemoEvent(name, detail = {}) {
+  window.dispatchEvent(new CustomEvent(`soundwise:${name}`, { detail }));
+}
+
+function getDemoConfig(runtimeLocale = heroDemoState.runtimeLocale) {
+  const demoLocale = heroDemoState.forcedDemoLocale
+    || RUNTIME_LOCALE_TO_DEMO_LOCALE[runtimeLocale]
+    || 'english';
 
   return {
     demoLocale,
     config: HERO_DEMO_CONTRASTS[demoLocale] || HERO_DEMO_CONTRASTS.english,
+  };
+}
+
+function getChallengeSlug(demoLocale = heroDemoState.demoLocale) {
+  const config = HERO_DEMO_CONTRASTS[demoLocale] || HERO_DEMO_CONTRASTS.english;
+  return config.words.map((word) => word.text.toLowerCase()).join('-');
+}
+
+function findDemoLocaleBySlug(slug) {
+  return Object.entries(HERO_DEMO_CONTRASTS).find(([, config]) => (
+    config.words.map((word) => word.text.toLowerCase()).join('-') === slug
+  ))?.[0] ?? null;
+}
+
+function buildChallengeUrl(runtimeLocale = heroDemoState.runtimeLocale, demoLocale = heroDemoState.demoLocale) {
+  const url = new URL(window.location.href);
+  url.searchParams.set(CHALLENGE_QUERY_PARAM, getChallengeSlug(demoLocale));
+  url.searchParams.set(CHALLENGE_LANG_PARAM, runtimeLocale);
+  return url.toString();
+}
+
+function readChallengeParams() {
+  const url = new URL(window.location.href);
+  const challengeSlug = url.searchParams.get(CHALLENGE_QUERY_PARAM)?.trim().toLowerCase() || null;
+  const forcedDemoLocale = challengeSlug ? findDemoLocaleBySlug(challengeSlug) : null;
+  const challengeRuntimeLocale = url.searchParams.get(CHALLENGE_LANG_PARAM);
+
+  return {
+    challengeSlug,
+    forcedDemoLocale,
+    challengeRuntimeLocale: translations[challengeRuntimeLocale] ? challengeRuntimeLocale : null,
   };
 }
 
@@ -72,6 +117,23 @@ function applyDirectionalSafety(element, isRtl) {
   }
 }
 
+function getEnglishVoice() {
+  const voices = window.speechSynthesis?.getVoices?.() ?? [];
+
+  return (
+    voices.find((voice) => voice.lang === 'en-US')
+    || voices.find((voice) => voice.lang.startsWith('en-US'))
+    || voices.find((voice) => voice.lang === 'en-GB')
+    || voices.find((voice) => voice.lang.startsWith('en-GB'))
+    || voices.find((voice) => /^en(-|$)/i.test(voice.lang))
+    || null
+  );
+}
+
+function markUserInteraction() {
+  heroDemoState.audioUnlocked = true;
+}
+
 function unlockPrimaryCta() {
   if (heroDemoState.ctaActivated) {
     return;
@@ -79,6 +141,10 @@ function unlockPrimaryCta() {
 
   heroDemoState.ctaActivated = true;
   dom.heroPrimaryCta?.classList.remove(CTA_UNLOCKED_CLASS);
+  dispatchDemoEvent('cta_promoted', {
+    runtimeLocale: heroDemoState.runtimeLocale,
+    demoLocale: heroDemoState.demoLocale,
+  });
 }
 
 function updatePrimaryCtaText() {
@@ -86,7 +152,7 @@ function updatePrimaryCtaText() {
     return;
   }
 
-  const key = heroDemoState.stage === 'summary' ? 'demoUnlockCta' : 'ctaPrimary';
+  const key = heroDemoState.hasCompletedDemo ? 'demoPromotedCta' : 'ctaPrimary';
   dom.heroPrimaryCtaText.textContent = getTranslation(heroDemoState.runtimeLocale, key);
 }
 
@@ -102,36 +168,27 @@ function setButtonBusy(button, isBusy) {
 function speakWord(text, activeButton) {
   const synthesis = window.speechSynthesis;
 
-  if (!synthesis) {
-    return Promise.resolve();
+  if (!synthesis || !heroDemoState.audioUnlocked) {
+    return Promise.resolve(false);
   }
 
   synthesis.cancel();
 
   return new Promise((resolve) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
+    const englishVoice = getEnglishVoice();
+    utterance.lang = englishVoice?.lang || 'en-US';
     utterance.rate = 0.82;
     utterance.pitch = 1;
     utterance.volume = 1;
 
-    const voices = synthesis.getVoices();
-    const preferredVoice = voices.find((voice) => (
-      voice.lang.startsWith('en-US')
-      && (
-        voice.name.includes('Google')
-        || voice.name.includes('Microsoft')
-        || voice.name.includes('Samantha')
-      )
-    ));
-
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
+    if (englishVoice) {
+      utterance.voice = englishVoice;
     }
 
     const complete = () => {
       setButtonBusy(activeButton, false);
-      resolve();
+      resolve(true);
     };
 
     utterance.onend = complete;
@@ -142,11 +199,11 @@ function speakWord(text, activeButton) {
   });
 }
 
-async function playWord(index, activeButton) {
-  const { config } = getDemoConfig(heroDemoState.runtimeLocale);
+async function playWord(index, activeButton, { allowWithoutInteraction = false } = {}) {
+  const { config } = getDemoConfig();
   const word = config.words[index];
 
-  if (!word) {
+  if (!word || (!heroDemoState.audioUnlocked && !allowWithoutInteraction)) {
     return;
   }
 
@@ -155,7 +212,11 @@ async function playWord(index, activeButton) {
 }
 
 async function replayContrast() {
-  const { config } = getDemoConfig(heroDemoState.runtimeLocale);
+  if (!heroDemoState.audioUnlocked) {
+    return;
+  }
+
+  const { config } = getDemoConfig();
   const playbackToken = ++heroDemoState.playbackToken;
 
   for (const word of config.words) {
@@ -164,11 +225,11 @@ async function replayContrast() {
     }
 
     await speakWord(word.text);
-    await new Promise((resolve) => window.setTimeout(resolve, 240));
+    await new Promise((resolve) => window.setTimeout(resolve, 220));
   }
 }
 
-function buildWordButton(word, index, action, labelKey) {
+function buildPreviewButton(word, index, action) {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = `hero-demo-word hero-demo-word-${action}`;
@@ -176,7 +237,41 @@ function buildWordButton(word, index, action, labelKey) {
   button.dataset.action = action;
   button.setAttribute(
     'aria-label',
-    `${getTranslation(heroDemoState.runtimeLocale, labelKey)}: ${word.text}`
+    formatMessage(getTranslation(heroDemoState.runtimeLocale, 'demoPlayWord'), { word: word.text })
+  );
+
+  const icon = document.createElement('span');
+  icon.className = 'hero-demo-word-speaker';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = '🔊';
+
+  const textWrap = document.createElement('span');
+  textWrap.className = 'hero-demo-word-body';
+
+  const wordText = document.createElement('span');
+  wordText.className = 'hero-demo-word-text';
+  wordText.lang = 'en';
+  wordText.dir = 'ltr';
+  wordText.textContent = word.text.toUpperCase();
+
+  const wordIpa = document.createElement('span');
+  wordIpa.className = 'hero-demo-word-ipa';
+  wordIpa.textContent = word.ipa;
+
+  textWrap.append(wordText, wordIpa);
+  button.append(icon, textWrap);
+  return button;
+}
+
+function buildGuessButton(word, index) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'hero-demo-word hero-demo-word-guess';
+  button.dataset.wordIndex = String(index);
+  button.dataset.action = 'guess';
+  button.setAttribute(
+    'aria-label',
+    formatMessage(getTranslation(heroDemoState.runtimeLocale, 'demoChooseWord'), { word: word.text })
   );
 
   const wordText = document.createElement('span');
@@ -189,29 +284,24 @@ function buildWordButton(word, index, action, labelKey) {
   wordIpa.className = 'hero-demo-word-ipa';
   wordIpa.textContent = word.ipa;
 
-  const wordIcon = document.createElement('span');
-  wordIcon.className = 'hero-demo-word-icon';
-  wordIcon.setAttribute('aria-hidden', 'true');
-  wordIcon.textContent = 'Play';
-
-  button.append(wordText, wordIpa, wordIcon);
+  button.append(wordText, wordIpa);
   return button;
 }
 
 function renderWordButtons() {
-  const { config } = getDemoConfig(heroDemoState.runtimeLocale);
+  const { config } = getDemoConfig();
 
   dom.heroDemoPreviewWords.replaceChildren(
-    ...config.words.map((word, index) => buildWordButton(word, index, 'preview', 'demoPlayWord'))
+    ...config.words.map((word, index) => buildPreviewButton(word, index, 'preview'))
   );
 
   dom.heroDemoGuessWords.replaceChildren(
-    ...config.words.map((word, index) => buildWordButton(word, index, 'guess', 'demoChooseWord'))
+    ...config.words.map((word, index) => buildGuessButton(word, index))
   );
 }
 
 function renderReplayButtons() {
-  const { config } = getDemoConfig(heroDemoState.runtimeLocale);
+  const { config } = getDemoConfig();
   const { isRtl } = getRuntimeLocaleMeta(heroDemoState.runtimeLocale);
   const replayLabel = document.createElement('p');
   replayLabel.className = 'hero-demo-replay-label';
@@ -221,14 +311,14 @@ function renderReplayButtons() {
   const replayButtons = document.createElement('div');
   replayButtons.className = 'hero-demo-choices';
   replayButtons.append(
-    ...config.words.map((word, index) => buildWordButton(word, index, 'replay', 'demoPlayWord'))
+    ...config.words.map((word, index) => buildPreviewButton(word, index, 'replay'))
   );
 
   dom.heroDemoReplay.replaceChildren(replayLabel, replayButtons);
 }
 
 function renderFeedback(selectedIndex, isCorrect) {
-  const { config } = getDemoConfig(heroDemoState.runtimeLocale);
+  const { config } = getDemoConfig();
   const selectedWord = config.words[selectedIndex]?.text.toUpperCase() || '';
   const correctWord = config.words[heroDemoState.targetIndex]?.text.toUpperCase() || '';
   const feedbackStatus = getTranslation(
@@ -244,16 +334,56 @@ function renderFeedback(selectedIndex, isCorrect) {
 }
 
 function renderSummary() {
+  const leadKey = heroDemoState.isChallengeMode ? 'challengeResultLead' : 'demoSummaryLead';
+  const bodyKey = heroDemoState.isChallengeMode ? 'challengeResultBody' : 'demoSummaryBody';
+
+  dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, leadKey);
   dom.heroDemoScore.textContent = formatMessage(
     getTranslation(heroDemoState.runtimeLocale, 'demoScore'),
     { correct: heroDemoState.correct, total: DEMO_MAX_ROUNDS }
   );
+  dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, bodyKey);
+}
+
+function renderShareBlock() {
+  const promptKey = heroDemoState.isChallengeMode ? 'challengeSharePrompt' : 'demoSharePrompt';
+  const buttonKey = heroDemoState.isChallengeMode ? 'challengeShareButton' : 'demoShareButton';
+
+  dom.heroSharePrompt.textContent = getTranslation(heroDemoState.runtimeLocale, promptKey);
+  dom.heroShareButton.textContent = getTranslation(heroDemoState.runtimeLocale, buttonKey);
+  dom.heroShareLink.value = buildChallengeUrl();
+}
+
+function renderChallengeMode() {
+  document.body.classList.toggle(CHALLENGE_MODE_CLASS, heroDemoState.isChallengeMode);
+
+  if (!heroDemoState.isChallengeMode) {
+    return;
+  }
+
+  const { config } = getDemoConfig();
+  const headline = getTranslation(heroDemoState.runtimeLocale, 'challengeHeadline');
+  const intro = getTranslation(heroDemoState.runtimeLocale, 'challengeIntro');
+
+  dom.heroTitle.textContent = headline;
+  dom.heroPrimer.textContent = intro;
+  dom.heroSubtitle.textContent = formatMessage(
+    getTranslation(heroDemoState.runtimeLocale, 'demoShareText'),
+    {
+      word1: config.words[0].text.toUpperCase(),
+      word2: config.words[1].text.toUpperCase(),
+    }
+  );
+  dom.heroDemoStart.textContent = getTranslation(heroDemoState.runtimeLocale, 'challengePrimaryCta');
 }
 
 function renderDemo() {
-  const { config } = getDemoConfig(heroDemoState.runtimeLocale);
+  const { config } = getDemoConfig();
   const { isRtl } = getRuntimeLocaleMeta(heroDemoState.runtimeLocale);
   const visibleRound = Math.min(heroDemoState.round, DEMO_MAX_ROUNDS);
+  const showSummary = heroDemoState.stage === 'summary';
+
+  heroDemoState.demoLocale = getDemoConfig().demoLocale;
 
   dom.nativeLanguage.value = heroDemoState.runtimeLocale;
   dom.heroDemoRound.textContent = formatMessage(
@@ -264,29 +394,39 @@ function renderDemo() {
   dom.heroDemoContrast.textContent = config.contrast;
   dom.heroDemoPrompt.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference');
   dom.heroDemoTestPrompt.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoListenPrompt');
-  dom.heroDemoStart.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoStartTest');
+  if (!heroDemoState.isChallengeMode) {
+    dom.heroDemoStart.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoStartTest');
+  }
   dom.heroDemoPlay.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoPlaySample');
   dom.heroDemoNext.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoNextRound');
+  dom.heroCtaRevealMessage.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoReadyPrompt');
+  dom.heroCtaRevealMeta.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoPromotedMeta');
 
   applyDirectionalSafety(dom.heroDemoRound, isRtl);
   applyDirectionalSafety(dom.heroDemoPrompt, isRtl);
   applyDirectionalSafety(dom.heroDemoTestPrompt, isRtl);
   applyDirectionalSafety(dom.heroDemoFeedbackCopy, isRtl);
-  applyDirectionalSafety(dom.heroDemoScore, isRtl);
   applyDirectionalSafety(dom.heroDemoSummary, isRtl);
+  applyDirectionalSafety(dom.heroCtaReveal, isRtl);
+  applyDirectionalSafety(dom.heroShareBlock, isRtl);
+  applyDirectionalSafety(dom.heroShareStatus, isRtl);
   dom.heroDemoTitle.setAttribute('dir', 'ltr');
   dom.heroDemoTitle.style.unicodeBidi = 'plaintext';
 
   renderWordButtons();
   renderReplayButtons();
   renderSummary();
+  renderShareBlock();
   updatePrimaryCtaText();
+  renderChallengeMode();
 
   showStage(dom.heroDemoPreview, heroDemoState.stage === 'preview');
   showStage(dom.heroDemoTest, heroDemoState.stage === 'test');
-  showStage(dom.heroDemoFeedback, heroDemoState.stage === 'feedback' || heroDemoState.stage === 'summary');
-  showStage(dom.heroDemoSummary, heroDemoState.stage === 'summary');
+  showStage(dom.heroDemoFeedback, heroDemoState.stage === 'feedback' || showSummary);
+  showStage(dom.heroDemoSummary, showSummary);
   showStage(dom.heroDemoNext, heroDemoState.stage === 'feedback' && heroDemoState.round < DEMO_MAX_ROUNDS);
+  showStage(dom.heroCtaReveal, showSummary);
+  showStage(dom.heroShareBlock, showSummary);
 }
 
 async function beginRoundTest() {
@@ -294,9 +434,17 @@ async function beginRoundTest() {
   heroDemoState.targetIndex = Math.round(Math.random());
   dom.heroDemoFeedbackCopy.textContent = '';
   renderDemo();
-  unlockPrimaryCta();
-  announce(getTranslation(heroDemoState.runtimeLocale, 'demoListenPrompt'));
-  await playWord(heroDemoState.targetIndex, dom.heroDemoPlay);
+  dispatchDemoEvent('demo_started', {
+    runtimeLocale: heroDemoState.runtimeLocale,
+    demoLocale: heroDemoState.demoLocale,
+    round: heroDemoState.round,
+    challengeMode: heroDemoState.isChallengeMode,
+  });
+
+  if (heroDemoState.audioUnlocked) {
+    announce(getTranslation(heroDemoState.runtimeLocale, 'demoListenPrompt'));
+    await playWord(heroDemoState.targetIndex, dom.heroDemoPlay);
+  }
 }
 
 async function handleGuess(selectedIndex) {
@@ -309,12 +457,29 @@ async function handleGuess(selectedIndex) {
     heroDemoState.correct += 1;
   }
 
+  dispatchDemoEvent('demo_round_completed', {
+    runtimeLocale: heroDemoState.runtimeLocale,
+    demoLocale: heroDemoState.demoLocale,
+    round: heroDemoState.round,
+    correct: isCorrect,
+  });
+
   heroDemoState.stage = heroDemoState.round >= DEMO_MAX_ROUNDS ? 'summary' : 'feedback';
+  heroDemoState.hasCompletedDemo = heroDemoState.stage === 'summary';
   renderFeedback(selectedIndex, isCorrect);
   renderDemo();
   unlockPrimaryCta();
   announce(dom.heroDemoFeedbackCopy.textContent || '');
   await replayContrast();
+
+  if (heroDemoState.hasCompletedDemo) {
+    dispatchDemoEvent(heroDemoState.isChallengeMode ? 'challenge_completed' : 'demo_completed', {
+      runtimeLocale: heroDemoState.runtimeLocale,
+      demoLocale: heroDemoState.demoLocale,
+      correct: heroDemoState.correct,
+      total: DEMO_MAX_ROUNDS,
+    });
+  }
 }
 
 function nextRound() {
@@ -342,16 +507,25 @@ function resetHeroDemoState() {
   heroDemoState.correct = 0;
   heroDemoState.targetIndex = null;
   heroDemoState.stage = 'preview';
+  heroDemoState.hasCompletedDemo = false;
   heroDemoState.playbackToken += 1;
 
   if (dom.heroDemoFeedbackCopy) {
     dom.heroDemoFeedbackCopy.textContent = '';
   }
+
+  if (dom.heroShareStatus) {
+    dom.heroShareStatus.textContent = '';
+    showStage(dom.heroShareStatus, false);
+  }
+
+  if (dom.heroShareLinkWrap) {
+    showStage(dom.heroShareLinkWrap, false);
+  }
 }
 
 function applyRuntimeLanguage(runtimeLocale, { persist = false } = {}) {
   heroDemoState.runtimeLocale = translations[runtimeLocale] ? runtimeLocale : 'en';
-  heroDemoState.demoLocale = getDemoConfig(heroDemoState.runtimeLocale).demoLocale;
   resetHeroDemoState();
 
   if (persist) {
@@ -402,9 +576,79 @@ function handleGuessKeydown(event) {
     event.preventDefault();
     buttons[(currentIndex - 1 + buttons.length) % buttons.length]?.focus();
   }
+
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    buttons[currentIndex]?.click();
+  }
+}
+
+async function shareCurrentChallenge() {
+  const { config } = getDemoConfig();
+  const shareUrl = buildChallengeUrl();
+  const shareText = formatMessage(
+    getTranslation(heroDemoState.runtimeLocale, 'demoShareText'),
+    {
+      word1: config.words[0].text.toUpperCase(),
+      word2: config.words[1].text.toUpperCase(),
+    }
+  );
+
+  dom.heroShareLink.value = shareUrl;
+  showStage(dom.heroShareStatus, true);
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: getTranslation(heroDemoState.runtimeLocale, 'challengeHeadline'),
+        text: shareText,
+        url: shareUrl,
+      });
+      dom.heroShareStatus.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoShareCopied');
+      dispatchDemoEvent('challenge_shared', {
+        runtimeLocale: heroDemoState.runtimeLocale,
+        demoLocale: heroDemoState.demoLocale,
+        method: 'web-share',
+      });
+      return;
+    } catch (error) {
+      if (error?.name === 'AbortError') {
+        showStage(dom.heroShareStatus, false);
+        return;
+      }
+    }
+  }
+
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      dom.heroShareStatus.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoShareCopied');
+      dispatchDemoEvent('challenge_shared', {
+        runtimeLocale: heroDemoState.runtimeLocale,
+        demoLocale: heroDemoState.demoLocale,
+        method: 'clipboard',
+      });
+      return;
+    } catch {
+      // Fall through to visible link fallback.
+    }
+  }
+
+  dom.heroShareStatus.textContent = getTranslation(heroDemoState.runtimeLocale, 'demoShareFallback');
+  showStage(dom.heroShareLinkWrap, true);
+  dom.heroShareLink.focus();
+  dom.heroShareLink.select();
+  dispatchDemoEvent('challenge_shared', {
+    runtimeLocale: heroDemoState.runtimeLocale,
+    demoLocale: heroDemoState.demoLocale,
+    method: 'visible-link',
+  });
 }
 
 function setupHeroDemo() {
+  dom.heroTitle = document.querySelector('[data-i18n="heroTitle"]');
+  dom.heroPrimer = document.querySelector('.hero-primer');
+  dom.heroSubtitle = document.querySelector('.hero-subtitle');
   dom.nativeLanguage = document.getElementById('native-language');
   dom.heroDemoRound = document.getElementById('hero-demo-round');
   dom.heroDemoTitle = document.getElementById('hero-demo-title');
@@ -422,10 +666,21 @@ function setupHeroDemo() {
   dom.heroDemoReplay = document.getElementById('hero-demo-replay');
   dom.heroDemoNext = document.getElementById('hero-demo-next');
   dom.heroDemoSummary = document.getElementById('hero-demo-summary');
+  dom.heroDemoSummaryLead = document.getElementById('hero-demo-summary-lead');
+  dom.heroDemoSummaryBody = document.getElementById('hero-demo-summary-body');
   dom.heroDemoScore = document.getElementById('hero-demo-score');
   dom.heroDemoLive = document.getElementById('hero-demo-live');
   dom.heroPrimaryCta = document.getElementById('hero-primary-cta');
   dom.heroPrimaryCtaText = document.getElementById('hero-primary-cta-text');
+  dom.heroCtaReveal = document.getElementById('hero-cta-reveal');
+  dom.heroCtaRevealMessage = document.getElementById('hero-cta-reveal-message');
+  dom.heroCtaRevealMeta = document.getElementById('hero-cta-reveal-meta');
+  dom.heroShareBlock = document.getElementById('hero-share-block');
+  dom.heroSharePrompt = document.getElementById('hero-share-prompt');
+  dom.heroShareButton = document.getElementById('hero-share-button');
+  dom.heroShareStatus = document.getElementById('hero-share-status');
+  dom.heroShareLinkWrap = document.getElementById('hero-share-link-wrap');
+  dom.heroShareLink = document.getElementById('hero-share-link');
 
   populateNativeLanguageDropdown();
 
@@ -435,10 +690,12 @@ function setupHeroDemo() {
   });
 
   dom.heroDemoStart?.addEventListener('click', () => {
+    markUserInteraction();
     beginRoundTest();
   });
 
   dom.heroDemoPlay?.addEventListener('click', () => {
+    markUserInteraction();
     if (heroDemoState.targetIndex !== null) {
       playWord(heroDemoState.targetIndex, dom.heroDemoPlay);
     }
@@ -450,6 +707,7 @@ function setupHeroDemo() {
       return;
     }
 
+    markUserInteraction();
     playWord(Number(button.dataset.wordIndex), button);
   });
 
@@ -459,6 +717,7 @@ function setupHeroDemo() {
       return;
     }
 
+    markUserInteraction();
     playWord(Number(button.dataset.wordIndex), button);
   });
 
@@ -468,13 +727,20 @@ function setupHeroDemo() {
       return;
     }
 
+    markUserInteraction();
     handleGuess(Number(button.dataset.wordIndex));
   });
 
   dom.heroDemoGuessWords?.addEventListener('keydown', handleGuessKeydown);
 
   dom.heroDemoNext?.addEventListener('click', () => {
+    markUserInteraction();
     nextRound();
+  });
+
+  dom.heroShareButton?.addEventListener('click', () => {
+    markUserInteraction();
+    shareCurrentChallenge();
   });
 }
 
@@ -619,8 +885,7 @@ function setupScrollAnimations() {
 function setupCtaTracking() {
   document.querySelectorAll('.btn-primary').forEach((button) => {
     button.addEventListener('click', () => {
-      const buttonText = button.textContent.trim();
-      console.log(`CTA clicked: ${buttonText}`);
+      console.log(`CTA clicked: ${button.textContent.trim()}`);
     });
   });
 }
@@ -651,7 +916,12 @@ function warmSpeechVoices() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const currentLang = getCurrentLanguage();
+  const challengeParams = readChallengeParams();
+  const currentLang = challengeParams.challengeRuntimeLocale || getCurrentLanguage();
+
+  heroDemoState.isChallengeMode = Boolean(challengeParams.forcedDemoLocale);
+  heroDemoState.forcedDemoLocale = challengeParams.forcedDemoLocale;
+  heroDemoState.challengeSlug = challengeParams.challengeSlug;
 
   setupHeroDemo();
   setupLanguageSwitcher();
@@ -665,6 +935,15 @@ document.addEventListener('DOMContentLoaded', () => {
   warmSpeechVoices();
 
   applyRuntimeLanguage(currentLang, { persist: false });
+
+  if (heroDemoState.isChallengeMode) {
+    dispatchDemoEvent('challenge_opened', {
+      runtimeLocale: heroDemoState.runtimeLocale,
+      demoLocale: heroDemoState.demoLocale,
+      challengeSlug: heroDemoState.challengeSlug,
+    });
+  }
+
   announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
 
   document.body.style.opacity = '0';
@@ -672,6 +951,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.transition = 'opacity 0.3s ease';
     document.body.style.opacity = '1';
   }, 100);
-
-  console.log('Soundwise landing page ready');
 });

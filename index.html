@@ -124,7 +124,7 @@
           
           <!-- Language Selector -->
           <div class="language-selector">
-            <label for="native-language" data-i18n="languageSelectorLabel">I speak:</label>
+            <label for="native-language" data-i18n="languageSelectorLabel">Your first language:</label>
             <select id="native-language" class="language-dropdown">
               <option value="" data-i18n="languagePlaceholder">Select your native language</option>
             </select>
@@ -158,11 +158,19 @@
             </div>
 
             <div id="hero-demo-summary" class="hero-demo-summary hero-demo-stage-hidden" dir="auto">
+              <p id="hero-demo-summary-lead" class="hero-demo-summary-lead"></p>
               <p id="hero-demo-score" class="hero-demo-score"></p>
-              <p id="hero-demo-conversion" class="hero-demo-conversion" data-i18n="demoConversionLine">These are exactly the listening mistakes Soundwise helps you fix.</p>
+              <p id="hero-demo-summary-body" class="hero-demo-summary-body"></p>
+              <p id="hero-demo-conversion" class="hero-demo-conversion" data-i18n="demoConversionLine">Many English learners struggle with sounds like this. Soundwise trains your ear to hear them instantly.</p>
+              <p id="hero-demo-value" class="hero-demo-value" data-i18n="demoValueSignal">This is 1 of 40+ English sound contrasts in Soundwise.</p>
             </div>
 
             <p id="hero-demo-live" class="sr-only" aria-live="polite"></p>
+          </div>
+
+          <div id="hero-cta-reveal" class="hero-cta-reveal hero-demo-stage-hidden" dir="auto">
+            <p id="hero-cta-reveal-message" class="hero-cta-reveal-message" data-i18n="demoReadyPrompt">Ready to train your ear for real conversations?</p>
+            <p id="hero-cta-reveal-meta" class="hero-cta-reveal-meta" data-i18n="demoPromotedMeta">40+ English sound contrasts</p>
           </div>
 
           <div class="cta-buttons">
@@ -188,6 +196,18 @@
               <span class="hero-reassurance-check" aria-hidden="true">✔</span>
               <span data-i18n="ctaFeature3">Works on iPhone and iPad</span>
             </span>
+          </div>
+
+          <div id="hero-share-block" class="hero-share-block hero-demo-stage-hidden" dir="auto">
+            <p id="hero-share-prompt" class="hero-share-prompt" data-i18n="demoSharePrompt">Can your friends hear the difference?</p>
+            <div class="hero-share-actions">
+              <button id="hero-share-button" class="btn btn-share" type="button" data-i18n="demoShareButton">Challenge a friend</button>
+            </div>
+            <p id="hero-share-status" class="hero-share-status hero-demo-stage-hidden" aria-live="polite"></p>
+            <div id="hero-share-link-wrap" class="hero-share-link-wrap hero-demo-stage-hidden">
+              <label class="sr-only" for="hero-share-link" data-i18n="demoShareFallback">Copy challenge link</label>
+              <input id="hero-share-link" class="hero-share-link" type="text" readonly />
+            </div>
           </div>
           
     <div class="hero-trust">
