@@ -806,36 +806,40 @@ body {
   font-size: 0.95rem;
 }
 
-/* Social Proof */
-.social-proof {
+/* Hero Value Strip */
+.hero-value-strip {
   margin-top: 3rem;
 }
 
-.proof-stats {
+.hero-value-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 2rem;
-  max-width: 600px;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 960px;
   margin: 0 auto;
 }
 
-.stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
+.hero-value-card {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  text-align: left;
+  backdrop-filter: blur(8px);
 }
 
-.stat-number {
-  font-size: 1.875rem;
+.hero-value-title {
+  font-size: 1.25rem;
   font-weight: 800;
   color: white;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
-.stat-label {
-  font-size: 0.875rem;
-  opacity: 0.85;
-  font-weight: 500;
+.hero-value-text {
+  font-size: 0.95rem;
+  color: rgba(255, 248, 235, 0.94);
+  line-height: 1.55;
 }
 
 /* ===========================
@@ -2105,7 +2109,7 @@ body.challenge-mode .faq,
 body.challenge-mode .final-cta,
 body.challenge-mode .footer,
 body.challenge-mode .hero-trust,
-body.challenge-mode .social-proof,
+body.challenge-mode .hero-value-strip,
 body.challenge-mode .btn-secondary,
 body.challenge-mode .hero-reassurance {
   display: none;
@@ -2141,4 +2145,15 @@ html[lang="한국어"] body {
   font-family: "Alibaba PuHuiTi", "Source Han Sans K", "Source Han Sans KR", "Noto Sans KR", "Malgun Gothic", sans-serif;
   line-height: 1.5;
   word-break: keep-all; 
+}
+@media (min-width: 640px) {
+  .hero-value-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-value-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
