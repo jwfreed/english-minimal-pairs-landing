@@ -1,11 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
 const jsonPath = path.join(root, 'landing-copy.json');
 const htmlPath = path.join(root, 'index.html');
+const runtimeModuleUrl = pathToFileURL(path.join(root, 'src', 'i18n.js')).href;
+const canonicalModuleUrl = pathToFileURL(path.join(root, 'src', 'landing-copy-runtime.js')).href;
 
-const CURRENT_CONTENT_KEYS = [
+const CANONICAL_ARTIFACT_KEYS = [
   'HERO_HEADLINE',
   'HERO_DESCRIPTION',
   'HERO_PRIMARY_CTA',
@@ -21,25 +24,6 @@ const CURRENT_CONTENT_KEYS = [
   'FEATURE_REAL_ACCENTS',
   'FEATURE_REAL_WORDS',
   'FINAL_CTA_HEADLINE',
-  'FINAL_CTA_SUBTEXT',
-];
-
-const BRIEF_SECTION_KEYS = [
-  'HERO_HEADLINE',
-  'HERO_SUBHEADLINE',
-  'VALUE_PROPOSITION',
-  'SOCIAL_PROOF',
-  'PROBLEM_STATEMENT',
-  'SOLUTION_DESCRIPTION',
-  'FEATURE_LIST',
-  'BENEFITS_SECTION',
-  'USE_CASES',
-  'TESTIMONIAL',
-  'PRICING_OVERVIEW',
-  'PRICING_DETAILS',
-  'FAQ_SECTION',
-  'SECURITY_TRUST',
-  'FINAL_CTA',
   'FINAL_CTA_SUBTEXT',
 ];
 
@@ -86,11 +70,14 @@ function hasLocalizedPriceHint(value) {
   return /บาท|₽|ريال|تومان|円|¥|₹|रु|Rs|₫|TL|₺|Rp|R\$|₩|원|دلار/.test(value);
 }
 
-function collectIssues(languages, runtimeKeys) {
+function collectIssues(languages, runtimeKeys, translations, canonicalRuntimeKeys, getRuntimeLocaleMeta, runtimeToArtifactLocale) {
   const languageEntries = Object.entries(languages);
   const [firstLanguageName, firstLanguage] = languageEntries[0];
   const expectedTopOrder = Object.keys(firstLanguage);
   const expectedMicroOrder = Object.keys(firstLanguage.microcopy || {});
+  const artifactToRuntimeLocale = Object.fromEntries(
+    Object.entries(runtimeToArtifactLocale).map(([runtimeLocale, artifactLocale]) => [artifactLocale, runtimeLocale])
+  );
   const findings = {
     structural: [],
     runtime: [],
@@ -98,28 +85,16 @@ function collectIssues(languages, runtimeKeys) {
     pricing: [],
   };
 
-  const availableJsonKeys = new Set([
-    ...Object.keys(firstLanguage).filter((key) => key !== 'microcopy'),
-    ...Object.keys(firstLanguage.microcopy || {}),
-  ]);
-
-  const runtimeMissing = runtimeKeys.filter((key) => !availableJsonKeys.has(key));
-  if (runtimeMissing.length > 0) {
-    findings.runtime.push(
-      `landing-copy.json exposes ${availableJsonKeys.size} runtime-usable keys, but index.html renders ${runtimeKeys.length}; ${runtimeMissing.length} UI keys are not covered by JSON.`
-    );
-  }
-
   for (const [languageName, language] of languageEntries) {
-    const currentMissing = CURRENT_CONTENT_KEYS.filter((key) => !(key in language));
-    const briefMissing = BRIEF_SECTION_KEYS.filter((key) => !(key in language));
+    const runtimeLocale = artifactToRuntimeLocale[languageName];
+    const runtimeTranslation = translations[runtimeLocale];
+    const canonicalArtifactMissing = CANONICAL_ARTIFACT_KEYS.filter((key) => !(key in language));
     const microMissing = MICROCOPY_KEYS.filter((key) => !(key in (language.microcopy || {})));
+    const canonicalMissing = canonicalRuntimeKeys.filter((runtimeKey) => runtimeTranslation?.[runtimeKey] === undefined);
+    const runtimeMissing = runtimeKeys.filter((runtimeKey) => runtimeTranslation?.[runtimeKey] === undefined);
     const topOrder = Object.keys(language);
     const microOrder = Object.keys(language.microcopy || {});
 
-    if (currentMissing.length > 0) {
-      findings.structural.push(`${languageName}: missing current content keys: ${currentMissing.join(', ')}`);
-    }
     if (microMissing.length > 0) {
       findings.structural.push(`${languageName}: missing microcopy keys: ${microMissing.join(', ')}`);
     }
@@ -129,8 +104,14 @@ function collectIssues(languages, runtimeKeys) {
     if (JSON.stringify(microOrder) !== JSON.stringify(expectedMicroOrder)) {
       findings.structural.push(`${languageName}: microcopy key order drifted from ${firstLanguageName}`);
     }
-    if (briefMissing.length > 0) {
-      findings.structural.push(`${languageName}: does not match brief section taxonomy; missing ${briefMissing.length} of 16 brief keys`);
+    if (canonicalArtifactMissing.length > 0) {
+      findings.structural.push(`${languageName}: missing canonical landing-copy keys: ${canonicalArtifactMissing.join(', ')}`);
+    }
+    if (canonicalMissing.length > 0) {
+      findings.runtime.push(`${languageName}: canonical runtime keys missing after runtime build: ${canonicalMissing.join(', ')}`);
+    }
+    if (runtimeMissing.length > 0) {
+      findings.runtime.push(`${languageName}: page runtime lookups missing: ${runtimeMissing.join(', ')}`);
     }
 
     const values = [
@@ -151,30 +132,45 @@ function collectIssues(languages, runtimeKeys) {
     }
   }
 
+  for (const runtimeLocale of ['اللغة العربية', 'زبان فارسی']) {
+    if (!getRuntimeLocaleMeta(runtimeLocale).isRtl) {
+      findings.rtl.push(`${runtimeLocale}: runtime locale metadata is not marked RTL`);
+    }
+  }
+
   return {
     findings,
     metadata: {
       languages: languageEntries.map(([name]) => name),
-      currentContentKeyCount: CURRENT_CONTENT_KEYS.length,
+      canonicalRuntimeKeyCount: canonicalRuntimeKeys.length,
       microcopyKeyCount: MICROCOPY_KEYS.length,
       runtimeKeyCount: runtimeKeys.length,
-      jsonRuntimeKeyCount: availableJsonKeys.size,
+      runtimeLocaleCount: Object.keys(translations).length,
       deterministicTopLevelOrder: findings.structural.every((item) => !item.includes('top-level key order drifted')),
       deterministicMicrocopyOrder: findings.structural.every((item) => !item.includes('microcopy key order drifted')),
     },
   };
 }
 
-function main() {
+async function main() {
   const data = readJson(jsonPath);
   const html = fs.readFileSync(htmlPath, 'utf8');
   const languages = getLanguages(data);
   const runtimeKeys = extractRuntimeKeys(html);
-  const result = collectIssues(languages, runtimeKeys);
+  const runtimeModule = await import(runtimeModuleUrl);
+  const canonicalModule = await import(canonicalModuleUrl);
+  const result = collectIssues(
+    languages,
+    runtimeKeys,
+    runtimeModule.translations,
+    canonicalModule.CANONICAL_RUNTIME_KEYS,
+    canonicalModule.getRuntimeLocaleMeta,
+    canonicalModule.RUNTIME_LOCALE_TO_ARTIFACT_LOCALE
+  );
 
   console.log(JSON.stringify(result, null, 2));
 
-  if (result.findings.structural.some((item) => item.includes('missing current content keys') || item.includes('missing microcopy keys'))) {
+  if (result.findings.structural.length > 0 || result.findings.runtime.length > 0) {
     process.exitCode = 1;
   }
 }
