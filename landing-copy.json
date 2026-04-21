@@ -1,7 +1,7 @@
 {
   "english": {
-    "HERO_HEADLINE": "Finally Understand Fast, Natural English — Without Guessing",
-    "HERO_DESCRIPTION": "Stop confusing similar sounds. Soundwise retrains your brain to hear English clearly through short, focused listening drills with real accents and real words. No microphone needed — just listen and hear the difference.",
+    "HERO_HEADLINE": "Train Your Ears. Hear English Clearly the First Time.",
+    "HERO_DESCRIPTION": "Most apps train speaking. Soundwise trains hearing — the missing piece. Short listening drills retrain your brain to recognize English sounds automatically. No microphone needed.",
     "HERO_PRIMARY_CTA": "Train Your Ears Now",
     "HERO_SECONDARY_CTA": "See How It Works",
     "TRUST_METRIC_1": "40+ sound contrasts",
@@ -14,8 +14,8 @@
     "FEATURE_BUILT_FOR_LANGUAGE": "Focuses on the exact sound contrasts most likely to cause confusion for speakers of your native language",
     "FEATURE_REAL_ACCENTS": "Multiple native speakers with American, British, Australian, Irish, and South African accents",
     "FEATURE_REAL_WORDS": "Every training item uses real English words that change only one sound at a time",
-    "FINAL_CTA_HEADLINE": "If You Can Hear It Clearly, You Can Use It Confidently.",
-    "FINAL_CTA_SUBTEXT": "Conversations feel easier. You respond faster. You feel less anxious. You stop second-guessing. Get lifetime access for just $4.99.",
+    "FINAL_CTA_HEADLINE": "Hear It Clearly. Use It Confidently.",
+    "FINAL_CTA_SUBTEXT": "Conversations flow. Responses come faster. Confidence builds. One-time payment — $4.99 for lifetime access. No subscription.",
     "microcopy": {
       "cta_hover_primary": "Start your free listening drill",
       "cta_hover_secondary": "Watch a quick demo",
@@ -34,8 +34,8 @@
   },
   "translations": {
     "japanese": {
-      "HERO_HEADLINE": "もう聞き返さない。英語が「一発で」聞き取れる耳へ。",
-      "HERO_DESCRIPTION": "科学的根拠に基づくリスニング訓練で、あなたの脳に眠る聴覚能力を呼び覚まします。本物のアクセント、本物の単語、あなたのレベルに適応するトレーニング。マイク不要 — 会議・面接・試験・日常会話がラクになります。",
+      "HERO_HEADLINE": "英語耳をつくる。一発で聞き取れる脳へ。",
+      "HERO_DESCRIPTION": "ほとんどのアプリは「話す練習」しかしません。Soundwiseは「聞く力」を鍛えます — それこそが欠けていたピース。短い集中リスニングで、英語の音を自動的に認識できる脳に変えていきます。マイク不要。",
       "HERO_PRIMARY_CTA": "耳のトレーニングを始める",
       "HERO_SECONDARY_CTA": "仕組みを見る",
       "TRUST_METRIC_1": "40以上の音コントラスト",
@@ -49,7 +49,7 @@
       "FEATURE_REAL_ACCENTS": "アメリカ・イギリス・オーストラリアなど多様なネイティブ音声で訓練",
       "FEATURE_REAL_WORDS": "すべての訓練に実際の英単語を使用。一度に一つの音だけが異なります",
       "FINAL_CTA_HEADLINE": "はっきり聞こえれば、自信を持って使える。",
-      "FINAL_CTA_SUBTEXT": "会話がラクになる。反応が速くなる。不安が減る。迷いがなくなる。$4.99の1回払いで、一生モノの「英語耳」を手に入れる。",
+      "FINAL_CTA_SUBTEXT": "会話がスムーズになる。反応が速くなる。自信がつく。$4.99の1回払い、買い切り。サブスクなし。",
       "microcopy": {
         "cta_hover_primary": "無料のリスニングドリルを試す",
         "cta_hover_secondary": "仕組みを30秒で確認",
@@ -67,8 +67,8 @@
       }
     },
     "mandarin": {
-      "HERO_HEADLINE": "不再猜测，一次听懂地道英语",
-      "HERO_DESCRIPTION": "很多学习者即使通过了 CET-4、CET-6，到了会议、面试和真实对话里，还是常常听得吃力。Soundwise 用真实口音、真实单词和自适应难度训练你的耳朵——帮你跨过考试英语和真实英语之间的那道坎。无需麦克风，只需你的双耳。",
+      "HERO_HEADLINE": "训练你的耳朵。第一次就听懂英语。",
+      "HERO_DESCRIPTION": "大多数应用训练口语。Soundwise 训练听力 — 那个被忽略的关键。短小的听力练习重塑大脑对英语语音的自动识别能力。无需麦克风。",
       "HERO_PRIMARY_CTA": "开始训练听力",
       "HERO_SECONDARY_CTA": "了解运作原理",
       "TRUST_METRIC_1": "40+ 组声音对比",
@@ -81,8 +81,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "专注于中文使用者最容易混淆的发音对比（L/N、R/L、V/W、TH音、词尾辅音）",
       "FEATURE_REAL_ACCENTS": "美式、英式、澳式等多位母语者录制的高品质真实口音",
       "FEATURE_REAL_WORDS": "每个训练项使用真实英语单词，每次只改变一个发音",
-      "FINAL_CTA_HEADLINE": "听得清楚，才能用得自信。",
-      "FINAL_CTA_SUBTEXT": "对话变得轻松。反应更快。焦虑减少。不再犹豫不决。仅需 $4.99，终身解锁英语母语者的敏锐度。",
+      "FINAL_CTA_HEADLINE": "听得清楚，用得自信。",
+      "FINAL_CTA_SUBTEXT": "交流顺畅。反应更快。自信增长。一次付费 — $4.99 终身使用。无订阅。",
       "microcopy": {
         "cta_hover_primary": "免费试听训练",
         "cta_hover_secondary": "快速了解原理",
@@ -100,8 +100,8 @@
       }
     },
     "thai": {
-      "HERO_HEADLINE": "เลิกเดา เริ่มฟังภาษาอังกฤษได้ชัดเจน",
-      "HERO_DESCRIPTION": "ฝึกหูด้วยสำเนียงจริง คำจริง และระดับความยากที่ปรับตามตัวคุณ — ให้การประชุม สัมภาษณ์ สอบ และสนทนาง่ายขึ้นตั้งแต่วันแรก ไม่ต้องใช้ไมโครโฟน แค่ฟัง",
+      "HERO_HEADLINE": "ฝึกหูก่อน ฟังภาษาอังกฤษได้ชัดตั้งแต่ครั้งแรก",
+      "HERO_DESCRIPTION": "แอปส่วนใหญ่ฝึกการพูด Soundwise ฝึกการฟัง — นั่นคือสิ่งที่ขาดหายไป การฝึกฟังสั้นๆ อย่างเป็นระบบจะปรับสมองให้จดจำเสียงอังกฤษได้อัตโนมัติ ไม่ต้องใช้ไมโครโฟน",
       "HERO_PRIMARY_CTA": "เริ่มฝึกหูวันนี้",
       "HERO_SECONDARY_CTA": "ดูวิธีการทำงาน",
       "TRUST_METRIC_1": "40+ คู่เสียงอังกฤษ",
@@ -115,7 +115,7 @@
       "FEATURE_REAL_ACCENTS": "หลากหลายสำเนียงจริง — อเมริกัน อังกฤษ ออสเตรเลีย ทั้งเสียงชายและหญิง",
       "FEATURE_REAL_WORDS": "ใช้คำจริงทั้งหมด ทุกแบบฝึกหัดเปลี่ยนเสียงทีละเสียงเดียว",
       "FINAL_CTA_HEADLINE": "ฟังชัด ใช้ได้อย่างมั่นใจ",
-      "FINAL_CTA_SUBTEXT": "สนทนาง่ายขึ้น ตอบเร็วขึ้น กังวลน้อยลง ไม่ลังเล ปลดล็อกตลอดชีพในราคาเพียง $4.99 (ประมาณ 170 บาท)",
+      "FINAL_CTA_SUBTEXT": "สนทนาคล่องขึ้น ตอบสนองเร็วขึ้น ความมั่นใจเพิ่มขึ้น จ่ายครั้งเดียว — $4.99 ใช้ได้ตลอดชีพ ไม่มีรายเดือน",
       "microcopy": {
         "cta_hover_primary": "ลองฝึกฟังฟรี",
         "cta_hover_secondary": "ดูตัวอย่างสั้นๆ",
@@ -133,8 +133,8 @@
       }
     },
     "spanish": {
-      "HERO_HEADLINE": "Deja de adivinar. Empieza a entender el inglés real.",
-      "HERO_DESCRIPTION": "No dejes que los sonidos que no escuchas limiten tu carrera. Entrena tu oído con acentos reales, palabras reales y dificultad adaptativa — para que reuniones, entrevistas y conversaciones sean más fáciles desde el primer día.",
+      "HERO_HEADLINE": "Entrena tu oído. Entiende el inglés a la primera.",
+      "HERO_DESCRIPTION": "La mayoría de apps entrenan el habla. Soundwise entrena el oído — la pieza que falta. Ejercicios cortos de escucha reprograman tu cerebro para reconocer sonidos ingleses de forma automática. Sin micrófono.",
       "HERO_PRIMARY_CTA": "Empieza a Entrenar tu Oído",
       "HERO_SECONDARY_CTA": "Ver Cómo Funciona",
       "TRUST_METRIC_1": "40+ contrastes de sonidos",
@@ -147,8 +147,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "Diseñado para hispanohablantes: V vs B, sonido th, vocales cortas/largas, consonantes finales",
       "FEATURE_REAL_ACCENTS": "Múltiples hablantes nativos con acentos americano, británico, australiano y más",
       "FEATURE_REAL_WORDS": "Cada ejercicio usa palabras reales que cambian solo un sonido a la vez",
-      "FINAL_CTA_HEADLINE": "Si lo escuchas con claridad, lo puedes usar con confianza.",
-      "FINAL_CTA_SUBTEXT": "Las conversaciones son más fáciles. Respondes más rápido. Sientes menos ansiedad. Dejas de dudar. Acceso de por vida por solo $4.99.",
+      "FINAL_CTA_HEADLINE": "Escúchalo claro. Úsalo con confianza.",
+      "FINAL_CTA_SUBTEXT": "Las conversaciones fluyen. Respondes más rápido. La confianza crece. Un solo pago — $4.99 de acceso de por vida. Sin suscripción.",
       "microcopy": {
         "cta_hover_primary": "Prueba un ejercicio de escucha gratis",
         "cta_hover_secondary": "Mira una demo rápida",
@@ -166,8 +166,8 @@
       }
     },
     "arabic": {
-      "HERO_HEADLINE": "أخيراً افهم الإنجليزية السريعة والطبيعية — بدون تخمين",
-      "HERO_DESCRIPTION": "درّب أذنيك بأصوات حقيقية، كلمات حقيقية، ومستوى صعوبة يتكيّف معك — لتصبح الاجتماعات والمحادثات والمقابلات أسهل. دون ميكروفون، فقط 15 دقيقة يومياً.",
+      "HERO_HEADLINE": "درّب أذنيك. افهم الإنجليزية من أول مرة.",
+      "HERO_DESCRIPTION": "معظم التطبيقات تدرّب على الكلام. Soundwise يدرّب على السماع — القطعة المفقودة. تمارين استماع قصيرة تُعيد تأهيل دماغك ليتعرف على أصوات الإنجليزية تلقائياً. دون ميكروفون.",
       "HERO_PRIMARY_CTA": "ابدأ تدريب الأذن اليوم",
       "HERO_SECONDARY_CTA": "شاهد كيف يعمل",
       "TRUST_METRIC_1": "أكثر من 40 تبايناً صوتياً",
@@ -180,8 +180,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "مصمّم للعرب — P/B، V/F، الأصوات الصعبة التي يخلط بينها المتحدثون بالعربية",
       "FEATURE_REAL_ACCENTS": "لهجات حقيقية متنوعة — أمريكية، بريطانية، أسترالية، رجال ونساء أصليون",
       "FEATURE_REAL_WORDS": "كلمات حقيقية فقط — كل تمرين يغيّر صوتاً واحداً فقط",
-      "FINAL_CTA_HEADLINE": "اسمع بوضوح، استخدم بثقة",
-      "FINAL_CTA_SUBTEXT": "محادثات أسهل، عروض أكثر ثقة، قلق أقل. دفعة واحدة فقط — $4.99 لوصول مدى الحياة.",
+      "FINAL_CTA_HEADLINE": "اسمع بوضوح. استخدم بثقة.",
+      "FINAL_CTA_SUBTEXT": "محادثات أسلس. ردود أسرع. ثقة أكبر. دفعة واحدة — $4.99 وصول مدى الحياة. دون اشتراك.",
       "microcopy": {
         "cta_hover_primary": "جرّب تمرين استماع مجاني",
         "cta_hover_secondary": "شاهد عرضاً سريعاً",
@@ -199,8 +199,8 @@
       }
     },
     "russian": {
-      "HERO_HEADLINE": "Наконец-то — быстрый английский на слух, без догадок",
-      "HERO_DESCRIPTION": "Используйте метод, основанный на нейропластичности мозга, чтобы преодолеть языковой барьер. Реальные акценты, реальные слова, адаптивная сложность. Без микрофона, без зубрёжки.",
+      "HERO_HEADLINE": "Тренируй слух. Понимай английский с первого раза.",
+      "HERO_DESCRIPTION": "Большинство приложений тренируют речь. Soundwise тренирует слух — ту самую недостающую часть. Короткие тренировки перепрограммируют мозг на автоматическое распознавание звуков. Без микрофона.",
       "HERO_PRIMARY_CTA": "Начать тренировку слуха",
       "HERO_SECONDARY_CTA": "Как это работает",
       "TRUST_METRIC_1": "40+ звуковых контрастов",
@@ -213,8 +213,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "Адаптировано для русскоязычных — /θ/, гласные, W/V и другие проблемные звуки",
       "FEATURE_REAL_ACCENTS": "Реальные акценты — американский, британский, австралийский и другие, мужские и женские голоса",
       "FEATURE_REAL_WORDS": "Только настоящие английские слова — никаких бессмысленных звуков",
-      "FINAL_CTA_HEADLINE": "Слышите чётко — говорите уверенно",
-      "FINAL_CTA_SUBTEXT": "Разговоры легче, презентации увереннее, меньше тревоги. Пожизненный доступ всего за $4.99 (ок. 470 ₽).",
+      "FINAL_CTA_HEADLINE": "Слышишь чётко — говоришь уверенно.",
+      "FINAL_CTA_SUBTEXT": "Разговоры идут свободнее. Реакция быстрее. Уверенность растёт. Разовый платёж — $4.99, доступ навсегда. Без подписки.",
       "microcopy": {
         "cta_hover_primary": "Попробуйте бесплатное упражнение",
         "cta_hover_secondary": "Посмотреть быстрое демо",
@@ -232,8 +232,8 @@
       }
     },
     "korean": {
-      "HERO_HEADLINE": "빠른 영어도 한 번에 알아듣는 귀를 만드세요",
-      "HERO_DESCRIPTION": "실제 발음, 실제 단어, 나에게 맞는 난이도로 귀를 훈련하세요 — 회의, 대화, 시험에서 \"Sorry?\"를 더 이상 반복하지 마세요. 마이크 없이 오직 듣기만으로.",
+      "HERO_HEADLINE": "귀를 훈련하세요. 영어를 처음 들어도 바로 이해하세요.",
+      "HERO_DESCRIPTION": "대부분의 앱은 말하기를 훈련합니다. Soundwise는 듣기를 훈련합니다 — 그것이 빠져 있던 핵심입니다. 짧은 집중 청취 훈련이 뇌를 영어 소리를 자동으로 인식하도록 재훈련합니다. 마이크 불필요.",
       "HERO_PRIMARY_CTA": "오늘부터 귀 훈련 시작",
       "HERO_SECONDARY_CTA": "작동 원리 보기",
       "TRUST_METRIC_1": "40개 이상의 소리 대비",
@@ -246,8 +246,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "한국어 맞춤 설계 — R/L, P/F, V/B, /θ/, Dark L, 모음 길이에 집중",
       "FEATURE_REAL_ACCENTS": "다양한 실제 억양 — 미국, 영국, 호주 등 남녀 원어민 직접 녹음",
       "FEATURE_REAL_WORDS": "실제로 쓰이는 영어 단어만 — 의미 없는 소리 연습 없음",
-      "FINAL_CTA_HEADLINE": "잘 들리면, 자신있게 쓸 수 있습니다",
-      "FINAL_CTA_SUBTEXT": "대화가 편해지고, 발표가 자신있어지고, 걱정이 줄어듭니다. 단 $4.99 일회성 결제로 평생 이용.",
+      "FINAL_CTA_HEADLINE": "잘 들리면, 자신있게 쓸 수 있습니다.",
+      "FINAL_CTA_SUBTEXT": "대화가 자연스러워집니다. 반응이 빨라집니다. 자신감이 쌓입니다. 일회성 결제 — $4.99로 평생 이용. 구독 없음.",
       "microcopy": {
         "cta_hover_primary": "무료 듣기 연습 시작하기",
         "cta_hover_secondary": "30초 데모 보기",
@@ -265,8 +265,8 @@
       }
     },
     "hindi_urdu": {
-      "HERO_HEADLINE": "अंत में तेज़ और स्वाभाविक अंग्रेज़ी समझें — अनुमान लगाने की ज़रूरत नहीं",
-      "HERO_DESCRIPTION": "असली आवाज़ों, असली शब्दों और आपके लेवल के अनुसार कठिनाई से कान ट्रेन करें — मीटिंग, बातचीत और रोज़मर्रा की ज़िंदगी आसान हो जाएगी. बिना माइक्रोफ़ोन, बस 15 मिनट रोज़ाना.",
+      "HERO_HEADLINE": "कान ट्रेन करें। पहली बार में ही अंग्रेज़ी समझें।",
+      "HERO_DESCRIPTION": "ज़्यादातर apps बोलने की प्रैक्टिस कराते हैं। Soundwise सुनने की — वह अहम हिस्सा जो छूट जाता है। छोटे-छोटे focused listening drills आपके दिमाग को English sounds अपने आप पहचानने के लिए retrain करते हैं। कोई microphone नहीं चाहिए।",
       "HERO_PRIMARY_CTA": "आज से कान ट्रेनिंग शुरू करें",
       "HERO_SECONDARY_CTA": "देखें यह कैसे काम करता है",
       "TRUST_METRIC_1": "40+ ध्वनि अंतर",
@@ -279,8 +279,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "भारतीय भाषाओं के लिए बना — V vs W, TH ध्वनि, स्वर लंबाई पर फ़ोकस",
       "FEATURE_REAL_ACCENTS": "American, British, Australian — अनेक असली लहजे, पुरुष और महिला आवाज़ें",
       "FEATURE_REAL_WORDS": "सिर्फ़ असली शब्द — हर अभ्यास में एक समय पर एक ही ध्वनि बदलती है",
-      "FINAL_CTA_HEADLINE": "साफ़ सुनेंगे तो आत्मविश्वास से बोलेंगे",
-      "FINAL_CTA_SUBTEXT": "बातचीत आसान होगी, प्रेज़ेंटेशन में आत्मविश्वास बढ़ेगा, चिंता घटेगी. सिर्फ़ $4.99 में आजीवन एक्सेस.",
+      "FINAL_CTA_HEADLINE": "साफ़ सुनें। आत्मविश्वास से बोलें।",
+      "FINAL_CTA_SUBTEXT": "बातचीत आसान होती है। जवाब जल्दी आते हैं। आत्मविश्वास बढ़ता है। एक बार की payment — $4.99 में lifetime access. कोई subscription नहीं।",
       "microcopy": {
         "cta_hover_primary": "मुफ़्त सुनने का अभ्यास आज़माएँ",
         "cta_hover_secondary": "डेमो देखें",
@@ -298,8 +298,8 @@
       }
     },
     "portuguese": {
-      "HERO_HEADLINE": "Finalmente Entenda Inglês Rápido e Natural — Sem Adivinhar",
-      "HERO_DESCRIPTION": "Treine seus ouvidos com vozes reais, palavras reais e dificuldade que se adapta ao seu nível — para que reuniões, conversas e o dia a dia fluam sem esforço. Sem microfone, apenas 15 minutos por dia.",
+      "HERO_HEADLINE": "Treine seus ouvidos. Entenda o inglês da primeira vez.",
+      "HERO_DESCRIPTION": "A maioria dos apps treina o falar. O Soundwise treina o ouvir — a peça que faltava. Exercícios curtos de escuta reprogramam o cérebro para reconhecer sons do inglês automaticamente. Sem microfone.",
       "HERO_PRIMARY_CTA": "Comece a Treinar Hoje",
       "HERO_SECONDARY_CTA": "Ver Como Funciona",
       "TRUST_METRIC_1": "40+ contrastes de sons",
@@ -312,8 +312,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "Feito para brasileiros e portugueses — /θ/ vs /t/, ship vs sheep, consoantes finais",
       "FEATURE_REAL_ACCENTS": "Sotaques reais e variados — americano, britânico, australiano, vozes masculinas e femininas",
       "FEATURE_REAL_WORDS": "Só palavras reais — nada de sons inventados, cada exercício muda apenas um som",
-      "FINAL_CTA_HEADLINE": "Ouvir bem é falar com confiança",
-      "FINAL_CTA_SUBTEXT": "Conversas mais fáceis, apresentações mais seguras, menos ansiedade. Acesso vitalício por apenas $4.99.",
+      "FINAL_CTA_HEADLINE": "Ouça com clareza. Use com confiança.",
+      "FINAL_CTA_SUBTEXT": "Conversas fluem. Respostas chegam mais rápido. A confiança cresce. Pagamento único — $4.99 de acesso vitalício. Sem assinatura.",
       "microcopy": {
         "cta_hover_primary": "Experimente um exercício de escuta grátis",
         "cta_hover_secondary": "Veja uma demo rápida",
@@ -331,8 +331,8 @@
       }
     },
     "vietnamese": {
-      "HERO_HEADLINE": "Cuối cùng hiểu tiếng Anh nhanh và tự nhiên — không cần đoán",
-      "HERO_DESCRIPTION": "Luyện tai với giọng thật, từ thật, độ khó tự điều chỉnh theo bạn — để họp, trò chuyện và cuộc sống hàng ngày không còn căng thẳng. Không cần micro, chỉ 15 phút mỗi ngày.",
+      "HERO_HEADLINE": "Luyện tai trước. Nghe hiểu tiếng Anh ngay lần đầu.",
+      "HERO_DESCRIPTION": "Hầu hết các app luyện nói. Soundwise luyện nghe — mảnh ghép còn thiếu. Các bài tập nghe ngắn, tập trung giúp não bộ tự động nhận ra âm tiếng Anh. Không cần microphone.",
       "HERO_PRIMARY_CTA": "Bắt đầu luyện tai hôm nay",
       "HERO_SECONDARY_CTA": "Xem cách hoạt động",
       "TRUST_METRIC_1": "Hơn 40 cặp âm đối lập",
@@ -345,8 +345,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "Thiết kế cho người Việt — /θ/ vs /t/, âm cuối, cụm phụ âm khó",
       "FEATURE_REAL_ACCENTS": "Nhiều giọng thật — Mỹ, Anh, Úc, cả nam và nữ bản xứ",
       "FEATURE_REAL_WORDS": "Chỉ từ thật — không có âm vô nghĩa, mỗi bài tập thay đổi một âm duy nhất",
-      "FINAL_CTA_HEADLINE": "Nghe rõ thì dùng tự tin",
-      "FINAL_CTA_SUBTEXT": "Giao tiếp dễ dàng hơn, thuyết trình tự tin hơn, bớt lo lắng. Truy cập TRỌN ĐỜI chỉ với $4.99.",
+      "FINAL_CTA_HEADLINE": "Nghe rõ. Dùng tự tin.",
+      "FINAL_CTA_SUBTEXT": "Giao tiếp tự nhiên hơn. Phản xạ nhanh hơn. Sự tự tin tăng lên. Thanh toán một lần — $4.99 trọn đời. Không đăng ký.",
       "microcopy": {
         "cta_hover_primary": "Thử bài luyện nghe miễn phí",
         "cta_hover_secondary": "Xem demo nhanh",
@@ -364,8 +364,8 @@
       }
     },
     "turkish": {
-      "HERO_HEADLINE": "Sonunda Hızlı ve Doğal İngilizceyi Anla — Tahmin Etmeden",
-      "HERO_DESCRIPTION": "Kulağını gerçek sesler, gerçek kelimeler ve sana uyum sağlayan zorlukla eğit — toplantılar, sohbetler ve sınavlar artık kolay olsun. Mikrofona gerek yok, günde 15 dakika yeter.",
+      "HERO_HEADLINE": "Kulağını eğit. İngilizceyi ilk seferinde anla.",
+      "HERO_DESCRIPTION": "Çoğu uygulama konuşmayı eğitir. Soundwise dinlemeyi eğitir — eksik olan parçayı. Kısa ve odaklı dinleme alıştırmaları beyni İngilizce sesleri otomatik olarak tanıyacak şekilde yeniden eğitir. Mikrofona gerek yok.",
       "HERO_PRIMARY_CTA": "Bugün Kulak Eğitimine Başla",
       "HERO_SECONDARY_CTA": "Nasıl Çalıştığını Gör",
       "TRUST_METRIC_1": "40+ ses karşıtlığı",
@@ -378,8 +378,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "Türkçe konuşurlar için zor olan seslere odaklanır — /θ/, W/V, ünlü ayrımları",
       "FEATURE_REAL_ACCENTS": "Gerçek aksanlar — Amerikan, İngiliz, Avustralya, erkek ve kadın anadil konuşurları",
       "FEATURE_REAL_WORDS": "Sadece gerçek kelimeler — her egzersiz yalnızca bir sesi değiştirir",
-      "FINAL_CTA_HEADLINE": "Net Duy, Güvenle Kullan",
-      "FINAL_CTA_SUBTEXT": "Sohbetler daha rahat akar, sunumlarda kendine daha çok güvenirsin, kaygın azalır. Sadece $4.99 ile ömür boyu erişim.",
+      "FINAL_CTA_HEADLINE": "Net duy. Özgüvenle kullan.",
+      "FINAL_CTA_SUBTEXT": "Konuşmalar akıcılaşır. Yanıtlar daha hızlı gelir. Özgüven artar. Tek seferlik ödeme — $4.99 ömür boyu erişim. Abonelik yok.",
       "microcopy": {
         "cta_hover_primary": "Ücretsiz dinleme egzersizi dene",
         "cta_hover_secondary": "Kısa bir demo izle",
@@ -397,8 +397,8 @@
       }
     },
     "persian": {
-      "HERO_HEADLINE": "بالاخره انگلیسی سریع و طبیعی را بفهمید — بدون حدس زدن",
-      "HERO_DESCRIPTION": "گوش خود را با صداهای واقعی، کلمات واقعی و سطح دشواری متناسب با خودتان تمرین دهید — تا جلسات، مکالمات و آزمون‌ها راحت‌تر شوند. بدون نیاز به میکروفون، روزی ۱۵ دقیقه.",
+      "HERO_HEADLINE": "گوشت را تمرین بده. انگلیسی را از همان بار اول بفهم.",
+      "HERO_DESCRIPTION": "بیشتر برنامه‌ها صحبت کردن را تمرین می‌دهند. Soundwise شنیدن را — آن قطعه گمشده. تمرین‌های کوتاه شنیداری مغز را برای تشخیص خودکار صداهای انگلیسی مجدداً آموزش می‌دهند. بدون نیاز به میکروفون.",
       "HERO_PRIMARY_CTA": "امروز تمرین گوش را شروع کنید",
       "HERO_SECONDARY_CTA": "ببینید چگونه کار می‌کند",
       "TRUST_METRIC_1": "بیش از ۴۰ تقابل صوتی",
@@ -411,8 +411,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "طراحی‌شده برای فارسی‌زبانان — /θ/، W/V، طول مصوت و دیگر چالش‌ها",
       "FEATURE_REAL_ACCENTS": "لهجه‌های متنوع واقعی — آمریکایی، بریتانیایی، استرالیایی با صدای زن و مرد",
       "FEATURE_REAL_WORDS": "فقط کلمات واقعی انگلیسی — هر تمرین فقط یک صدا را تغییر می‌دهد",
-      "FINAL_CTA_HEADLINE": "واضح بشنوید، با اطمینان استفاده کنید",
-      "FINAL_CTA_SUBTEXT": "مکالمات راحت‌تر، ارائه‌ها مطمئن‌تر، نگرانی کمتر. دسترسی مادام‌العمر فقط با ۴.۹۹ دلار.",
+      "FINAL_CTA_HEADLINE": "واضح بشنو. با اطمینان استفاده کن.",
+      "FINAL_CTA_SUBTEXT": "مکالمات روان‌تر می‌شوند. پاسخ‌ها سریع‌تر می‌آیند. اعتماد به نفس رشد می‌کند. یک‌بار پرداخت — $4.99 برای دسترسی مادام‌العمر. بدون اشتراک.",
       "microcopy": {
         "cta_hover_primary": "یک تمرین شنیداری رایگان امتحان کنید",
         "cta_hover_secondary": "دمو کوتاه ببینید",
@@ -430,8 +430,8 @@
       }
     },
     "cantonese": {
-      "HERO_HEADLINE": "終於聽得明快速自然嘅英文 — 唔使靠估",
-      "HERO_DESCRIPTION": "就算英文底子唔差，好多人開會、傾偈嗰陣都聽唔清楚。Soundwise 用真實口音、真實字詞同自適應難度訓練你對耳仔——唔使麥克風，淨係聽就得。",
+      "HERO_HEADLINE": "訓練你對耳。第一次就聽明英文。",
+      "HERO_DESCRIPTION": "大多數應用程式訓練講嘢。Soundwise 訓練聽力 — 係個缺咗嘅部分。短小嘅聽力練習令你個腦自動識得英文聲音。唔使麥克風。",
       "HERO_PRIMARY_CTA": "今日開始訓練耳仔",
       "HERO_SECONDARY_CTA": "了解運作原理",
       "TRUST_METRIC_1": "40+ 組英文聲音對比",
@@ -444,8 +444,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "專為廣東話人設計 — 長短元音、TH音、詞尾輔音等針對性訓練",
       "FEATURE_REAL_ACCENTS": "多種真實口音 — 美式、英式、澳洲等男女母語者",
       "FEATURE_REAL_WORDS": "淨係真實字詞 — 每個練習只改變一個聲音",
-      "FINAL_CTA_HEADLINE": "聽得清楚，用得自信",
-      "FINAL_CTA_SUBTEXT": "傾計更輕鬆，報告更自信，少了緊張。只需 $4.99，終身解鎖。",
+      "FINAL_CTA_HEADLINE": "聽得清楚，用得自信。",
+      "FINAL_CTA_SUBTEXT": "傾計流暢啲。反應快啲。自信增加。一次性付款 — $4.99 終身使用。唔使訂閱。",
       "microcopy": {
         "cta_hover_primary": "免費試聽訓練",
         "cta_hover_secondary": "睇快速示範",
@@ -463,8 +463,8 @@
       }
     },
     "indonesian": {
-      "HERO_HEADLINE": "Akhirnya Pahami Bahasa Inggris Cepat dan Alami — Tanpa Menebak",
-      "HERO_DESCRIPTION": "Latih telinga dengan suara asli, kata asli, dan tingkat kesulitan yang menyesuaikan levelmu — agar meeting, percakapan, dan kehidupan sehari-hari terasa lebih mudah. Tanpa mikrofon, cukup 15 menit sehari.",
+      "HERO_HEADLINE": "Latih telingamu. Pahami bahasa Inggris sejak pertama kali.",
+      "HERO_DESCRIPTION": "Kebanyakan app melatih berbicara. Soundwise melatih mendengar — bagian yang selama ini hilang. Latihan mendengar singkat melatih ulang otak untuk mengenali suara Inggris secara otomatis. Tanpa mikrofon.",
       "HERO_PRIMARY_CTA": "Mulai Latih Telinga Hari Ini",
       "HERO_SECONDARY_CTA": "Lihat Cara Kerjanya",
       "TRUST_METRIC_1": "40+ kontras bunyi",
@@ -477,8 +477,8 @@
       "FEATURE_BUILT_FOR_LANGUAGE": "Dirancang untuk orang Indonesia — /θ/ vs /t/, konsonan akhir, kluster konsonan",
       "FEATURE_REAL_ACCENTS": "Aksen nyata beragam — Amerika, Inggris, Australia, suara pria dan wanita asli",
       "FEATURE_REAL_WORDS": "Hanya kata nyata — setiap latihan mengubah satu bunyi saja",
-      "FINAL_CTA_HEADLINE": "Dengar Jelas, Gunakan dengan Percaya Diri",
-      "FINAL_CTA_SUBTEXT": "Percakapan lebih mudah, presentasi lebih percaya diri, kecemasan berkurang. Sekali bayar $4.99, milik selamanya.",
+      "FINAL_CTA_HEADLINE": "Dengar dengan jelas. Gunakan dengan percaya diri.",
+      "FINAL_CTA_SUBTEXT": "Percakapan mengalir. Respons lebih cepat. Kepercayaan diri bertumbuh. Bayar sekali — $4.99 untuk akses seumur hidup. Tanpa berlangganan.",
       "microcopy": {
         "cta_hover_primary": "Coba latihan mendengar gratis",
         "cta_hover_secondary": "Lihat demo singkat",

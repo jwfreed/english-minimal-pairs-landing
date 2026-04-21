@@ -109,7 +109,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "Privacy Policy",
     "footerTerms": "Terms of Service",
     "footerContact": "Contact",
-    "footerCopyright": "© 2025 Soundwise. All rights reserved."
+    "footerCopyright": "© 2025 Soundwise. All rights reserved.",
+    "trustSignalPrimary": "Most learners improve in 2–3 weeks · 10–15 min/day",
+    "midPageCta": "Ready to train your ears?",
+    "featureWhyTitle": "Why this works (and other apps don’t)",
+    "featureWhyBody": "Most apps ask you to repeat words. But you can’t pronounce what you can’t hear. Soundwise trains your perception first — so speaking improvement follows naturally."
   },
   "日本語": {
     "name": "日本語",
@@ -218,7 +222,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "プライバシーポリシー",
     "footerTerms": "利用規約",
     "footerContact": "お問い合わせ",
-    "footerCopyright": "© 2025 Soundwise. All rights reserved."
+    "footerCopyright": "© 2025 Soundwise. All rights reserved.",
+    "trustSignalPrimary": "ほとんどの学習者は2～3週間で改善 · 1日10～15分",
+    "midPageCta": "耳のトレーニングを始めませんか？",
+    "featureWhyTitle": "なぜ効くのか（他のアプリとの違い）",
+    "featureWhyBody": "多くのアプリは単語を「繰り返し言う」練習をさせます。でも、聴こえない音は発音できません。Soundwiseはまず「聴覚認識」を鍛えます——話す力は自然についてきます。"
   },
   "中文": {
     "name": "中文",
@@ -327,7 +335,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "隐私政策",
     "footerTerms": "服务条款",
     "footerContact": "联系我们",
-    "footerCopyright": "© 2025 Soundwise. 版权所有。"
+    "footerCopyright": "© 2025 Soundwise. 版权所有。",
+    "trustSignalPrimary": "多数学习者 2–3 周内有改善 · 每天 10–15 分钟",
+    "midPageCta": "准备好训练你的耳朵了吗？",
+    "featureWhyTitle": "为什么这有效（其他 App 做不到）",
+    "featureWhyBody": "大多数 App 让你跟读单词。但你无法发出你听不到的音。Soundwise 先训练你的感知 — 口语进步自然随之而来。"
   },
   "idioma español": {
     "name": "Español",
@@ -436,7 +448,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "Política de Privacidad",
     "footerTerms": "Términos de Servicio",
     "footerContact": "¿Dudas? Escríbenos",
-    "footerCopyright": "© 2025 Soundwise. Todos los derechos reservados."
+    "footerCopyright": "© 2025 Soundwise. Todos los derechos reservados.",
+    "trustSignalPrimary": "La mayoría mejora en 2–3 semanas · 10–15 min al día",
+    "midPageCta": "¿Listo para entrenar tu oído?",
+    "featureWhyTitle": "Por qué esto funciona (y otras apps no)",
+    "featureWhyBody": "La mayoría de apps te piden repetir palabras. Pero no puedes pronunciar lo que no escuchas. Soundwise entrena tu percepción primero — y el habla mejora de forma natural."
   },
   "ภาษาไทย": {
     "name": "ภาษาไทย",
@@ -545,7 +561,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "นโยบายความเป็นส่วนตัว",
     "footerTerms": "ข้อกำหนดการใช้บริการ",
     "footerContact": "ติดต่อ",
-    "footerCopyright": "© 2025 Soundwise. สงวนลิขสิทธิ์"
+    "footerCopyright": "© 2025 Soundwise. สงวนลิขสิทธิ์",
+    "trustSignalPrimary": "ผู้เรียนส่วนใหญ่ปรับปรุงใน 2–3 สัปดาห์ · 10–15 นาที/วัน",
+    "midPageCta": "พร้อมฝึกหูของคุณแล้วหรือยัง?",
+    "featureWhyTitle": "ทำไมถึงได้ผล (แต่แอปอื่นไม่ได้)",
+    "featureWhyBody": "แอปส่วนใหญ่ให้คุณพูดตาม แต่คุณออกเสียงสิ่งที่ไม่ได้ยินไม่ได้ Soundwise ฝึกการรับรู้ก่อน — เพราะนั่นคือรากฐานที่แท้จริงของการออกเสียงที่ถูกต้อง"
   },
   "한국어": {
     "name": "한국어",
@@ -654,7 +674,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "개인정보 처리방침",
     "footerTerms": "서비스 약관",
     "footerContact": "문의하기",
-    "footerCopyright": "© 2025 Soundwise. 모든 권리 보유."
+    "footerCopyright": "© 2025 Soundwise. 모든 권리 보유.",
+    "trustSignalPrimary": "대부분 2–3주 안에 개선 · 하루 10–15분",
+    "midPageCta": "귀를 훈련할 준비가 되셨나요?",
+    "featureWhyTitle": "왜 이 방법이 효과적인가 (다른 앱과 다른 이유)",
+    "featureWhyBody": "대부분의 앱은 단어를 따라 말하게 합니다. 하지만 들리지 않는 것은 발음할 수 없습니다. Soundwise는 먼저 청각 인식을 훈련합니다 — 말하기 실력은 자연히 따라옵니다."
   },
   "Português": {
     "name": "Português",
@@ -763,7 +787,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "Política de Privacidade",
     "footerTerms": "Termos de Serviço",
     "footerContact": "Contato",
-    "footerCopyright": "© 2025 Soundwise. Todos os direitos reservados."
+    "footerCopyright": "© 2025 Soundwise. Todos os direitos reservados.",
+    "trustSignalPrimary": "A maioria melhora em 2–3 semanas · 10–15 min/dia",
+    "midPageCta": "Pronto para treinar seus ouvidos?",
+    "featureWhyTitle": "Por que isso funciona (e outros apps não)",
+    "featureWhyBody": "A maioria dos apps pede que você repita palavras. Mas você não consegue pronunciar o que não consegue ouvir. O Soundwise treina sua percepção primeiro — e a fala melhora naturalmente."
   },
   "русский язык": {
     "name": "Русский",
@@ -872,7 +900,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "Политика конфиденциальности",
     "footerTerms": "Условия использования",
     "footerContact": "Поддержка (Telegram)",
-    "footerCopyright": "© 2025 Soundwise. Все права защищены."
+    "footerCopyright": "© 2025 Soundwise. Все права защищены.",
+    "trustSignalPrimary": "Большинство замечают улучшение за 2–3 недели · 10–15 мин/день",
+    "midPageCta": "Готовы тренировать слух?",
+    "featureWhyTitle": "Почему это работает (а другие приложения — нет)",
+    "featureWhyBody": "Большинство приложений просят повторять слова. Но вы не произнесёте то, чего не слышите. Soundwise сначала тренирует восприятие — и речь улучшается сама собой."
   },
   "اللغة العربية": {
     "name": "العربية",
@@ -981,7 +1013,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "سياسة الخصوصية",
     "footerTerms": "شروط الخدمة",
     "footerContact": "تواصل",
-    "footerCopyright": "© 2025 Soundwise. جميع الحقوق محفوظة."
+    "footerCopyright": "© 2025 Soundwise. جميع الحقوق محفوظة.",
+    "trustSignalPrimary": "معظم المتعلمين يتحسنون خلال 2–3 أسابيع · 10–15 دقيقة يومياً",
+    "midPageCta": "مستعد لتدريب أذنيك?",
+    "featureWhyTitle": "لماذا هذا يجدي (والتطبيقات الأخرى لا)",
+    "featureWhyBody": "معظم التطبيقات تطلب منك تكرار الكلمات. لكنك لا تستطيع نطق ما لا تسمعه. Soundwise يدرّب إدراكك أولاً — فيتحسّن الكلام تلقائياً."
   },
   "Tiếng Việt": {
     "name": "Tiếng Việt",
@@ -1081,6 +1117,10 @@ export const supplementalTranslations = {
     "ctaFeature1": "Thanh toán một lần",
     "ctaFeature2": "Không phí thuê bao",
     "ctaFeature3": "Hoạt động trên mọi thiết bị",
+    "trustSignalPrimary": "Hầu hết học viên cải thiện trong 2–3 tuần · 10–15 phút/ngày",
+    "midPageCta": "Sẵn sàng luyện tai chưa?",
+    "featureWhyTitle": "Tại sao cách này hiệu quả (còn các app khác thì không)",
+    "featureWhyBody": "Hầu hết các app yêu cầu bạn lặp lại từ. Nhưng bạn không thể phát âm đúng những âm bạn chưa nghe được. Soundwise luyện khả năng nhận thức âm thanh trước — để khả năng nói tự nhiên được cải thiện theo.",
     "footerTagline": "Luyện tai. Hiểu tiếng Anh ngay lần đầu.",
     "footerProduct": "Sản phẩm",
     "footerFeatures": "Tính năng",
@@ -1207,7 +1247,11 @@ export const supplementalTranslations = {
     "footerContact_OLD": "हमारे बारे में",
     "footerPrivacy": "गोपनीयता",
     "footerTerms": "शर्तें",
-    "footerCopyright": "© 2025 Soundwise. सर्वाधिकार सुरक्षित."
+    "footerCopyright": "© 2025 Soundwise. सर्वाधिकार सुरक्षित.",
+    "trustSignalPrimary": "ज़्याداتر लेارنर्स 2–3 हफ़्तों में सुधार देखते हैं · 10–15 मिनट/दिन",
+    "midPageCta": "अपने कान train करने के लिए تیار ہیں?",
+    "featureWhyTitle": "यह क्यों काम करता है (दूसरे apps नहीं करते)",
+    "featureWhyBody": "ज़्यादातर apps शब्द दोहराने को कहते हैं। लेकिन जो आवाज़ सुनाई नहीं देती, उसे बोला नहीं जा सकता। Soundwise पहले perception train करता है — बोलने में सुधार खुد-ب-خود आता है।"
   },
   "Türkçe": {
     "name": "Türkçe",
@@ -1320,7 +1364,11 @@ export const supplementalTranslations = {
     "footerContact_OLD": "Hakkında",
     "footerPrivacy": "Gizlilik",
     "footerTerms": "Şartlar",
-    "footerCopyright": "© 2025 Soundwise. Tüm hakları saklıdır."
+    "footerCopyright": "© 2025 Soundwise. Tüm hakları saklıdır.",
+    "trustSignalPrimary": "Çoğu öğrenci 2–3 haftada ilerleme kaydediyor · 10–15 dk/gün",
+    "midPageCta": "Kulağını eğitmeye hazır mısın?",
+    "featureWhyTitle": "Neden işe yarıyor (diğer uygulamalar yaramıyor)",
+    "featureWhyBody": "Çoğu uygulama kelimeleri tekrarlatir. Oysa duymadığını telaffuz edemezsin. Soundwise önce algıyı eğitir — konuşma zaten kendiliğinden gelişir."
   },
   "زبان فارسی": {
     "name": "فارسی",
@@ -1433,7 +1481,11 @@ export const supplementalTranslations = {
     "footerContact_OLD": "درباره ما",
     "footerPrivacy": "حریم خصوصی",
     "footerTerms": "شرایط",
-    "footerCopyright": "© 2025 Soundwise. تمامی حقوق محفوظ است."
+    "footerCopyright": "© 2025 Soundwise. تمامی حقوق محفوظ است.",
+    "trustSignalPrimary": "بیشتر زبان‌آموزان در ۲–۳ هفته پیشرفت می‌کنند · ۱۰–۱۵ دقیقه/روز",
+    "midPageCta": "آماده‌اید گوش خود را تمرین دهید?",
+    "featureWhyTitle": "چرا این روش جواب می‌دهد (و برنامه‌های دیگر نه)",
+    "featureWhyBody": "بیشتر برنامه‌ها از شما می‌خواهند کلمات را تکرار کنید. اما نمی‌توانید چیزی را که نمی‌شنوید تلفظ کنید. Soundwise ابتدا ادراک شما را تمرین می‌دهد — صحبت کردن خود به خود بهتر می‌شود."
   },
   "廣東話": {
     "name": "廣東話",
@@ -1542,7 +1594,11 @@ export const supplementalTranslations = {
     "footerPrivacy": "隱私政策",
     "footerTerms": "服務條款",
     "footerContact": "聯絡我們",
-    "footerCopyright": "© 2025 Soundwise. 保留所有權利."
+    "footerCopyright": "© 2025 Soundwise. 保留所有權利.",
+    "trustSignalPrimary": "大多數學習者 2–3 星期內有進步 · 每日10–15 分鐘",
+    "midPageCta": "準備好訓練你對耳未?",
+    "featureWhyTitle": "點解有效（其他應用程式做唔到）",
+    "featureWhyBody": "大多數應用程式要你重複讀字。但你聴唔到嘅音唔能發出。Soundwise 先訓練感知 — 講嘢自然跟著進步。"
   },
   "bahasa Indo": {
     "name": "Bahasa Indonesia",
@@ -1655,6 +1711,10 @@ export const supplementalTranslations = {
     "footerContact_OLD": "Tentang",
     "footerPrivacy": "Privasi",
     "footerTerms": "Ketentuan",
-    "footerCopyright": "© 2025 Soundwise. Hak cipta dilindungi."
+    "footerCopyright": "© 2025 Soundwise. Hak cipta dilindungi.",
+    "trustSignalPrimary": "Sebagian besar pelajar maju dalam 2–3 minggu · 10–15 mnt/hari",
+    "midPageCta": "Siap melatih telingamu?",
+    "featureWhyTitle": "Mengapa ini berhasil (dan app lain tidak)",
+    "featureWhyBody": "Kebanyakan app memintamu mengulang kata-kata. Tapi kamu tidak bisa mengucapkan apa yang tidak kamu dengar. Soundwise melatih persepsimu dulu — dan berbicara pun ikut membaik."
   }
 };
