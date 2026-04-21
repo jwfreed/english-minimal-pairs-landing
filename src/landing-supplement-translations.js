@@ -100,7 +100,7 @@ export const supplementalTranslations = {
     "ctaFeature1": "One-time payment",
     "ctaFeature2": "No subscription",
     "ctaFeature3": "Works on all devices",
-    "footerTagline": "Train your ears. Understand English the first time.",
+    "footerTagline": "Train your ear. Understand English the first time.",
     "footerProduct": "Product",
     "footerFeatures": "Features",
     "footerHowItWorks": "How It Works",
@@ -111,7 +111,7 @@ export const supplementalTranslations = {
     "footerContact": "Contact",
     "footerCopyright": "© 2025 Soundwise. All rights reserved.",
     "trustSignalPrimary": "Most learners improve in 2–3 weeks · 10–15 min/day",
-    "midPageCta": "Ready to train your ears?",
+    "midPageCta": "Ready to train your ear?",
     "featureWhyTitle": "Why this works (and other apps don’t)",
     "featureWhyBody": "Most apps ask you to repeat words. But you can’t pronounce what you can’t hear. Soundwise trains your perception first — so speaking improvement follows naturally."
   },
@@ -1248,10 +1248,10 @@ export const supplementalTranslations = {
     "footerPrivacy": "गोपनीयता",
     "footerTerms": "शर्तें",
     "footerCopyright": "© 2025 Soundwise. सर्वाधिकार सुरक्षित.",
-    "trustSignalPrimary": "ज़्याداتر लेارنर्स 2–3 हफ़्तों में सुधार देखते हैं · 10–15 मिनट/दिन",
-    "midPageCta": "अपने कान train करने के लिए تیار ہیں?",
+    "trustSignalPrimary": "ज़्यादातर लोग 2–3 हफ़्तों में सुधार देखते हैं · 10–15 मिनट/दिन",
+    "midPageCta": "क्या आप अपने कान ट्रेन करने के लिए तैयार हैं?",
     "featureWhyTitle": "यह क्यों काम करता है (दूसरे apps नहीं करते)",
-    "featureWhyBody": "ज़्यादातर apps शब्द दोहराने को कहते हैं। लेकिन जो आवाज़ सुनाई नहीं देती, उसे बोला नहीं जा सकता। Soundwise पहले perception train करता है — बोलने में सुधार खुد-ب-خود आता है।"
+    "featureWhyBody": "ज़्यादातर apps शब्द दोहराने को कहते हैं। लेकिन जो आवाज़ सुनाई नहीं देती, उसे बोला नहीं जा सकता। Soundwise पहले perception train करता है — बोलने में सुधार खुद-ब-खुद आता है।"
   },
   "Türkçe": {
     "name": "Türkçe",
@@ -1596,9 +1596,9 @@ export const supplementalTranslations = {
     "footerContact": "聯絡我們",
     "footerCopyright": "© 2025 Soundwise. 保留所有權利.",
     "trustSignalPrimary": "大多數學習者 2–3 星期內有進步 · 每日10–15 分鐘",
-    "midPageCta": "準備好訓練你對耳未?",
+    "midPageCta": "準備好訓練你隻耳未？",
     "featureWhyTitle": "點解有效（其他應用程式做唔到）",
-    "featureWhyBody": "大多數應用程式要你重複讀字。但你聴唔到嘅音唔能發出。Soundwise 先訓練感知 — 講嘢自然跟著進步。"
+    "featureWhyBody": "大多數應用程式要你重複讀字。但你聽唔到嘅音，就永遠發唔出嚟。Soundwise 先訓練你嘅聽覺——講嘢自然就跟住進步。"
   },
   "bahasa Indo": {
     "name": "Bahasa Indonesia",
