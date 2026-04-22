@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇮🇷 فارسی
+        - link "گوش خود را تمرین دهید" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: تمرین شنیداری مبتنی بر علم
+    - heading "گوشت را تمرین بده. انگلیسی را از همان بار اول بفهم." [level=1] [ref=e16]
+    - paragraph [ref=e17]: یک تست شنیداری ۱۰ ثانیه‌ای را امتحان کنید.
+    - paragraph [ref=e18]: بیشتر برنامه‌ها صحبت کردن را تمرین می‌دهند. Soundwise شنیدن را — آن قطعه گمشده. تمرین‌های کوتاه شنیداری مغز را برای تشخیص خودکار صداهای انگلیسی مجدداً آموزش می‌دهند. بدون نیاز به میکروفون.
+    - generic [ref=e19]:
+      - generic [ref=e20]: "زبان اول شما:"
+      - combobox "زبان اول شما:" [ref=e21] [cursor=pointer]:
+        - option "زبان مادری را انتخاب کنید"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی" [selected]
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "THINK / SINK" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: دور 1 از 2
+          - heading "THINK / SINK" [level=2] [ref=e26]
+        - generic [ref=e27]: /θ/ vs /s/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: تفاوت را بشنوید.
+        - group "تفاوت را بشنوید." [ref=e30]:
+          - button "تلفظ think را پخش کنید" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: THINK
+              - generic [ref=e35]: /θɪŋk/
+          - button "تلفظ sink را پخش کنید" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: SINK
+              - generic [ref=e40]: /sɪŋk/
+        - button "شروع تست" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: تفاوت را بشنوید.
+    - generic [ref=e43]:
+      - link "امروز تمرین گوش را شروع کنید →" [ref=e44] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e45]: امروز تمرین گوش را شروع کنید
+        - generic [ref=e46]: →
+      - link "ببینید چگونه کار می‌کند" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: پرداخت یک‌باره
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: بدون اشتراك
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: روی iPhone و iPad کار می‌کند
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: بیشتر زبان‌آموزان در ۲–۳ هفته پیشرفت می‌کنند · ۱۰–۱۵ دقیقه/روز
+    - generic [ref=e62]:
+      - text: روی iPhone و iPad در دسترس است
+      - text: Android به‌زودی
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "بیش از ۴۰ تقابل صوتی" [level=2] [ref=e66]
+          - paragraph [ref=e67]: روی جفت‌صداهای انگلیسی تمرین کنید که زبان‌آموزان بیشتر با هم اشتباه می‌گیرند
+        - article [ref=e68]:
+          - heading "صدها جفت کمینه" [level=2] [ref=e69]
+          - paragraph [ref=e70]: با جفت‌واژه‌های واقعی تمرین کنید که فقط در یک صدا تفاوت دارند
+        - article [ref=e71]:
+          - heading "برای بیش از ۱۴ پیش‌زمینه زبانی" [level=2] [ref=e72]
+          - paragraph [ref=e73]: نمونه‌ها بر اساس پیش‌زمینه زبانی شما انتخاب شده‌اند
+  - generic [ref=e75]:
+    - heading "اینکه این صداها را نمی‌شنوید تقصیر شما نیست" [level=2] [ref=e76]
+    - paragraph [ref=e77]: مغز شما آموزش ندیده صداهایی را که در فارسی وجود ندارند تشخیص دهد. چیزی را که نمی‌شنوید نمی‌توانید بگویید.
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "گویشوران ژاپنی" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "گویشوران ماندارین" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "گویشوران تایلندی" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "گویشوران اسپانیایی" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "مسئله واقعی" [level=3] [ref=e103]
+        - paragraph [ref=e104]: این خطاها به این خاطر ادامه دارند که گوش شما هرگز یاد نگرفت این صداها را تشخیص دهد، نه به خاطر اینکه تلاش نمی‌کنید. اپلیکیشن‌های تلفظ سنتی روی صحبت کردن تمرکز می‌کنند، اما چیزی را که نمی‌شنوید نمی‌توانید بگویید.
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: راه‌حل
+      - heading "انگلیسی یک صدا نیست — پس چرا فقط با یکی تمرین کنید؟" [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwise انگلیسی واقعی را به شما می‌دهد — لهجه‌های آمریکایی، بریتانیایی، استرالیایی، ایرلندی و آفریقای جنوبی، صدای زن و مرد. هر کلمه را گویشوران بومی واقعی می‌خوانند. گوش شما سازگاری را یاد می‌گیرد، نه حفظ کردن را.
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: لهجه‌های متنوع واقعی — آمریکایی، بریتانیایی، استرالیایی با صدای زن و مرد
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: فقط کلمات واقعی انگلیسی — هر تمرین فقط یک صدا را تغییر می‌دهد
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: صداها در همه جایگاه‌ها — ابتدا، وسط و انتهای کلمه
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: طراحی‌شده برای فارسی‌زبانان — /θ/، W/V، طول مصوت و دیگر چالش‌ها
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: بدون میکروفون — فقط گوش دهید، هر جا تمرین کنید
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "چرا این روش جواب می‌دهد (و برنامه‌های دیگر نه)" [level=2] [ref=e151]
+    - paragraph [ref=e152]: بیشتر برنامه‌ها از شما می‌خواهند کلمات را تکرار کنید. اما نمی‌توانید چیزی را که نمی‌شنوید تلفظ کنید. Soundwise ابتدا ادراک شما را تمرین می‌دهد — صحبت کردن خود به خود بهتر می‌شود.
+  - generic [ref=e154]:
+    - heading "تمرین شنیداری خالص" [level=2] [ref=e155]
+    - paragraph [ref=e156]: بدون گرامر، بدون توضیحات پیچیده — فقط سه قدم.
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "گوش بدهید" [level=3] [ref=e161]
+          - paragraph [ref=e162]: کلمه یا صدایی را بشنوید که برای گویشوران زبان مادری شما دشوار است
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "انتخاب کنید" [level=3] [ref=e167]
+          - paragraph [ref=e168]: از یک جفت کمینه، کلمه‌ای را که شنیدید انتخاب کنید (مثلاً "ship" یا "sheep")
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "یاد بگیرید" [level=3] [ref=e173]
+          - paragraph [ref=e174]: پاسخ درست، نماد IPA و تفاوت صدا را ببینید. "غلط" مبهم وجود ندارد — دقیقاً بفهمید چه چیزی را اشتباه شنیدید و چرا.
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: آماده‌اید گوش خود را تمرین دهید?
+    - link "امروز تمرین گوش را شروع کنید →" [ref=e179] [cursor=pointer]:
+      - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+      - generic [ref=e180]: امروز تمرین گوش را شروع کنید
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: سختی تطبیقی
+      - heading "نه خسته‌کننده، نه طاقت‌فرسا" [level=2] [ref=e187]
+      - paragraph [ref=e188]: مبتدیان آهسته شروع می‌کنند تا اعتماد به نفس بسازند. با پیشرفت، سرعت افزایش می‌یابد — اگر در سرعت بالا اشتباه کنید، سیستم خودکار تنظیم می‌شود.
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: سرعت باید کسب شود — دقیق‌تر = سریع‌تر
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: آزمون هوشمند — صداهایی که بلدید را رد کنید
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: جلسات ۱۵ دقیقه‌ای — کوتاه، مؤثر، هر روز
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: پیشرفت قابل اندازه‌گیری — ببینید چقدر بهتر شده‌اید
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: روش تأییدشده پژوهشی
+    - heading "بر پایه علم ادراک واجی" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "پژوهش" [level=3] [ref=e241]
+        - paragraph [ref=e242]: بر پایه مطالعات Patricia Kuhl درباره رشد زبان نوزادان (دانشگاه واشنگتن) و مطالعه McClelland، Fiez و McCandliss (۲۰۰۲) درباره آموزش تمایز واجی به بزرگسالان. این مطالعات نشان می‌دهند قرارگیری اولیه شکل می‌دهد کدام تفاوت‌های صوتی معنادار درک می‌شوند.
+      - generic [ref=e243]:
+        - heading "چرا مؤثر است" [level=3] [ref=e244]
+        - paragraph [ref=e245]: مغز شما نوروپلاستیک است - می‌تواند دوباره آموزش ببیند. بزرگسالان ژاپنی با بازخورد بصری فوری دقت تشخیص /r/ و /l/ را از ۵۰٪ به ۷۰-۸۰٪ رساندند. تمرین مکرر جفت‌های کمینه مسیرهای عصبی تازه برای تمایز صدا می‌سازد.
+      - generic [ref=e246]:
+        - heading "نتایج اثبات‌شده" [level=3] [ref=e247]
+        - paragraph [ref=e248]: پس از تنها سه جلسه ۲۰ دقیقه‌ای، اسکن مغزی الگوهای فعال‌سازی تازه نشان داد که نقشه‌های ادراکی بازسازی شده‌اند. تمرین مداوم بهبودهای قابل اندازه‌گیری و دائمی در دقت ادراک ایجاد می‌کند.
+  - generic [ref=e250]:
+    - heading "یادگیرندگان سراسر جهان تفاوت را می‌شنوند" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: پنج سال نتوانستم "right" و "light" را از هم تشخیص دهم. بعد از سه هفته با این اپ بالاخره می‌شنوم! همه چیز عوض شد.
+        - generic [ref=e256]:
+          - strong [ref=e257]: یوکی ام.
+          - generic [ref=e258]: توکیو، ژاپن
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: وقتی "thin crust pizza" سفارش می‌دادم و نگاه‌های متعجب می‌دیدم خجالت می‌کشیدم. حالا واقعاً تفاوت میان th و s را می‌شنوم!
+        - generic [ref=e262]:
+          - strong [ref=e263]: وی لی.
+          - generic [ref=e264]: پکن، چین
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: هیچ اپ دیگری ابتدا روی شنیدن تمرکز نمی‌کند. این دقیقاً همان چیزی است که هر زبان‌آموز تلفظی لازم دارد. ساده ولی بسیار مؤثر.
+        - generic [ref=e268]:
+          - strong [ref=e269]: کارلوس ر.
+          - generic [ref=e270]: مادرید، اسپانیا
+  - generic [ref=e272]:
+    - heading "هرآنچه برای فهم واضح انگلیسی لازم است" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "مخصوص زبان شما" [level=3] [ref=e278]
+        - paragraph [ref=e279]: طراحی‌شده برای فارسی‌زبانان — /θ/، W/V، طول مصوت و دیگر چالش‌ها
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "صداها و لهجه‌های واقعی" [level=3] [ref=e283]
+        - paragraph [ref=e284]: لهجه‌های متنوع واقعی — آمریکایی، بریتانیایی، استرالیایی با صدای زن و مرد
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "فقط کلمات واقعی" [level=3] [ref=e288]
+        - paragraph [ref=e289]: فقط کلمات واقعی انگلیسی — هر تمرین فقط یک صدا را تغییر می‌دهد
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "سختی تطبیقی" [level=3] [ref=e293]
+        - paragraph [ref=e294]: بهتر شدید؟ سخت‌تر می‌شود. اشتباه کردید؟ خودکار تنظیم
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "۱۵ دقیقه در روز" [level=3] [ref=e298]
+        - paragraph [ref=e299]: جلسات کوتاه و متمرکز برای زندگی شلوغ
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "بازخورد فوری و روشن" [level=3] [ref=e303]
+        - paragraph [ref=e304]: پاسخ درست، تفاوت صوتی و نماد IPA فوراً
+  - generic [ref=e306]:
+    - heading "سؤالات پرتکرار" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "چرا به میکروفون نیاز ندارم؟ +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: چرا به میکروفون نیاز ندارم؟
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: مسئله اصلی گفتار شما نیست؛ ادراک شماست. چیزی را که نمی‌شنوید نمی‌توانید بگویید. با تمرین شنیداری هدفمند، گوش شما تقویت می‌شود و گفتار به طور طبیعی بهتر خواهد شد.
+      - generic [ref=e314]:
+        - button "چه مدت طول می‌کشد تا نتیجه ببینم؟ +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: چه مدت طول می‌کشد تا نتیجه ببینم؟
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: بیشتر یادگیرندگان طی 2-3 هفته تمرین روزانه 10-15 دقیقه‌ای بهبود شنیداری را تجربه می‌کنند. مغز برای ساخت مسیرهای جدید زمان می‌خواهد، اما تغییرات ماندگار و قابل اندازه‌گیری‌اند.
+      - generic [ref=e319]:
+        - button "آیا برای زبان من مناسب است؟ +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: آیا برای زبان من مناسب است؟
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: بله! اپ شامل جفت‌های کمینه هدفمند برای ژاپنی، چینی، اسپانیایی، تایلندی, کره‌ای, عربی, ویتنامی و بسیاری زبان‌های دیگر است. تمرین‌ها با چالش‌های شنیداری زبان مادری شما تطبیق می‌یابد.
+      - generic [ref=e324]:
+        - button "می‌توانم همراه روش‌های دیگر استفاده کنم؟ +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: می‌توانم همراه روش‌های دیگر استفاده کنم؟
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: قطعاً! Soundwise مکمل هر برنامه یادگیری انگلیسی است. آن را تمرین تخصصی گوش بدانید که باقی تمرین‌ها را مؤثرتر می‌کند. وقتی تفاوت را می‌شنوید، تمرین گفتار بسیار آسان‌تر می‌شود.
+      - generic [ref=e329]:
+        - button "اگر سطح من پیشرفته است چه؟ +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: اگر سطح من پیشرفته است چه؟
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: حتی گویشوران پیشرفته نیز به دلیل زبان مادری‌شان نقاط کور شنیداری دارند. الگوریتم تطبیقی برنامه سریعاً چالش‌های شما را شناسایی و روی همان‌ها تمرکز می‌کند، بنابراین در هر سطحی مفید است.
+  - generic [ref=e336]:
+    - heading "واضح بشنو. با اطمینان استفاده کن." [level=2] [ref=e337]
+    - paragraph [ref=e338]: مکالمات روان‌تر می‌شوند. پاسخ‌ها سریع‌تر می‌آیند. اعتماد به نفس رشد می‌کند. یک‌بار پرداخت — $4.99 برای دسترسی مادام‌العمر. بدون اشتراک.
+    - generic [ref=e339]:
+      - link "دانلود از App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: دانلود از
+          - generic [ref=e343]: App Store
+      - link "دریافت از Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: دریافت از
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: پرداخت یک‌باره
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: بدون اشتراك
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: روی iPhone و iPad کار می‌کند
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: گوش خود را تمرین دهید. انگلیسی را از بار اول بفهمید.
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "محصول" [level=4] [ref=e369]
+            - link "ویژگی‌ها" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "نحوه کار" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "سؤالات" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "حقوقی و پشتیبانی" [level=4] [ref=e374]
+            - link "حریم خصوصی" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "شرایط" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "تماس" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. تمامی حقوق محفوظ است.

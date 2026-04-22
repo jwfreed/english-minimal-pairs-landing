@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇯🇵 日本語
+        - link "耳のトレーニングを始める" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: 科学的「英語耳」トレーニング
+    - heading "英語耳をつくる。一発で聞き取れる脳へ。" [level=1] [ref=e16]
+    - paragraph [ref=e17]: 10秒のリスニングテストを試してみてください。
+    - paragraph [ref=e18]: ほとんどのアプリは「話す練習」しかしません。Soundwiseは「聞く力」を鍛えます — それこそが欠けていたピース。短い集中リスニングで、英語の音を自動的に認識できる脳に変えていきます。マイク不要。
+    - generic [ref=e19]:
+      - generic [ref=e20]: "あなたの第一言語:"
+      - combobox "あなたの第一言語:" [ref=e21] [cursor=pointer]:
+        - option "母国語を選択"
+        - option "English"
+        - option "日本語" [selected]
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "RIGHT / LIGHT" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: 2回中 1回目
+          - heading "RIGHT / LIGHT" [level=2] [ref=e26]
+        - generic [ref=e27]: /r/ vs /l/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: 違いを聞いてみましょう。
+        - group "違いを聞いてみましょう。" [ref=e30]:
+          - button "right の発音を再生" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: RIGHT
+              - generic [ref=e35]: /raɪt/
+          - button "light の発音を再生" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: LIGHT
+              - generic [ref=e40]: /laɪt/
+        - button "テストを始める" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: 違いを聞いてみましょう。
+    - generic [ref=e43]:
+      - link "耳のトレーニングを始める →" [ref=e44] [cursor=pointer]:
+        - /url: "#download"
+        - generic [ref=e45]: 耳のトレーニングを始める
+        - generic [ref=e46]: →
+      - link "仕組みを見る" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: 一回限りの支払い
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: サブスクリプションなし
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: iPhone・iPadで使えます
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: ほとんどの学習者は2～3週間で改善 · 1日10～15分
+    - generic [ref=e62]:
+      - text: iPhone・iPadで利用できます
+      - text: Android版は近日公開
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "40以上の音コントラスト" [level=2] [ref=e66]
+          - paragraph [ref=e67]: 学習者がつまずきやすい英語の音の組み合わせを重点的に練習
+        - article [ref=e68]:
+          - heading "数百組のミニマルペア" [level=2] [ref=e69]
+          - paragraph [ref=e70]: 1つの音だけが違う実在の単語ペアで耳を鍛える
+        - article [ref=e71]:
+          - heading "14以上の言語背景に対応" [level=2] [ref=e72]
+          - paragraph [ref=e73]: あなたの言語背景に合わせて例を厳選
+  - generic [ref=e75]:
+    - heading "「聞き取れない」のは、あなたの努力不足ではありません" [level=2] [ref=e76]
+    - paragraph [ref=e77]: 脳が英語の音を「ノイズ」として処理しているだけです。日本語にない音の区別を脳が学んでいないから、何度も「Sorry?」と聞き返してしまうのです。
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "日本語話者" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "中国語話者" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "タイ語話者" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "スペイン語話者" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "日本人が直面する本当の課題" [level=3] [ref=e103]
+        - paragraph [ref=e104]: 聞き取れない音は、正しく発音することもできません。L/R、B/V、TH音など、日本語に存在しない音の区別を脳が学んでいないのです。まずは「耳の解像度」を上げること — それが、会議で自信を持って話すための最も効率的な近道です。
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: 解決策
+      - heading "英語は一つの声じゃない。だからトレーニングも一つの声では足りない。" [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwiseは、アメリカ・イギリス・オーストラリア・アイルランド・南アフリカなど、実際に聞くリアルな英語に触れさせます。すべての単語が複数の高品質な声で読み上げられるから、耳が「暗記」ではなく「適応」を学びます。実際の会話で驚くことが少なくなります。
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: アメリカ・イギリス・オーストラリアなど多様なネイティブ音声で訓練
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: すべての訓練に実際の英単語を使用。一度に一つの音だけが異なります
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: 語頭・語中・語末の音を訓練 - 実際の会話に活きる
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: 日本語話者が最も混乱しやすい英語の音コントラストに集中したトレーニング
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: マイク不要 - 通勤中もどこでも練習可能
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "なぜ効くのか（他のアプリとの違い）" [level=2] [ref=e151]
+    - paragraph [ref=e152]: 多くのアプリは単語を「繰り返し言う」練習をさせます。でも、聴こえない音は発音できません。Soundwiseはまず「聴覚認識」を鍛えます——話す力は自然についてきます。
+  - generic [ref=e154]:
+    - heading "純粋なリスニングトレーニング" [level=2] [ref=e155]
+    - paragraph [ref=e156]: 文法の講義も複雑な説明もなし。たった3ステップ。
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "単語を聞く" [level=3] [ref=e161]
+          - paragraph [ref=e162]: 多様なネイティブ音声で、本物の英単語を聴きます
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "聞こえたものを選ぶ" [level=3] [ref=e167]
+          - paragraph [ref=e168]: ミニマルペアから直感的に選択。迷うことが脳への刺激になります
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "即座にフィードバック" [level=3] [ref=e173]
+          - paragraph [ref=e174]: 正しい単語、違いを生んだ正確な音、IPA表記が表示。曖昧な「不正解」はなく、何を聞き間違えたのか、なぜなのかがすぐにわかります。
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: 耳のトレーニングを始めませんか？
+    - link "耳のトレーニングを始める →" [ref=e179] [cursor=pointer]:
+      - /url: "#download"
+      - generic [ref=e180]: 耳のトレーニングを始める
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: 適応型難易度
+      - heading "退屈もパニックもなし" [level=2] [ref=e187]
+      - paragraph [ref=e188]: 最初からフルスピードではありません。初心者はまず正確さを身につけるために遅いスピードから始めます。上達するにつれ、自然な速度まで上がり、さらに速いスピードへ。間違えると自動的に難易度が調整されます。成長できるちょうどいい難しさ。
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: スピードは自分で「勝ち取る」 - 正確度に応じて速度が上がる
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: スマートなレベル診断 - マスターした音はスキップ
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: 集中した15分セッション - 短く効果的な毎日の練習
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: 測定できる進歩 - 正確なトレーニング量を確認
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: 研究に裏打ちされた方法
+    - heading "音素認識科学に基づく" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "研究" [level=3] [ref=e241]
+        - paragraph [ref=e242]: Patricia Kuhlの乳児言語発達研究（ワシントン大学）とMcClelland、Fiez、McCandliss（2002）の成人への音素弁別訓練に関する研究に基づいています。これらの研究は、幼少期の経験が意味のある音の区別として認識されるものを形成することを示しています。
+      - generic [ref=e243]:
+        - heading "効果の理由" [level=3] [ref=e244]
+        - paragraph [ref=e245]: 脳は可塑的です - 再訓練が可能です。日本人成人は即座の視覚フィードバックにより、/r/と/l/の識別が50%から70-80%の精度に向上しました。ミニマルペアの繰り返し練習が音の識別のための新しい神経経路を作り出します。
+      - generic [ref=e246]:
+        - heading "実証された結果" [level=3] [ref=e247]
+        - paragraph [ref=e248]: わずか3回の20分セッション後、脳スキャンで新しい活性化パターンが現れ、知覚マップが再配線されたことが示されました。一貫した練習により、測定可能で永続的な認識精度の向上が得られます。
+  - generic [ref=e250]:
+    - heading "世界中の学習者が効果を実感" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: 5年間、何度聞いても分からなかった「right」と「light」。このアプリを使い始めて3週間で、突然違いが『見える』ように聞こえてきました。仕事の会議でも自信がつきました。
+        - generic [ref=e256]:
+          - strong [ref=e257]: 由紀 M.
+          - generic [ref=e258]: 東京、デザイナー
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: 発音練習アプリは恥ずかしくて続きませんでしたが、これは聞くだけなので通勤中に最適です。TOEICのリスニングパートが以前よりゆっくり聞こえる気がします。
+        - generic [ref=e262]:
+          - strong [ref=e263]: 健一 S.
+          - generic [ref=e264]: 大阪、エンジニア
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: リスニングファーストに焦点を当てた他のアプリはありません。これがすべての発音学習者に必要なものです。シンプルですが非常に効果的。
+        - generic [ref=e268]:
+          - strong [ref=e269]: カルロス R.
+          - generic [ref=e270]: マドリード、スペイン
+  - generic [ref=e272]:
+    - heading "英語を「一発で」理解するために必要なすべて" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "日本語話者のために設計" [level=3] [ref=e278]
+        - paragraph [ref=e279]: 日本語話者が最も混乱しやすい英語の音コントラストに集中したトレーニング
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "本物の声、本物のアクセント" [level=3] [ref=e283]
+        - paragraph [ref=e284]: アメリカ・イギリス・オーストラリアなど多様なネイティブ音声で訓練
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "本物の英単語のみ" [level=3] [ref=e288]
+        - paragraph [ref=e289]: すべての訓練に実際の英単語を使用。一度に一つの音だけが異なります
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "適応型難易度" [level=3] [ref=e293]
+        - paragraph [ref=e294]: 遅いスピードから始まり、上達に応じて加速。間違えると自動調整
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "賢く短いセッション" [level=3] [ref=e298]
+        - paragraph [ref=e299]: 1日15分で十分。集中力が切れたら自動的に一時停止
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "即座にわかるフィードバック" [level=3] [ref=e303]
+        - paragraph [ref=e304]: 正しい単語、正確な音の違い、IPA表記、再生して比較するオプション
+  - generic [ref=e306]:
+    - heading "よくある質問" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "なぜマイクを使わないのですか？ +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: なぜマイクを使わないのですか？
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: 発音の改善は「正しい音を脳が認識すること」から始まります。正しい音のモデルが脳内にできれば、喉や舌は自然とそれを模倣しようとするからです。
+      - generic [ref=e314]:
+        - button "結果が出るまでどのくらいかかりますか？ +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: 結果が出るまでどのくらいかかりますか？
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: ほとんどの学習者は、毎日の練習（10-15分）で2-3週間以内に認識の改善に気付きます。脳が音の識別のための新しい神経経路を構築するには時間が必要ですが、変化は測定可能で永続的です。
+      - generic [ref=e319]:
+        - button "私の母国語に適していますか？ +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: 私の母国語に適していますか？
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: はい！日本語・中国語・スペイン語・タイ語など14以上の言語に対応。あなたの母国語で聞き取りにくい音に合わせてトレーニングを自動調整します。
+      - generic [ref=e324]:
+        - button "他の学習方法と併用できますか？ +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: 他の学習方法と併用できますか？
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: もちろんです！Soundwiseは専門的な耳のトレーニングとして、他の全ての学習をより効果的にします。一旦違いが聞こえるようになれば、スピーキング練習の効率も飛躍的に向上します。
+      - generic [ref=e329]:
+        - button "上級者にも効果がありますか？ +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: 上級者にも効果がありますか？
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: はい。単語のストレス（強勢）やリズム（抑揚）の微細な感覚は、聴覚を研ぎ澄まさなければ得られません。Soundwiseの適応型アルゴリズムが、あなたの特定の弱点を即座に特定します。
+  - generic [ref=e336]:
+    - heading "はっきり聞こえれば、自信を持って使える。" [level=2] [ref=e337]
+    - paragraph [ref=e338]: 会話がスムーズになる。反応が速くなる。自信がつく。$4.99の1回払い、買い切り。サブスクなし。
+    - generic [ref=e339]:
+      - link "ダウンロード App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: ダウンロード
+          - generic [ref=e343]: App Store
+      - link "入手先 Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: 入手先
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: 一回限りの支払い
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: サブスクリプションなし
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: iPhone・iPadで使えます
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: 耳を鍛えよう。英語を一発で理解しよう。
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "製品" [level=4] [ref=e369]
+            - link "機能" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "使い方" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "FAQ" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "法的情報とサポート" [level=4] [ref=e374]
+            - link "プライバシーポリシー" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "利用規約" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "お問い合わせ" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. All rights reserved.

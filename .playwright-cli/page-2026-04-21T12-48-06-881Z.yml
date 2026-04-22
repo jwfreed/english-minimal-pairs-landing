@@ -1,0 +1,354 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - img "Soundwise Logo" [ref=e6]
+      - generic [ref=e7]:
+        - button "Select language" [ref=e9] [cursor=pointer]: 🇷🇺 Русский
+        - link "Тренировать слух" [ref=e10] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e13]:
+    - generic [ref=e14]: Научный тренажёр слуха
+    - heading "Тренируй слух. Понимай английский с первого раза." [level=1] [ref=e15]
+    - paragraph [ref=e16]: Попробуйте 10-секундный тест на слух.
+    - paragraph [ref=e17]: Большинство приложений тренируют речь. Soundwise тренирует слух — ту самую недостающую часть. Короткие тренировки перепрограммируют мозг на автоматическое распознавание звуков. Без микрофона.
+    - generic [ref=e18]:
+      - generic [ref=e19]: "Ваш первый язык:"
+      - combobox "Ваш первый язык:" [ref=e20] [cursor=pointer]:
+        - option "Выберите родной язык"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский" [selected]
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "WINE / VINE" [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - paragraph [ref=e24]: Раунд 1 из 2
+          - heading "WINE / VINE" [level=2] [ref=e25]
+        - generic [ref=e26]: /w/ vs /v/
+      - generic [ref=e27]:
+        - paragraph [ref=e28]: Услышьте разницу.
+        - group "Услышьте разницу." [ref=e29]:
+          - button "Проиграть произношение wine" [ref=e30] [cursor=pointer]:
+            - generic [ref=e31]: 🔊
+            - generic [ref=e32]:
+              - generic [ref=e33]: WINE
+              - generic [ref=e34]: /waɪn/
+          - button "Проиграть произношение vine" [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]: 🔊
+            - generic [ref=e37]:
+              - generic [ref=e38]: VINE
+              - generic [ref=e39]: /vaɪn/
+        - button "Начать тест" [ref=e40] [cursor=pointer]
+      - paragraph [ref=e41]: Услышьте разницу.
+    - generic [ref=e42]:
+      - link "Начать тренировку слуха →" [ref=e43] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e44]: Начать тренировку слуха
+        - generic [ref=e45]: →
+      - link "Как это работает" [ref=e46] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e49]: ✔
+        - generic [ref=e50]: Один платеж
+      - generic [ref=e51]:
+        - generic [ref=e52]: ✔
+        - generic [ref=e53]: Без подписок
+      - generic [ref=e54]:
+        - generic [ref=e55]: ✔
+        - generic [ref=e56]: Работает на iPhone и iPad
+    - generic [ref=e57]:
+      - generic [ref=e58]: ⏱
+      - generic [ref=e59]: Большинство замечают улучшение за 2–3 недели · 10–15 мин/день
+    - generic [ref=e61]:
+      - text: Доступно на iPhone и iPad
+      - text: Android скоро
+    - generic "Product scope highlights" [ref=e62]:
+      - generic [ref=e63]:
+        - article [ref=e64]:
+          - heading "40+ звуковых контрастов" [level=2] [ref=e65]
+          - paragraph [ref=e66]: Тренируйте пары английских звуков, которые чаще всего путают
+        - article [ref=e67]:
+          - heading "Сотни минимальных пар" [level=2] [ref=e68]
+          - paragraph [ref=e69]: Практика на реальных словах, различающихся всего одним звуком
+        - article [ref=e70]:
+          - heading "Для 14+ языковых фонов" [level=2] [ref=e71]
+          - paragraph [ref=e72]: Примеры подобраны с учётом вашего языкового фона
+  - generic [ref=e74]:
+    - heading "Проблема не в вас, а в «устаревших» методах" [level=2] [ref=e75]
+    - paragraph [ref=e76]: Многих учили «читать и переводить со словарём», упуская навыки слуха. Это создаёт разрыв между резюме и реальностью на созвоне.
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]: 🇯🇵
+        - heading "Японоговорящие" [level=3] [ref=e80]
+        - generic [ref=e81]: /r/ vs /l/
+        - paragraph [ref=e82]: "\"right\" vs \"light\""
+      - generic [ref=e83]:
+        - generic [ref=e84]: 🇨🇳
+        - heading "Китайскоговорящие" [level=3] [ref=e85]
+        - generic [ref=e86]: /θ/ vs /s/
+        - paragraph [ref=e87]: "\"thin\" vs \"sin\""
+      - generic [ref=e88]:
+        - generic [ref=e89]: 🇹🇭
+        - heading "Тайскоговорящие" [level=3] [ref=e90]
+        - generic [ref=e91]: /θ/ vs /t/
+        - paragraph [ref=e92]: "\"thin\" vs \"tin\""
+      - generic [ref=e93]:
+        - generic [ref=e94]: 🇪🇸
+        - heading "Испаноговорящие" [level=3] [ref=e95]
+        - generic [ref=e96]: /ɪ/ vs /iː/
+        - paragraph [ref=e97]: "\"ship\" vs \"sheep\""
+    - generic [ref=e98]:
+      - img "The Real Problem" [ref=e100]
+      - generic [ref=e101]:
+        - heading "Настоящая проблема" [level=3] [ref=e102]
+        - paragraph [ref=e103]: Традиционные приложения заставляют вас говорить, но вы не можете правильно произнести то, что ваш мозг не умеет слышать. Без тренировки слуха произношение не будет естественным.
+  - generic [ref=e106]:
+    - generic [ref=e107]:
+      - generic [ref=e108]: Решение
+      - heading "Английский — не один голос. Зачем тренироваться только на одном?" [level=2] [ref=e109]
+      - paragraph [ref=e110]: Soundwise даёт вам реальный английский — американский, британский, австралийский, ирландский и южноафриканский акценты, мужские и женские голоса. Каждое слово читают настоящие носители. Ваш слух учится адаптироваться, а не запоминать.
+      - list [ref=e111]:
+        - listitem [ref=e112]:
+          - generic [ref=e113]: ✓
+          - generic [ref=e114]: Реальные акценты — американский, британский, австралийский и другие, мужские и женские голоса
+        - listitem [ref=e115]:
+          - generic [ref=e116]: ✓
+          - generic [ref=e117]: Только настоящие английские слова — никаких бессмысленных звуков
+        - listitem [ref=e118]:
+          - generic [ref=e119]: ✓
+          - generic [ref=e120]: Звуки во всех позициях — начало, середина и конец слова
+        - listitem [ref=e121]:
+          - generic [ref=e122]: ✓
+          - generic [ref=e123]: Адаптировано для русскоязычных — /θ/, гласные, W/V и другие проблемные звуки
+        - listitem [ref=e124]:
+          - generic [ref=e125]: ✓
+          - generic [ref=e126]: Без микрофона — тренируйте в метро или в очереди
+    - generic [ref=e130]:
+      - heading "Parejas de práctica" [level=3] [ref=e132]
+      - generic [ref=e133]:
+        - generic [ref=e134]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e135]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e136]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e137] [cursor=pointer]
+      - generic [ref=e138]:
+        - button "sheep /ʃiːp/" [ref=e139] [cursor=pointer]:
+          - generic [ref=e140]: sheep
+          - generic [ref=e141]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e142] [cursor=pointer]:
+          - generic [ref=e143]: ship
+          - generic [ref=e144]: /ʃɪp/
+      - generic [ref=e146]: ✓
+  - generic [ref=e149]:
+    - heading "Почему это работает (а другие приложения — нет)" [level=2] [ref=e150]
+    - paragraph [ref=e151]: Большинство приложений просят повторять слова. Но вы не произнесёте то, чего не слышите. Soundwise сначала тренирует восприятие — и речь улучшается сама собой.
+  - generic [ref=e153]:
+    - heading "Чистая тренировка слуха" [level=2] [ref=e154]
+    - paragraph [ref=e155]: Без грамматики, без сложных объяснений — только три шага.
+    - generic [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]: "1"
+        - generic [ref=e159]:
+          - heading "Слушать" [level=3] [ref=e160]
+          - paragraph [ref=e161]: Слушайте звуки, которые сложны для русскоговорящих (межзубные и гласные)
+      - generic [ref=e162]:
+        - generic [ref=e163]: "2"
+        - generic [ref=e164]:
+          - heading "Выбрать" [level=3] [ref=e165]
+          - paragraph [ref=e166]: Определите слово из пары (например, "ship" или "sheep")
+      - generic [ref=e167]:
+        - generic [ref=e168]: "3"
+        - generic [ref=e169]:
+          - heading "Учиться" [level=3] [ref=e170]
+          - paragraph [ref=e171]: Правильный ответ, звуковое различие, IPA-нотация. Не расплывчатое «Неправильно» — вы узнаете, что именно спутали и почему.
+  - generic [ref=e174]:
+    - paragraph [ref=e175]: Готовы тренировать слух?
+    - link "Начать тренировку слуха →" [ref=e176] [cursor=pointer]:
+      - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+      - generic [ref=e177]: Начать тренировку слуха
+      - generic [ref=e178]: →
+  - generic [ref=e181]:
+    - generic [ref=e182]:
+      - generic [ref=e183]: Адаптивная сложность
+      - heading "Не скучно и не слишком сложно" [level=2] [ref=e184]
+      - paragraph [ref=e185]: Новички начинают медленно для уверенности. По мере улучшения скорость растёт — ошиблись на быстром? Система автоматически подстроится.
+      - list [ref=e186]:
+        - listitem [ref=e187]:
+          - generic [ref=e188]: ✓
+          - generic [ref=e189]: Скорость зарабатывается — точнее = быстрее
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: Умный тест уровня — пропускайте звуки, которые уже знаете
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: Сессии по 15 минут — коротко, эффективно, каждый день
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: Измеримый прогресс — отслеживайте, насколько вы продвинулись
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - heading "vine - wine" [level=3] [ref=e202]
+        - generic [ref=e203]:
+          - generic [ref=e204]: "Total: 4/6 (66.7%)"
+          - generic [ref=e205]: "加权平均: 66.8%"
+      - generic [ref=e206]:
+        - generic [ref=e207]:
+          - generic [ref=e208]: "59"
+          - generic [ref=e209]: "47"
+          - generic [ref=e210]: "35"
+          - generic [ref=e211]: "24"
+          - generic [ref=e212]: "12"
+          - generic [ref=e213]: "0"
+        - img [ref=e215]
+      - generic [ref=e225]:
+        - generic [ref=e226]: "练习时间:"
+        - generic [ref=e229]: 0.1 / 60 分钟
+  - generic [ref=e232]:
+    - generic [ref=e234]: Наука вместо обещаний
+    - heading "Нейропластичность в действии" [level=2] [ref=e235]
+    - generic [ref=e236]:
+      - generic [ref=e237]:
+        - heading "Исследования" [level=3] [ref=e238]
+        - paragraph [ref=e239]: Метод основан на работах Патрисии Кул (Вашингтонский университет). Мозг взрослого сохраняет способность учиться различать новые звуки.
+      - generic [ref=e240]:
+        - heading "Почему это работает" [level=3] [ref=e241]
+        - paragraph [ref=e242]: Вы не просто «учите», вы физически меняете обработку речи мозгом. Тренировка слуха — фундамент для правильного говорения.
+      - generic [ref=e243]:
+        - heading "Доказанный результат" [level=3] [ref=e244]
+        - paragraph [ref=e245]: Всего три 20-минутных сессии вызывают изменения в нейронных путях. Эффект измерим и постоянен.
+  - generic [ref=e247]:
+    - heading "Студенты со всего мира (и из России) слышат разницу" [level=2] [ref=e248]
+    - generic [ref=e249]:
+      - generic [ref=e250]:
+        - generic [ref=e251]: ★★★★★
+        - paragraph [ref=e252]: Я 5 лет путал "ship" и "sheep". С Soundwise через 3 недели я наконец услышал разницу. Это полностью изменило мою уверенность на рабочих созвонах.
+        - generic [ref=e253]:
+          - strong [ref=e254]: Алексей К.
+          - generic [ref=e255]: ИТ-архитектор (Москва)
+      - generic [ref=e256]:
+        - generic [ref=e257]: ★★★★★
+        - paragraph [ref=e258]: Мне было неловко заказывать пиццу "thin crust" и ловить непонимающие взгляды. Теперь я реально слышу разницу между th и s! Это база, которой мне не хватало в школе.
+        - generic [ref=e259]:
+          - strong [ref=e260]: Мария С.
+          - generic [ref=e261]: Отдел закупок (СПб)
+      - generic [ref=e262]:
+        - generic [ref=e263]: ★★★★★
+        - paragraph [ref=e264]: Никакое другое приложение не ставит СЛУХ на первое место. Это именно то, что нужно для избавления от "русского акцента".
+        - generic [ref=e265]:
+          - strong [ref=e266]: Карлос Р.
+          - generic [ref=e267]: Мадрид, Испания
+  - generic [ref=e269]:
+    - heading "Всё для понимания английского на слух" [level=2] [ref=e270]
+    - generic [ref=e271]:
+      - generic [ref=e272]:
+        - img "Personalized" [ref=e274]
+        - heading "Под ваш язык" [level=3] [ref=e275]
+        - paragraph [ref=e276]: Адаптировано для русскоязычных — /θ/, гласные, W/V и другие проблемные звуки
+      - generic [ref=e277]:
+        - img "Multiple Languages" [ref=e279]
+        - heading "Реальные голоса и акценты" [level=3] [ref=e280]
+        - paragraph [ref=e281]: Реальные акценты — американский, британский, австралийский и другие, мужские и женские голоса
+      - generic [ref=e282]:
+        - img "Native Speaker Audio" [ref=e284]
+        - heading "Только настоящие слова" [level=3] [ref=e285]
+        - paragraph [ref=e286]: Только настоящие английские слова — никаких бессмысленных звуков
+      - generic [ref=e287]:
+        - img "Track Progress" [ref=e289]
+        - heading "Адаптивная сложность" [level=3] [ref=e290]
+        - paragraph [ref=e291]: Становится сложнее по мере роста, авто корректировка при ошибках
+      - generic [ref=e292]:
+        - img "Quick Sessions" [ref=e294]
+        - heading "15 минут в день" [level=3] [ref=e295]
+        - paragraph [ref=e296]: Короткие сессии для занятых профессионалов
+      - generic [ref=e297]:
+        - img "Auto-Save Progress" [ref=e299]
+        - heading "Ясная обратная связь" [level=3] [ref=e300]
+        - paragraph [ref=e301]: Ответ, различие звуков и IPA-символы мгновенно
+  - generic [ref=e303]:
+    - heading "Часто задаваемые вопросы" [level=2] [ref=e304]
+    - generic [ref=e305]:
+      - generic [ref=e306]:
+        - button "Почему не нужен микрофон? +" [ref=e307] [cursor=pointer]:
+          - generic [ref=e308]: Почему не нужен микрофон?
+          - generic [ref=e309]: +
+        - paragraph [ref=e310]: Секрет четкой речи — в голове. Вы не можете произнести то, что не слышите. Мы тренируем восприятие — фундамент речи.
+      - generic [ref=e311]:
+        - button "Подойдет для продвинутого уровня? +" [ref=e312] [cursor=pointer]:
+          - generic [ref=e313]: Подойдет для продвинутого уровня?
+          - generic [ref=e314]: +
+        - paragraph [ref=e315]: Да. Даже у профи есть «слепые зоны» и акцент. Алгоритм быстро их вычислит и поможет устранить.
+      - generic [ref=e316]:
+        - button "Можно ли совмещать с курсами? +" [ref=e317] [cursor=pointer]:
+          - generic [ref=e318]: Можно ли совмещать с курсами?
+          - generic [ref=e319]: +
+        - paragraph [ref=e320]: Идеально. Soundwise «автоматизирует» навык понимания, делая занятия с репетитором в разы эффективнее.
+      - generic [ref=e321]:
+        - button "Что я получу за $4.99? +" [ref=e322] [cursor=pointer]:
+          - generic [ref=e323]: Что я получу за $4.99?
+          - generic [ref=e324]: +
+        - paragraph [ref=e325]: Полный пожизненный доступ ко всем упражнениям, акцентам и языковым модулям. Один платёж — доступ навсегда. Оплата через App Store или Google Play.
+      - generic [ref=e326]:
+        - button "Нужна ли подписка? +" [ref=e327] [cursor=pointer]:
+          - generic [ref=e328]: Нужна ли подписка?
+          - generic [ref=e329]: +
+        - paragraph [ref=e330]: Нет. Это единоразовая покупка. Платите один раз — пользуетесь всегда.
+  - generic [ref=e333]:
+    - heading "Слышишь чётко — говоришь уверенно." [level=2] [ref=e334]
+    - paragraph [ref=e335]: Разговоры идут свободнее. Реакция быстрее. Уверенность растёт. Разовый платёж — $4.99, доступ навсегда. Без подписки.
+    - generic [ref=e336]:
+      - link "Загрузить в App Store" [ref=e337] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e338]:
+          - generic [ref=e339]: Загрузить в
+          - generic [ref=e340]: App Store
+      - link "Доступно в Google Play" [ref=e341] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e342]:
+          - generic [ref=e343]: Доступно в
+          - generic [ref=e344]: Google Play
+    - paragraph [ref=e345]: Android app coming soon.
+    - generic [ref=e346]:
+      - generic [ref=e347]:
+        - generic [ref=e348]: ✓
+        - generic [ref=e349]: Один платеж
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: Без подписок
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: Работает на iPhone и iPad
+  - contentinfo [ref=e356]:
+    - generic [ref=e357]:
+      - generic [ref=e358]:
+        - generic [ref=e359]:
+          - generic [ref=e361]: 🎧
+          - paragraph [ref=e362]: Тренируйте слух. Понимайте английский с первого раза.
+        - generic [ref=e363]:
+          - generic [ref=e364]:
+            - heading "Продукт" [level=4] [ref=e365]
+            - link "Функции" [ref=e366] [cursor=pointer]:
+              - /url: "#features"
+            - link "Как это работает" [ref=e367] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "ЧаВо" [ref=e368] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e369]:
+            - heading "Юридическая информация и поддержка" [level=4] [ref=e370]
+            - link "Политика конфиденциальности" [ref=e371] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "Условия использования" [ref=e372] [cursor=pointer]:
+              - /url: /terms.html
+            - link "Поддержка (Telegram)" [ref=e373] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e375]: © 2025 Soundwise. Все права защищены.

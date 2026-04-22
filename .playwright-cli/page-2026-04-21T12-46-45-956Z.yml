@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇻🇳 Tiếng Việt
+        - link "Luyện tai ngay" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: Luyện nghe khoa học
+    - heading "Luyện tai trước. Nghe hiểu tiếng Anh ngay lần đầu." [level=1] [ref=e16]
+    - paragraph [ref=e17]: Thử bài test nghe 10 giây.
+    - paragraph [ref=e18]: Hầu hết các app luyện nói. Soundwise luyện nghe — mảnh ghép còn thiếu. Các bài tập nghe ngắn, tập trung giúp não bộ tự động nhận ra âm tiếng Anh. Không cần microphone.
+    - generic [ref=e19]:
+      - generic [ref=e20]: "Ngôn ngữ đầu tiên của bạn:"
+      - combobox "Ngôn ngữ đầu tiên của bạn:" [ref=e21] [cursor=pointer]:
+        - option "Chọn tiếng mẹ đẻ của bạn"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt" [selected]
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "DAY / THEY" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: Lượt 1 / 2
+          - heading "DAY / THEY" [level=2] [ref=e26]
+        - generic [ref=e27]: /d/ vs /ð/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: Nghe sự khác biệt.
+        - group "Nghe sự khác biệt." [ref=e30]:
+          - button "Phát phát âm của day" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: DAY
+              - generic [ref=e35]: /deɪ/
+          - button "Phát phát âm của they" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: THEY
+              - generic [ref=e40]: /ðeɪ/
+        - button "Bắt đầu bài test" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: Nghe sự khác biệt.
+    - generic [ref=e43]:
+      - link "Bắt đầu luyện tai hôm nay →" [ref=e44] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e45]: Bắt đầu luyện tai hôm nay
+        - generic [ref=e46]: →
+      - link "Xem cách hoạt động" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: Thanh toán một lần
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: Không phí thuê bao
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: Hoạt động trên iPhone và iPad
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: Hầu hết học viên cải thiện trong 2–3 tuần · 10–15 phút/ngày
+    - generic [ref=e62]:
+      - text: Có trên iPhone và iPad
+      - text: Android sắp ra mắt
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "Hơn 40 cặp âm đối lập" [level=2] [ref=e66]
+          - paragraph [ref=e67]: Luyện các cặp âm tiếng Anh mà người học hay nhầm nhất
+        - article [ref=e68]:
+          - heading "Hàng trăm cặp tối thiểu" [level=2] [ref=e69]
+          - paragraph [ref=e70]: Luyện với các cặp từ thật chỉ khác nhau ở một âm
+        - article [ref=e71]:
+          - heading "Thiết kế cho 14+ nền ngôn ngữ" [level=2] [ref=e72]
+          - paragraph [ref=e73]: Ví dụ được chọn theo nền ngôn ngữ của bạn
+  - generic [ref=e75]:
+    - heading "Tại sao bạn cố gắng nhưng vẫn nói không chuẩn?" [level=2] [ref=e76]
+    - paragraph [ref=e77]: Tiếng Việt là ngôn ngữ đơn âm, có dấu, trong khi tiếng Anh có cụm phụ âm và trọng âm phức tạp. Não bộ bạn chưa được "cài đặt" để nhận ra những âm không tồn tại trong tiếng mẹ đẻ.
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "Người nói tiếng Nhật" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "Người nói tiếng Trung" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "Người nói tiếng Thái" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "Người nói tiếng Tây Ban Nha" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "Vấn đề thực sự" [level=3] [ref=e103]
+        - paragraph [ref=e104]: Bạn không thể phát âm chuẩn những gì bạn... không nghe được. Các ứng dụng truyền thống bắt bạn "nói theo" khi tai bạn chưa phân biệt được sự khác biệt.
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: Giải pháp
+      - heading "Tiếng Anh không chỉ có một giọng — vậy sao chỉ luyện với một?" [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwise mang đến tiếng Anh thật — giọng Mỹ, Anh, Úc, Ireland, Nam Phi, cả nam và nữ. Mỗi từ được người bản xứ thật đọc. Tai bạn học cách thích nghi, không phải học thuộc.
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: Nhiều giọng thật — Mỹ, Anh, Úc, cả nam và nữ bản xứ
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: Chỉ từ thật — không có âm vô nghĩa, mỗi bài tập thay đổi một âm duy nhất
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: Âm ở mọi vị trí — đầu, giữa và cuối từ
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: Thiết kế cho người Việt — /θ/ vs /t/, âm cuối, cụm phụ âm khó
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: Không cần micro — chỉ cần nghe, luyện mọi nơi
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "Tại sao cách này hiệu quả (còn các app khác thì không)" [level=2] [ref=e151]
+    - paragraph [ref=e152]: Hầu hết các app yêu cầu bạn lặp lại từ. Nhưng bạn không thể phát âm đúng những âm bạn chưa nghe được. Soundwise luyện khả năng nhận thức âm thanh trước — để khả năng nói tự nhiên được cải thiện theo.
+  - generic [ref=e154]:
+    - heading "Luyện nghe thuần túy" [level=2] [ref=e155]
+    - paragraph [ref=e156]: Không ngữ pháp, không giải thích phức tạp — chỉ ba bước.
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "Lắng nghe" [level=3] [ref=e161]
+          - paragraph [ref=e162]: Nghe một từ hoặc âm khiến người cùng tiếng mẹ đẻ với bạn dễ nhầm lẫn
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "Chọn" [level=3] [ref=e167]
+          - paragraph [ref=e168]: Chọn từ bạn nghe thấy trong cặp tối thiểu (ví dụ "ship" hay "sheep")
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "Học" [level=3] [ref=e173]
+          - paragraph [ref=e174]: Xem đáp án đúng, ký hiệu IPA và sự khác biệt âm thanh. Không có "Sai" mơ hồ — hiểu rõ bạn nhầm gì và tại sao.
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: Sẵn sàng luyện tai chưa?
+    - link "Bắt đầu luyện tai hôm nay →" [ref=e179] [cursor=pointer]:
+      - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+      - generic [ref=e180]: Bắt đầu luyện tai hôm nay
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: Độ khó thích ứng
+      - heading "Không chán, không quá khó" [level=2] [ref=e187]
+      - paragraph [ref=e188]: Người mới bắt đầu chậm để tạo tự tin. Khi giỏi hơn, tốc độ tăng dần — nếu sai ở mức nhanh, hệ thống tự động điều chỉnh. Luôn ở vùng học tập lý tưởng.
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: Tốc độ phải "giành" — đúng nhiều hơn, nhanh hơn
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: Kiểm tra thông minh — bỏ qua âm đã biết
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: Phiên 15 phút — ngắn, hiệu quả, mỗi ngày
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: Tiến bộ đo được — thấy rõ bạn đã tiến xa bao nhiêu
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: Phương pháp khoa học
+    - heading "Phương pháp đột phá dựa trên Khoa học Thần kinh" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "Nghiên cứu" [level=3] [ref=e241]
+        - paragraph [ref=e242]: "Nghiên cứu của giáo sư Patricia Kuhl (Đại học Washington) và McClelland (2002) chỉ ra rằng: Cách chúng ta tiếp nhận âm thanh từ nhỏ sẽ định hình khả năng ngôn ngữ khi trưởng thành."
+      - generic [ref=e243]:
+        - heading "Vì sao hiệu quả" [level=3] [ref=e244]
+        - paragraph [ref=e245]: Bộ não con người có "tính dẻo thần kinh" (neuroplasticity). Kết quả thực tế cho thấy, ngay cả người học ở trình độ cao cũng có thể cải thiện độ chính xác từ 50% lên hơn 80% chỉ bằng cách tập trung nghe.
+      - generic [ref=e246]:
+        - heading "Kết quả đã chứng minh" [level=3] [ref=e247]
+        - paragraph [ref=e248]: Chỉ sau 3 buổi luyện tập (mỗi buổi 20 phút), kết quả quét não cho thấy các đường dẫn thần kinh mới bắt đầu hình thành. Bạn không chỉ nghe tốt hơn, mà còn tự tin hơn.
+  - generic [ref=e250]:
+    - heading "Học viên khắp nơi đang nghe rõ sự khác biệt" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: Suốt 5 năm tôi luôn nhầm lẫn giữa "right" và "light". Nhờ Soundwise, cuối cùng tôi đã nghe được sự khác biệt! Nó thay đổi hoàn toàn khả năng giao tiếp của tôi.
+        - generic [ref=e256]:
+          - strong [ref=e257]: Yuki M.
+          - generic [ref=e258]: Tokyo, Nhật Bản
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: Tôi từng rất ngại đi order đồ ăn vì phát âm sai âm "th". Giờ đây tôi đã nghe rõ mồn một sự khác biệt giữa "thin" và "sin". Thật kỳ diệu!
+        - generic [ref=e262]:
+          - strong [ref=e263]: Wei L.
+          - generic [ref=e264]: Bắc Kinh, Trung Quốc
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: Trong khi các ứng dụng khác bắt bạn nói, Soundwise dạy bạn CÁCH NGHE. Đây là nền tảng mà mọi người học tiếng Anh đều thiếu.
+        - generic [ref=e268]:
+          - strong [ref=e269]: Carlos R.
+          - generic [ref=e270]: Madrid, Tây Ban Nha
+  - generic [ref=e272]:
+    - heading "Mọi thứ bạn cần để hiểu tiếng Anh rõ ràng" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "Thiết kế cho ngôn ngữ của bạn" [level=3] [ref=e278]
+        - paragraph [ref=e279]: Thiết kế cho người Việt — /θ/ vs /t/, âm cuối, cụm phụ âm khó
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "Giọng nói và giọng vùng thật" [level=3] [ref=e283]
+        - paragraph [ref=e284]: Nhiều giọng thật — Mỹ, Anh, Úc, cả nam và nữ bản xứ
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "Chỉ từ thật" [level=3] [ref=e288]
+        - paragraph [ref=e289]: Chỉ từ thật — không có âm vô nghĩa, mỗi bài tập thay đổi một âm duy nhất
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "Độ khó thích ứng" [level=3] [ref=e293]
+        - paragraph [ref=e294]: Giỏi hơn thì khó hơn. Sai thì tự động điều chỉnh
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "15 phút mỗi ngày" [level=3] [ref=e298]
+        - paragraph [ref=e299]: Phiên ngắn và hiệu quả phù hợp lối sống bận rộn
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "Phản hồi rõ ràng và tức thì" [level=3] [ref=e303]
+        - paragraph [ref=e304]: Đáp án đúng, sự khác biệt âm và ký hiệu IPA ngay lập tức
+  - generic [ref=e306]:
+    - heading "Câu hỏi thường gặp" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "Tại sao không cần Micro? +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: Tại sao không cần Micro?
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: Vấn đề cốt lõi của người Việt không phải là khẩu hình, mà là "điểm mù thính giác". Phát âm chuẩn bắt đầu từ việc nghe chuẩn. Khi bạn đã "nắm thấu" âm thanh đó trong đầu, việc bắt chước lại sẽ trở nên tự nhiên.
+      - generic [ref=e314]:
+        - button "Tôi là người đi làm bận rộn, liệu có hiệu quả? +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: Tôi là người đi làm bận rộn, liệu có hiệu quả?
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: Hoàn toàn hiệu quả. Soundwise được thiết kế cho các phiên học ngắn 10-15 phút, phù hợp với người chuyên nghiệp cần cải thiện kỹ năng nhanh chóng để phục vụ công việc.
+      - generic [ref=e319]:
+        - button "Ứng dụng có phù hợp với tiếng mẹ đẻ của tôi không? +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: Ứng dụng có phù hợp với tiếng mẹ đẻ của tôi không?
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: Có! Ứng dụng bao gồm các cặp từ dành riêng cho người Việt (như âm đuôi và cụm phụ âm khó). Bài tập tự điều chỉnh theo thử thách phát âm của tiếng mẹ đẻ bạn.
+      - generic [ref=e324]:
+        - button "Tôi có thể dùng cùng các phương pháp học khác không? +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: Tôi có thể dùng cùng các phương pháp học khác không?
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: Hoàn toàn có thể. Soundwise là "vũ khí bí mật" giúp các bài học trên Duolingo hay Elsa Speak của bạn trở nên hiệu quả gấp bội.
+      - generic [ref=e329]:
+        - button "Nếu tôi đã ở trình độ cao thì sao? +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: Nếu tôi đã ở trình độ cao thì sao?
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: Ngay cả người nói thành thạo vẫn có điểm mù thính giác. Ứng dụng giúp bạn tinh chỉnh những chi tiết nhỏ nhất để đạt đến độ "tự nhiên" như người bản xứ.
+  - generic [ref=e336]:
+    - heading "Nghe rõ. Dùng tự tin." [level=2] [ref=e337]
+    - paragraph [ref=e338]: Giao tiếp tự nhiên hơn. Phản xạ nhanh hơn. Sự tự tin tăng lên. Thanh toán một lần — $4.99 trọn đời. Không đăng ký.
+    - generic [ref=e339]:
+      - link "Tải trên App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: Tải trên
+          - generic [ref=e343]: App Store
+      - link "Tải tại Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: Tải tại
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: Thanh toán một lần
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: Không phí thuê bao
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: Hoạt động trên iPhone và iPad
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: Luyện tai. Hiểu tiếng Anh ngay lần đầu.
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "Sản phẩm" [level=4] [ref=e369]
+            - link "Tính năng" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "Cách hoạt động" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "FAQ" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "Pháp lý & Hỗ trợ" [level=4] [ref=e374]
+            - link "Bảo mật" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "Điều khoản" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "Liên hệ" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. Mọi quyền được bảo lưu.

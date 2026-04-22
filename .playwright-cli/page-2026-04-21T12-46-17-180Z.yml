@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇹🇭 ภาษาไทย
+        - link "เริ่มฝึกหูเลย" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: ฝึกหูอย่างเป็นระบบ ด้วยวิทยาศาสตร์
+    - heading "ฝึกหูก่อน ฟังภาษาอังกฤษได้ชัดตั้งแต่ครั้งแรก" [level=1] [ref=e16]
+    - paragraph [ref=e17]: ลองทดสอบการฟัง 10 วินาที
+    - paragraph [ref=e18]: แอปส่วนใหญ่ฝึกการพูด Soundwise ฝึกการฟัง — นั่นคือสิ่งที่ขาดหายไป การฝึกฟังสั้นๆ อย่างเป็นระบบจะปรับสมองให้จดจำเสียงอังกฤษได้อัตโนมัติ ไม่ต้องใช้ไมโครโฟน
+    - generic [ref=e19]:
+      - generic [ref=e20]: "ภาษาแรกของคุณ:"
+      - combobox "ภาษาแรกของคุณ:" [ref=e21] [cursor=pointer]:
+        - option "เลือกภาษาแม่ของคุณ"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย" [selected]
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "THIN / TIN" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: รอบ 1 จาก 2
+          - heading "THIN / TIN" [level=2] [ref=e26]
+        - generic [ref=e27]: /θ/ vs /t/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: ลองฟังความต่าง
+        - group "ลองฟังความต่าง" [ref=e30]:
+          - button "เล่นการออกเสียงของ thin" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: THIN
+              - generic [ref=e35]: /θɪn/
+          - button "เล่นการออกเสียงของ tin" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: TIN
+              - generic [ref=e40]: /tɪn/
+        - button "เริ่มทดสอบ" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: ลองฟังความต่าง
+    - generic [ref=e43]:
+      - link "เริ่มฝึกหูวันนี้ →" [ref=e44] [cursor=pointer]:
+        - /url: "#download"
+        - generic [ref=e45]: เริ่มฝึกหูวันนี้
+        - generic [ref=e46]: →
+      - link "ดูวิธีการทำงาน" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: จ่ายครั้งเดียวจบ
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: ไม่มีค่ารายเดือน
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: ใช้ได้บน iPhone และ iPad
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: ผู้เรียนส่วนใหญ่ปรับปรุงใน 2–3 สัปดาห์ · 10–15 นาที/วัน
+    - generic [ref=e62]:
+      - text: ใช้งานได้บน iPhone และ iPad
+      - text: Android เร็ว ๆ นี้
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "40+ คู่เสียงอังกฤษ" [level=2] [ref=e66]
+          - paragraph [ref=e67]: ฝึกคู่เสียงอังกฤษที่ผู้เรียนสับสนบ่อยที่สุด
+        - article [ref=e68]:
+          - heading "มินิมอลแพร์หลายร้อยคู่" [level=2] [ref=e69]
+          - paragraph [ref=e70]: ฝึกด้วยคู่คำจริงที่ต่างกันเพียง 1 เสียง
+        - article [ref=e71]:
+          - heading "ออกแบบสำหรับผู้เรียน 14+ พื้นภาษา" [level=2] [ref=e72]
+          - paragraph [ref=e73]: ตัวอย่างคัดตามพื้นภาษาของคุณ
+  - generic [ref=e75]:
+    - heading "ทำไมคนไทยหลายคนถึงฟังภาษาอังกฤษไม่ชัด?" [level=2] [ref=e76]
+    - paragraph [ref=e77]: ปัญหาไม่ได้อยู่ที่ความพยายาม แต่สมองของคุณยังไม่ได้ถูกฝึกให้แยกแยะเสียงที่ไม่มีอยู่ในภาษาไทย เลยต้องถาม "Sorry?" ซ้ำแล้วซ้ำเล่า
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "ผู้พูดภาษาญี่ปุ่น" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "ผู้พูดภาษาจีนกลาง" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "ผู้พูดภาษาไทย" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "ผู้พูดภาษาสเปน" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "ปัญหาที่แท้จริง" [level=3] [ref=e103]
+        - paragraph [ref=e104]: แอปทั่วไปเน้นให้คุณ "พูดตาม" แต่คุณไม่สามารถออกเสียงสิ่งที่คุณ "ไม่ได้ยิน" ได้ เสียง TH (thin vs tin), เสียงท้ายคำ, สระยาว/สั้น — เหล่านี้คือจุดบอดของคนไทย หูของคุณต้องเรียนรู้วิธีแยกแยะเสียงเหล่านี้ก่อน การพูดที่ชัดเจนจึงจะตามมาเอง
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: วิธีแก้ปัญหา
+      - heading "ภาษาอังกฤษไม่ได้มีแค่เสียงเดียว แล้วทำไมฝึกด้วยเสียงเดียว?" [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwise ให้คุณฟังภาษาอังกฤษจริง — สำเนียงอเมริกัน อังกฤษ ออสเตรเลีย ไอร์แลนด์ และแอฟริกาใต้ ทั้งเสียงชายและเสียงหญิง สไตล์การพูดที่แตกต่าง ทุกคำถูกอ่านโดยผู้พูดหลายคน หูของคุณจะเรียนรู้ที่จะ "ปรับตัว" ไม่ใช่ "ท่องจำ"
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: หลากหลายสำเนียงจริง — อเมริกัน อังกฤษ ออสเตรเลีย ทั้งเสียงชายและหญิง
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: ใช้คำจริงทั้งหมด ทุกแบบฝึกหัดเปลี่ยนเสียงทีละเสียงเดียว
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: เสียงทุกตำแหน่ง - ต้นคำ กลางคำ และท้ายคำ
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: เน้นเสียงที่คนไทยแยกยากที่สุด เช่น เสียง TH เสียงท้ายคำ และสระยาว-สั้น
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: ฝึกได้ทุกที่ - แค่มีหูฟังก็เก่งได้
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "ทำไมถึงได้ผล (แต่แอปอื่นไม่ได้)" [level=2] [ref=e151]
+    - paragraph [ref=e152]: แอปส่วนใหญ่ให้คุณพูดตาม แต่คุณออกเสียงสิ่งที่ไม่ได้ยินไม่ได้ Soundwise ฝึกการรับรู้ก่อน — เพราะนั่นคือรากฐานที่แท้จริงของการออกเสียงที่ถูกต้อง
+  - generic [ref=e154]:
+    - heading "ฝึกฟังอย่างเดียว" [level=2] [ref=e155]
+    - paragraph [ref=e156]: ไม่มีสอนแกรมมาร์ ไม่มีคำอธิบายซับซ้อน แค่สามขั้นตอน
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "ฟัง" [level=3] [ref=e161]
+          - paragraph [ref=e162]: ได้ยินคำหรือเสียงที่ท้าทายผู้พูดภาษาแม่ของคุณ
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "เลือก" [level=3] [ref=e167]
+          - paragraph [ref=e168]: เลือกคำที่คุณได้ยินจากคู่น้อยที่สุด (เช่น "ship" หรือ "sheep") ระบบจะปรับความยากตามคุณทันที
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "เรียนรู้" [level=3] [ref=e173]
+          - paragraph [ref=e174]: เห็นคำที่ถูกต้อง เสียงที่ทำให้ต่างกัน สัญลักษณ์ IPA ไม่มี "ผิด" แบบคลุมเครือ — คุณจะรู้ทันทีว่าฟังผิดอะไร และเพราะอะไร
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: พร้อมฝึกหูของคุณแล้วหรือยัง?
+    - link "เริ่มฝึกหูวันนี้ →" [ref=e179] [cursor=pointer]:
+      - /url: "#download"
+      - generic [ref=e180]: เริ่มฝึกหูวันนี้
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: ปรับความยากตามตัวคุณ
+      - heading "ไม่น่าเบื่อ ไม่หนักเกินไป" [level=2] [ref=e187]
+      - paragraph [ref=e188]: ไม่ได้เริ่มเร็วสุด ผู้เริ่มต้นจะเริ่มที่ช้ากว่าปกติเพื่อสร้างความแม่นยำก่อน เมื่อดีขึ้น ความเร็วจะค่อยๆ เพิ่มขึ้น — แม้เร็วกว่าปกติ ผิดแล้วระบบปรับอัตโนมัติ อยู่ในโซนท้าทายที่พอดี
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: ความเร็วต้อง "ชนะ" มา - ถูกมากขึ้น เร็วขึ้น
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: แบบทดสอบอัจฉริยะ - ข้ามเสียงที่เก่งแล้ว
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: เซสชัน 15 นาที - สั้น ได้ผล ทุกวัน
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: วัดผลได้จริง - เห็นว่าฝึกมาเท่าไร แม่นแค่ไหน
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: วิธีการที่ได้รับการสนับสนุนจากการวิจัย
+    - heading "นวัตกรรมที่ได้รับการสนับสนุนจากการวิจัยระดับโลก" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "การวิจัย" [level=3] [ref=e241]
+        - paragraph [ref=e242]: ตามการศึกษาของ Patricia Kuhl (มหาวิทยาลัยวอชิงตัน) และ McClelland (2002) เกี่ยวกับการสอนการแยกแยะหน่วยเสียง การศึกษาเหล่านี้แสดงให้เห็นว่าสมองมีความยืดหยุ่นและสามารถเรียนรู้ใหม่ได้
+      - generic [ref=e243]:
+        - heading "ทำไมมันถึงได้ผล" [level=3] [ref=e244]
+        - paragraph [ref=e245]: สมองของคุณมีความยืดหยุ่น (Neuroplasticity) แม้แต่ผู้ใหญ่ชาวญี่ปุ่นปรับปรุงความแม่นยำในการแยกแยะ /r/ และ /l/ จาก 50% เป็น 80% ได้ด้วยข้อเสนอแนะภาพทันที
+      - generic [ref=e246]:
+        - heading "ผลลัพธ์ที่พิสูจน์แล้ว" [level=3] [ref=e247]
+        - paragraph [ref=e248]: ผลวิจัยพบว่าการฝึกอย่างสม่ำเสมอเพียง 3 เซสชัน (เซสชันละ 20 นาที) ก็เริ่มเห็นการเปลี่ยนแปลงของเส้นทางประสาทในสมองแล้ว
+  - generic [ref=e250]:
+    - heading "เสียงจากผู้เรียนทั่วโลก" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: 5 ปีที่ผมสับสนคำว่า right กับ light... ใช้แอปนี้แค่ 3 สัปดาห์ ผมได้ยินความแตกต่างชัดเจนมาก! เปลี่ยนชีวิตผมเลยครับ
+        - generic [ref=e256]:
+          - strong [ref=e257]: ยูกิ M.
+          - generic [ref=e258]: โตเกียว
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: เคยอายเวลาสั่งพิซซ่า "thin crust" แล้วพนักงานทำหน้าสงสัย ตอนนี้ผมมั่นใจขึ้นมาก เพราะผมได้ยินความต่างของ th กับ s แล้วจริงๆ!
+        - generic [ref=e262]:
+          - strong [ref=e263]: เหว่ย L.
+          - generic [ref=e264]: ปักกิ่ง
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: ไม่มีแอปอื่นใดที่เน้นการฟังก่อน นี่คือสิ่งที่ผู้เรียนการออกเสียงทุกคนต้องการ เรียบง่ายแต่มีประสิทธิภาพอย่างเหลือเชื่อ
+        - generic [ref=e268]:
+          - strong [ref=e269]: คาร์ลอส R.
+          - generic [ref=e270]: มาดริด
+  - generic [ref=e272]:
+    - heading "จุดเด่นที่คุณจะได้รับ" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "ออกแบบมาสำหรับภาษาของคุณ" [level=3] [ref=e278]
+        - paragraph [ref=e279]: เน้นเสียงที่คนไทยแยกยากที่สุด เช่น เสียง TH เสียงท้ายคำ และสระยาว-สั้น
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "เสียงจริง สำเนียงจริง" [level=3] [ref=e283]
+        - paragraph [ref=e284]: หลากหลายสำเนียงจริง — อเมริกัน อังกฤษ ออสเตรเลีย ทั้งเสียงชายและหญิง
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "เสียงจากเจ้าของภาษา" [level=3] [ref=e288]
+        - paragraph [ref=e289]: ใช้คำจริงทั้งหมด ทุกแบบฝึกหัดเปลี่ยนเสียงทีละเสียงเดียว
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "ปรับระดับความยากอัตโนมัติ" [level=3] [ref=e293]
+        - paragraph [ref=e294]: เริ่มจากช้า เร็วขึ้นเมื่อเก่งขึ้น ปรับอัตโนมัติเมื่อผิด
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "เซสชันรวดเร็ว" [level=3] [ref=e298]
+        - paragraph [ref=e299]: แค่วันละ 15 นาที เข้ากับจังหวะชีวิตที่เร่งรีบ
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "ฟีดแบ็กชัดทันที" [level=3] [ref=e303]
+        - paragraph [ref=e304]: เห็นคำที่ถูก เสียงที่ต่าง สัญลักษณ์ IPA และเล่นซ้ำเทียบ
+  - generic [ref=e306]:
+    - heading "คำถามที่พบบ่อย" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "ทำไมฉันไม่ต้องการไมโครโฟน? +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: ทำไมฉันไม่ต้องการไมโครโฟน?
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: เพราะความลับของการพูดชัดเริ่มที่ "การได้ยิน" เราเน้นฝึกสมองให้แยกแยะเสียงก่อน เมื่อคุณได้ยินชัด คุณจะเลียนเสียงได้อย่างถูกต้องตามธรรมชาติ
+      - generic [ref=e314]:
+        - button "ใช้เวลานานแค่ไหนจนกว่าจะเห็นผล? +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: ใช้เวลานานแค่ไหนจนกว่าจะเห็นผล?
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: ผลวิจัยพบว่าการฝึกอย่างสม่ำเสมอเพียง 3 เซสชัน (เซสชันละ 20 นาที) ก็เริ่มเห็นการเปลี่ยนแปลงของเส้นทางประสาทในสมองแล้ว!
+      - generic [ref=e319]:
+        - button "เหมาะสมกับภาษาแม่ของฉันหรือไม่? +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: เหมาะสมกับภาษาแม่ของฉันหรือไม่?
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: แน่นอน! เราเน้นคู่เสียงที่คนไทยมักสับสน เช่น เสียง TH (thin vs tin) เพื่อแก้ปัญหาให้ตรงจุดสำหรับผู้พูดภาษาไทยโดยเฉพาะ
+      - generic [ref=e324]:
+        - button "ฉันสามารถใช้ร่วมกับคอร์สเรียนอื่นได้หรือไม่? +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: ฉันสามารถใช้ร่วมกับคอร์สเรียนอื่นได้หรือไม่?
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: ได้แน่นอน! Soundwise คือ "อาวุธลับ" ที่ช่วยให้การเรียนในห้องเรียนหรือแอปอื่นๆ ของคุณได้ผลดียิ่งขึ้นอย่างก้าวกระโดด
+      - generic [ref=e329]:
+        - button "ถ้าฉันเป็นผู้เรียนระดับสูงล่ะ? +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: ถ้าฉันเป็นผู้เรียนระดับสูงล่ะ?
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: เหมาะอย่างยิ่ง! Soundwise จะช่วยปรับจูนหูของคุณให้จับรายละเอียดเล็กๆ น้อยๆ ได้แม่นยำขึ้น ทำให้คุณดูโปรขึ้นไปอีกขั้น
+  - generic [ref=e336]:
+    - heading "ฟังชัด ใช้ได้อย่างมั่นใจ" [level=2] [ref=e337]
+    - paragraph [ref=e338]: สนทนาคล่องขึ้น ตอบสนองเร็วขึ้น ความมั่นใจเพิ่มขึ้น จ่ายครั้งเดียว — $4.99 ใช้ได้ตลอดชีพ ไม่มีรายเดือน
+    - generic [ref=e339]:
+      - link "ดาวน์โหลดที่ App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: ดาวน์โหลดที่
+          - generic [ref=e343]: App Store
+      - link "รับที่ Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: รับที่
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: จ่ายครั้งเดียวจบ
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: ไม่มีค่ารายเดือน
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: ใช้ได้บน iPhone และ iPad
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: ฝึกหู ฟังภาษาอังกฤษรู้เรื่องตั้งแต่ครั้งแรก
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "ผลิตภัณฑ์" [level=4] [ref=e369]
+            - link "คุณสมบัติ" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "วิธีการทำงาน" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "FAQ" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "กฎหมายและสนับสนุน" [level=4] [ref=e374]
+            - link "นโยบายความเป็นส่วนตัว" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "ข้อกำหนดการใช้บริการ" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "ติดต่อ" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. สงวนลิขสิทธิ์

@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇸🇦 العربية
+        - link "درّب أذنيك" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: تدريب السمع بركيزة علمية
+    - heading "درّب أذنيك. افهم الإنجليزية من أول مرة." [level=1] [ref=e16]
+    - paragraph [ref=e17]: جرّب اختبار استماع مدته 10 ثوانٍ.
+    - paragraph [ref=e18]: معظم التطبيقات تدرّب على الكلام. Soundwise يدرّب على السماع — القطعة المفقودة. تمارين استماع قصيرة تُعيد تأهيل دماغك ليتعرف على أصوات الإنجليزية تلقائياً. دون ميكروفون.
+    - generic [ref=e19]:
+      - generic [ref=e20]: "لغتك الأولى:"
+      - combobox "لغتك الأولى:" [ref=e21] [cursor=pointer]:
+        - option "اختر لغتك الأم"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية" [selected]
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "PACK / BACK" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: الجولة 1 من 2
+          - heading "PACK / BACK" [level=2] [ref=e26]
+        - generic [ref=e27]: /p/ vs /b/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: استمع إلى الفرق.
+        - group "استمع إلى الفرق." [ref=e30]:
+          - button "شغّل نطق pack" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: PACK
+              - generic [ref=e35]: /pæk/
+          - button "شغّل نطق back" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: BACK
+              - generic [ref=e40]: /bæk/
+        - button "ابدأ الاختبار" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: استمع إلى الفرق.
+    - generic [ref=e43]:
+      - link "ابدأ تدريب الأذن اليوم →" [ref=e44] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e45]: ابدأ تدريب الأذن اليوم
+        - generic [ref=e46]: →
+      - link "شاهد كيف يعمل" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: دفع لمرة واحدة
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: بدون اشتراك
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: يعمل على iPhone و iPad
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: معظم المتعلمين يتحسنون خلال 2–3 أسابيع · 10–15 دقيقة يومياً
+    - generic [ref=e62]:
+      - text: متوفر على iPhone و iPad
+      - text: Android قريباً
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "أكثر من 40 تبايناً صوتياً" [level=2] [ref=e66]
+          - paragraph [ref=e67]: تدرّب على أكثر أزواج الأصوات الإنجليزية التي يخلط بينها المتعلمون
+        - article [ref=e68]:
+          - heading "مئات الأزواج الصغرى" [level=2] [ref=e69]
+          - paragraph [ref=e70]: تدرّب على كلمات حقيقية يختلف فيها صوت واحد فقط
+        - article [ref=e71]:
+          - heading "مصمم لـ 14+ خلفية لغوية" [level=2] [ref=e72]
+          - paragraph [ref=e73]: أمثلة مختارة لمتعلمين من خلفيتك اللغوية
+  - generic [ref=e75]:
+    - heading "ليست قلة اجتهاد — بل هي طبيعة لغتك الأم" [level=2] [ref=e76]
+    - paragraph [ref=e77]: دماغك يستبدل الأصوات غير الموجودة في العربية بأقرب بديل. لهذا تتحول "Park" إلى "Bark" و"Very" إلى "Ferry".
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "متحدثو اليابانية" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "متحدثو الصينية" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "متحدثو التايلاندية" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "متحدثو الإسبانية" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "المشكلة الحقيقية" [level=3] [ref=e103]
+        - paragraph [ref=e104]: التطبيقات التقليدية تطلب منك "التحدث" فوراً، لكنك لا تستطيع نطق ما لا تستطيع أذنك تمييزه أولاً. لهذا تتحول "Park" إلى "Bark" و "Very" إلى "Ferry".
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: الحل
+      - heading "الإنجليزية ليست صوتاً واحداً — فلماذا تتدرب على صوت واحد فقط؟" [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwise يقدّم لك الإنجليزية الحقيقية — لهجات أمريكية وبريطانية وأسترالية وإيرلندية وجنوب أفريقية، أصوات رجالية ونسائية. كل كلمة يقرؤها متحدثون أصليون. أذنك تتعلم التكيّف، لا الحفظ.
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: لهجات حقيقية متنوعة — أمريكية، بريطانية، أسترالية، رجال ونساء أصليون
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: كلمات حقيقية فقط — كل تمرين يغيّر صوتاً واحداً فقط
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: أصوات في كل المواقع — بداية ووسط ونهاية الكلمة
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: مصمّم للعرب — P/B، V/F، الأصوات الصعبة التي يخلط بينها المتحدثون بالعربية
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: بدون ميكروفون — اسمع فقط، تدرّب في أي مكان
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "لماذا هذا يجدي (والتطبيقات الأخرى لا)" [level=2] [ref=e151]
+    - paragraph [ref=e152]: معظم التطبيقات تطلب منك تكرار الكلمات. لكنك لا تستطيع نطق ما لا تسمعه. Soundwise يدرّب إدراكك أولاً — فيتحسّن الكلام تلقائياً.
+  - generic [ref=e154]:
+    - heading "تدريب استماع صافٍ" [level=2] [ref=e155]
+    - paragraph [ref=e156]: بدون قواعد، بدون شروحات معقدة — ثلاث خطوات فقط.
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "استمع" [level=3] [ref=e161]
+          - paragraph [ref=e162]: اسمع كلمة أو صوتًا يمثل تحديًا للعرب (مثل P vs B)
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "اختر" [level=3] [ref=e167]
+          - paragraph [ref=e168]: اختر الكلمة التي سمعتها من زوج أدنى (مثل "Park" أو "Bark")
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "تعلّم" [level=3] [ref=e173]
+          - paragraph [ref=e174]: شاهد الإجابة الصحيحة، رمز IPA، والفرق الصوتي. لا "خطأ" غامض — افهم بالضبط ما التبس عليك ولماذا.
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: مستعد لتدريب أذنيك?
+    - link "ابدأ تدريب الأذن اليوم →" [ref=e179] [cursor=pointer]:
+      - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+      - generic [ref=e180]: ابدأ تدريب الأذن اليوم
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: صعوبة تكيّفية
+      - heading "لا ملل، لا إرهاق" [level=2] [ref=e187]
+      - paragraph [ref=e188]: المبتدئون يبدؤون ببطء لبناء الثقة. كلما تحسّنت، زادت السرعة تدريجياً — إذا أخطأت في السريع، يتكيّف النظام تلقائياً.
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: السرعة تُكسب — أصب أدق، السرعة تزيد
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: اختبار ذكي — تخطى الأصوات التي تعرفها
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: جلسات 15 دقيقة — قصيرة، فعالة، كل يوم
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: تقدّم قابل للقياس — شاهد كم تحسّنت بالضبط
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: منهج مدعوم بالأبحاث
+    - heading "مبني على علم إدراك الفونيمات" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "البحث" [level=3] [ref=e241]
+        - paragraph [ref=e242]: مستند إلى دراسات Patricia Kuhl (جامعة واشنطن). تُظهر الدراسات أن التعرض المبكر يُشكّل أي الفروق الصوتية تُدرَك كذات معنى.
+      - generic [ref=e243]:
+        - heading "لماذا ينجح" [level=3] [ref=e244]
+        - paragraph [ref=e245]: دماغك مرن عصبيًا. الممارسة المتكررة بالأزواج الدنيا تخلق مسارات عصبية جديدة لتمييز أصوات مثل P/B و V/F.
+      - generic [ref=e246]:
+        - heading "نتائج مثبتة" [level=3] [ref=e247]
+        - paragraph [ref=e248]: بعد ثلاث جلسات فقط، كشفت فحوصات الدماغ عن أنماط تنشيط جديدة. الممارسة المنتظمة تنتج تحسينات قابلة للقياس ودائمة.
+  - generic [ref=e250]:
+    - heading "انضم إلى آلاف المتعلمين في المنطقة والعالم" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: لمدة 5 سنوات كنت أخلط بين "right" و"light" في اجتماعات العمل. بعد 3 أسابيع فقط مع Soundwise، أصبحت أسمع الفرق بوضوح! هذا غيّر مساري المهني تماماً.
+        - generic [ref=e256]:
+          - strong [ref=e257]: يوكي م.
+          - generic [ref=e258]: طوكيو، اليابان
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: لم أكن أدرك أنني أنطق كلمة "Park" كأنها "Bark" حتى استخدمت Soundwise. خلال 6 أسابيع، لاحظ زملائي في الشركة العالمية فرقاً هائلاً في نطقي!
+        - generic [ref=e262]:
+          - strong [ref=e263]: خالد م.
+          - generic [ref=e264]: الرياض، السعودية
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: بينما تجبرك التطبيقات الأخرى على الكلام، يعلمك هذا التطبيق كيف تسمع. هذا هو الأساس الذي يحتاجه كل متحدث بالعربية للوصول إلى النطق الاحترافي.
+        - generic [ref=e268]:
+          - strong [ref=e269]: كارلوس ر.
+          - generic [ref=e270]: مدريد، إسبانيا
+  - generic [ref=e272]:
+    - heading "كل ما تحتاجه لفهم الإنجليزية بوضوح" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "مصمّم للغتك" [level=3] [ref=e278]
+        - paragraph [ref=e279]: مصمّم للعرب — P/B، V/F، الأصوات الصعبة التي يخلط بينها المتحدثون بالعربية
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "أصوات ولهجات حقيقية" [level=3] [ref=e283]
+        - paragraph [ref=e284]: لهجات حقيقية متنوعة — أمريكية، بريطانية، أسترالية، رجال ونساء أصليون
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "كلمات حقيقية فقط" [level=3] [ref=e288]
+        - paragraph [ref=e289]: كلمات حقيقية فقط — كل تمرين يغيّر صوتاً واحداً فقط
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "صعوبة تكيّفية" [level=3] [ref=e293]
+        - paragraph [ref=e294]: تزداد صعوبة مع تحسّنك، تتكيّف تلقائياً عند الخطأ
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "15 دقيقة يومياً" [level=3] [ref=e298]
+        - paragraph [ref=e299]: جلسات قصيرة تناسب أسلوب حياتك السريع
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "ملاحظات فورية وواضحة" [level=3] [ref=e303]
+        - paragraph [ref=e304]: الإجابة الصحيحة والفرق الصوتي ورمز IPA فوراً
+  - generic [ref=e306]:
+    - heading "الأسئلة الشائعة - كسر الحواجز" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "لماذا لا أحتاج إلى ميكروفون؟ +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: لماذا لا أحتاج إلى ميكروفون؟
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: لأن سر النطق الصحيح يكمن في الدماغ وليس الحبال الصوتية. عندما تدرك أذنك الصوت الصحيح، سيقلده لسانك تلقائياً وبدقة. لا حاجة للتسجيل.
+      - generic [ref=e314]:
+        - button "كم من الوقت أحتاج لرؤية النتائج؟ +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: كم من الوقت أحتاج لرؤية النتائج؟
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: تظهر الأبحاث أن 3 جلسات فقط (20 دقيقة لكل منها) تبدأ في تغيير خرائط الإدراك في الدماغ بشكل دائم.
+      - generic [ref=e319]:
+        - button "هل يناسب لغتي الأم؟ +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: هل يناسب لغتي الأم؟
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: نعم! نحن نركز على التحديات الخاصة بالعربية مثل التمييز بين P/B و V/F.
+      - generic [ref=e324]:
+        - button "هل يناسبني إذا كنت متعلمًا متقدمًا؟ +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: هل يناسبني إذا كنت متعلمًا متقدمًا؟
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: نعم، حتى المتحدثين بطلاقة يعانون من "النقاط العمياء" الصوتية. التطبيق يساعدك على صقل سمعك لتصل إلى مستوى النطق الأصيل.
+      - generic [ref=e329]:
+        - button "ماذا لو كنت مبتدئًا؟ +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: ماذا لو كنت مبتدئًا؟
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: المبتدئون يستفيدون بشدة من تدريب الأذن لتجنب بناء عادات نطق خاطئة من البداية.
+  - generic [ref=e336]:
+    - heading "اسمع بوضوح. استخدم بثقة." [level=2] [ref=e337]
+    - paragraph [ref=e338]: محادثات أسلس. ردود أسرع. ثقة أكبر. دفعة واحدة — $4.99 وصول مدى الحياة. دون اشتراك.
+    - generic [ref=e339]:
+      - link "حمّل من App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: حمّل من
+          - generic [ref=e343]: App Store
+      - link "متوفر على Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: متوفر على
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: دفع لمرة واحدة
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: بدون اشتراك
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: يعمل على iPhone و iPad
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: درّب أذنيك. افهم الإنجليزية من أول مرة.
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "المنتج" [level=4] [ref=e369]
+            - link "المزايا" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "كيفية العمل" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "الأسئلة الشائعة" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "القانونية والدعم" [level=4] [ref=e374]
+            - link "سياسة الخصوصية" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "شروط الخدمة" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "تواصل" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. جميع الحقوق محفوظة.

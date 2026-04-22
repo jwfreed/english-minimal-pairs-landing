@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇭🇰 廣東話
+        - link "即刻開始練" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: 科學訓練你嘅耳仔
+    - heading "訓練你對耳。第一次就聽明英文。" [level=1] [ref=e16]
+    - paragraph [ref=e17]: 試下做個 10 秒聽力測試。
+    - paragraph [ref=e18]: 大多數應用程式訓練講嘢。Soundwise 訓練聽力 — 係個缺咗嘅部分。短小嘅聽力練習令你個腦自動識得英文聲音。唔使麥克風。
+    - generic [ref=e19]:
+      - generic [ref=e20]: "你嘅第一語言:"
+      - combobox "你嘅第一語言:" [ref=e21] [cursor=pointer]:
+        - option "選擇你的母語"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話" [selected]
+        - option "Bahasa Indonesia"
+    - generic "LIGHT / NIGHT" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: 第 1 回，共 2 回
+          - heading "LIGHT / NIGHT" [level=2] [ref=e26]
+        - generic [ref=e27]: /l/ vs /n/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: 聽吓分別。
+        - group "聽吓分別。" [ref=e30]:
+          - button "播放 light 讀音" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: LIGHT
+              - generic [ref=e35]: /laɪt/
+          - button "播放 night 讀音" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: NIGHT
+              - generic [ref=e40]: /naɪt/
+        - button "開始測試" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: 聽吓分別。
+    - generic [ref=e43]:
+      - link "今日開始訓練耳仔 →" [ref=e44] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e45]: 今日開始訓練耳仔
+        - generic [ref=e46]: →
+      - link "了解運作原理" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: 一次性付款
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: 無訂閱陷阱
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: 支援 iPhone 同 iPad
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: 大多數學習者 2–3 星期內有進步 · 每日10–15 分鐘
+    - generic [ref=e62]:
+      - text: 支援 iPhone 同 iPad
+      - text: Android 就快推出
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "40+ 組英文聲音對比" [level=2] [ref=e66]
+          - paragraph [ref=e67]: 集中練習學英文的人最易混淆嘅聲音配對
+        - article [ref=e68]:
+          - heading "幾百組最小對立詞" [level=2] [ref=e69]
+          - paragraph [ref=e70]: 用只差一個音嘅真實字詞配對去練
+        - article [ref=e71]:
+          - heading "為 14+ 種語言背景而設" [level=2] [ref=e72]
+          - paragraph [ref=e73]: 例子按你嘅語言背景揀選
+  - generic [ref=e75]:
+    - heading "聽唔到唔係你唔努力 — 係你個腦未學過分辨" [level=2] [ref=e76]
+    - paragraph [ref=e77]: 廣東話同英文嘅聲音差好遠，你個腦會自動將唔熟嘅英文音換成最似嘅母語讀音。聽唔到，就永遠講唔出。
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "日語母語者" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "普通話母語者" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "泰語母語者" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "西班牙語母語者" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "核心關鍵" [level=3] [ref=e103]
+        - paragraph [ref=e104]: 如果你聽不到那個聲音，你就永遠發不出那個聲音。**先訓練耳朵，口語自然地道。**
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: 解決方案
+      - heading "英文唔止一種口音 — 點解淨係練一種？" [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwise 給你真正嘅英文 — 美式、英式、澳洲、愛爾蘭、南非口音，男女聲音都有。每個字都由真正嘅母語者讀出嚟。你嘅耳仔學到適應，唔係死記硬背。
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: 多種真實口音 — 美式、英式、澳洲等男女母語者
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: 淨係真實字詞 — 每個練習只改變一個聲音
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: 每個位置嘅聲音 — 字頭、字中、字尾
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: 專為廣東話人設計 — 長短元音、TH音、詞尾輔音等針對性訓練
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: 唔使麥克風 — 淨係聽，邊度都練得
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "點解有效（其他應用程式做唔到）" [level=2] [ref=e151]
+    - paragraph [ref=e152]: 大多數應用程式要你重複讀字。但你聽唔到嘅音，就永遠發唔出嚟。Soundwise 先訓練你嘅聽覺——講嘢自然就跟住進步。
+  - generic [ref=e154]:
+    - heading "純聽力訓練" [level=2] [ref=e155]
+    - paragraph [ref=e156]: 無文法、無複雜解釋，得三步。
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "聽" [level=3] [ref=e161]
+          - paragraph [ref=e162]: 聽一個真實英文字，由唔同嘅母語者讀出嚟
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "揀" [level=3] [ref=e167]
+          - paragraph [ref=e168]: 揀你聽到嘅字（例如 "ship" 定 "sheep"）— 一個音就決定晒
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "即時回饋" [level=3] [ref=e173]
+          - paragraph [ref=e174]: 看到正確答案、IPA符號同埋聲音分別。唔會淨係話你「錯」——你會知道到底聽錯了什麼，同埋點解。
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: 準備好訓練你隻耳未？
+    - link "今日開始訓練耳仔 →" [ref=e179] [cursor=pointer]:
+      - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+      - generic [ref=e180]: 今日開始訓練耳仔
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: 自適應難度
+      - heading "唔會悶、唔會太難" [level=2] [ref=e187]
+      - paragraph [ref=e188]: 新手由慢開始建立信心。水平提升之後速度慢慢加快 — 如果快速時錯了，系統自動調節。永遠在最佳學習區域。
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: 速度要「贏」返嚟 — 愈準就愈快
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: 智能測試 — 已經識嘅聲音直接跳過
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: 15分鐘訓練 — 短、有效、日日可以
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: 可量度進步 — 清楚看到自己進步幾多
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: 職場價值
+    - heading "地道發音，是更有含金量的職場名片" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "起薪優勢" [level=3] [ref=e241]
+        - paragraph [ref=e242]: 研究證明，英語能力與入職起薪點有直接的正相關性。
+      - generic [ref=e243]:
+        - heading "晉升屏障" [level=3] [ref=e244]
+        - paragraph [ref=e245]: 雖然學歷幫你贏得面試，但準確的聽力感知與地道發音，才是決定你職場上限的關鍵。
+      - generic [ref=e246]:
+        - heading "語言資本" [level=3] [ref=e247]
+        - paragraph [ref=e248]: 在香港的商業環境中，英語能力不僅是工具，更是關鍵的**語言資本 (Linguistic Capital)**。
+  - generic [ref=e250]:
+    - heading "學員實證 - 社會肯定" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: 我一直分不清 "right" 同 "light"，開會時總是有點尷尬。使用 Soundwise 三星期後，我的耳朵好像突然開了竅。現在與外籍同事溝通自信得多！
+        - generic [ref=e256]:
+          - strong [ref=e257]: Yuki M.
+          - generic [ref=e258]: 資深設計師，香港
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: 以前點 "thin crust pizza" 時總被困惑的眼神嚇到。現在我真的聽得出 th 和 s 的不同！
+        - generic [ref=e262]:
+          - strong [ref=e263]: Wei L.
+          - generic [ref=e264]: 中國 北京
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: 這是唯一一個先專注聽力、後講說話的 App。簡單但極之有效，是每個英語學習者都需要的工具。
+        - generic [ref=e268]:
+          - strong [ref=e269]: Carlos R.
+          - generic [ref=e270]: 市場經理
+  - generic [ref=e272]:
+    - heading "清晰聽懂英文所需嘅一切" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "專為你嘅語言設計" [level=3] [ref=e278]
+        - paragraph [ref=e279]: 專為廣東話人設計 — 長短元音、TH音、詞尾輔音等針對性訓練
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "真人聲音與口音" [level=3] [ref=e283]
+        - paragraph [ref=e284]: 多種真實口音 — 美式、英式、澳洲等男女母語者
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "淨係真實字詞" [level=3] [ref=e288]
+        - paragraph [ref=e289]: 淨係真實字詞 — 每個練習只改變一個聲音
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "自適應難度" [level=3] [ref=e293]
+        - paragraph [ref=e294]: 越好越難，錯了自動調節
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "15分鐘就夠" [level=3] [ref=e298]
+        - paragraph [ref=e299]: 短而集中嘅訓練，日日可以
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "即時清晰回饋" [level=3] [ref=e303]
+        - paragraph [ref=e304]: 正確答案、聲音分別、IPA符號即刻顯示
+  - generic [ref=e306]:
+    - heading "常見問題" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "為什麼不需要麥克風？ +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: 為什麼不需要麥克風？
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: 發音問題本質是「聽覺感知」問題。當大腦建立了正確的聲音模型，你的發音器官會自然地模仿正確的音準。
+      - generic [ref=e314]:
+        - button "多久會看到成果？ +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: 多久會看到成果？
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: 大部分學習者在連續 2-3 週、每天 10-15 分鐘後就感覺到進步。大腦需要時間建立新連結，但改變可測量且持久。
+      - generic [ref=e319]:
+        - button "適合我的母語嗎？ +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: 適合我的母語嗎？
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: 適合！App 針對日語、中文、西班牙語、泰語、韓語、阿拉伯語、越南語等多種母語提供專屬練習，並依母語難點自動調整。
+      - generic [ref=e324]:
+        - button "可以跟其他學習方式一起用嗎？ +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: 可以跟其他學習方式一起用嗎？
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: 當然可以！Soundwise 是任何英語課程的最佳補充，專注聽覺訓練讓其他練習更有效。當你聽到差別後，口說會進步得更快。
+      - generic [ref=e329]:
+        - button "這適合高級學習者嗎？ +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: 這適合高級學習者嗎？
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: 絕對適合。即便能流利溝通，許多高級學習者在單詞重音 (Word Stress) 和節奏感上仍有盲點，本系統可協助糾正深層發音問題。
+  - generic [ref=e336]:
+    - heading "聽得清楚，用得自信。" [level=2] [ref=e337]
+    - paragraph [ref=e338]: 傾計流暢啲。反應快啲。自信增加。一次性付款 — $4.99 終身使用。唔使訂閱。
+    - generic [ref=e339]:
+      - link "由 App Store 下載 App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: 由 App Store 下載
+          - generic [ref=e343]: App Store
+      - link "由 Google Play 取得 Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: 由 Google Play 取得
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: 一次性付款
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: 無訂閱陷阱
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: 支援 iPhone 同 iPad
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: 訓練耳仔。第一次就聽明英文。
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "產品" [level=4] [ref=e369]
+            - link "功能" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "運作方式" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "常見問題" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "法律與支持" [level=4] [ref=e374]
+            - link "隱私政策" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "服務條款" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "聯絡我們" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. 保留所有權利.

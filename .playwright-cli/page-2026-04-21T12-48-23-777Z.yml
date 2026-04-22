@@ -1,0 +1,354 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - img "Soundwise Logo" [ref=e6]
+      - generic [ref=e7]:
+        - button "Select language" [ref=e9] [cursor=pointer]: 🇮🇳 हिंदी
+        - link "कान ट्रेन करें" [ref=e10] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e13]:
+    - generic [ref=e14]: विज्ञान-आधारित कान ट्रेनिंग
+    - heading "कान ट्रेन करें। पहली बार में ही अंग्रेज़ी समझें।" [level=1] [ref=e15]
+    - paragraph [ref=e16]: 10 सेकंड का listening test आज़माइए.
+    - paragraph [ref=e17]: ज़्यादातर apps बोलने की प्रैक्टिस कराते हैं। Soundwise सुनने की — वह अहम हिस्सा जो छूट जाता है। छोटे-छोटे focused listening drills आपके दिमाग को English sounds अपने आप पहचानने के लिए retrain करते हैं। कोई microphone नहीं चाहिए।
+    - generic [ref=e18]:
+      - generic [ref=e19]: "आपकी पहली भाषा:"
+      - combobox "आपकी पहली भाषा:" [ref=e20] [cursor=pointer]:
+        - option "अपनी मातृभाषा चुनें"
+        - option "English"
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी" [selected]
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "VEST / WEST" [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - paragraph [ref=e24]: राउंड 1 / 2
+          - heading "VEST / WEST" [level=2] [ref=e25]
+        - generic [ref=e26]: /v/ vs /w/
+      - generic [ref=e27]:
+        - paragraph [ref=e28]: फ़र्क़ सुनिए.
+        - group "फ़र्क़ सुनिए." [ref=e29]:
+          - button "vest का उच्चारण चलाएँ" [ref=e30] [cursor=pointer]:
+            - generic [ref=e31]: 🔊
+            - generic [ref=e32]:
+              - generic [ref=e33]: VEST
+              - generic [ref=e34]: /vest/
+          - button "west का उच्चारण चलाएँ" [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]: 🔊
+            - generic [ref=e37]:
+              - generic [ref=e38]: WEST
+              - generic [ref=e39]: /west/
+        - button "टेस्ट शुरू करें" [ref=e40] [cursor=pointer]
+      - paragraph [ref=e41]: फ़र्क़ सुनिए.
+    - generic [ref=e42]:
+      - link "आज से कान ट्रेनिंग शुरू करें →" [ref=e43] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e44]: आज से कान ट्रेनिंग शुरू करें
+        - generic [ref=e45]: →
+      - link "देखें यह कैसे काम करता है" [ref=e46] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e47]:
+      - generic [ref=e48]:
+        - generic [ref=e49]: ✔
+        - generic [ref=e50]: एक बार का भुगतान
+      - generic [ref=e51]:
+        - generic [ref=e52]: ✔
+        - generic [ref=e53]: कोई सदस्यता नहीं
+      - generic [ref=e54]:
+        - generic [ref=e55]: ✔
+        - generic [ref=e56]: iPhone और iPad पर चलता है
+    - generic [ref=e57]:
+      - generic [ref=e58]: ⏱
+      - generic [ref=e59]: ज़्यादातर लोग 2–3 हफ़्तों में सुधार देखते हैं · 10–15 मिनट/दिन
+    - generic [ref=e61]:
+      - text: iPhone और iPad पर उपलब्ध
+      - text: Android जल्द आ रहा है
+    - generic "Product scope highlights" [ref=e62]:
+      - generic [ref=e63]:
+        - article [ref=e64]:
+          - heading "40+ ध्वनि अंतर" [level=2] [ref=e65]
+          - paragraph [ref=e66]: उन अंग्रेज़ी ध्वनि जोड़ियों पर फ़ोकस जिनमें सीखने वाले सबसे ज़्यादा उलझते हैं
+        - article [ref=e67]:
+          - heading "सैकड़ों शब्द जोड़ियँ" [level=2] [ref=e68]
+          - paragraph [ref=e69]: ऐसी असली शब्द जोड़ियों के साथ अभ्यास करें जिनमें सिर्फ़् एक ध्वनि अलग हो
+        - article [ref=e70]:
+          - heading "14+ भाषाओं के लिए बना" [level=2] [ref=e71]
+          - paragraph [ref=e72]: उदाहरण आपकी भाषा के हिसाब से चुने गए हैं
+  - generic [ref=e74]:
+    - heading "मेहनत के बाद भी उच्चारण साफ़ क्यों नहीं होता?" [level=2] [ref=e75]
+    - paragraph [ref=e76]: दोष आपका नहीं, आपके दिमाग का है. दिमाग उन आवाज़ों को छान देता है जो हमने बचपन में नहीं सुनीं. आप वो आवाज़ निकाल नहीं सकते जिसे सुन नहीं पा रहे.
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - generic [ref=e79]: 🇯🇵
+        - heading "जापानी बोलने वाले" [level=3] [ref=e80]
+        - generic [ref=e81]: /r/ vs /l/
+        - paragraph [ref=e82]: "\"right\" vs \"light\""
+      - generic [ref=e83]:
+        - generic [ref=e84]: 🇨🇳
+        - heading "चीनी (मंदारिन) बोलने वाले" [level=3] [ref=e85]
+        - generic [ref=e86]: /θ/ vs /s/
+        - paragraph [ref=e87]: "\"thin\" vs \"sin\""
+      - generic [ref=e88]:
+        - generic [ref=e89]: 🇹🇭
+        - heading "थाई बोलने वाले" [level=3] [ref=e90]
+        - generic [ref=e91]: /θ/ vs /t/
+        - paragraph [ref=e92]: "\"thin\" vs \"tin\""
+      - generic [ref=e93]:
+        - generic [ref=e94]: 🇪🇸
+        - heading "स्पेनिश बोलने वाले" [level=3] [ref=e95]
+        - generic [ref=e96]: /ɪ/ vs /iː/
+        - paragraph [ref=e97]: "\"ship\" vs \"sheep\""
+    - generic [ref=e98]:
+      - img "The Real Problem" [ref=e100]
+      - generic [ref=e101]:
+        - heading "वास्तविक समस्या" [level=3] [ref=e102]
+        - paragraph [ref=e103]: आप वो आवाज़ निकाल ही नहीं सकते जिसे आप सुन नहीं पा रहे. पारंपरिक ऐप्स आपको बोलने पर मजबूर करते हैं, जबकि असली समस्या सुनने में है.
+  - generic [ref=e106]:
+    - generic [ref=e107]:
+      - generic [ref=e108]: समाधान
+      - heading "अंग्रेज़ी एक आवाज़ नहीं है — सिर्फ़ एक से क्यों सीखें?" [level=2] [ref=e109]
+      - paragraph [ref=e110]: Soundwise आपको असली अंग्रेज़ी सुनाता है — American, British, Australian, Irish और South African लहजे, पुरुष और महिला आवाज़ें. हर शब्द असली native speakers ने पढ़ा है. आपके कान अनुकूलन सीखते हैं, रटना नहीं.
+      - list [ref=e111]:
+        - listitem [ref=e112]:
+          - generic [ref=e113]: ✓
+          - generic [ref=e114]: American, British, Australian — अनेक असली लहजे, पुरुष और महिला आवाज़ें
+        - listitem [ref=e115]:
+          - generic [ref=e116]: ✓
+          - generic [ref=e117]: सिर्फ़ असली शब्द — हर अभ्यास में एक समय पर एक ही ध्वनि बदलती है
+        - listitem [ref=e118]:
+          - generic [ref=e119]: ✓
+          - generic [ref=e120]: हर पोज़ीशन में आवाज़ें — शब्द के शुरू, बीच और अंत में
+        - listitem [ref=e121]:
+          - generic [ref=e122]: ✓
+          - generic [ref=e123]: भारतीय भाषाओं के लिए बना — V vs W, TH ध्वनि, स्वर लंबाई पर फ़ोकस
+        - listitem [ref=e124]:
+          - generic [ref=e125]: ✓
+          - generic [ref=e126]: माइक्रोफ़ोन नहीं चाहिए — सिर्फ़ सुनें, कहीं भी ट्रेन करें
+    - generic [ref=e130]:
+      - heading "Parejas de práctica" [level=3] [ref=e132]
+      - generic [ref=e133]:
+        - generic [ref=e134]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e135]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e136]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e137] [cursor=pointer]
+      - generic [ref=e138]:
+        - button "sheep /ʃiːp/" [ref=e139] [cursor=pointer]:
+          - generic [ref=e140]: sheep
+          - generic [ref=e141]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e142] [cursor=pointer]:
+          - generic [ref=e143]: ship
+          - generic [ref=e144]: /ʃɪp/
+      - generic [ref=e146]: ✓
+  - generic [ref=e149]:
+    - heading "यह क्यों काम करता है (दूसरे apps नहीं करते)" [level=2] [ref=e150]
+    - paragraph [ref=e151]: ज़्यादातर apps शब्द दोहराने को कहते हैं। लेकिन जो आवाज़ सुनाई नहीं देती, उसे बोला नहीं जा सकता। Soundwise पहले perception train करता है — बोलने में सुधार खुद-ब-खुद आता है।
+  - generic [ref=e153]:
+    - heading "शुद्ध सुनने की ट्रेनिंग" [level=2] [ref=e154]
+    - paragraph [ref=e155]: व्याकरण नहीं, जटिल व्याख्या नहीं — सिर्फ़ तीन कदम.
+    - generic [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]: "1"
+        - generic [ref=e159]:
+          - heading "सुनें" [level=3] [ref=e160]
+          - paragraph [ref=e161]: ऐसा शब्द या ध्वनि सुनें जो चुनौती देता है (जैसे /v/ vs /w/)
+      - generic [ref=e162]:
+        - generic [ref=e163]: "2"
+        - generic [ref=e164]:
+          - heading "चुनें" [level=3] [ref=e165]
+          - paragraph [ref=e166]: मिनिमल पेयर से वह शब्द चुनें जो आपने सुना (जैसे "ship" या "sheep")
+      - generic [ref=e167]:
+        - generic [ref=e168]: "3"
+        - generic [ref=e169]:
+          - heading "सीखें" [level=3] [ref=e170]
+          - paragraph [ref=e171]: सही जवाब, IPA सिंबल, और आवाज़ का फर्क तुरंत देखें. अस्पष्ट "गलत" नहीं — आपको पता चलेगा कि आपने क्या गलत सुना और क्यों.
+  - generic [ref=e174]:
+    - paragraph [ref=e175]: क्या आप अपने कान ट्रेन करने के लिए तैयार हैं?
+    - link "आज से कान ट्रेनिंग शुरू करें →" [ref=e176] [cursor=pointer]:
+      - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+      - generic [ref=e177]: आज से कान ट्रेनिंग शुरू करें
+      - generic [ref=e178]: →
+  - generic [ref=e181]:
+    - generic [ref=e182]:
+      - generic [ref=e183]: अनुकूली कठिनाई
+      - heading "न बोरिंग, न बहुत मुश्किल" [level=2] [ref=e184]
+      - paragraph [ref=e185]: शुरू में धीमे से सुनें ताकि आत्मविश्वास आए. जैसे-जैसे बेहतर होंगे, स्पीड बढ़ती जाएगी — तेज़ में गलती पर सिस्टम खुद अडजस्ट हो जाएगा.
+      - list [ref=e186]:
+        - listitem [ref=e187]:
+          - generic [ref=e188]: ✓
+          - generic [ref=e189]: स्पीड कमानी पड़ती है — सही सुनें तो तेज़ हो
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: स्मार्ट टेस्ट — जो आवाज़ें पहचानते हैं उन्हें स्किप करें
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: 15 मिनट सेशन — छोटा, असरदार, रोज़ाना
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: मापने योग्य प्रगति — देखें कितना सुधरे हैं
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - heading "vine - wine" [level=3] [ref=e202]
+        - generic [ref=e203]:
+          - generic [ref=e204]: "Total: 4/6 (66.7%)"
+          - generic [ref=e205]: "加权平均: 66.8%"
+      - generic [ref=e206]:
+        - generic [ref=e207]:
+          - generic [ref=e208]: "59"
+          - generic [ref=e209]: "47"
+          - generic [ref=e210]: "35"
+          - generic [ref=e211]: "24"
+          - generic [ref=e212]: "12"
+          - generic [ref=e213]: "0"
+        - img [ref=e215]
+      - generic [ref=e225]:
+        - generic [ref=e226]: "练习时间:"
+        - generic [ref=e229]: 0.1 / 60 分钟
+  - generic [ref=e232]:
+    - generic [ref=e234]: शोध-समर्थित पद्धति
+    - heading "ध्वनिम विज्ञान और Neuroplasticity" [level=2] [ref=e235]
+    - generic [ref=e236]:
+      - generic [ref=e237]:
+        - heading "अनुसंधान" [level=3] [ref=e238]
+        - paragraph [ref=e239]: Patricia Kuhl के अध्ययन दिखाते हैं कि प्रारंभिक संपर्क यह निर्धारित करता है कि कौन से ध्वनि भेद सार्थक समझे जाते हैं.
+      - generic [ref=e240]:
+        - heading "यह क्यों काम करता है" [level=3] [ref=e241]
+        - paragraph [ref=e242]: आपका मस्तिष्क Neuroplastic है. बार-बार Minimal Pair अभ्यास ध्वनि भेद के लिए नए Neural Pathways बनाता है.
+      - generic [ref=e243]:
+        - heading "सिद्ध परिणाम" [level=3] [ref=e244]
+        - paragraph [ref=e245]: सिर्फ़ तीन 20-मिनट सत्रों के बाद मस्तिष्क स्कैन ने नए पैटर्न दिखाए. निरंतर अभ्यास स्थायी सुधार पैदा करता है.
+  - generic [ref=e247]:
+    - heading "दुनियाभर के स्टूडेंट्स का भरोसा" [level=2] [ref=e248]
+    - generic [ref=e249]:
+      - generic [ref=e250]:
+        - generic [ref=e251]: ★★★★★
+        - paragraph [ref=e252]: 5 साल तक मैं "right" और "light" में फर्क नहीं कर पाया. Soundwise के साथ सिर्फ 3 हफ़्तों में मेरे कानों को वो आवाज़ें सुनाई देने लगीं जो अब तक मिस हो रही थीं! इसने मेरा कॉन्फिडेंस पूरी तरह बदल दिया.
+        - generic [ref=e253]:
+          - strong [ref=e254]: युकी एम.
+          - generic [ref=e255]: टोक्यो, जापान
+      - generic [ref=e256]:
+        - generic [ref=e257]: ★★★★★
+        - paragraph [ref=e258]: ऑफिस में पिज़्ज़ा ऑर्डर करते समय "Thin Crust" बोलने में मुझे बहुत शर्म आती थी क्योंकि लोग मेरा उच्चारण समझ नहीं पाते थे. अब मैं TH और T के बीच का बारीक अंतर साफ सुन और बोल सकती हूँ!
+        - generic [ref=e259]:
+          - strong [ref=e260]: नेहा आर.
+          - generic [ref=e261]: दिल्ली, भारत
+      - generic [ref=e262]:
+        - generic [ref=e263]: ★★★★★
+        - paragraph [ref=e264]: बाकी ऐप्स आपको बोलने के लिए मजबूर करते हैं, लेकिन Soundwise सबसे पहले LISTENING पर ध्यान देता है. यह साफ़ उच्चारण सीखने का सबसे मज़बूत आधार है.
+        - generic [ref=e265]:
+          - strong [ref=e266]: कार्लोस आर.
+          - generic [ref=e267]: माद्रिद, स्पेन
+  - generic [ref=e269]:
+    - heading "अंग्रेज़ी साफ़् समझने के लिए ज़रूरी हर चीज़" [level=2] [ref=e270]
+    - generic [ref=e271]:
+      - generic [ref=e272]:
+        - img "Personalized" [ref=e274]
+        - heading "आपकी भाषा के लिए बना" [level=3] [ref=e275]
+        - paragraph [ref=e276]: भारतीय भाषाओं के लिए बना — V vs W, TH ध्वनि, स्वर लंबाई पर फ़ोकस
+      - generic [ref=e277]:
+        - img "Multiple Languages" [ref=e279]
+        - heading "असली आवाज़ें, असली लहजे" [level=3] [ref=e280]
+        - paragraph [ref=e281]: American, British, Australian — अनेक असली लहजे, पुरुष और महिला आवाज़ें
+      - generic [ref=e282]:
+        - img "Native Speaker Audio" [ref=e284]
+        - heading "सिर्फ़ असली शब्द" [level=3] [ref=e285]
+        - paragraph [ref=e286]: सिर्फ़ असली शब्द — हर अभ्यास में एक समय पर एक ही ध्वनि बदलती है
+      - generic [ref=e287]:
+        - img "Track Progress" [ref=e289]
+        - heading "अनुकूली कठिनाई" [level=3] [ref=e290]
+        - paragraph [ref=e291]: धीमे से शुरू, बेहतर होने पर तेज़, गलती पर अपने-आप अडजस्ट
+      - generic [ref=e292]:
+        - img "Quick Sessions" [ref=e294]
+        - heading "छोटे और स्मार्ट सेशन" [level=3] [ref=e295]
+        - paragraph [ref=e296]: रोज़ 15 मिनट काफ़ी है. ध्यान भटकने पर अपने-आप रुक जाता है.
+      - generic [ref=e297]:
+        - img "Auto-Save Progress" [ref=e299]
+        - heading "तुरंत स्पष्ट फ़ीडबैक" [level=3] [ref=e300]
+        - paragraph [ref=e301]: सही शब्द, सटीक ध्वनि अंतर, IPA लिप्यंतरण, और तुलना के लिए रीप्ले
+  - generic [ref=e303]:
+    - heading "आपके ज़रूरी सवालों के जवाब" [level=2] [ref=e304]
+    - generic [ref=e305]:
+      - generic [ref=e306]:
+        - button "मुझे माइक्रोफ़ोन की ज़रूरत क्यों नहीं? +" [ref=e307] [cursor=pointer]:
+          - generic [ref=e308]: मुझे माइक्रोफ़ोन की ज़रूरत क्यों नहीं?
+          - generic [ref=e309]: +
+        - paragraph [ref=e310]: साफ़ बोलने का राज गले में नहीं, दिमाग में है. जब आप सही आवाज़ को पहचानना सीख जाते हैं, तो आपका मुँह उसे अपने-आप सही तरीके से नकल करने लगता है.
+      - generic [ref=e311]:
+        - button "नतीजे देखने में कितना समय लगेगा? +" [ref=e312] [cursor=pointer]:
+          - generic [ref=e313]: नतीजे देखने में कितना समय लगेगा?
+          - generic [ref=e314]: +
+        - paragraph [ref=e315]: रिसर्च दिखाती है कि सिर्फ 20-20 मिनट के 3 सेशन्स के बाद ही आपके दिमाग के Neural Pathways में बदलाव आना शुरू हो जाता है!
+      - generic [ref=e316]:
+        - button "क्या यह हिंदी बोलने वालों और दक्षिण एशियाई सीखने वालों के लिए सही है? +" [ref=e317] [cursor=pointer]:
+          - generic [ref=e318]: क्या यह हिंदी बोलने वालों और दक्षिण एशियाई सीखने वालों के लिए सही है?
+          - generic [ref=e319]: +
+        - paragraph [ref=e320]: जी हाँ, हमने उन ध्वनियों पर फोकस किया है जहाँ कई दक्षिण एशियाई सीखने वाले अक्सर सुनने में कमज़ोर बिंदु महसूस करते हैं.
+      - generic [ref=e321]:
+        - button "क्या मैं इसे दूसरे कोर्स के साथ इस्तेमाल कर सकता हूँ? +" [ref=e322] [cursor=pointer]:
+          - generic [ref=e323]: क्या मैं इसे दूसरे कोर्स के साथ इस्तेमाल कर सकता हूँ?
+          - generic [ref=e324]: +
+        - paragraph [ref=e325]: बिल्कुल! Soundwise किसी भी क्लास या ऐप (जैसे Duolingo) के लिए एक बेहतरीन Partner है, जो आपकी Listening को मज़बूत बनाता है.
+      - generic [ref=e326]:
+        - button "अगर मैं पहले से उन्नत स्तर पर हूँ तो? +" [ref=e327] [cursor=pointer]:
+          - generic [ref=e328]: अगर मैं पहले से उन्नत स्तर पर हूँ तो?
+          - generic [ref=e329]: +
+        - paragraph [ref=e330]: उन्नत बोलने वालों को भी अपनी मातृभाषा से आई सुनने की कमज़ोरियाँ होती हैं. ऐप का अनुकूली एल्गोरिद्म आपकी समस्याओं को जल्दी पहचानकर उन्हीं पर ध्यान देता है, इसलिए यह हर स्तर के लिए मूल्यवान है.
+  - generic [ref=e333]:
+    - heading "साफ़ सुनें। आत्मविश्वास से बोलें।" [level=2] [ref=e334]
+    - paragraph [ref=e335]: बातचीत आसान होती है। जवाब जल्दी आते हैं। आत्मविश्वास बढ़ता है। एक बार की payment — $4.99 में lifetime access. कोई subscription नहीं।
+    - generic [ref=e336]:
+      - link "यहाँ डाउनलोड करें App Store" [ref=e337] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e338]:
+          - generic [ref=e339]: यहाँ डाउनलोड करें
+          - generic [ref=e340]: App Store
+      - link "यहाँ से पाएँ Google Play" [ref=e341] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e342]:
+          - generic [ref=e343]: यहाँ से पाएँ
+          - generic [ref=e344]: Google Play
+    - paragraph [ref=e345]: Android app coming soon.
+    - generic [ref=e346]:
+      - generic [ref=e347]:
+        - generic [ref=e348]: ✓
+        - generic [ref=e349]: एक बार का भुगतान
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: कोई सदस्यता नहीं
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: iPhone और iPad पर चलता है
+  - contentinfo [ref=e356]:
+    - generic [ref=e357]:
+      - generic [ref=e358]:
+        - generic [ref=e359]:
+          - generic [ref=e361]: 🎧
+          - paragraph [ref=e362]: कान ट्रेन करें. अंग्रेज़ी पहली बार में समझें.
+        - generic [ref=e363]:
+          - generic [ref=e364]:
+            - heading "उत्पाद" [level=4] [ref=e365]
+            - link "विशेषताएँ" [ref=e366] [cursor=pointer]:
+              - /url: "#features"
+            - link "कैसे काम करता है" [ref=e367] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "FAQ" [ref=e368] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e369]:
+            - heading "कानूनी और सहायता" [level=4] [ref=e370]
+            - link "गोपनीयता" [ref=e371] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "शर्तें" [ref=e372] [cursor=pointer]:
+              - /url: /terms.html
+            - link "संपर्क" [ref=e373] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e375]: © 2025 Soundwise. सर्वाधिकार सुरक्षित.

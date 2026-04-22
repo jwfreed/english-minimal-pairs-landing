@@ -1,0 +1,360 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Soundwise Logo" [ref=e6]
+        - generic [ref=e7]: Soundwise
+      - generic [ref=e8]:
+        - button "Select language" [ref=e10] [cursor=pointer]: 🇬🇧 🇺🇸 English
+        - link "Start Training" [ref=e11] [cursor=pointer]:
+          - /url: "#download"
+  - generic [ref=e14]:
+    - generic [ref=e15]: Science-Backed Ear Training
+    - heading "Train Your Ear. Hear English Clearly the First Time." [level=1] [ref=e16]
+    - paragraph [ref=e17]: Try a 10-second listening test.
+    - paragraph [ref=e18]: Most apps train speaking. Soundwise trains hearing — the missing piece. Short listening drills retrain your brain to recognize English sounds automatically. No microphone needed.
+    - generic [ref=e19]:
+      - generic [ref=e20]: "Your first language:"
+      - combobox "Your first language:" [ref=e21] [cursor=pointer]:
+        - option "Select your native language"
+        - option "English" [selected]
+        - option "日本語"
+        - option "普通话"
+        - option "ไทย"
+        - option "Español"
+        - option "العربية"
+        - option "Русский"
+        - option "한국어"
+        - option "हिंदी"
+        - option "Português"
+        - option "Tiếng Việt"
+        - option "Türkçe"
+        - option "فارسی"
+        - option "廣東話"
+        - option "Bahasa Indonesia"
+    - generic "SHIP / SHEEP" [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - paragraph [ref=e25]: Round 1 of 2
+          - heading "SHIP / SHEEP" [level=2] [ref=e26]
+        - generic [ref=e27]: /ɪ/ vs /iː/
+      - generic [ref=e28]:
+        - paragraph [ref=e29]: Hear the difference.
+        - group "Hear the difference." [ref=e30]:
+          - button "Play pronunciation for ship" [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: 🔊
+            - generic [ref=e33]:
+              - generic [ref=e34]: SHIP
+              - generic [ref=e35]: /ʃɪp/
+          - button "Play pronunciation for sheep" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]: 🔊
+            - generic [ref=e38]:
+              - generic [ref=e39]: SHEEP
+              - generic [ref=e40]: /ʃiːp/
+        - button "Start the test" [ref=e41] [cursor=pointer]
+      - paragraph [ref=e42]: Hear the difference.
+    - generic [ref=e43]:
+      - link "Train Your Ear Now →" [ref=e44] [cursor=pointer]:
+        - /url: "#download"
+        - generic [ref=e45]: Train Your Ear Now
+        - generic [ref=e46]: →
+      - link "See How It Works" [ref=e47] [cursor=pointer]:
+        - /url: "#how-it-works"
+    - generic "Purchase reassurance" [ref=e48]:
+      - generic [ref=e49]:
+        - generic [ref=e50]: ✔
+        - generic [ref=e51]: One-time payment
+      - generic [ref=e52]:
+        - generic [ref=e53]: ✔
+        - generic [ref=e54]: No subscription
+      - generic [ref=e55]:
+        - generic [ref=e56]: ✔
+        - generic [ref=e57]: Works on iPhone and iPad
+    - generic [ref=e58]:
+      - generic [ref=e59]: ⏱
+      - generic [ref=e60]: Most learners improve in 2–3 weeks · 10–15 min/day
+    - generic [ref=e62]:
+      - text: Available on iPhone and iPad
+      - text: Android coming soon
+    - generic "Product scope highlights" [ref=e63]:
+      - generic [ref=e64]:
+        - article [ref=e65]:
+          - heading "40+ sound contrasts" [level=2] [ref=e66]
+          - paragraph [ref=e67]: Practice the English sound pairs learners confuse most often
+        - article [ref=e68]:
+          - heading "Hundreds of minimal pairs" [level=2] [ref=e69]
+          - paragraph [ref=e70]: Practice with real word pairs that differ by just one sound
+        - article [ref=e71]:
+          - heading "Built for 14+ language backgrounds" [level=2] [ref=e72]
+          - paragraph [ref=e73]: Examples chosen for learners from your language background
+  - generic [ref=e75]:
+    - heading "It's Not Your Fault You Can't Hear These Sounds" [level=2] [ref=e76]
+    - paragraph [ref=e77]: Your brain wasn't trained to distinguish sounds that don't exist in your native language. That's why you keep asking "Sorry, can you repeat that?"
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: 🇯🇵
+        - heading "Japanese Speakers" [level=3] [ref=e81]
+        - generic [ref=e82]: /r/ vs /l/
+        - paragraph [ref=e83]: "\"right\" vs \"light\""
+      - generic [ref=e84]:
+        - generic [ref=e85]: 🇨🇳
+        - heading "Mandarin Speakers" [level=3] [ref=e86]
+        - generic [ref=e87]: /θ/ vs /s/
+        - paragraph [ref=e88]: "\"thin\" vs \"sin\""
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🇹🇭
+        - heading "Thai Speakers" [level=3] [ref=e91]
+        - generic [ref=e92]: /θ/ vs /t/
+        - paragraph [ref=e93]: "\"thin\" vs \"tin\""
+      - generic [ref=e94]:
+        - generic [ref=e95]: 🇪🇸
+        - heading "Spanish Speakers" [level=3] [ref=e96]
+        - generic [ref=e97]: /ɪ/ vs /iː/
+        - paragraph [ref=e98]: "\"ship\" vs \"sheep\""
+    - generic [ref=e99]:
+      - img "The Real Problem" [ref=e101]
+      - generic [ref=e102]:
+        - heading "The Real Problem" [level=3] [ref=e103]
+        - paragraph [ref=e104]: These errors persist not because you're not trying — but because your ear never learned to tell those sounds apart. You can't pronounce what you can't hear. And you can't understand conversations when key sounds blur together.
+  - generic [ref=e107]:
+    - generic [ref=e108]:
+      - generic [ref=e109]: The Solution
+      - heading "English Isn't One Voice. Your Training Shouldn't Be Either." [level=2] [ref=e110]
+      - paragraph [ref=e111]: Soundwise exposes you to real-world English the way you'll actually hear it — American, British, Australian, Irish, and South African accents, male and female voices, different speaking styles. Every word is spoken by rotating high-quality voices so your ears learn to adapt, not memorize. That means fewer surprises in real conversations.
+      - list [ref=e112]:
+        - listitem [ref=e113]:
+          - generic [ref=e114]: ✓
+          - generic [ref=e115]: Multiple native speakers with American, British, Australian, Irish, and South African accents
+        - listitem [ref=e116]:
+          - generic [ref=e117]: ✓
+          - generic [ref=e118]: Every training item uses real English words that change only one sound at a time
+        - listitem [ref=e119]:
+          - generic [ref=e120]: ✓
+          - generic [ref=e121]: Sounds in all positions - Beginning, middle, and end of words
+        - listitem [ref=e122]:
+          - generic [ref=e123]: ✓
+          - generic [ref=e124]: Focuses on the exact sound contrasts most likely to cause confusion for speakers of your native language
+        - listitem [ref=e125]:
+          - generic [ref=e126]: ✓
+          - generic [ref=e127]: No microphone needed - Just listen with headphones anywhere
+    - generic [ref=e131]:
+      - heading "Parejas de práctica" [level=3] [ref=e133]
+      - generic [ref=e134]:
+        - generic [ref=e135]: sheep (/ʃiːp/) - ship (/ʃɪp/)
+        - generic [ref=e136]: cut (/kʌt/) - cot (/kɑːt/)
+        - generic [ref=e137]: bad (/bæd/) - bed (/bed/)
+      - button "Reproducir Audio" [ref=e138] [cursor=pointer]
+      - generic [ref=e139]:
+        - button "sheep /ʃiːp/" [ref=e140] [cursor=pointer]:
+          - generic [ref=e141]: sheep
+          - generic [ref=e142]: /ʃiːp/
+        - button "ship /ʃɪp/" [ref=e143] [cursor=pointer]:
+          - generic [ref=e144]: ship
+          - generic [ref=e145]: /ʃɪp/
+      - generic [ref=e147]: ✓
+  - generic [ref=e150]:
+    - heading "Why this works (and other apps don’t)" [level=2] [ref=e151]
+    - paragraph [ref=e152]: Most apps ask you to repeat words. But you can’t pronounce what you can’t hear. Soundwise trains your perception first — so speaking improvement follows naturally.
+  - generic [ref=e154]:
+    - heading "Pure Listening Training" [level=2] [ref=e155]
+    - paragraph [ref=e156]: No grammar lectures. No complicated explanations. Just three steps.
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - generic [ref=e159]: "1"
+        - generic [ref=e160]:
+          - heading "Hear a Word" [level=3] [ref=e161]
+          - paragraph [ref=e162]: Listen to a real English word spoken by one of many native voices
+      - generic [ref=e163]: →
+      - generic [ref=e164]:
+        - generic [ref=e165]: "2"
+        - generic [ref=e166]:
+          - heading "Choose What You Heard" [level=3] [ref=e167]
+          - paragraph [ref=e168]: Select from a minimal pair (e.g., "ship" or "sheep") — one sound makes all the difference
+      - generic [ref=e169]: →
+      - generic [ref=e170]:
+        - generic [ref=e171]: "3"
+        - generic [ref=e172]:
+          - heading "Get Instant Feedback" [level=3] [ref=e173]
+          - paragraph [ref=e174]: See the correct word, the exact sound that differed, and IPA notation. No vague "Wrong" — you understand what you misheard and why.
+  - generic [ref=e177]:
+    - paragraph [ref=e178]: Ready to train your ear?
+    - link "Train Your Ear Now →" [ref=e179] [cursor=pointer]:
+      - /url: "#download"
+      - generic [ref=e180]: Train Your Ear Now
+      - generic [ref=e181]: →
+  - generic [ref=e184]:
+    - generic [ref=e185]:
+      - generic [ref=e186]: Adaptive Difficulty
+      - heading "You're Never Bored or Overwhelmed" [level=2] [ref=e187]
+      - paragraph [ref=e188]: You don't start at full speed. New learners begin below natural speed to build accuracy first. As you improve, speech gradually increases — even faster than natural speed. Mistakes automatically adjust difficulty. The system keeps you in the ideal challenge zone.
+      - list [ref=e189]:
+        - listitem [ref=e190]:
+          - generic [ref=e191]: ✓
+          - generic [ref=e192]: You earn speed - Speech pace increases as your accuracy improves
+        - listitem [ref=e193]:
+          - generic [ref=e194]: ✓
+          - generic [ref=e195]: Smart placement test - Skip sounds you've already mastered
+        - listitem [ref=e196]:
+          - generic [ref=e197]: ✓
+          - generic [ref=e198]: Focused 15-minute sessions - Short, effective daily practice
+        - listitem [ref=e199]:
+          - generic [ref=e200]: ✓
+          - generic [ref=e201]: Measurable progress - See exactly how much real ear training you've completed
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "vine - wine" [level=3] [ref=e205]
+        - generic [ref=e206]:
+          - generic [ref=e207]: "Total: 4/6 (66.7%)"
+          - generic [ref=e208]: "加权平均: 66.8%"
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - generic [ref=e211]: "59"
+          - generic [ref=e212]: "47"
+          - generic [ref=e213]: "35"
+          - generic [ref=e214]: "24"
+          - generic [ref=e215]: "12"
+          - generic [ref=e216]: "0"
+        - img [ref=e218]
+      - generic [ref=e228]:
+        - generic [ref=e229]: "练习时间:"
+        - generic [ref=e232]: 0.1 / 60 分钟
+  - generic [ref=e235]:
+    - generic [ref=e237]: Research-Backed Method
+    - heading "Built on Phonemic Perception Science" [level=2] [ref=e238]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "The Research" [level=3] [ref=e241]
+        - paragraph [ref=e242]: Based on findings from Patricia Kuhl's infant language development studies (University of Washington) and McClelland, Fiez, and McCandliss (2002) on teaching phonemic discrimination to adults. These studies show that early exposure shapes which sound distinctions are perceived as meaningful.
+      - generic [ref=e243]:
+        - heading "Why It Works" [level=3] [ref=e244]
+        - paragraph [ref=e245]: Your brain is neuroplastic - it can be retrained. Japanese adults improved from 50% to 70-80% accuracy distinguishing /r/ and /l/ with immediate visual feedback. Repeated minimal pair practice creates new neural pathways for sound discrimination.
+      - generic [ref=e246]:
+        - heading "Proven Results" [level=3] [ref=e247]
+        - paragraph [ref=e248]: After just three 20-minute sessions, brain scans revealed new activation patterns showing perceptual maps had been rewired. Consistent practice produces measurable, permanent improvements in perception accuracy.
+  - generic [ref=e250]:
+    - heading "Learners Around the World Are Hearing the Difference" [level=2] [ref=e251]
+    - generic [ref=e252]:
+      - generic [ref=e253]:
+        - generic [ref=e254]: ★★★★★
+        - paragraph [ref=e255]: For 5 years I couldn't tell 'right' from 'light'. After 3 weeks with this app, I can finally hear it! This changed everything.
+        - generic [ref=e256]:
+          - strong [ref=e257]: Yuki M.
+          - generic [ref=e258]: Tokyo, Japan
+      - generic [ref=e259]:
+        - generic [ref=e260]: ★★★★★
+        - paragraph [ref=e261]: I was so embarrassed ordering 'thin crust pizza' and getting confused looks. Now I can actually hear the difference between th and s sounds!
+        - generic [ref=e262]:
+          - strong [ref=e263]: Wei L.
+          - generic [ref=e264]: Beijing, China
+      - generic [ref=e265]:
+        - generic [ref=e266]: ★★★★★
+        - paragraph [ref=e267]: No other app focuses on LISTENING first. This is what every pronunciation learner needs. Simple but incredibly effective.
+        - generic [ref=e268]:
+          - strong [ref=e269]: Carlos R.
+          - generic [ref=e270]: Madrid, Spain
+  - generic [ref=e272]:
+    - heading "Everything You Need to Understand English Clearly" [level=2] [ref=e273]
+    - generic [ref=e274]:
+      - generic [ref=e275]:
+        - img "Personalized" [ref=e277]
+        - heading "Built for Your Language" [level=3] [ref=e278]
+        - paragraph [ref=e279]: Focuses on the exact sound contrasts most likely to cause confusion for speakers of your native language
+      - generic [ref=e280]:
+        - img "Multiple Languages" [ref=e282]
+        - heading "Real Voices, Real Accents" [level=3] [ref=e283]
+        - paragraph [ref=e284]: Multiple native speakers with American, British, Australian, Irish, and South African accents
+      - generic [ref=e285]:
+        - img "Native Speaker Audio" [ref=e287]
+        - heading "Only Real Words" [level=3] [ref=e288]
+        - paragraph [ref=e289]: Every training item uses real English words that change only one sound at a time
+      - generic [ref=e290]:
+        - img "Track Progress" [ref=e292]
+        - heading "Adaptive Difficulty" [level=3] [ref=e293]
+        - paragraph [ref=e294]: Starts slow, speeds up as you improve, and adjusts when you make mistakes
+      - generic [ref=e295]:
+        - img "Quick Sessions" [ref=e297]
+        - heading "Smart & Short Sessions" [level=3] [ref=e298]
+        - paragraph [ref=e299]: 15 minutes daily is all you need. Auto-pauses if you lose focus.
+      - generic [ref=e300]:
+        - img "Auto-Save Progress" [ref=e302]
+        - heading "Instant Clear Feedback" [level=3] [ref=e303]
+        - paragraph [ref=e304]: See the correct word, the exact sound difference, IPA transcription, and replay to compare
+  - generic [ref=e306]:
+    - heading "Frequently Asked Questions" [level=2] [ref=e307]
+    - generic [ref=e308]:
+      - generic [ref=e309]:
+        - button "Why don't I need a microphone? +" [ref=e310] [cursor=pointer]:
+          - generic [ref=e311]: Why don't I need a microphone?
+          - generic [ref=e312]: +
+        - paragraph [ref=e313]: The core problem isn't your speaking - it's your perception. You can't pronounce sounds you can't hear. By training your ear first through listening exercises, speaking improvement follows naturally. No recording or speech analysis needed.
+      - generic [ref=e314]:
+        - button "How long until I see results? +" [ref=e315] [cursor=pointer]:
+          - generic [ref=e316]: How long until I see results?
+          - generic [ref=e317]: +
+        - paragraph [ref=e318]: Most learners notice improved perception within 2-3 weeks of daily practice (10-15 minutes). Your brain needs time to build new neural pathways for sound discrimination, but the changes are measurable and permanent.
+      - generic [ref=e319]:
+        - button "Is this suitable for my native language? +" [ref=e320] [cursor=pointer]:
+          - generic [ref=e321]: Is this suitable for my native language?
+          - generic [ref=e322]: +
+        - paragraph [ref=e323]: Yes! The app includes targeted minimal pairs for speakers of Japanese, Mandarin, Spanish, Thai, Korean, Arabic, Vietnamese, and many other languages. The exercises adapt to the specific phonemic challenges of your L1 background.
+      - generic [ref=e324]:
+        - button "Can I use this alongside other learning methods? +" [ref=e325] [cursor=pointer]:
+          - generic [ref=e326]: Can I use this alongside other learning methods?
+          - generic [ref=e327]: +
+        - paragraph [ref=e328]: Absolutely! Soundwise is specialized ear training that makes all your other practice more effective. Once you can hear the differences, speaking practice and conversations become much more productive.
+      - generic [ref=e329]:
+        - button "What if I'm an advanced learner? +" [ref=e330] [cursor=pointer]:
+          - generic [ref=e331]: What if I'm an advanced learner?
+          - generic [ref=e332]: +
+        - paragraph [ref=e333]: Even advanced speakers have perception blind spots from their L1. The smart placement test identifies what you've already mastered and focuses only on your remaining challenges.
+  - generic [ref=e336]:
+    - heading "Hear It Clearly. Use It Confidently." [level=2] [ref=e337]
+    - paragraph [ref=e338]: Conversations flow. Responses come faster. Confidence builds. One-time payment — $4.99 for lifetime access. No subscription.
+    - generic [ref=e339]:
+      - link "Download on the App Store" [ref=e340] [cursor=pointer]:
+        - /url: https://apps.apple.com/us/app/soundwise-english/id6753882308
+        - generic [ref=e341]:
+          - generic [ref=e342]: Download on the
+          - generic [ref=e343]: App Store
+      - link "Get it on Google Play" [ref=e344] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e345]:
+          - generic [ref=e346]: Get it on
+          - generic [ref=e347]: Google Play
+    - paragraph [ref=e348]: Android app coming soon.
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: ✓
+        - generic [ref=e352]: One-time payment
+      - generic [ref=e353]:
+        - generic [ref=e354]: ✓
+        - generic [ref=e355]: No subscription
+      - generic [ref=e356]:
+        - generic [ref=e357]: ✓
+        - generic [ref=e358]: Works on iPhone and iPad
+  - contentinfo [ref=e359]:
+    - generic [ref=e360]:
+      - generic [ref=e361]:
+        - generic [ref=e362]:
+          - generic [ref=e363]:
+            - generic [ref=e364]: 🎧
+            - generic [ref=e365]: Soundwise
+          - paragraph [ref=e366]: Train your ear. Understand English the first time.
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "Product" [level=4] [ref=e369]
+            - link "Features" [ref=e370] [cursor=pointer]:
+              - /url: "#features"
+            - link "How It Works" [ref=e371] [cursor=pointer]:
+              - /url: "#how-it-works"
+            - link "FAQ" [ref=e372] [cursor=pointer]:
+              - /url: "#faq"
+          - generic [ref=e373]:
+            - heading "Legal & Support" [level=4] [ref=e374]
+            - link "Privacy Policy" [ref=e375] [cursor=pointer]:
+              - /url: /privacy.html
+            - link "Terms of Service" [ref=e376] [cursor=pointer]:
+              - /url: /terms.html
+            - link "Contact" [ref=e377] [cursor=pointer]:
+              - /url: /support.html
+      - paragraph [ref=e379]: © 2025 Soundwise. All rights reserved.
