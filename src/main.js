@@ -885,45 +885,46 @@ function setupScrollAnimations() {
 function setupCtaTracking() {
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
     link.addEventListener('click', (event) => {
-      if (typeof gtag !== 'function') {
+      const opensNewContext =
+        link.target === '_blank' ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey;
+
+      if (opensNewContext) {
+        // Browser opens a new tab; page stays alive — fire and forget.
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'app_store_click', {
+            link_url: link.href,
+            link_id: link.id || undefined,
+          });
+        }
         return;
       }
 
-      const isSameTabNavigation =
-        event.button === 0 &&
-        !event.metaKey &&
-        !event.ctrlKey &&
-        !event.shiftKey &&
-        !event.altKey &&
-        (!link.target || link.target === '_self');
-
-      if (!isSameTabNavigation) {
-        gtag('event', 'app_store_click', {
-          link_url: link.href,
-          link_id: link.id || undefined,
-        });
-        return;
-      }
-
+      // Same-tab navigation: hold the page open long enough for the hit to send.
       event.preventDefault();
 
       let hasNavigated = false;
       const navigate = () => {
-        if (hasNavigated) {
-          return;
-        }
+        if (hasNavigated) return;
         hasNavigated = true;
         window.location.href = link.href;
       };
 
-      gtag('event', 'app_store_click', {
-        link_url: link.href,
-        link_id: link.id || undefined,
-        event_callback: navigate,
-        event_timeout: 1000,
-      });
-
-      window.setTimeout(navigate, 1000);
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'app_store_click', {
+          link_url: link.href,
+          link_id: link.id || undefined,
+          event_callback: navigate,
+          event_timeout: 2000,
+        });
+        // Fallback: navigate after 2.5 s if event_callback never fires.
+        window.setTimeout(navigate, 2500);
+      } else {
+        // gtag not available (e.g. blocked by ad blocker) — navigate immediately.
+        navigate();
+      }
     });
   });
 }
