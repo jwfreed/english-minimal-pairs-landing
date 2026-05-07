@@ -883,9 +883,14 @@ function setupScrollAnimations() {
 }
 
 function setupCtaTracking() {
-  document.querySelectorAll('.btn-primary').forEach((button) => {
-    button.addEventListener('click', () => {
-      console.log(`CTA clicked: ${button.textContent.trim()}`);
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (typeof gtag === 'function') {
+        gtag('event', 'app_store_click', {
+          link_url: link.href,
+          link_id: link.id || undefined,
+        });
+      }
     });
   });
 }
