@@ -884,13 +884,46 @@ function setupScrollAnimations() {
 
 function setupCtaTracking() {
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
-    link.addEventListener('click', () => {
-      if (typeof gtag === 'function') {
+    link.addEventListener('click', (event) => {
+      if (typeof gtag !== 'function') {
+        return;
+      }
+
+      const isSameTabNavigation =
+        event.button === 0 &&
+        !event.metaKey &&
+        !event.ctrlKey &&
+        !event.shiftKey &&
+        !event.altKey &&
+        (!link.target || link.target === '_self');
+
+      if (!isSameTabNavigation) {
         gtag('event', 'app_store_click', {
           link_url: link.href,
           link_id: link.id || undefined,
         });
+        return;
       }
+
+      event.preventDefault();
+
+      let hasNavigated = false;
+      const navigate = () => {
+        if (hasNavigated) {
+          return;
+        }
+        hasNavigated = true;
+        window.location.href = link.href;
+      };
+
+      gtag('event', 'app_store_click', {
+        link_url: link.href,
+        link_id: link.id || undefined,
+        event_callback: navigate,
+        event_timeout: 1000,
+      });
+
+      window.setTimeout(navigate, 1000);
     });
   });
 }
