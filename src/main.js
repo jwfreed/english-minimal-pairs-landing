@@ -884,46 +884,15 @@ function setupScrollAnimations() {
 
 function setupCtaTracking() {
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const opensNewContext =
-        link.target === '_blank' ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey;
-
-      if (opensNewContext) {
-        // Browser opens a new tab; page stays alive — fire and forget.
-        if (typeof window.gtag === 'function') {
-          window.gtag('event', 'app_store_click', {
-            link_url: link.href,
-            link_id: link.id || undefined,
-          });
-        }
-        return;
-      }
-
-      // Same-tab navigation: hold the page open long enough for the hit to send.
-      event.preventDefault();
-
-      let hasNavigated = false;
-      const navigate = () => {
-        if (hasNavigated) return;
-        hasNavigated = true;
-        window.location.href = link.href;
-      };
-
+    link.addEventListener('click', () => {
       if (typeof window.gtag === 'function') {
+        // beacon transport sends reliably even as the page unloads — no need
+        // to preventDefault or delay navigation.
         window.gtag('event', 'app_store_click', {
           link_url: link.href,
           link_id: link.id || undefined,
-          event_callback: navigate,
-          event_timeout: 2000,
+          transport_type: 'beacon',
         });
-        // Fallback: navigate after 2.5 s if event_callback never fires.
-        window.setTimeout(navigate, 2500);
-      } else {
-        // gtag not available (e.g. blocked by ad blocker) — navigate immediately.
-        navigate();
       }
     });
   });
