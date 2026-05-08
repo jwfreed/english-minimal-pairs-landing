@@ -6,6 +6,16 @@ This guide documents how to create learner-first SEO pages for English minimal-p
 
 The goal is to make pages that answer a learner's real listening problem clearly, then point them toward Soundwise for focused ear training. These pages should support the core positioning: train your ear first, focus on listening and perception before pronunciation production, and avoid hype.
 
+## Related Docs
+
+Use these docs as canonical references before writing or publishing SEO pages:
+
+- `docs/messaging-framework.md` for positioning, approved terminology, CTAs, and claim boundaries.
+- `docs/seo-keyword-map.md` for keyword clusters, search intent, and page priority.
+- `docs/analytics-and-attribution.md` for UTM naming conventions and attribution limits.
+- `docs/response-template-library.md` for learner-first explanations of common sound-confusion topics.
+- `docs/operations.md` for public URLs, hosting, and lightweight operational constraints.
+
 ## URL Conventions
 
 Use HTTPS production URLs on `getsoundwise.co`.
@@ -152,7 +162,7 @@ Open Graph and Twitter card notes:
 
 ## Content Guidelines
 
-Write for learners, not search engines.
+Write for learners, not search engines. Follow `docs/messaging-framework.md` for claim boundaries and terminology.
 
 - Answer the learner's pain directly in the first section.
 - Use plain English.
@@ -161,27 +171,35 @@ Write for learners, not search engines.
 - Make the page useful without requiring an app download.
 - Focus on perception and listening before pronunciation.
 - Use minimal-pair examples that a learner can understand quickly.
-- Avoid unsupported claims about guaranteed results, clinical proof, fluency, or sounding native.
+- Avoid unsupported claims about guaranteed results, clinical proof, scientific validation of Soundwise specifically, fluency, fixed-time results, accent elimination, or sounding native.
 - Keep product mentions practical: Soundwise provides focused minimal-pair listening practice.
 
 ## CTA Guidelines
+
+Follow the CTA hierarchy in `docs/messaging-framework.md`: teach first, mention Soundwise as a natural next step, and link only when the page context supports it.
 
 Approved CTA examples:
 
 - `Practice this contrast in Soundwise.`
 - `Train your ear with focused minimal-pair practice.`
 - `Try focused listening practice in Soundwise.`
+- `Soundwise is a free ear-training app for English learners.`
 
 Banned CTA and messaging examples:
 
 - `Fix your accent`
+- `Accent reduction`
 - `Sound native fast`
 - `Clinically proven`
+- `Scientifically proven`
 - `Guaranteed fluency`
+- `Improve in 2 weeks`
 
 The CTA should appear once near the middle or end of the page, and can be repeated in a final section if the page is long. Do not interrupt the quick answer with a sales pitch.
 
 ## UTM Convention
+
+Follow `docs/analytics-and-attribution.md`: use lowercase values with hyphens only, and treat attribution as directional rather than precise.
 
 The current App Store URL used in `index.html` is:
 
@@ -204,7 +222,9 @@ Use this convention:
 
 The `utm_content` value should match the slug without leading or trailing slashes, for example `ship-vs-sheep`.
 
-The site currently tracks App Store clicks with the `app_store_click` Google Analytics event in `src/main.js` for links containing `apps.apple.com`. Keep App Store CTA links on that domain if this click tracking should apply.
+For community links pointing to the website, use the source, medium, and campaign conventions in `docs/analytics-and-attribution.md` instead. Do not mix community attribution values into on-page App Store CTA links.
+
+The site currently tracks App Store clicks with the `app_store_click` Google Analytics event in `src/main.js` for links containing `apps.apple.com`. Keep App Store CTA links on that domain if this click tracking should apply. If analytics tooling changes, update this guide and `docs/analytics-and-attribution.md` together.
 
 ## Internal Linking
 
@@ -239,7 +259,7 @@ Recommended first batch:
 4. `three-vs-tree`
 5. `full-vs-fool`
 
-These cover common vowel and consonant contrasts and align with Soundwise's minimal-pair listening focus.
+These cover common vowel and consonant contrasts and align with the high-priority `ship / sheep` and `/r/ vs /l/ clusters in `docs/seo-keyword-map.md`, plus related vowel contrasts that fit Soundwise's minimal-pair listening focus.
 
 ## QA Checklist
 
@@ -273,15 +293,3 @@ Brief for `/ship-vs-sheep/`:
 - Suggested description: `Learn why ship and sheep sound similar to English learners and how focused minimal-pair listening practice can help you hear the difference.`
 - CTA: `Practice this contrast in Soundwise.`
 - UTM content value: `ship-vs-sheep`
-
-## Repo Notes
-
-At the time this guide was added, the requested docs `docs/operations.md`, `docs/messaging-framework.md`, `docs/seo-keyword-map.md`, and `docs/analytics-and-attribution.md` were not present in this checkout. Repo-specific guidance above is based on:
-
-- `README.md`
-- `index.html`
-- `src/main.js`
-- `vite.config.js`
-- `public/sitemap.xml`
-- `CNAME`
-- `.github/workflows/deploy.yml`
