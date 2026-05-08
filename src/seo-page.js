@@ -1,6 +1,11 @@
 function setupFaqAccordion() {
   document.querySelectorAll('.faq-item').forEach((item) => {
     const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+
+    if (question && answer) {
+      question.setAttribute('aria-expanded', String(item.classList.contains('active')));
+    }
 
     question?.addEventListener('click', () => {
       const isExpanded = item.classList.toggle('active');
