@@ -2053,17 +2053,12 @@ body {
 .seo-page {
   background: var(--bg-primary);
   color: var(--text-body);
-  color-scheme: light;
 }
 
-html:has(body.seo-body),
 body.seo-body {
   background: #ffffff;
-  color-scheme: light;
-}
-
-body.seo-body {
   color: var(--text-body);
+  color-scheme: light;
 }
 
 body.seo-body main,
