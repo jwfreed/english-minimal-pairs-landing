@@ -2052,6 +2052,8 @@ body {
    =========================== */
 .seo-page {
   background: var(--bg-primary);
+  color: var(--text-body);
+  color-scheme: light;
 }
 
 .seo-nav .logo {
@@ -2059,7 +2061,7 @@ body {
 }
 
 .seo-hero {
-  padding: 8rem 0 3.5rem;
+  padding: 8.75rem 0 4.25rem;
   background: linear-gradient(180deg, #fff7ed 0%, #ffffff 100%);
   border-bottom: 1px solid var(--border-light);
 }
@@ -2086,16 +2088,16 @@ body {
 }
 
 .seo-hero h1 {
-  max-width: 860px;
+  max-width: 900px;
   color: var(--text-primary);
-  font-size: 2.5rem;
+  font-size: 2.65rem;
   font-weight: 800;
-  line-height: 1.08;
-  margin-bottom: 1.25rem;
+  line-height: 1.06;
+  margin-bottom: 1.4rem;
 }
 
 .seo-lede {
-  max-width: 760px;
+  max-width: 800px;
   color: var(--text-body);
   font-size: 1.2rem;
   line-height: 1.75;
@@ -2105,7 +2107,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 3rem;
-  padding: 3.5rem 0 5rem;
+  padding: 4rem 0 5.25rem;
 }
 
 .seo-toc {
@@ -2113,24 +2115,24 @@ body {
 }
 
 .seo-content {
-  max-width: 760px;
+  max-width: 820px;
 }
 
 .seo-content section {
-  padding: 0 0 3rem;
+  padding: 0 0 3.25rem;
 }
 
 .seo-content section + section {
   border-top: 1px solid var(--border-light);
-  padding-top: 3rem;
+  padding-top: 3.25rem;
 }
 
 .seo-content h2 {
   color: var(--text-primary);
-  font-size: 1.75rem;
+  font-size: 1.9rem;
   font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
 .seo-content h3 {
@@ -2144,7 +2146,7 @@ body {
 .seo-content p,
 .seo-content li {
   color: var(--text-body);
-  font-size: 1.03rem;
+  font-size: 1.075rem;
   line-height: 1.8;
 }
 
@@ -2178,8 +2180,9 @@ body {
 .pair-list li {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: var(--bg-secondary);
+  background: #ffffff;
   padding: 0.8rem 1rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .sound-list li {
@@ -2187,11 +2190,26 @@ body {
   flex-wrap: wrap;
   gap: 0.5rem 0.75rem;
   align-items: baseline;
+  background: var(--bg-secondary);
 }
 
 .ipa {
-  color: var(--text-secondary);
+  color: #4b5563;
   font-family: 'Courier New', monospace;
+  font-size: 0.98em;
+}
+
+.sentence-examples {
+  margin-top: 1rem;
+}
+
+.sentence-examples li {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  border-left: 4px solid var(--primary);
+  color: var(--text-primary);
+  font-weight: 700;
+  box-shadow: none;
 }
 
 .comparison-grid {
@@ -2202,10 +2220,12 @@ body {
 }
 
 .comparison-grid > div {
-  background: var(--bg-secondary);
+  background: #ffffff;
   border: 1px solid var(--border);
+  border-top: 3px solid #fed7aa;
   border-radius: var(--radius-md);
   padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .seo-content blockquote {
@@ -2225,6 +2245,7 @@ body {
   overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
+  background: #ffffff;
 }
 
 .seo-content table {
@@ -2253,9 +2274,11 @@ body {
 .seo-cta {
   background: var(--bg-dark);
   border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: white;
   margin: 0 0 3rem;
-  padding: 2rem;
+  padding: 2.35rem;
+  box-shadow: var(--shadow-lg);
 }
 
 .seo-content .seo-cta h2,
@@ -2296,9 +2319,16 @@ body {
   padding-bottom: 0;
 }
 
+.seo-page .sticky-cta,
+.seo-page .mobile-sticky-cta,
+.seo-page .sticky-app-cta,
+.seo-page .app-store-sticky-cta {
+  display: none;
+}
+
 @media (min-width: 720px) {
   .seo-hero h1 {
-    font-size: 3.35rem;
+    font-size: 3.6rem;
   }
 
   .comparison-grid {
@@ -2308,7 +2338,7 @@ body {
 
 @media (min-width: 1024px) {
   .seo-layout {
-    grid-template-columns: 220px minmax(0, 760px);
+    grid-template-columns: 220px minmax(0, 820px);
     align-items: start;
   }
 
@@ -2352,27 +2382,35 @@ body {
   }
 
   .seo-hero {
-    padding-top: 6.5rem;
+    padding: 6.75rem 0 3rem;
   }
 
   .seo-hero h1 {
-    font-size: 2.15rem;
+    font-size: 2rem;
+    line-height: 1.12;
+    margin-bottom: 1rem;
   }
 
   .seo-lede {
-    font-size: 1.08rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
   }
 
   .seo-layout {
-    padding-top: 2.5rem;
+    padding-top: 2.85rem;
   }
 
   .seo-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
+  }
+
+  .seo-content p,
+  .seo-content li {
+    font-size: 1.02rem;
   }
 
   .seo-cta {
-    padding: 1.5rem;
+    padding: 1.6rem;
   }
 }
 
