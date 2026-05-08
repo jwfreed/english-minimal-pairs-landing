@@ -29,11 +29,13 @@ const seoPageEntries = Object.fromEntries(
   seoPageSlugs.map((slug) => [slug, `${slug}/index.html`]),
 )
 
-// Legal pages stay at the repo root so existing /privacy*.html and
-// /terms*.html public URLs remain unchanged.
+// English legal pages have clean primary URLs while legacy .html URLs and
+// translated legal .html URLs remain built for existing public links.
 const legalPageEntries = {
-  privacy: 'privacy.html',
-  terms: 'terms.html',
+  privacy: 'privacy/index.html',
+  terms: 'terms/index.html',
+  privacyLegacy: 'privacy.html',
+  termsLegacy: 'terms.html',
   ...Object.fromEntries(
     legalLocales.map((locale) => [`privacy-${locale}`, `privacy-${locale}.html`]),
   ),

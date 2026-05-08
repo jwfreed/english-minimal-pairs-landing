@@ -18,8 +18,9 @@ The architecture is intentionally simple:
 | --- | --- |
 | `index.html` | Main Soundwise landing page. |
 | `support.html` | Public support page. |
-| `privacy.html`, `privacy-*.html` | Privacy policy pages, including localized variants. These intentionally stay at the repository root to preserve existing `.html` URLs. |
-| `terms.html`, `terms-*.html` | Terms pages, including localized variants. These intentionally stay at the repository root to preserve existing `.html` URLs. |
+| `privacy/index.html`, `terms/index.html` | Primary English legal pages with clean public URLs. |
+| `privacy.html`, `terms.html` | Legacy English legal URLs kept for existing public links. |
+| `privacy-*.html`, `terms-*.html` | Localized legal variants. These intentionally stay at the repository root to preserve existing `.html` URLs. |
 | `*-vs-*/index.html` | Clean-URL SEO pages for English minimal-pair sound contrasts. |
 | `src/` | Shared CSS, landing-page JavaScript, i18n runtime code, and SEO-page behavior. |
 | `public/` | Static assets copied directly into `dist/`. |
@@ -38,11 +39,11 @@ Current page groups:
 - Homepage: `index.html`
 - Support page: `support.html`
 - SEO pages: `ship-vs-sheep/index.html`, `bit-vs-beat/index.html`, `sit-vs-seat/index.html`, `live-vs-leave/index.html`, and `fill-vs-feel/index.html`
-- Legal pages: `privacy.html`, `terms.html`, and localized `privacy-*.html` / `terms-*.html` pages
+- Legal pages: primary English `privacy/index.html` and `terms/index.html`, legacy English `privacy.html` and `terms.html`, and localized `privacy-*.html` / `terms-*.html` pages
 
 ### Legal Pages
 
-Legal pages are the largest source of root HTML clutter, but they should remain at the repository root unless a separate compatibility plan is implemented. Existing pages link to URLs such as:
+Localized legal pages are the largest source of root HTML clutter, but they should remain at the repository root unless a separate compatibility plan is implemented. Existing translated pages link to URLs such as:
 
 ```text
 https://getsoundwise.co/privacy.html
@@ -51,7 +52,14 @@ https://getsoundwise.co/terms.html
 https://getsoundwise.co/terms-ja.html
 ```
 
-Moving these files into folders such as `legal/privacy/` or `legal/terms/` would change the natural Vite output routes. That would require compatibility files, redirects, or another route-preservation mechanism. For this static GitHub Pages site, keeping the root files is the lowest-risk structure.
+The primary English legal URLs are:
+
+```text
+https://getsoundwise.co/privacy/
+https://getsoundwise.co/terms/
+```
+
+The legacy English `.html` files remain built and canonicalize to the clean URLs. Moving translated files into folders would change the natural Vite output routes. That would require compatibility files, redirects, or another route-preservation mechanism. For this static GitHub Pages site, keeping translated legal files at the root is the lowest-risk structure.
 
 Localized legal pages use this naming pattern:
 
