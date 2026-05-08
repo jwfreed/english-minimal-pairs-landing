@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FTKLKBSY0K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FTKLKBSY0K');
+      gtag('event', 'page_not_found', { page_path: window.location.pathname });
+    </script>
+    <link rel="icon" type="image/png" href="/EMP_logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Page Not Found – Soundwise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      /* ── Reset & tokens (mirrors src/style.css) ── */
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --primary:       #E67E22;
+        --primary-dark:  #D35400;
+        --primary-light: #FEF3E8;
+        --text-primary:  #111827;
+        --text-body:     #374151;
+        --text-secondary:#6B7280;
+        --bg-primary:    #FFFFFF;
+        --bg-secondary:  #F9FAFB;
+        --border:        #E5E7EB;
+        --radius-md:     0.5rem;
+        --radius-lg:     0.75rem;
+        --radius-xl:     1rem;
+        --radius-full:   9999px;
+        --shadow-sm:     0 1px 2px rgba(0,0,0,.05);
+        --shadow-md:     0 4px 6px -1px rgba(0,0,0,.10), 0 2px 4px -1px rgba(0,0,0,.06);
+        --font-sans:     'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        --transition:    0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--text-body);
+        background: var(--bg-primary);
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── Nav (matches main site) ── */
+      .nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        background: rgba(255,255,255,.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      }
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo { display: flex; align-items: center; gap: .5rem; text-decoration: none; }
+      .logo-icon { width: 32px; height: 32px; border-radius: 8px; }
+      .logo-text {
+        font-size: 1.125rem; font-weight: 700; color: var(--text-primary); letter-spacing: -.01em;
+      }
+      .nav-cta {
+        display: inline-flex; align-items: center; gap: .375rem;
+        padding: .5rem 1.125rem;
+        background: var(--primary);
+        color: #fff;
+        font-size: .875rem; font-weight: 600;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+        box-shadow: 0 2px 8px rgba(230,126,34,.3);
+      }
+      .nav-cta:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(230,126,34,.4); }
+      .nav-cta:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+      /* ── Main layout ── */
+      main {
+        flex: 1;
+        padding-top: 72px; /* nav height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 3rem;
+      }
+
+      .error-page {
+        max-width: 560px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 2rem;
+        text-align: center;
+      }
+
+      /* ── Sound-wave illustration ── */
+      .illustration {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 5px;
+        height: 72px;
+        margin-bottom: 2rem;
+      }
+      .bar {
+        width: 6px;
+        background: var(--primary);
+        border-radius: 3px;
+        opacity: .18;
+        transform-origin: bottom center;
+        transition: opacity .4s ease, height .4s ease;
+      }
+      /* Staggered "idle" wave heights – conveys "no signal" */
+      .bar:nth-child(1)  { height: 18px; }
+      .bar:nth-child(2)  { height: 32px; }
+      .bar:nth-child(3)  { height: 44px; }
+      .bar:nth-child(4)  { height: 56px; }
+      .bar:nth-child(5)  { height: 64px; }
+      .bar:nth-child(6)  { height: 72px; }
+      .bar:nth-child(7)  { height: 64px; }
+      .bar:nth-child(8)  { height: 56px; }
+      .bar:nth-child(9)  { height: 44px; }
+      .bar:nth-child(10) { height: 32px; }
+      .bar:nth-child(11) { height: 18px; }
+
+      /* Animate on page-load: bars pulse once then settle */
+      @keyframes pulse-bar {
+        0%   { opacity: .18; }
+        40%  { opacity: .85; }
+        100% { opacity: .18; }
+      }
+      .bar { animation: pulse-bar 1.4s ease forwards; }
+      .bar:nth-child(1)  { animation-delay: .0s; }
+      .bar:nth-child(2)  { animation-delay: .07s; }
+      .bar:nth-child(3)  { animation-delay: .14s; }
+      .bar:nth-child(4)  { animation-delay: .21s; }
+      .bar:nth-child(5)  { animation-delay: .28s; }
+      .bar:nth-child(6)  { animation-delay: .35s; }
+      .bar:nth-child(7)  { animation-delay: .28s; }
+      .bar:nth-child(8)  { animation-delay: .21s; }
+      .bar:nth-child(9)  { animation-delay: .14s; }
+      .bar:nth-child(10) { animation-delay: .07s; }
+      .bar:nth-child(11) { animation-delay: .0s; }
+
+      /* Pause animation when user prefers reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .bar { animation: none; opacity: .18; }
+      }
+
+      /* ── Status badge ── */
+      .status-badge {
+        display: inline-block;
+        font-size: .75rem;
+        font-weight: 600;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+        color: var(--primary);
+        background: var(--primary-light);
+        padding: .25rem .75rem;
+        border-radius: var(--radius-full);
+        margin-bottom: 1.25rem;
+      }
+
+      /* ── Headline ── */
+      h1 {
+        font-size: clamp(2rem, 6vw, 2.75rem);
+        font-weight: 800;
+        letter-spacing: -.03em;
+        line-height: 1.15;
+        color: var(--text-primary);
+        margin-bottom: .875rem;
+      }
+
+      /* ── Body copy ── */
+      .body-copy {
+        font-size: 1.0625rem;
+        color: var(--text-secondary);
+        max-width: 420px;
+        margin: 0 auto 2.5rem;
+        line-height: 1.65;
+      }
+
+      /* ── CTA group ── */
+      .cta-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .75rem;
+        margin-bottom: 3rem;
+      }
+      @media (min-width: 480px) {
+        .cta-group { flex-direction: row; justify-content: center; }
+      }
+
+      .btn-primary {
+        display: inline-flex; align-items: center; gap: .375rem;
+        padding: .75rem 1.75rem;
+        background: var(--primary);
+        color: #fff;
+        font-size: .9375rem; font-weight: 600;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+        box-shadow: 0 2px 10px rgba(230,126,34,.3);
+        white-space: nowrap;
+      }
+      .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(230,126,34,.4); }
+      .btn-primary:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+      .btn-secondary {
+        display: inline-flex; align-items: center; gap: .375rem;
+        padding: .75rem 1.75rem;
+        background: transparent;
+        color: var(--text-primary);
+        font-size: .9375rem; font-weight: 500;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        transition: background var(--transition), border-color var(--transition), transform var(--transition);
+        white-space: nowrap;
+      }
+      .btn-secondary:hover { background: var(--bg-secondary); border-color: #C9CDD6; transform: translateY(-1px); }
+      .btn-secondary:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+
+      /* ── Secondary links ── */
+      .secondary-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: .5rem 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .secondary-links a {
+        font-size: .875rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+      .secondary-links a:hover { color: var(--primary); }
+      .secondary-links a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 2px; }
+
+      /* ── Footer ── */
+      footer {
+        text-align: center;
+        padding: 1.25rem 1.5rem;
+        font-size: .8125rem;
+        color: var(--text-secondary);
+        border-top: 1px solid var(--border);
+      }
+
+      /* ── Reduced-motion: skip transition decorations ── */
+      @media (prefers-reduced-motion: reduce) {
+        .btn-primary, .btn-secondary, .nav-cta { transition: none; }
+        .btn-primary:hover, .btn-secondary:hover { transform: none; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="nav" role="banner">
+      <div class="nav-inner">
+        <a href="/" class="logo" aria-label="Soundwise – go to homepage">
+          <img src="/EMP_logo.png" alt="" class="logo-icon" aria-hidden="true" />
+          <span class="logo-text">Soundwise</span>
+        </a>
+        <a
+          href="https://apps.apple.com/us/app/soundwise-english/id6753882308"
+          class="nav-cta"
+          aria-label="Download Soundwise on the App Store"
+        >
+          Get the App
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main id="main-content">
+      <div class="error-page">
+
+        <!-- Sound-wave SVG illustration (decorative) -->
+        <div class="illustration" aria-hidden="true" role="presentation">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+
+        <!-- Status badge -->
+        <span class="status-badge" aria-hidden="true">404</span>
+
+        <!-- Headline -->
+        <h1>That page went quiet.</h1>
+
+        <!-- Body copy -->
+        <p class="body-copy">
+          The link may have changed, expired, or never existed.
+          Your progress and lessons are right where you left them.
+        </p>
+
+        <!-- Primary + secondary CTAs -->
+        <div class="cta-group">
+          <a href="/" class="btn-primary">
+            ← Back to Home
+          </a>
+          <a
+            href="https://apps.apple.com/us/app/soundwise-english/id6753882308"
+            class="btn-secondary"
+          >
+            Open the App
+          </a>
+        </div>
+
+        <!-- Tertiary recovery links -->
+        <nav class="secondary-links" aria-label="Helpful pages">
+          <a href="/support.html">Help &amp; Support</a>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Use</a>
+        </nav>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© <span id="year"></span> Soundwise. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Dynamic copyright year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Log 404 details to GA4 (already initialized in <head>)
+      if (typeof gtag === 'function') {
+        gtag('event', 'error_404', {
+          error_page: window.location.pathname,
+          referrer: document.referrer || '(direct)'
+        });
+      }
+    </script>
+
+  </body>
+</html>
