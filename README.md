@@ -55,11 +55,12 @@ There is no separate lint or typecheck script configured in `package.json` at th
 ## Project Structure
 
 - `index.html` is the main landing page.
-- `support.html`, `privacy*.html`, and `terms*.html` are static support and legal pages.
+- `support.html` is the static support page.
+- `privacy.html`, `privacy-*.html`, `terms.html`, and `terms-*.html` are static legal pages. They intentionally remain at the repository root to preserve existing public `.html` URLs.
 - `*-vs-*/index.html` directories are clean-URL SEO pages for minimal-pair sound contrasts.
 - `src/` contains shared JavaScript and CSS used by the static pages.
 - `public/` contains static files copied directly into `dist/`, including `robots.txt`, `sitemap.xml`, `404.html`, and image assets.
-- `vite.config.js` lists every HTML entry point included in the production build.
+- `vite.config.js` groups HTML entry points by page type and includes every page in the production build.
 - `docs/` contains product messaging, SEO, operations, site-structure, and deployment documentation.
 
 See `docs/site-structure.md` for a fuller map of the repository.
@@ -105,12 +106,19 @@ For a clean URL page such as `https://getsoundwise.co/example-page/`:
 
 1. Create `example-page/index.html`.
 2. Reuse existing shared assets where appropriate, usually `/src/style.css` and the existing navigation/CTA patterns.
-3. Add the page to `build.rollupOptions.input` in `vite.config.js`.
+3. Register the page in `vite.config.js`; for minimal-pair SEO pages, add the slug to `seoPageSlugs`.
 4. If the page should be indexed, add its production URL to `public/sitemap.xml`.
 5. Run `npm run build`.
 6. Preview with `npm run preview` if needed.
 
 For root-level pages such as `support.html`, add the HTML file at the repository root and register it in `vite.config.js`.
+
+For a translated legal page, keep the existing root naming pattern:
+
+- `privacy-[locale].html`
+- `terms-[locale].html`
+
+Then add the locale code to `legalLocales` in `vite.config.js` and update the legal page language switchers. Do not move legal pages into folders unless a separate compatibility plan preserves the current public URLs.
 
 ## SEO Pages
 

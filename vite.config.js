@@ -1,5 +1,47 @@
 import { defineConfig } from 'vite'
 
+const seoPageSlugs = [
+  'ship-vs-sheep',
+  'bit-vs-beat',
+  'sit-vs-seat',
+  'live-vs-leave',
+  'fill-vs-feel',
+]
+
+const legalLocales = [
+  'ja',
+  'zh',
+  'yue',
+  'es',
+  'th',
+  'ko',
+  'pt',
+  'ru',
+  'ar',
+  'fa',
+  'vi',
+  'hi-ur',
+  'tr',
+  'id',
+]
+
+const seoPageEntries = Object.fromEntries(
+  seoPageSlugs.map((slug) => [slug, `${slug}/index.html`]),
+)
+
+// Legal pages stay at the repo root so existing /privacy*.html and
+// /terms*.html public URLs remain unchanged.
+const legalPageEntries = {
+  privacy: 'privacy.html',
+  terms: 'terms.html',
+  ...Object.fromEntries(
+    legalLocales.map((locale) => [`privacy-${locale}`, `privacy-${locale}.html`]),
+  ),
+  ...Object.fromEntries(
+    legalLocales.map((locale) => [`terms-${locale}`, `terms-${locale}.html`]),
+  ),
+}
+
 export default defineConfig({
   base: '/',
   build: {
@@ -7,41 +49,8 @@ export default defineConfig({
       input: {
         main: 'index.html',
         support: 'support.html',
-        'ship-vs-sheep': 'ship-vs-sheep/index.html',
-        'bit-vs-beat': 'bit-vs-beat/index.html',
-        'sit-vs-seat': 'sit-vs-seat/index.html',
-        'live-vs-leave': 'live-vs-leave/index.html',
-        'fill-vs-feel': 'fill-vs-feel/index.html',
-        privacy: 'privacy.html',
-        terms: 'terms.html',
-        'privacy-ja': 'privacy-ja.html',
-        'privacy-zh': 'privacy-zh.html',
-        'privacy-yue': 'privacy-yue.html',
-        'privacy-es': 'privacy-es.html',
-        'privacy-th': 'privacy-th.html',
-        'privacy-ko': 'privacy-ko.html',
-        'privacy-pt': 'privacy-pt.html',
-        'privacy-ru': 'privacy-ru.html',
-        'privacy-ar': 'privacy-ar.html',
-        'privacy-fa': 'privacy-fa.html',
-        'privacy-vi': 'privacy-vi.html',
-        'privacy-hi-ur': 'privacy-hi-ur.html',
-        'privacy-tr': 'privacy-tr.html',
-        'privacy-id': 'privacy-id.html',
-        'terms-ja': 'terms-ja.html',
-        'terms-zh': 'terms-zh.html',
-        'terms-yue': 'terms-yue.html',
-        'terms-es': 'terms-es.html',
-        'terms-th': 'terms-th.html',
-        'terms-ko': 'terms-ko.html',
-        'terms-pt': 'terms-pt.html',
-        'terms-ru': 'terms-ru.html',
-        'terms-ar': 'terms-ar.html',
-        'terms-fa': 'terms-fa.html',
-        'terms-vi': 'terms-vi.html',
-        'terms-hi-ur': 'terms-hi-ur.html',
-        'terms-tr': 'terms-tr.html',
-        'terms-id': 'terms-id.html',
+        ...seoPageEntries,
+        ...legalPageEntries,
       }
     }
   }

@@ -38,7 +38,7 @@ Use lowercase ASCII words, hyphens between words, and the order that matches the
 
 ## Page Creation Workflow
 
-This repository is a Vite static site with vanilla JavaScript. Current public pages are HTML files in the repo root, and `vite.config.js` lists each HTML entry under `build.rollupOptions.input`. GitHub Pages deploys the built `dist/` folder through `.github/workflows/deploy.yml`.
+This repository is a Vite static site with vanilla JavaScript. Root public pages are HTML files in the repo root, clean-URL SEO pages use `[slug]/index.html`, and `vite.config.js` lists each HTML entry under `build.rollupOptions.input`. GitHub Pages deploys the built `dist/` folder through `.github/workflows/deploy.yml`.
 
 For a clean URL such as `https://getsoundwise.co/ship-vs-sheep/`, create a directory with an `index.html` file:
 
@@ -46,16 +46,15 @@ For a clean URL such as `https://getsoundwise.co/ship-vs-sheep/`, create a direc
 ship-vs-sheep/index.html
 ```
 
-Then add that HTML file to `vite.config.js`:
+Then add that slug to `seoPageSlugs` in `vite.config.js`:
 
 ```js
-input: {
-  main: 'index.html',
-  support: 'support.html',
-  // ...
-  'ship-vs-sheep': 'ship-vs-sheep/index.html',
-}
+const seoPageSlugs = [
+  'ship-vs-sheep',
+]
 ```
+
+The Vite config derives the HTML input path from the slug, so `ship-vs-sheep` maps to `ship-vs-sheep/index.html`.
 
 Recommended workflow:
 
@@ -66,7 +65,7 @@ Recommended workflow:
 5. Add a Soundwise CTA that is helpful but not aggressive.
 6. Add a UTM-tagged App Store link or another configured landing-page CTA link.
 7. If the page should be indexed, add it to `public/sitemap.xml` with an HTTPS URL.
-8. Add the new HTML entry to `vite.config.js`.
+8. Add the new slug to `seoPageSlugs` in `vite.config.js`.
 9. Run local checks: `npm run build`.
 10. Preview if needed: `npm run preview`.
 11. Deploy by pushing to `main`, which triggers the GitHub Pages workflow.
