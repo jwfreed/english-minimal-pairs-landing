@@ -2056,6 +2056,24 @@ body {
   color-scheme: light;
 }
 
+html:has(body.seo-body),
+body.seo-body {
+  background: #ffffff;
+  color-scheme: light;
+}
+
+body.seo-body {
+  color: var(--text-body);
+}
+
+body.seo-body main,
+body.seo-body .seo-article,
+body.seo-body .seo-layout,
+body.seo-body .seo-content {
+  background-color: #ffffff;
+  color: var(--text-body);
+}
+
 .seo-nav .logo {
   text-decoration: none;
 }
