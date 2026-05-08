@@ -8,6 +8,7 @@ export default defineConfig({
         main: 'index.html',
         support: 'support.html',
         'ship-vs-sheep': 'ship-vs-sheep/index.html',
+        'bit-vs-beat': 'bit-vs-beat/index.html',
         privacy: 'privacy.html',
         terms: 'terms.html',
         'privacy-ja': 'privacy-ja.html',
