@@ -19,7 +19,7 @@ The architecture is intentionally simple:
 | `index.html` | Main Soundwise landing page. |
 | `support.html` | Public support page. |
 | `privacy/index.html`, `terms/index.html` | Primary English legal pages with clean public URLs. |
-| `privacy.html`, `terms.html` | Legacy English legal URLs kept for existing public links. |
+| `privacy.html`, `terms.html` | Lightweight compatibility pages for existing public links. They redirect to the clean English legal URLs. |
 | `privacy-*.html`, `terms-*.html` | Localized legal variants. These intentionally stay at the repository root to preserve existing `.html` URLs. |
 | `*-vs-*/index.html` | Clean-URL SEO pages for English minimal-pair sound contrasts. |
 | `src/` | Shared CSS, landing-page JavaScript, i18n runtime code, and SEO-page behavior. |
@@ -43,15 +43,6 @@ Current page groups:
 
 ### Legal Pages
 
-Localized legal pages are the largest source of root HTML clutter, but they should remain at the repository root unless a separate compatibility plan is implemented. Existing translated pages link to URLs such as:
-
-```text
-https://getsoundwise.co/privacy.html
-https://getsoundwise.co/privacy-ja.html
-https://getsoundwise.co/terms.html
-https://getsoundwise.co/terms-ja.html
-```
-
 The primary English legal URLs are:
 
 ```text
@@ -59,7 +50,25 @@ https://getsoundwise.co/privacy/
 https://getsoundwise.co/terms/
 ```
 
-The legacy English `.html` files remain built and canonicalize to the clean URLs. Moving translated files into folders would change the natural Vite output routes. That would require compatibility files, redirects, or another route-preservation mechanism. For this static GitHub Pages site, keeping translated legal files at the root is the lowest-risk structure.
+These pages are the canonical English legal URLs and are the only English legal URLs that should appear in `public/sitemap.xml`.
+
+The legacy English URLs remain available for old links:
+
+```text
+https://getsoundwise.co/privacy.html
+https://getsoundwise.co/terms.html
+```
+
+The legacy English `.html` files are compatibility pages only. They use a meta refresh redirect, a canonical tag pointing to the clean URL, and a visible fallback link. Do not put full legal copy in the legacy files.
+
+Localized legal pages are intentionally different. They remain at the repository root:
+
+```text
+https://getsoundwise.co/privacy-ja.html
+https://getsoundwise.co/terms-ja.html
+```
+
+GitHub Pages serves static files and directories directly from the Vite output. Moving translated files into nested folders would change public URLs and would require a separate compatibility plan for every existing translation. For this static site, keeping translated legal files at the root is the lowest-risk structure.
 
 Localized legal pages use this naming pattern:
 
@@ -73,10 +82,12 @@ Use short lowercase locale identifiers that match the existing pattern, for exam
 When adding a new privacy or terms translation:
 
 1. Create both files at the repository root if both documents are available, for example `privacy-de.html` and `terms-de.html`.
-2. Keep the canonical URL and language switcher links on the existing root `.html` URL pattern.
+2. Keep each translated page self-canonical on its own root `.html` URL.
 3. Add the locale code to `legalLocales` in `vite.config.js`.
 4. Add the language link to the existing legal language switchers.
-5. Run `npm run build`.
+5. Link back to the English pages with `/privacy/` and `/terms/`, not the legacy `.html` compatibility pages.
+6. Do not add translated legal pages to `public/sitemap.xml` unless there is a deliberate localized SEO strategy.
+7. Run `npm run build`.
 
 Do not rewrite legal copy as part of file-organization work. Treat copy updates as separate legal/content changes.
 
@@ -200,3 +211,15 @@ For a new support or utility page:
 5. Run `npm run build`.
 
 Do not introduce a new framework, CMS, router, or build layer for routine static-page additions.
+
+## Legal URL Maintenance
+
+Use `/privacy/` and `/terms/` for all primary internal links, including the homepage footer, support page, 404 page, SEO article footers, and translated legal language switchers.
+
+Keep `privacy.html` and `terms.html` in the Vite input map so older external links continue to resolve on GitHub Pages. These files should stay small and should only contain:
+
+- a meta refresh redirect to the clean URL
+- a canonical tag for the clean URL
+- a visible fallback link for browsers or crawlers that do not follow the refresh
+
+Do not add `privacy.html`, `terms.html`, or translated legal pages to the sitemap. The sitemap is intentionally limited to the homepage, clean learner-intent SEO pages, and canonical English legal pages.
