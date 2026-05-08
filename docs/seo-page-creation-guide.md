@@ -174,6 +174,37 @@ Write for learners, not search engines. Follow `docs/messaging-framework.md` for
 - Avoid unsupported claims about guaranteed results, clinical proof, scientific validation of Soundwise specifically, fluency, fixed-time results, accent elimination, or sounding native.
 - Keep product mentions practical: Soundwise provides focused minimal-pair listening practice.
 
+## Writer-Inspired SEO Article Modes
+
+Use these as functional writing modes, not imitation prompts. Borrow the editorial strength associated with each writer shorthand; do not copy, parody, or pastiche an author's exact voice. Choose the mode by content type and search intent, not personal preference.
+
+| Mode | Functional Strength | Best For | Use When | Avoid |
+| --- | --- | --- | --- | --- |
+| Hemingway-inspired | Structural readability | Landing pages & product descriptions | The reader needs to understand the value quickly | Over-stripping nuance from educational explanations |
+| Stephen King-inspired | Audience retention | Long-form blog posts & storytelling | The page needs narrative momentum or learner identification | Turning educational content into melodrama |
+| Asimov-inspired | Information hierarchy | Technical guides & FAQ snippets | The learner needs a clear explanation of a concept or mechanism | Becoming too abstract before grounding the learner's problem |
+| Sanderson-inspired | Comprehensive clarity | Ultimate guides & pillar pages | The page needs a complete system, taxonomy, or learning path | Over-explaining simple long-tail pages |
+
+Practical translation for Soundwise SEO:
+
+- **Hemingway-inspired:** Use short sentences, concrete nouns and verbs, plain claims, and fast comprehension. Good for homepage copy, App Store-adjacent copy, product descriptions, and short conversion sections.
+- **Stephen King-inspired:** Start with learner frustration or curiosity, keep momentum between sections, and use concrete examples that help readers recognize themselves. Good for blog-style posts and learner-story-driven content.
+- **Asimov-inspired:** Explain one concept at a time, build from a simple observation to a general principle, define terms clearly, and use headings to create conceptual order. Good for technical guides, FAQ snippets, and focused pages such as `/ship-vs-sheep/`.
+- **Sanderson-inspired:** Build a complete map of the topic, use clear categories, show how the pieces relate, and make the system understandable. Good for pillar pages such as `/english-ear-training/`, `/what-are-minimal-pairs/`, and `/english-vowel-minimal-pairs/`.
+
+Example mappings:
+
+| Page Type | Example | Recommended Mode |
+| --- | --- | --- |
+| Minimal-pair explanation page | `/ship-vs-sheep/` | Asimov-inspired |
+| Product landing section | homepage hero / App Store CTA | Hemingway-inspired |
+| Learner frustration article | "Why English words sound the same to you" | Stephen King-inspired or Asimov-inspired |
+| Pillar guide | "What are minimal pairs?" | Sanderson-inspired |
+| FAQ answer | "Is this listening or pronunciation?" | Asimov-inspired |
+| Product description | "Soundwise: English Ear Training App" | Hemingway-inspired |
+
+Style mode never overrides Soundwise messaging constraints. Every SEO article must keep learner-first framing, listening perception before pronunciation production, educational value before CTA, no unsupported scientific or product claims, no keyword stuffing, and no aggressive sales language.
+
 ## CTA Guidelines
 
 Follow the CTA hierarchy in `docs/messaging-framework.md`: teach first, mention Soundwise as a natural next step, and link only when the page context supports it.
