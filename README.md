@@ -1,30 +1,137 @@
-# English Minimal Pairs Landing Page
+# Soundwise Landing Page
 
-This is a marketing landing page for the English Minimal Pairs mobile app built with Vite and vanilla JavaScript.
+This repository contains the static marketing site for Soundwise, the English minimal-pairs ear-training app.
 
-## Project Structure
-- Modern static site built with Vite
-- Vanilla JavaScript for simplicity
-- Ready for deployment to Vercel, Netlify, or similar platforms
+Production site:
 
-## Development
-Run the development server:
+- `https://getsoundwise.co`
+
+The site is a Vite-powered static site deployed to GitHub Pages. It uses plain HTML, CSS, and JavaScript, with multiple static HTML entry points for the homepage, support/legal pages, translated legal pages, and SEO pages.
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm ci
+```
+
+Use Node.js `20.19+` or `22.12+`. Vite 7 requires one of those versions or newer within the same major line; the GitHub Pages workflow uses Node.js 20.
+
+Start the Vite development server:
+
 ```bash
 npm run dev
 ```
 
-Build for production:
+Build the production site:
+
 ```bash
 npm run build
 ```
 
-Preview the production build:
+Preview the production build locally:
+
 ```bash
 npm run preview
 ```
 
-## Deployment
-The built files in the `dist/` folder can be deployed to any static hosting service.
+## Validation
 
-## About
-This landing page is separate from the main English Minimal Pairs mobile app repository to allow independent marketing updates and deployments.
+Run the landing-copy validation script:
+
+```bash
+npm run validate:landing-copy
+```
+
+Run the production build before shipping changes:
+
+```bash
+npm run build
+```
+
+There is no separate lint or typecheck script configured in `package.json` at this time.
+
+## Project Structure
+
+- `index.html` is the main landing page.
+- `support.html`, `privacy*.html`, and `terms*.html` are static support and legal pages.
+- `*-vs-*/index.html` directories are clean-URL SEO pages for minimal-pair sound contrasts.
+- `src/` contains shared JavaScript and CSS used by the static pages.
+- `public/` contains static files copied directly into `dist/`, including `robots.txt`, `sitemap.xml`, `404.html`, and image assets.
+- `vite.config.js` lists every HTML entry point included in the production build.
+- `docs/` contains product messaging, SEO, operations, site-structure, and deployment documentation.
+
+See `docs/site-structure.md` for a fuller map of the repository.
+
+## Deployment
+
+GitHub Pages hosts the production site at `https://getsoundwise.co`.
+
+Deployment is handled by `.github/workflows/deploy.yml`:
+
+1. Push to `main`, or run the workflow manually with `workflow_dispatch`.
+2. GitHub Actions installs dependencies with `npm ci`.
+3. The workflow runs `npm run build`.
+4. The workflow writes `getsoundwise.co` to `dist/CNAME`.
+5. The workflow uploads `dist/` with `actions/upload-pages-artifact`.
+6. GitHub Pages deploys the artifact with `actions/deploy-pages`.
+
+The local deploy helper mirrors the CNAME generation step:
+
+```bash
+npm run deploy
+```
+
+That command runs the build and writes:
+
+```text
+dist/CNAME
+```
+
+with this content:
+
+```text
+getsoundwise.co
+```
+
+The root `CNAME` file documents the same custom domain in the repository, but Vite does not automatically copy it into `dist/`. The workflow and `npm run deploy` explicitly generate `dist/CNAME` so GitHub Pages keeps the custom domain after deployment.
+
+See `docs/deployment.md` for the deployment checklist and debugging notes.
+
+## Adding a Static Page
+
+For a clean URL page such as `https://getsoundwise.co/example-page/`:
+
+1. Create `example-page/index.html`.
+2. Reuse existing shared assets where appropriate, usually `/src/style.css` and the existing navigation/CTA patterns.
+3. Add the page to `build.rollupOptions.input` in `vite.config.js`.
+4. If the page should be indexed, add its production URL to `public/sitemap.xml`.
+5. Run `npm run build`.
+6. Preview with `npm run preview` if needed.
+
+For root-level pages such as `support.html`, add the HTML file at the repository root and register it in `vite.config.js`.
+
+## SEO Pages
+
+SEO pages for minimal-pair contrasts live in directories such as:
+
+- `ship-vs-sheep/index.html`
+- `bit-vs-beat/index.html`
+- `sit-vs-seat/index.html`
+
+The SEO page strategy and content conventions are documented in:
+
+- `docs/seo-page-creation-guide.md`
+- `docs/seo-keyword-map.md`
+- `docs/messaging-framework.md`
+
+SEO page routing/build inclusion is configured in `vite.config.js`, and indexed URLs are listed in `public/sitemap.xml`.
+
+## Related Docs
+
+- `docs/site-structure.md`
+- `docs/deployment.md`
+- `docs/seo-page-creation-guide.md`
+- `docs/operations.md`
+- `README_LANGUAGES.md`
