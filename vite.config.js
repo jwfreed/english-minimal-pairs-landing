@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         support: 'support.html',
+        'ship-vs-sheep': 'ship-vs-sheep/index.html',
         privacy: 'privacy.html',
         terms: 'terms.html',
         'privacy-ja': 'privacy-ja.html',
