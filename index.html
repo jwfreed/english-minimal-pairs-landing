@@ -17,7 +17,11 @@
     <title>Soundwise - English Ear Training with Minimal Pairs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Non-render-blocking font load; noscript fallback ensures fonts load without JS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <!-- Preload the nav logo (first image on page / LCP candidate) -->
+    <link rel="preload" as="image" href="/emp-logo.webp" type="image/webp">
   </head>
   <body>
     <!-- Navigation -->
@@ -25,7 +29,7 @@
       <div class="container">
         <div class="nav-content">
           <div class="logo">
-            <img src="/EMP_logo.png" alt="Soundwise Logo" class="logo-icon">
+            <img src="/emp-logo.webp" alt="Soundwise Logo" class="logo-icon" width="36" height="36" fetchpriority="high">
             <span class="logo-text">Soundwise</span>
           </div>
           <div class="nav-right">
@@ -287,7 +291,7 @@
 
         <div class="insight-box">
           <div class="insight-icon">
-            <img src="/The Real Problem.png" alt="The Real Problem">
+            <img src="/the-real-problem.webp" alt="The Real Problem" width="64" height="64" loading="lazy" decoding="async">
           </div>
           <div class="insight-content">
             <h3 data-i18n="insightTitle">The Real Problem</h3>
@@ -622,7 +626,7 @@
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/Personalized to Your L1.png" alt="Personalized">
+              <img src="/personalized-l1.webp" alt="Personalized" width="60" height="60" loading="lazy" decoding="async">
             </div>
             <h3 data-i18n="featureCard1Title">Personalized to Your L1</h3>
             <p data-i18n="featureCard1Text">Focuses on the specific sound pairs that challenge speakers of your native language</p>
@@ -630,7 +634,7 @@
           
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/Multiple Languages.png" alt="Multiple Languages">
+              <img src="/multiple-languages.webp" alt="Multiple Languages" width="60" height="60" loading="lazy" decoding="async">
             </div>
             <h3 data-i18n="featureCard2Title">Multiple Languages</h3>
             <p data-i18n="featureCard2Text">Interface available in 14 languages, with support for learners worldwide</p>
@@ -638,7 +642,7 @@
           
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/Native Speaker Audio.png" alt="Native Speaker Audio">
+              <img src="/native-speaker-audio.webp" alt="Native Speaker Audio" width="60" height="60" loading="lazy" decoding="async">
             </div>
             <h3 data-i18n="featureCard3Title">Native Speaker Audio</h3>
             <p data-i18n="featureCard3Text">Choose between British and American English accents for authentic pronunciation</p>
@@ -646,7 +650,7 @@
           
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/Track Progress.png" alt="Track Progress">
+              <img src="/track-progress.webp" alt="Track Progress" width="60" height="60" loading="lazy" decoding="async">
             </div>
             <h3 data-i18n="featureCard4Title">Track Progress</h3>
             <p data-i18n="featureCard4Text">See your perception accuracy improve over time with detailed charts and statistics</p>
@@ -654,7 +658,7 @@
           
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/Quick Sessions.png" alt="Quick Sessions">
+              <img src="/quick-sessions.webp" alt="Quick Sessions" width="60" height="60" loading="lazy" decoding="async">
             </div>
             <h3 data-i18n="featureCard5Title">Quick Sessions</h3>
             <p data-i18n="featureCard5Text">10-15 minutes daily is all you need. Work toward 60 minutes per sound pair</p>
@@ -662,7 +666,7 @@
           
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/Auto-Save Progress.png" alt="Auto-Save Progress">
+              <img src="/auto-save-progress.webp" alt="Auto-Save Progress" width="60" height="60" loading="lazy" decoding="async">
             </div>
             <h3 data-i18n="featureCard6Title">Auto-Save Progress</h3>
             <p data-i18n="featureCard6Text">Your results are automatically saved after every practice session</p>
