@@ -378,6 +378,11 @@ function renderChallengeMode() {
 }
 
 function renderDemo() {
+  // Guard: dom.* is not populated until setupHeroDemo() runs.
+  // applyRuntimeLanguage() is called before setupHeroDemo() on first load,
+  // so we bail early here and let setupHeroDemo() call renderDemo() once ready.
+  if (!dom.nativeLanguage) return;
+
   const { config } = getDemoConfig();
   const { isRtl } = getRuntimeLocaleMeta(heroDemoState.runtimeLocale);
   const visibleRound = Math.min(heroDemoState.round, DEMO_MAX_ROUNDS);
@@ -742,6 +747,9 @@ function setupHeroDemo() {
     markUserInteraction();
     shareCurrentChallenge();
   });
+
+  // dom.* is now populated — render the demo for the first time.
+  renderDemo();
 }
 
 function setupLanguageSwitcher() {
@@ -931,27 +939,48 @@ document.addEventListener('DOMContentLoaded', () => {
   heroDemoState.forcedDemoLocale = challengeParams.forcedDemoLocale;
   heroDemoState.challengeSlug = challengeParams.challengeSlug;
 
-  // Apply translations first so LCP text is set before any other work runs.
-  applyRuntimeLanguage(currentLang, { persist: false });
-
-  setupHeroDemo();
-  setupLanguageSwitcher();
-  setupFaqAccordion();
-  setupSmoothScroll();
-  setupNavScrollEffect();
-  setupDemoPhoneMockup();
-  setupScrollAnimations();
-  setupCtaTracking();
-  setupPerformanceMonitoring();
-  warmSpeechVoices();
-
-  if (heroDemoState.isChallengeMode) {
-    dispatchDemoEvent('challenge_opened', {
-      runtimeLocale: heroDemoState.runtimeLocale,
-      demoLocale: heroDemoState.demoLocale,
-      challengeSlug: heroDemoState.challengeSlug,
-    });
+  // For non-English languages, apply translations (HTML default is English).
+  // For English the HTML already has the correct content — skipping 40+
+  // innerHTML mutations avoids a large style-recalculation/layout cycle
+  // that would otherwise delay the LCP paint.
+  if (currentLang !== 'en') {
+    // Full language switch: updates translations + state + demo locale.
+    // renderDemo() inside returns early (dom.* guard) and is called properly
+    // once setupHeroDemo() populates dom.*.
+    applyRuntimeLanguage(currentLang, { persist: false });
+  } else {
+    // English fast path: state is already at English defaults, just mark
+    // the language menu so the correct option shows as active.
+    syncLanguageMenu('en');
   }
 
-  announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
+  // Critical above-fold setup — run synchronously.
+  setupHeroDemo();
+  setupLanguageSwitcher();
+
+  // Non-critical setup — deferred to window 'load' which fires after all
+  // resources (images, fonts) are fetched, reliably after FCP/LCP.
+  // Using 'load' avoids the requestIdleCallback anti-pattern where the idle
+  // callback fires before the browser commits the first paint under heavy
+  // CPU throttling.
+  window.addEventListener('load', () => {
+    setupFaqAccordion();
+    setupSmoothScroll();
+    setupNavScrollEffect();
+    setupDemoPhoneMockup();
+    setupScrollAnimations();
+    setupCtaTracking();
+    setupPerformanceMonitoring();
+    warmSpeechVoices();
+
+    if (heroDemoState.isChallengeMode) {
+      dispatchDemoEvent('challenge_opened', {
+        runtimeLocale: heroDemoState.runtimeLocale,
+        demoLocale: heroDemoState.demoLocale,
+        challengeSlug: heroDemoState.challengeSlug,
+      });
+    }
+
+    announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
+  }, { once: true });
 });
