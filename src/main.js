@@ -931,6 +931,9 @@ document.addEventListener('DOMContentLoaded', () => {
   heroDemoState.forcedDemoLocale = challengeParams.forcedDemoLocale;
   heroDemoState.challengeSlug = challengeParams.challengeSlug;
 
+  // Apply translations first so LCP text is set before any other work runs.
+  applyRuntimeLanguage(currentLang, { persist: false });
+
   setupHeroDemo();
   setupLanguageSwitcher();
   setupFaqAccordion();
@@ -942,8 +945,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPerformanceMonitoring();
   warmSpeechVoices();
 
-  applyRuntimeLanguage(currentLang, { persist: false });
-
   if (heroDemoState.isChallengeMode) {
     dispatchDemoEvent('challenge_opened', {
       runtimeLocale: heroDemoState.runtimeLocale,
@@ -953,10 +954,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
-
-  document.body.style.opacity = '0';
-  window.setTimeout(() => {
-    document.body.style.transition = 'opacity 0.3s ease';
-    document.body.style.opacity = '1';
-  }, 100);
 });
