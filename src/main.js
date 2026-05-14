@@ -957,6 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Critical above-fold setup — run synchronously.
   setupHeroDemo();
   setupLanguageSwitcher();
+  setupCtaTracking();
 
   // Non-critical setup — deferred to window 'load' which fires after all
   // resources (images, fonts) are fetched, reliably after FCP/LCP.
@@ -969,7 +970,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupNavScrollEffect();
     setupDemoPhoneMockup();
     setupScrollAnimations();
-    setupCtaTracking();
     setupPerformanceMonitoring();
     warmSpeechVoices();
 
