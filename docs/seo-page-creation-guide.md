@@ -64,12 +64,13 @@ Recommended workflow:
 4. Add links to related minimal-pair pages only when those pages exist.
 5. Add a Soundwise CTA that is helpful but not aggressive.
 6. Add a UTM-tagged App Store link or another configured landing-page CTA link.
-7. If the page should be indexed, add it to `public/sitemap.xml` with an HTTPS URL.
-8. Add the new slug to `seoPageSlugs` in `vite.config.js`.
-9. Run local checks: `npm run build`.
-10. Preview if needed: `npm run preview`.
-11. Deploy by pushing to `main`, which triggers the GitHub Pages workflow.
-12. Verify the production URL loads over HTTPS.
+7. Add structured data that matches visible page content.
+8. If the page should be indexed, add it to `public/sitemap.xml` with an HTTPS URL.
+9. Add the new slug to `seoPageSlugs` in `vite.config.js`.
+10. Run local checks: `npm run build`.
+11. Preview if needed: `npm run preview`.
+12. Deploy by pushing to `main`, which triggers the GitHub Pages workflow.
+13. Verify the production URL loads over HTTPS.
 
 Do not create the five initial SEO pages until the content brief for each page is ready. Do not add dependencies or new build infrastructure for these pages unless the site architecture changes.
 
@@ -85,6 +86,7 @@ Use this content pattern for each minimal-pair page:
 6. Practice examples
 7. Soundwise CTA
 8. FAQ
+9. Structured data
 
 Reusable outline:
 
@@ -118,7 +120,63 @@ Use an approved CTA and a UTM-tagged link.
 ## FAQ
 
 Answer 2-4 practical questions about the contrast.
+
+Include at least these two questions in visible page copy:
+
+- `Why does this happen?`
+- `How do I practice?`
+
+## Structured Data
+
+Add `FAQPage` JSON-LD that matches the visible FAQ.
 ```
+
+## Structured Data
+
+Add lightweight JSON-LD that helps search engines and AI systems interpret the page structure. Structured data must describe content that is visible on the page. Do not use schema to add claims, ratings, reviews, products, offers, or guarantees that are not present in the page content.
+
+Minimum requirement:
+
+- Add `FAQPage` schema for the visible FAQ content.
+- Include at least `Why does this happen?` and `How do I practice?` in both the visible FAQ and the JSON-LD.
+- Keep schema answers short, accurate, and consistent with the visible page copy.
+- Reuse the same pattern across minimal-pair pages by swapping the pair name, sound explanation, and practice instructions.
+
+Optional:
+
+- Add `HowTo` schema only when the page includes explicit, visible, step-by-step practice instructions.
+- Do not add `HowTo` schema for general advice, broad learning tips, or a short practice paragraph without clear steps.
+
+Structured data supports clearer machine interpretation of the page. Do not describe it as guaranteeing rankings, traffic, rich results, or inclusion in AI-generated answers.
+
+Reusable `FAQPage` example for `ship` vs `sheep`:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does this happen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Learners often confuse ship and sheep because the vowel sounds are close but not the same. Ship uses the short /ɪ/ sound, while sheep uses the long /iː/ sound. The difference can be difficult to hear and pronounce if a learner's first language does not separate these sounds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I practice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Practice ship and sheep by listening to the two words, repeating them slowly, and focusing on vowel length. Say ship with a shorter, more relaxed vowel, then say sheep with a longer, tenser vowel. Use short example sentences to practice hearing and speaking the contrast in context."
+      }
+    }
+  ]
+}
+```
+
+Place the JSON-LD in the page's HTML inside a `<script type="application/ld+json">` tag.
 
 ## Metadata Guidelines
 
@@ -291,7 +349,7 @@ Recommended first batch:
 
 These cover common vowel and consonant contrasts and align with the high-priority `ship / sheep` and `/r/ vs /l/ clusters in `docs/seo-keyword-map.md`, plus related vowel contrasts that fit Soundwise's minimal-pair listening focus.
 
-## QA Checklist
+## Definition of Done / QA Checklist
 
 Before publishing a minimal-pair SEO page, check:
 
@@ -303,6 +361,17 @@ Before publishing a minimal-pair SEO page, check:
 - [ ] CTA is present but not aggressive.
 - [ ] UTM link is correct.
 - [ ] `utm_content` matches the slug.
+- [ ] Visible FAQ includes `Why does this happen?`.
+- [ ] Visible FAQ includes `How do I practice?`.
+- [ ] Page includes valid `FAQPage` JSON-LD.
+- [ ] `FAQPage` schema includes `Why does this happen?`.
+- [ ] `FAQPage` schema includes `How do I practice?`.
+- [ ] FAQ schema answers match visible page content.
+- [ ] JSON-LD is valid JSON and uses `https://schema.org`.
+- [ ] Schema has been checked with a structured data validator or rich results testing tool.
+- [ ] No unsupported ranking, traffic, or AI-visibility guarantees are added.
+- [ ] No review, rating, product, offer, or other misleading schema is used unless that content is visibly present on the page.
+- [ ] `HowTo` schema is used only if the page contains explicit step-by-step practice instructions.
 - [ ] Internal links work.
 - [ ] Page is included in `vite.config.js`.
 - [ ] Page is included in `public/sitemap.xml` if it should be indexed.
