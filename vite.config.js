@@ -6,6 +6,11 @@ const seoPageSlugs = [
   'sit-vs-seat',
   'live-vs-leave',
   'fill-vs-feel',
+  'full-vs-fool',
+  'pull-vs-pool',
+  'bad-vs-bed',
+  'man-vs-men',
+  'cap-vs-cup',
 ]
 
 const legalLocales = [
