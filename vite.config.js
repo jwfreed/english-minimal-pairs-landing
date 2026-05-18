@@ -11,6 +11,11 @@ const seoPageSlugs = [
   'bad-vs-bed',
   'man-vs-men',
   'cap-vs-cup',
+  'cup-vs-cop',
+  'rice-vs-lice',
+  'right-vs-light',
+  'three-vs-tree',
+  'thin-vs-tin',
 ]
 
 const legalLocales = [
