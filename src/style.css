@@ -2105,9 +2105,9 @@ body.seo-body .seo-content {
 .seo-hero h1 {
   max-width: 900px;
   color: var(--text-primary);
-  font-size: 2.65rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
-  line-height: 1.06;
+  line-height: 1.1;
   margin-bottom: 1.4rem;
 }
 
@@ -2355,10 +2355,6 @@ body.seo-body .seo-content {
 }
 
 @media (min-width: 720px) {
-  .seo-hero h1 {
-    font-size: 3.6rem;
-  }
-
   .comparison-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2411,12 +2407,6 @@ body.seo-body .seo-content {
 
   .seo-hero {
     padding: 6.75rem 0 3rem;
-  }
-
-  .seo-hero h1 {
-    font-size: 2rem;
-    line-height: 1.12;
-    margin-bottom: 1rem;
   }
 
   .seo-lede {
