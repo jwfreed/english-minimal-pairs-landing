@@ -253,6 +253,10 @@ body {
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgba(230, 126, 34, 0.25);
   border: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: calc(100vw - 100px);
 }
 
 .nav-cta:hover {
