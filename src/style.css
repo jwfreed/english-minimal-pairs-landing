@@ -2166,7 +2166,7 @@ body.seo-body .seo-content {
 }
 
 .seo-content a:not(.btn) {
-  color: var(--primary-dark);
+  color: #b34500;
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 500;
@@ -2174,7 +2174,7 @@ body.seo-body .seo-content {
 
 .seo-content a:not(.btn):hover,
 .seo-content a:not(.btn):focus-visible {
-  color: var(--primary-dark);
+  color: #b34500;
   text-decoration-thickness: 2px;
 }
 
