@@ -2160,9 +2160,21 @@ body.seo-body .seo-content {
 
 .seo-content p,
 .seo-content li {
-  color: var(--text-body);
+  color: #1f2937;
   font-size: 1.075rem;
   line-height: 1.8;
+}
+
+.seo-content a {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.seo-content a:hover,
+.seo-content a:focus-visible {
+  color: var(--primary);
 }
 
 .seo-content p + p,
