@@ -2165,16 +2165,17 @@ body.seo-body .seo-content {
   line-height: 1.8;
 }
 
-.seo-content a {
+.seo-content a:not(.btn) {
   color: var(--primary-dark);
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 500;
 }
 
-.seo-content a:hover,
-.seo-content a:focus-visible {
-  color: var(--primary);
+.seo-content a:not(.btn):hover,
+.seo-content a:not(.btn):focus-visible {
+  color: var(--primary-dark);
+  text-decoration-thickness: 2px;
 }
 
 .seo-content p + p,
