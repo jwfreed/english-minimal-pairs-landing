@@ -38,7 +38,7 @@ Current page groups:
 
 - Homepage: `index.html`
 - Support page: `support.html`
-- SEO pages: `ship-vs-sheep/index.html`, `bit-vs-beat/index.html`, `sit-vs-seat/index.html`, `live-vs-leave/index.html`, and `fill-vs-feel/index.html`
+- SEO pages: 20 minimal-pair contrast pages registered via `seoPageSlugs` in `vite.config.js` (pages 1–20, from `ship-vs-sheep` through `heart-vs-hurt`). The full list lives in `vite.config.js`; the indexed URLs are in `public/sitemap.xml`.
 - Legal pages: primary English `privacy/index.html` and `terms/index.html`, legacy English `privacy.html` and `terms.html`, and localized `privacy-*.html` / `terms-*.html` pages
 
 ### Legal Pages
@@ -153,11 +153,49 @@ src/style.css
 - Root utility pages such as `index.html` and `support.html` remain explicit in the input map.
 
 ```js
-const seoPageSlugs = ['ship-vs-sheep']
-const legalLocales = ['ja']
+const seoPageSlugs = [
+  'ship-vs-sheep',
+  // ... 19 more slugs through 'heart-vs-hurt'
+]
+const legalLocales = ['ja', /* ... */]
 ```
 
 When adding a page, update this input map. If a page is missing from this map, it may work during local file browsing but will not be part of the intended Vite production build.
+
+## SEO Page Status
+
+Pages 1–20 (the initial sequence) are fully implemented as of 2026-05. The sequence covers:
+
+| # | Slug | Contrast |
+|---|------|----------|
+| 1 | `ship-vs-sheep` | /ɪ/ vs /iː/ |
+| 2 | `bit-vs-beat` | /ɪ/ vs /iː/ |
+| 3 | `sit-vs-seat` | /ɪ/ vs /iː/ |
+| 4 | `live-vs-leave` | /ɪ/ vs /iː/ |
+| 5 | `fill-vs-feel` | /ɪ/ vs /iː/ |
+| 6 | `full-vs-fool` | /ʊ/ vs /uː/ |
+| 7 | `pull-vs-pool` | /ʊ/ vs /uː/ |
+| 8 | `bad-vs-bed` | /æ/ vs /ɛ/ |
+| 9 | `man-vs-men` | /æ/ vs /ɛ/ |
+| 10 | `cap-vs-cup` | /æ/ vs /ʌ/ |
+| 11 | `cup-vs-cop` | /ʌ/ vs /ɒ/ |
+| 12 | `rice-vs-lice` | /r/ vs /l/ |
+| 13 | `right-vs-light` | /r/ vs /l/ |
+| 14 | `three-vs-tree` | /θ/ vs /t/ |
+| 15 | `thin-vs-tin` | /θ/ vs /t/ |
+| 16 | `fan-vs-van` | /f/ vs /v/ |
+| 17 | `vest-vs-west` | /v/ vs /w/ |
+| 18 | `bet-vs-bat` | /ɛ/ vs /æ/ |
+| 19 | `law-vs-low` | /ɔː/ vs /oʊ/ |
+| 20 | `heart-vs-hurt` | /ɑː/ vs /ɜː/ |
+
+Current stage (post-implementation):
+
+- Live URL verification for pages 16–20
+- Google Search Console: submit updated sitemap, monitor indexing
+- Metadata, canonical URL, and FAQ schema validation for each page
+- Visual consistency and TOC label polish across pages 16–20
+- Internal link audit for pages 16–20
 
 ## SEO Page Strategy
 
