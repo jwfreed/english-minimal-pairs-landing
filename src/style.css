@@ -2309,7 +2309,7 @@ body.seo-body .seo-content {
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: white;
   margin: 0 0 3rem;
-  padding: 2.35rem;
+  padding: 2.5rem 3rem;
   box-shadow: var(--shadow-lg);
 }
 
@@ -2440,7 +2440,7 @@ body.seo-body .seo-content {
   }
 
   .seo-cta {
-    padding: 1.6rem;
+    padding: 1.75rem 1.5rem;
   }
 }
 

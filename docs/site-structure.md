@@ -178,7 +178,7 @@ Pages 1–20 (the initial sequence) are fully implemented as of 2026-05. The seq
 | 8 | `bad-vs-bed` | /æ/ vs /ɛ/ |
 | 9 | `man-vs-men` | /æ/ vs /ɛ/ |
 | 10 | `cap-vs-cup` | /æ/ vs /ʌ/ |
-| 11 | `cup-vs-cop` | /ʌ/ vs /ɒ/ |
+| 11 | `cup-vs-cop` | /ʌ/ vs /ɑ/ or /ɒ/, depending on accent |
 | 12 | `rice-vs-lice` | /r/ vs /l/ |
 | 13 | `right-vs-light` | /r/ vs /l/ |
 | 14 | `three-vs-tree` | /θ/ vs /t/ |
@@ -186,8 +186,8 @@ Pages 1–20 (the initial sequence) are fully implemented as of 2026-05. The seq
 | 16 | `fan-vs-van` | /f/ vs /v/ |
 | 17 | `vest-vs-west` | /v/ vs /w/ |
 | 18 | `bet-vs-bat` | /ɛ/ vs /æ/ |
-| 19 | `law-vs-low` | /ɔː/ vs /oʊ/ |
-| 20 | `heart-vs-hurt` | /ɑː/ vs /ɜː/ |
+| 19 | `law-vs-low` | /ɔː/ or /ɑ/ vs /oʊ/, depending on accent |
+| 20 | `heart-vs-hurt` | /ɑr/ or /ɑː/ vs /ɝ/ or /ɜː/, depending on accent |
 
 Current stage (post-implementation):
 
