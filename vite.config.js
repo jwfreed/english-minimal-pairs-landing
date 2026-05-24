@@ -21,6 +21,8 @@ const seoPageSlugs = [
   'bet-vs-bat',
   'law-vs-low',
   'heart-vs-hurt',
+  'minimal-pairs-practice',
+  'english-ear-training',
 ]
 
 const legalLocales = [
