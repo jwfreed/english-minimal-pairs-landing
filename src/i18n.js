@@ -128,7 +128,10 @@ export function applyTranslations(lang) {
       listItem.style.display = translation === '' ? 'none' : '';
     }
 
-    element.innerHTML = translation;
+    const html = element.classList.contains('seo-pairs-group-heading')
+      ? translation.replace(/\/([^/]+)\//g, (m) => `<span style="text-transform:none">${m}</span>`)
+      : translation;
+    element.innerHTML = html;
     applyDirectionalSafety(element, isRtl);
   });
 
