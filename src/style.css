@@ -1800,6 +1800,19 @@ body {
   overflow-wrap: break-word;
 }
 
+.problem-card[style],
+.step[style],
+.feature-card[style] {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.problem-card[style]:hover,
+.step[style]:hover,
+.feature-card[style]:hover {
+  transform: translateY(-4px) !important;
+}
+
 /* ===========================
    FAQ
    =========================== */
