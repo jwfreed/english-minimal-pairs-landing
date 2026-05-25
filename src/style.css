@@ -74,11 +74,11 @@ body {
   line-height: 1.6;
   color: var(--text-body);
   background: var(--bg-primary);
-  overflow-x: hidden;
 }
 
 .container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: min(1200px, 100%);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
@@ -849,13 +849,16 @@ body {
 
 .hero-value-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
   gap: 1rem;
+  width: 100%;
   max-width: 960px;
   margin: 0 auto;
 }
 
 .hero-value-card {
+  min-width: 0;
+  max-width: 100%;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius-xl);
@@ -870,6 +873,7 @@ body {
   line-height: 1.2;
   margin-bottom: 0.45rem;
   max-width: 16ch;
+  overflow-wrap: anywhere;
 }
 
 .hero-value-text {
@@ -877,6 +881,7 @@ body {
   color: rgba(255, 248, 235, 0.9);
   line-height: 1.6;
   max-width: 34ch;
+  overflow-wrap: break-word;
 }
 
 /* ===========================
@@ -913,24 +918,14 @@ body {
 
 .problem-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
 
-@media (min-width: 640px) {
-  .problem-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .problem-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 .problem-card {
+  min-width: 0;
+  max-width: 100%;
   background: white;
   padding: 2rem;
   border-radius: var(--radius-xl);
@@ -955,10 +950,12 @@ body {
   font-weight: 700;
   margin-bottom: 0.75rem;
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .sound-pair-small {
   display: inline-block;
+  max-width: 100%;
   background: var(--bg-tertiary);
   color: var(--primary);
   padding: 0.375rem 0.875rem;
@@ -1404,18 +1401,21 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .steps {
-    grid-template-columns: 1fr auto 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
   }
 }
 
 .step {
+  min-width: 0;
+  max-width: 100%;
   background: white;
   padding: 2rem;
   border-radius: var(--radius-xl);
@@ -1448,6 +1448,7 @@ body {
   font-weight: 700;
   margin-bottom: 0.75rem;
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .step-content p {
@@ -1463,7 +1464,7 @@ body {
   font-weight: 700;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .step-arrow {
     display: block;
   }
@@ -1752,24 +1753,14 @@ body {
 
 .features-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
 
-@media (min-width: 640px) {
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .features-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 .feature-card {
+  min-width: 0;
+  max-width: 100%;
   background: var(--bg-secondary);
   padding: 2rem;
   border-radius: var(--radius-xl);
@@ -1799,12 +1790,14 @@ body {
   font-weight: 700;
   margin-bottom: 0.75rem;
   color: var(--text-primary);
+  overflow-wrap: break-word;
 }
 
 .feature-card p {
   color: var(--text-secondary);
   line-height: 1.6;
   font-size: 0.9375rem;
+  overflow-wrap: break-word;
 }
 
 /* ===========================
@@ -2599,18 +2592,6 @@ html[lang="한국어"] body {
   line-height: 1.5;
   word-break: keep-all; 
 }
-@media (min-width: 640px) {
-  .hero-value-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-value-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 /* ===========================
    Mobile Responsiveness Fixes
    =========================== */
@@ -2727,24 +2708,14 @@ html[lang="한국어"] body {
 
 .seo-pairs-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
   gap: 2rem;
   margin-top: 2.5rem;
 }
 
-@media (min-width: 640px) {
-  .seo-pairs-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .seo-pairs-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 .seo-pairs-group {
+  min-width: 0;
+  max-width: 100%;
   background: var(--bg-secondary);
   border-radius: var(--radius-lg);
   padding: 1.25rem 1.5rem;
@@ -2757,6 +2728,7 @@ html[lang="한국어"] body {
   text-transform: uppercase;
   color: var(--primary-dark);
   margin-bottom: 0.75rem;
+  overflow-wrap: break-word;
 }
 
 .seo-pairs-list {
