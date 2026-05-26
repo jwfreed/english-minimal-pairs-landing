@@ -122,124 +122,109 @@
         <div class="hero-content">
           <div class="badge" data-i18n="heroBadge">Ear training for English learners</div>
           <h1 class="hero-title">
-            <span data-i18n="heroTitle">Train your ear to hear English sounds clearly.</span>
+            <span data-i18n="heroTitle">Hear the difference between English words that sound the same.</span>
           </h1>
-          <p class="hero-primer" data-i18n="heroDemoPrimer">Try a 10-second listening test.</p>
+          <!-- Hidden by default; shown in challenge mode via JS + CSS -->
+          <p class="hero-primer" aria-hidden="true" data-i18n="heroDemoPrimer">Try a 10-second listening test.</p>
           <p class="hero-subtitle" data-i18n="heroSubtitle">
-            Soundwise helps English learners practice minimal pairs so confusing words like ship/sheep, rice/lice, and vest/west become easier to hear — and later pronounce.
+            Practice minimal pairs like ship/sheep, bit/beat, and right/light so your ear can catch the contrast before you try to say it.
           </p>
-          
-          <!-- Language Selector -->
-          <div class="language-selector">
-            <label for="native-language" data-i18n="languageSelectorLabel">Your first language:</label>
-            <select id="native-language" class="language-dropdown">
-              <option value="" data-i18n="languagePlaceholder">Select your native language</option>
-            </select>
-          </div>
-
-          <div id="hero-demo" class="hero-demo-card" aria-labelledby="hero-demo-title">
-            <div class="hero-demo-header">
-              <div>
-                <p id="hero-demo-round" class="hero-demo-round">Round 1 of 2</p>
-                <h2 id="hero-demo-title" class="hero-demo-title">Preview your hardest contrast</h2>
-              </div>
-              <div id="hero-demo-contrast" class="hero-demo-contrast">/ɪ/ vs /iː/</div>
-            </div>
-
-            <div id="hero-demo-preview" class="hero-demo-stage">
-              <p id="hero-demo-prompt" class="hero-demo-prompt" data-i18n="demoHearDifference">Hear the difference.</p>
-              <div id="hero-demo-preview-words" class="hero-demo-choices" role="group" aria-labelledby="hero-demo-prompt"></div>
-              <button id="hero-demo-start" class="hero-demo-action" type="button" data-i18n="demoStartTest">Start the test</button>
-            </div>
-
-            <div id="hero-demo-test" class="hero-demo-stage hero-demo-stage-hidden">
-              <p id="hero-demo-test-prompt" class="hero-demo-prompt" data-i18n="demoListenPrompt">Now listen carefully. Which word did you hear?</p>
-              <button id="hero-demo-play" class="hero-demo-action hero-demo-action-secondary" type="button" data-i18n="demoPlaySample">Play the sample</button>
-              <div id="hero-demo-guess-words" class="hero-demo-choices" role="group" aria-labelledby="hero-demo-test-prompt"></div>
-            </div>
-
-            <div id="hero-demo-feedback" class="hero-demo-feedback hero-demo-stage-hidden" dir="auto">
-              <p id="hero-demo-feedback-copy" class="hero-demo-feedback-copy"></p>
-              <div id="hero-demo-replay" class="hero-demo-replay"></div>
-              <button id="hero-demo-next" class="hero-demo-action hero-demo-stage-hidden" type="button" data-i18n="demoNextRound">Try one more round</button>
-            </div>
-
-            <div id="hero-demo-summary" class="hero-demo-summary hero-demo-stage-hidden" dir="auto">
-              <p id="hero-demo-summary-lead" class="hero-demo-summary-lead"></p>
-              <p id="hero-demo-score" class="hero-demo-score"></p>
-              <p id="hero-demo-summary-body" class="hero-demo-summary-body"></p>
-              <p id="hero-demo-conversion" class="hero-demo-conversion" data-i18n="demoConversionLine">Many English learners struggle with sounds like this. Soundwise trains your ear to hear them instantly.</p>
-              <p id="hero-demo-value" class="hero-demo-value" data-i18n="demoValueSignal">This is 1 of 40+ English sound contrasts in Soundwise.</p>
-            </div>
-
-            <p id="hero-demo-live" class="sr-only" aria-live="polite"></p>
-          </div>
-
-          <div id="hero-cta-reveal" class="hero-cta-reveal hero-demo-stage-hidden" dir="auto">
-            <p id="hero-cta-reveal-message" class="hero-cta-reveal-message" data-i18n="demoReadyPrompt">Ready to train your ear for real conversations?</p>
-            <p id="hero-cta-reveal-meta" class="hero-cta-reveal-meta" data-i18n="demoPromotedMeta">40+ English sound contrasts</p>
-          </div>
 
           <div class="cta-buttons">
-            <a href="https://apps.apple.com/us/app/soundwise-english/id6753882308" id="hero-primary-cta" class="btn btn-primary btn-large is-muted">
-              <span id="hero-primary-cta-text" data-i18n="ctaPrimary">Start the 10-second test</span>
+            <a href="https://apps.apple.com/us/app/soundwise-english/id6753882308" id="hero-primary-cta" class="btn btn-primary btn-large">
+              <span id="hero-primary-cta-text" data-i18n="ctaPrimary">Download Soundwise free</span>
               <span class="btn-icon">→</span>
             </a>
-            <a href="https://apps.apple.com/us/app/soundwise-english/id6753882308" id="hero-secondary-cta" class="btn btn-secondary btn-large" data-i18n="ctaSecondary">
-              Download Soundwise
+            <a href="#demo" class="btn btn-secondary btn-large" id="hero-secondary-cta">
+              Try a 10-second demo
             </a>
           </div>
 
-          <div class="hero-reassurance" aria-label="Purchase reassurance">
+          <p class="hero-microcopy">Start with one sound pair. It takes about 3 minutes.</p>
+
+          <div class="hero-reassurance" aria-label="App highlights">
             <span class="hero-reassurance-item">
               <span class="hero-reassurance-check" aria-hidden="true">✔</span>
-              <span data-i18n="ctaFeature1">One-time purchase</span>
+              <span data-i18n="ctaFeature1">Free on iPhone</span>
             </span>
             <span class="hero-reassurance-item">
               <span class="hero-reassurance-check" aria-hidden="true">✔</span>
-              <span data-i18n="ctaFeature2">No subscription</span>
+              <span data-i18n="ctaFeature2">No microphone required</span>
             </span>
             <span class="hero-reassurance-item">
               <span class="hero-reassurance-check" aria-hidden="true">✔</span>
               <span data-i18n="ctaFeature3">Works on iPhone and iPad</span>
             </span>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="hero-trust-signal" dir="auto">
-            <span class="hero-trust-signal-icon" aria-hidden="true">🎧</span>
-            <span data-i18n="trustSignalPrimary">No microphone needed — just listen and choose.</span>
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <h2 class="demo-section-heading">Can you hear the difference?</h2>
+
+        <!-- Language Selector -->
+        <div class="language-selector">
+          <label for="native-language" data-i18n="languageSelectorLabel">Your first language:</label>
+          <select id="native-language" class="language-dropdown">
+            <option value="" data-i18n="languagePlaceholder">Select your native language</option>
+          </select>
+        </div>
+
+        <div id="hero-demo" class="hero-demo-card" aria-labelledby="hero-demo-title">
+          <div class="hero-demo-header">
+            <div>
+              <p id="hero-demo-round" class="hero-demo-round">Round 1 of 2</p>
+              <h2 id="hero-demo-title" class="hero-demo-title">Preview your hardest contrast</h2>
+            </div>
+            <div id="hero-demo-contrast" class="hero-demo-contrast">/ɪ/ vs /iː/</div>
           </div>
 
-          <div id="hero-share-block" class="hero-share-block hero-demo-stage-hidden" dir="auto">
-            <p id="hero-share-prompt" class="hero-share-prompt" data-i18n="demoSharePrompt">Can your friends hear the difference?</p>
-            <div class="hero-share-actions">
-              <button id="hero-share-button" class="btn btn-share" type="button" data-i18n="demoShareButton">Challenge a friend</button>
-            </div>
-            <p id="hero-share-status" class="hero-share-status hero-demo-stage-hidden" aria-live="polite"></p>
-            <div id="hero-share-link-wrap" class="hero-share-link-wrap hero-demo-stage-hidden">
-              <label class="sr-only" for="hero-share-link" data-i18n="demoShareFallback">Copy challenge link</label>
-              <input id="hero-share-link" class="hero-share-link" type="text" readonly />
-            </div>
+          <div id="hero-demo-preview" class="hero-demo-stage">
+            <p id="hero-demo-prompt" class="hero-demo-prompt" data-i18n="demoHearDifference">Hear the difference.</p>
+            <div id="hero-demo-preview-words" class="hero-demo-choices" role="group" aria-labelledby="hero-demo-prompt"></div>
+            <button id="hero-demo-start" class="hero-demo-action" type="button" data-i18n="demoStartTest">Start the test</button>
           </div>
-          
-          <div class="hero-trust">
-            <span class="trust-text" data-i18n="availableOn">Available on iPhone and iPad<br />Android coming soon</span>
+
+          <div id="hero-demo-test" class="hero-demo-stage hero-demo-stage-hidden">
+            <p id="hero-demo-test-prompt" class="hero-demo-prompt" data-i18n="demoListenPrompt">Now listen carefully. Which word did you hear?</p>
+            <button id="hero-demo-play" class="hero-demo-action hero-demo-action-secondary" type="button" data-i18n="demoPlaySample">Play the sample</button>
+            <div id="hero-demo-guess-words" class="hero-demo-choices" role="group" aria-labelledby="hero-demo-test-prompt"></div>
           </div>
-          <div class="hero-value-strip" aria-label="Product scope highlights">
-            <div class="hero-value-grid">
-              <article class="hero-value-card">
-                <h2 class="hero-value-title" data-i18n="stat1Number">40+ sound contrasts</h2>
-                <p class="hero-value-text" data-i18n="stat1Label">Practice the English sound pairs learners confuse most often</p>
-              </article>
-              <article class="hero-value-card">
-                <h2 class="hero-value-title" data-i18n="stat2Number">Hundreds of minimal pairs</h2>
-                <p class="hero-value-text" data-i18n="stat2Label">Train with real word pairs that differ by just one sound</p>
-              </article>
-              <article class="hero-value-card">
-                <h2 class="hero-value-title" data-i18n="stat3Number">Built for 14+ language backgrounds</h2>
-                <p class="hero-value-text" data-i18n="stat3Label">Examples chosen for learners from your language background</p>
-              </article>
-            </div>
+
+          <div id="hero-demo-feedback" class="hero-demo-feedback hero-demo-stage-hidden" dir="auto">
+            <p id="hero-demo-feedback-copy" class="hero-demo-feedback-copy"></p>
+            <div id="hero-demo-replay" class="hero-demo-replay"></div>
+            <button id="hero-demo-next" class="hero-demo-action hero-demo-stage-hidden" type="button" data-i18n="demoNextRound">Try one more round</button>
+          </div>
+
+          <div id="hero-demo-summary" class="hero-demo-summary hero-demo-stage-hidden" dir="auto">
+            <p id="hero-demo-summary-lead" class="hero-demo-summary-lead"></p>
+            <p id="hero-demo-score" class="hero-demo-score"></p>
+            <p id="hero-demo-summary-body" class="hero-demo-summary-body"></p>
+            <p id="hero-demo-conversion" class="hero-demo-conversion" data-i18n="demoConversionLine">Many English learners struggle with sounds like this. Soundwise trains your ear to hear them instantly.</p>
+            <p id="hero-demo-value" class="hero-demo-value" data-i18n="demoValueSignal">This is 1 of 40+ English sound contrasts in Soundwise.</p>
+          </div>
+
+          <p id="hero-demo-live" class="sr-only" aria-live="polite"></p>
+        </div>
+
+        <div id="hero-cta-reveal" class="hero-cta-reveal hero-demo-stage-hidden" dir="auto">
+          <p id="hero-cta-reveal-message" class="hero-cta-reveal-message" data-i18n="demoReadyPrompt">Ready to train your ear for real conversations?</p>
+          <p id="hero-cta-reveal-meta" class="hero-cta-reveal-meta" data-i18n="demoPromotedMeta">40+ English sound contrasts</p>
+        </div>
+
+        <div id="hero-share-block" class="hero-share-block hero-demo-stage-hidden" dir="auto">
+          <p id="hero-share-prompt" class="hero-share-prompt" data-i18n="demoSharePrompt">Can your friends hear the difference?</p>
+          <div class="hero-share-actions">
+            <button id="hero-share-button" class="btn btn-share" type="button" data-i18n="demoShareButton">Challenge a friend</button>
+          </div>
+          <p id="hero-share-status" class="hero-share-status hero-demo-stage-hidden" aria-live="polite"></p>
+          <div id="hero-share-link-wrap" class="hero-share-link-wrap hero-demo-stage-hidden">
+            <label class="sr-only" for="hero-share-link" data-i18n="demoShareFallback">Copy challenge link</label>
+            <input id="hero-share-link" class="hero-share-link" type="text" readonly />
           </div>
         </div>
       </div>
@@ -252,7 +237,7 @@
         <p class="section-subtitle" data-i18n="problemSubtitle">
           Many pronunciation problems start as listening problems. If your first language does not use a sound contrast, your brain may treat two English sounds as the same.
         </p>
-        
+
         <div class="problem-grid">
           <div class="problem-card">
             <div class="problem-icon">🇯🇵</div>
@@ -260,21 +245,21 @@
             <div class="sound-pair-small">/r/ vs /l/</div>
             <p>"right" vs "light"</p>
           </div>
-          
+
           <div class="problem-card">
             <div class="problem-icon">🇨🇳</div>
             <h3 data-i18n="problemMandarin">Mandarin Speakers</h3>
             <div class="sound-pair-small">/θ/ vs /s/</div>
             <p>"thin" vs "sin"</p>
           </div>
-          
+
           <div class="problem-card">
             <div class="problem-icon">🇹🇭</div>
             <h3 data-i18n="problemThai">Thai Speakers</h3>
             <div class="sound-pair-small">/θ/ vs /t/</div>
             <p>"thin" vs "tin"</p>
           </div>
-          
+
           <div class="problem-card">
             <div class="problem-icon">🇪🇸</div>
             <h3 data-i18n="problemSpanish">Spanish Speakers</h3>
@@ -295,28 +280,18 @@
       </div>
     </section>
 
-    <!-- Why It Works Section -->
-    <section class="why-works-section">
-      <div class="container">
-        <div class="why-works-content">
-          <h2 class="section-title" data-i18n="featureWhyTitle">Why this works</h2>
-          <p class="why-works-body" data-i18n="featureWhyBody">Most apps ask you to repeat words. But you can’t say a sound your brain can’t hear yet. Soundwise trains your ear first — so speaking practice has something real to build on.</p>
-        </div>
-      </div>
-    </section>
-
     <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
       <div class="container">
         <h2 class="section-title" data-i18n="howItWorksTitle">How Soundwise works</h2>
-        <p class="section-subtitle" data-i18n="howItWorksSubtitle">Three steps to clearer listening.</p>
+        <p class="section-subtitle how-it-works-anchor">Listen → Choose → Get feedback.</p>
 
         <div class="steps">
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-              <h3 data-i18n="step1Title">Choose a sound contrast</h3>
-              <p data-i18n="step1Text">Pick a pair like ship/sheep, rice/lice, or fan/van.</p>
+              <h3 data-i18n="step1Title">Listen</h3>
+              <p data-i18n="step1Text">Pick a pair like ship/sheep, rice/lice, or fan/van. Hear a word spoken in clear English audio.</p>
             </div>
           </div>
 
@@ -325,8 +300,8 @@
           <div class="step">
             <div class="step-number">2</div>
             <div class="step-content">
-              <h3 data-i18n="step2Title">Listen and choose</h3>
-              <p data-i18n="step2Text">Train your ear to notice the difference between two similar-sounding words.</p>
+              <h3 data-i18n="step2Title">Choose</h3>
+              <p data-i18n="step2Text">Pick the word you heard. No speaking, no microphone — just focused listening.</p>
             </div>
           </div>
 
@@ -335,102 +310,9 @@
           <div class="step">
             <div class="step-number">3</div>
             <div class="step-content">
-              <h3 data-i18n="step3Title">Get feedback and repeat</h3>
-              <p data-i18n="step3Text">Practice until the contrast becomes easier to recognize.</p>
+              <h3 data-i18n="step3Title">Get feedback</h3>
+              <p data-i18n="step3Text">See whether you were right and replay the contrast. Practice until the difference becomes clear.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Mid-Page CTA -->
-    <section class="mid-cta-section">
-      <div class="container">
-        <div class="mid-cta-content" dir="auto">
-          <p class="mid-cta-text" data-i18n="midPageCta">Ready to train your ear?</p>
-          <a href="https://apps.apple.com/us/app/soundwise-english/id6753882308" id="mid-page-cta" class="btn btn-primary btn-large">
-            <span data-i18n="downloadCta">Download Soundwise</span>
-            <span class="btn-icon">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Credibility Section -->
-    <section class="credibility-section">
-      <div class="container">
-        <div class="credibility-content">
-          <h2 class="section-title" data-i18n="credibilityTitle">Built around evidence-informed pronunciation learning principles</h2>
-          <p class="credibility-body" data-i18n="credibilityBody">
-            Many pronunciation problems begin as listening problems. Research in second-language speech perception shows that learners often filter unfamiliar sounds through the categories of their first language. Soundwise applies a practical version of this idea: focused minimal-pair listening practice, real English words, immediate feedback, and repeated identification drills.
-          </p>
-          <ul class="credibility-bullets" aria-label="What Soundwise includes">
-            <li data-i18n="credibilityBulletRealPairs">Real English minimal pairs</li>
-            <li data-i18n="credibilityBulletIdentificationPractice">Listen-and-choose identification practice</li>
-            <li data-i18n="credibilityBulletImmediateFeedback">Immediate feedback after each response</li>
-            <li data-i18n="credibilityBulletRepeatedExposure">Repeated exposure to difficult contrasts</li>
-            <li data-i18n="credibilityBulletL1Targeting">Targeted practice by first-language background (14 L1 backgrounds)</li>
-            <li data-i18n="credibilityBulletEnglishVoiceAudio">English voice audio</li>
-            <li data-i18n="credibilityBulletProgressTracking">Progress tracking by sound contrast</li>
-            <li data-i18n="credibilityBulletOneTimePurchase">One-time purchase, no subscription</li>
-            <li data-i18n="credibilityBulletDeviceSupport">iPhone and iPad support</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features" id="features">
-      <div class="container">
-        <h2 class="section-title" data-i18n="featuresTitle">Focused English Listening Practice</h2>
-        
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/personalized-l1.webp" alt="Personalized" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard1Title">Personalized to Your L1</h3>
-            <p data-i18n="featureCard1Text">Focuses on the specific sound pairs that challenge speakers of your native language</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/multiple-languages.webp" alt="Multiple Languages" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard2Title">Multiple Languages</h3>
-            <p data-i18n="featureCard2Text">Interface available in 14 languages, with support for learners worldwide</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/native-speaker-audio.webp" alt="English voice audio" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard3Title">English voice audio</h3>
-            <p data-i18n="featureCard3Text">Train with English audio so your ear adapts to real English sounds</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/track-progress.webp" alt="Track Progress" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard4Title">Track Progress</h3>
-            <p data-i18n="featureCard4Text">See your perception accuracy improve over time with detailed charts and statistics</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/quick-sessions.webp" alt="Quick Sessions" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard5Title">Quick Sessions</h3>
-            <p data-i18n="featureCard5Text">10-15 minutes daily is all you need. Work toward 60 minutes per sound pair</p>
-          </div>
-          
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/auto-save-progress.webp" alt="Auto-Save Progress" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard6Title">Auto-Save Progress</h3>
-            <p data-i18n="featureCard6Text">Your results are automatically saved after every practice session</p>
           </div>
         </div>
       </div>
@@ -508,11 +390,91 @@
       </div>
     </section>
 
+    <!-- Features -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title" data-i18n="featuresTitle">Focused English Listening Practice</h2>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img src="/personalized-l1.webp" alt="Personalized" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard1Title">Personalized to Your L1</h3>
+            <p data-i18n="featureCard1Text">Focuses on the specific sound pairs that challenge speakers of your native language</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img src="/multiple-languages.webp" alt="Multiple Languages" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard2Title">Multiple Languages</h3>
+            <p data-i18n="featureCard2Text">Interface available in 14 languages, with support for learners worldwide</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img src="/native-speaker-audio.webp" alt="English voice audio" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard3Title">English voice audio</h3>
+            <p data-i18n="featureCard3Text">Train with English audio so your ear adapts to real English sounds</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img src="/track-progress.webp" alt="Track Progress" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard4Title">Track Progress</h3>
+            <p data-i18n="featureCard4Text">See your perception accuracy improve over time with detailed charts and statistics</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img src="/quick-sessions.webp" alt="Quick Sessions" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard5Title">Quick Sessions</h3>
+            <p data-i18n="featureCard5Text">10-15 minutes daily is all you need. Work toward 60 minutes per sound pair</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <img src="/auto-save-progress.webp" alt="Auto-Save Progress" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard6Title">Auto-Save Progress</h3>
+            <p data-i18n="featureCard6Text">Your results are automatically saved after every practice session</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Evidence-Informed Learning Section -->
+    <section class="credibility-section">
+      <div class="container">
+        <div class="credibility-content">
+          <h2 class="section-title" data-i18n="credibilityTitle">Evidence-informed learning techniques</h2>
+          <p class="credibility-body" data-i18n="credibilityBody">
+            Soundwise uses techniques commonly used in pronunciation training: minimal pairs, repeated listening, immediate feedback, and focused contrast practice.
+          </p>
+          <ul class="credibility-bullets" aria-label="What Soundwise includes">
+            <li data-i18n="credibilityBulletRealPairs">Real English minimal pairs</li>
+            <li data-i18n="credibilityBulletIdentificationPractice">Listen-and-choose identification practice</li>
+            <li data-i18n="credibilityBulletImmediateFeedback">Immediate feedback after each response</li>
+            <li data-i18n="credibilityBulletRepeatedExposure">Repeated exposure to difficult contrasts</li>
+            <li data-i18n="credibilityBulletL1Targeting">Targeted practice by first-language background (14 L1 backgrounds)</li>
+            <li data-i18n="credibilityBulletEnglishVoiceAudio">English voice audio</li>
+            <li data-i18n="credibilityBulletProgressTracking">Progress tracking by sound contrast</li>
+            <li data-i18n="credibilityBulletOneTimePurchase">iPhone and iPad</li>
+            <li data-i18n="credibilityBulletDeviceSupport">No microphone required</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ -->
     <section class="faq" id="faq">
       <div class="container">
         <h2 class="section-title" data-i18n="faqTitle">Frequently Asked Questions</h2>
-        
+
         <div class="faq-list">
           <div class="faq-item">
             <button class="faq-question">
@@ -523,7 +485,7 @@
               <p data-i18n="faq1Answer">The core problem isn't your speaking - it's your perception. You can't pronounce sounds you can't hear. By training your ear first through listening exercises, speaking improvement follows naturally. No recording or speech analysis needed.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <button class="faq-question">
               <span data-i18n="faq2Question">How long until I see results?</span>
@@ -533,7 +495,7 @@
               <p data-i18n="faq2Answer">Regular practice with minimal pairs builds listening perception over time. Your brain needs repeated exposure to unfamiliar contrasts to start treating them as distinct — how quickly that happens varies by person and contrast.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <button class="faq-question">
               <span data-i18n="faq3Question">Is this suitable for my native language?</span>
@@ -543,7 +505,7 @@
               <p data-i18n="faq3Answer">Yes! The app includes targeted minimal pairs for speakers of Japanese, Mandarin, Spanish, Thai, Korean, Arabic, Vietnamese, and many other languages. The exercises adapt to the specific phonemic challenges of your L1 background.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <button class="faq-question">
               <span data-i18n="faq4Question">Can I use this alongside other learning methods?</span>
@@ -553,7 +515,7 @@
               <p data-i18n="faq4Answer">Absolutely! Soundwise complements any English learning program. Think of it as specialized ear training that makes all your other practice more effective. Once you can hear the differences, speaking practice becomes much more productive.</p>
             </div>
           </div>
-          
+
           <div class="faq-item">
             <button class="faq-question">
               <span data-i18n="faq5Question">What if I'm an advanced learner?</span>
@@ -571,26 +533,22 @@
     <section class="final-cta" id="download">
       <div class="container">
         <div class="cta-content">
-          <h2 class="cta-title" data-i18n="ctaTitle">Ready to train your ear?</h2>
-          <p class="cta-subtitle" data-i18n="ctaSubtitle">Download Soundwise on the App Store.</p>
-          
-          <div class="app-badges">
-            <a href="https://apps.apple.com/us/app/soundwise-english/id6753882308" id="final-app-store-cta" class="app-badge">
-              <div class="badge-content">
-                <span class="badge-store" data-i18n="downloadOn">Download on the</span>
-                <span class="badge-name" data-i18n="appStore">App Store</span>
-              </div>
-            </a>
-          </div>
-          
+          <h2 class="cta-title" data-i18n="ctaTitle">Ready to hear the difference?</h2>
+          <p class="cta-subtitle" data-i18n="ctaSubtitle">Start with one sound pair today.</p>
+
+          <a href="https://apps.apple.com/us/app/soundwise-english/id6753882308" id="final-app-store-cta" class="btn btn-primary btn-large final-cta-btn">
+            <span data-i18n="downloadCta">Download Soundwise free</span>
+            <span class="btn-icon">→</span>
+          </a>
+
           <div class="cta-features">
             <div class="cta-feature">
               <span class="cta-check">✓</span>
-              <span data-i18n="ctaFeature1">One-time payment</span>
+              <span data-i18n="ctaFeature1">Free on iPhone</span>
             </div>
             <div class="cta-feature">
               <span class="cta-check">✓</span>
-              <span data-i18n="ctaFeature2">No subscription</span>
+              <span data-i18n="ctaFeature2">No microphone required</span>
             </div>
             <div class="cta-feature">
               <span class="cta-check">✓</span>
@@ -612,7 +570,7 @@
             </div>
             <p data-i18n="footerTagline">Ear training for English learners. Hear the difference between similar English sounds.</p>
           </div>
-          
+
           <div class="footer-links">
             <div class="footer-column">
               <h4 data-i18n="footerProduct">Product</h4>
@@ -621,7 +579,7 @@
               <a href="#practice-pairs" data-i18n="footerPracticePairs">Practice sound pairs</a>
               <a href="#faq" data-i18n="footerFAQ">FAQ</a>
             </div>
-            
+
             <div class="footer-column">
               <h4 data-i18n="footerLegal">Legal & Support</h4>
               <a href="/privacy/" data-i18n="footerPrivacy">Privacy Policy</a>
@@ -630,7 +588,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="footer-bottom">
           <p data-i18n="footerCopyright">&copy; 2025 Soundwise. All rights reserved.</p>
         </div>

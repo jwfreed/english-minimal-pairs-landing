@@ -268,7 +268,7 @@ body {
    Hero Section
    =========================== */
 .hero {
-  padding: 8rem 0 4rem;
+  padding: 8rem 0 3.5rem;
   background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
   position: relative;
   overflow: hidden;
@@ -335,7 +335,9 @@ body {
   display: inline-block;
 }
 
+/* Hidden by default — JS uses this element for challenge mode copy */
 .hero-primer {
+  display: none;
   font-size: 1rem;
   font-weight: 700;
   margin: 0 auto 1rem;
@@ -343,10 +345,24 @@ body {
   color: rgba(255, 248, 235, 0.96);
 }
 
+body.challenge-mode .hero-primer {
+  display: block;
+}
+
+/* Hero microcopy: small activation promise below CTAs */
+.hero-microcopy {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 248, 235, 0.85);
+  margin: 0 auto 1.75rem;
+  max-width: 400px;
+  text-align: center;
+}
+
 .hero-subtitle {
   font-size: 1.125rem;
   line-height: 1.75;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -655,7 +671,7 @@ body {
   flex-direction: column;
   gap: 1rem;
   max-width: 500px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 0.75rem;
 }
 
 @media (min-width: 640px) {
@@ -753,7 +769,7 @@ body {
   flex-direction: column;
   gap: 0.7rem;
   max-width: 520px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 0;
   color: rgba(255, 252, 245, 0.96);
 }
 
@@ -885,11 +901,107 @@ body {
 }
 
 /* ===========================
+   Interactive Demo Section
+   =========================== */
+.demo-section {
+  padding: 4rem 0 5rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.demo-section-heading {
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .demo-section-heading {
+    font-size: 2.25rem;
+  }
+}
+
+/* Language selector inside demo section gets lighter, more compact styling */
+.demo-section .language-selector {
+  max-width: 360px;
+  margin: 0 auto 1.75rem;
+  text-align: left;
+  background: white;
+  backdrop-filter: none;
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.demo-section .language-selector label {
+  color: var(--text-body);
+}
+
+.demo-section .language-dropdown {
+  border: 1.5px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Demo card inside demo section: wider, higher contrast */
+.demo-section .hero-demo-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  border: none;
+  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(230, 126, 34, 0.15);
+}
+
+.demo-section .hero-cta-reveal {
+  max-width: 720px;
+  margin: 1.25rem auto 0;
+  color: var(--text-primary);
+}
+
+.demo-section .hero-cta-reveal-message {
+  color: var(--text-primary);
+}
+
+.demo-section .hero-cta-reveal-meta {
+  color: var(--text-secondary);
+}
+
+.demo-section .hero-share-block {
+  max-width: 720px;
+  margin: 1rem auto 0;
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.demo-section .hero-share-prompt {
+  color: var(--text-primary);
+}
+
+.demo-section .hero-share-status {
+  color: var(--text-secondary);
+}
+
+.demo-section .btn-share {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.demo-section .btn-share:hover {
+  background: var(--bg-tertiary);
+}
+
+/* ===========================
    Problem Section
    =========================== */
 .problem-section {
   padding: 5rem 0;
-  background: var(--bg-secondary);
+  background: white;
 }
 
 .section-title {
@@ -1394,7 +1506,15 @@ body {
    =========================== */
 .how-it-works {
   padding: 5rem 0;
-  background: var(--bg-secondary);
+  background: white;
+}
+
+/* Prominent loop anchor line */
+.how-it-works-anchor {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: 0.02em;
 }
 
 .steps {
@@ -1915,6 +2035,21 @@ body {
   font-size: 1.125rem;
   margin-bottom: 2.5rem;
   opacity: 0.95;
+}
+
+/* Final CTA standalone button (replaces app-badge) */
+.final-cta-btn {
+  display: inline-flex;
+  margin-bottom: 2rem;
+  background: white;
+  color: var(--primary-dark);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.final-cta-btn:hover {
+  background: #fff7ed;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
 }
 
 .app-badges {
@@ -2570,13 +2705,26 @@ body.challenge-mode .hero-trust,
 body.challenge-mode .hero-value-strip,
 body.challenge-mode .hero-trust-signal,
 body.challenge-mode .btn-secondary,
-body.challenge-mode .hero-reassurance {
+body.challenge-mode .hero-reassurance,
+body.challenge-mode .hero-microcopy,
+body.challenge-mode .seo-pairs-section,
+body.challenge-mode .credibility-section {
   display: none;
 }
 
+/* In challenge mode, hero is compact and demo section follows immediately */
 body.challenge-mode .hero {
-  min-height: 100vh;
-  padding-bottom: 6rem;
+  padding-bottom: 2rem;
+}
+
+/* Demo section stays visible and gets prominent treatment in challenge mode */
+body.challenge-mode .demo-section {
+  padding-top: 2rem;
+}
+
+body.challenge-mode .demo-section-heading,
+body.challenge-mode .demo-section .language-selector {
+  display: none;
 }
 
 body.challenge-mode .nav-cta {
