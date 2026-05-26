@@ -98,8 +98,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Download on the",
     "getItOn": "Get it on",
-    "ctaFeature1": "Focused listening practice",
-    "ctaFeature2": "Download on the App Store",
+    "ctaFeature1": "$4.99 one-time purchase",
+    "ctaFeature2": "No microphone required",
     "ctaFeature3": "iPhone and iPad",
     "footerTagline": "Train your ear. Hear the difference between similar English sounds.",
     "footerProduct": "Product",
@@ -135,7 +135,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Other vowel contrasts",
     "seoPairsGroupRL": "/r/ vs /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "/θ/ contrasts"
+    "seoPairsGroupTheta": "/θ/ contrasts",
+    "heroPricingMicrocopy": "Available on the App Store for $4.99. One-time purchase. No subscription.",
+    "demoSectionHeading": "Can you hear the difference?"
   },
   "日本語": {
     "name": "日本語",
@@ -233,8 +235,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "ダウンロード",
     "getItOn": "入手先",
-    "ctaFeature1": "集中リスニング練習",
-    "ctaFeature2": "App Storeでダウンロード",
+    "ctaFeature1": "$4.99 買い切り",
+    "ctaFeature2": "マイク不要",
     "ctaFeature3": "iPhone と iPad",
     "footerTagline": "耳を鍛えよう。英語の音の違いを聞き取ろう。",
     "footerProduct": "製品",
@@ -270,7 +272,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "その他の母音の聞き分け",
     "seoPairsGroupRL": "/r/ と /l/",
     "seoPairsGroupFvw": "/f/、/v/、/w/",
-    "seoPairsGroupTheta": "/θ/ の聞き分け"
+    "seoPairsGroupTheta": "/θ/ の聞き分け",
+    "heroPricingMicrocopy": "App Storeにて$4.99でご購入いただけます。買い切り型。サブスクなし。",
+    "demoSectionHeading": "違いが聞こえますか？"
   },
   "中文": {
     "name": "中文",
@@ -368,8 +372,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "下载于",
     "getItOn": "获取应用",
-    "ctaFeature1": "专注听力练习",
-    "ctaFeature2": "在 App Store 下载",
+    "ctaFeature1": "$4.99 一次性购买",
+    "ctaFeature2": "无需麦克风",
     "ctaFeature3": "iPhone 和 iPad",
     "footerTagline": "训练你的耳朵。听出相近英语声音的差别。",
     "footerProduct": "产品",
@@ -405,7 +409,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "其他元音对比",
     "seoPairsGroupRL": "/r/ 与 /l/",
     "seoPairsGroupFvw": "/f/、/v/、/w/",
-    "seoPairsGroupTheta": "/θ/ 对比"
+    "seoPairsGroupTheta": "/θ/ 对比",
+    "heroPricingMicrocopy": "在 App Store 以 $4.99 购买。一次性付款，无需订阅。",
+    "demoSectionHeading": "你能听出区别吗？"
   },
   "idioma español": {
     "name": "Español",
@@ -503,8 +509,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Descargar en",
     "getItOn": "Disponible en",
-    "ctaFeature1": "Práctica de escucha enfocada",
-    "ctaFeature2": "Descarga en el App Store",
+    "ctaFeature1": "$4.99 pago único",
+    "ctaFeature2": "Sin micrófono",
     "ctaFeature3": "iPhone y iPad",
     "footerTagline": "Entrena tu oído. Escucha la diferencia entre sonidos parecidos del inglés.",
     "footerProduct": "Producto",
@@ -540,7 +546,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Otros contrastes vocálicos",
     "seoPairsGroupRL": "/r/ vs /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "Contrastes con /θ/"
+    "seoPairsGroupTheta": "Contrastes con /θ/",
+    "heroPricingMicrocopy": "Disponible en el App Store por $4.99. Pago único. Sin suscripción.",
+    "demoSectionHeading": "¿Puedes escuchar la diferencia?"
   },
   "ภาษาไทย": {
     "name": "ภาษาไทย",
@@ -638,8 +646,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "ดาวน์โหลดที่",
     "getItOn": "รับที่",
-    "ctaFeature1": "ฝึกฟังแบบโฟกัส",
-    "ctaFeature2": "ดาวน์โหลดบน App Store",
+    "ctaFeature1": "ซื้อครั้งเดียว $4.99",
+    "ctaFeature2": "ไม่ต้องใช้ไมโครโฟน",
     "ctaFeature3": "iPhone และ iPad",
     "footerTagline": "ฝึกหู ฟังความต่างของเสียงภาษาอังกฤษที่คล้ายกัน",
     "footerProduct": "ผลิตภัณฑ์",
@@ -675,7 +683,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "คู่เสียงสระอื่น ๆ",
     "seoPairsGroupRL": "/r/ กับ /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "ความต่างของ /θ/"
+    "seoPairsGroupTheta": "ความต่างของ /θ/",
+    "heroPricingMicrocopy": "มีจำหน่ายใน App Store ราคา $4.99 ซื้อครั้งเดียว ไม่มีการสมัครสมาชิก",
+    "demoSectionHeading": "คุณได้ยินความแตกต่างไหม?"
   },
   "한국어": {
     "name": "한국어",
@@ -773,8 +783,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play에서 받기",
     "downloadOn": "다운로드",
     "getItOn": "받기",
-    "ctaFeature1": "집중 듣기 연습",
-    "ctaFeature2": "App Store에서 다운로드",
+    "ctaFeature1": "$4.99 일회성 구매",
+    "ctaFeature2": "마이크 불필요",
     "ctaFeature3": "iPhone 및 iPad",
     "footerTagline": "귀를 훈련하세요. 비슷한 영어 소리의 차이를 들어 보세요.",
     "footerProduct": "제품",
@@ -810,7 +820,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "다른 모음 대비",
     "seoPairsGroupRL": "/r/ 대 /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "/θ/ 대비"
+    "seoPairsGroupTheta": "/θ/ 대비",
+    "heroPricingMicrocopy": "App Store에서 $4.99에 이용 가능. 일회성 구매. 구독 없음.",
+    "demoSectionHeading": "차이를 들을 수 있나요?"
   },
   "Português": {
     "name": "Português",
@@ -908,8 +920,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Baixar na",
     "getItOn": "Disponível no",
-    "ctaFeature1": "Prática de escuta focada",
-    "ctaFeature2": "Baixar na App Store",
+    "ctaFeature1": "$4.99 compra única",
+    "ctaFeature2": "Sem microfone",
     "ctaFeature3": "iPhone e iPad",
     "footerTagline": "Treine seus ouvidos. Ouça a diferença entre sons parecidos do inglês.",
     "footerProduct": "Produto",
@@ -945,7 +957,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Outros contrastes vocálicos",
     "seoPairsGroupRL": "/r/ vs /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "Contrastes com /θ/"
+    "seoPairsGroupTheta": "Contrastes com /θ/",
+    "heroPricingMicrocopy": "Disponível na App Store por $4.99. Compra única. Sem assinatura.",
+    "demoSectionHeading": "Você consegue ouvir a diferença?"
   },
   "русский язык": {
     "name": "Русский",
@@ -1043,8 +1057,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Загрузить в",
     "getItOn": "Доступно в",
-    "ctaFeature1": "Фокусированная практика слушания",
-    "ctaFeature2": "Скачать в App Store",
+    "ctaFeature1": "$4.99 единовременная покупка",
+    "ctaFeature2": "Без микрофона",
     "ctaFeature3": "iPhone и iPad",
     "footerTagline": "Тренируйте слух. Слышите разницу между похожими звуками английского.",
     "footerProduct": "Продукт",
@@ -1080,7 +1094,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Другие гласные контрасты",
     "seoPairsGroupRL": "/r/ и /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "Контрасты с /θ/"
+    "seoPairsGroupTheta": "Контрасты с /θ/",
+    "heroPricingMicrocopy": "Доступно в App Store за $4.99. Единовременная покупка. Без подписки.",
+    "demoSectionHeading": "Слышите ли вы разницу?"
   },
   "اللغة العربية": {
     "name": "العربية",
@@ -1178,8 +1194,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "حمّل من",
     "getItOn": "متوفر على",
-    "ctaFeature1": "تدريب استماع مركّز",
-    "ctaFeature2": "حمّله من App Store",
+    "ctaFeature1": "$4.99 دفعة واحدة",
+    "ctaFeature2": "بدون ميكروفون",
     "ctaFeature3": "iPhone و iPad",
     "footerTagline": "درّب أذنيك. اسمع الفرق بين أصوات الإنجليزية المتشابهة.",
     "footerProduct": "المنتج",
@@ -1215,7 +1231,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "تباينات حركات أخرى",
     "seoPairsGroupRL": "/r/ مقابل /l/",
     "seoPairsGroupFvw": "/f/ و /v/ و /w/",
-    "seoPairsGroupTheta": "تباينات /θ/"
+    "seoPairsGroupTheta": "تباينات /θ/",
+    "heroPricingMicrocopy": "متوفر في App Store بـ $4.99. شراء لمرة واحدة. بدون اشتراك.",
+    "demoSectionHeading": "هل تسمع الفرق؟"
   },
   "Tiếng Việt": {
     "name": "Tiếng Việt",
@@ -1313,8 +1331,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Tải trên",
     "getItOn": "Tải tại",
-    "ctaFeature1": "Luyện nghe tập trung",
-    "ctaFeature2": "Tải trên App Store",
+    "ctaFeature1": "$4.99 mua một lần",
+    "ctaFeature2": "Không cần microphone",
     "ctaFeature3": "iPhone và iPad",
     "trustSignalPrimary": "Không cần micro — chỉ cần nghe và chọn.",
     "midPageCta": "Sẵn sàng luyện tai chưa?",
@@ -1354,7 +1372,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Các cặp nguyên âm khác",
     "seoPairsGroupRL": "/r/ và /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "Cặp âm /θ/"
+    "seoPairsGroupTheta": "Cặp âm /θ/",
+    "heroPricingMicrocopy": "Có trên App Store với giá $4.99. Mua một lần. Không có đăng ký.",
+    "demoSectionHeading": "Bạn có nghe thấy sự khác biệt không?"
   },
   "हिंदी/اردو": {
     "name": "हिंदी",
@@ -1452,8 +1472,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "यहाँ डाउनलोड करें",
     "getItOn": "यहाँ से पाएँ",
-    "ctaFeature1": "Focused listening practice",
-    "ctaFeature2": "App Store से डाउनलोड करें",
+    "ctaFeature1": "$4.99 एकमुश्त खरीदारी",
+    "ctaFeature2": "माइक्रोफ़ोन की ज़रूरत नहीं",
     "ctaFeature3": "iPhone और iPad",
     "footerTagline": "कान ट्रेन करें. मिलती-जुलती अंग्रेज़ी ध्वनियों का फ़र्क़ सुनें.",
     "footerProduct": "उत्पाद",
@@ -1493,7 +1513,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "दूसरे vowel contrast",
     "seoPairsGroupRL": "/r/ बनाम /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "/θ/ contrast"
+    "seoPairsGroupTheta": "/θ/ contrast",
+    "heroPricingMicrocopy": "App Store पर $4.99 में उपलब्ध। एकमुश्त खरीदारी। कोई सब्सक्रिप्शन नहीं।",
+    "demoSectionHeading": "क्या आप फ़र्क़ सुन सकते हैं?"
   },
   "Türkçe": {
     "name": "Türkçe",
@@ -1591,8 +1613,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Şuradan indir",
     "getItOn": "Şuradan edin",
-    "ctaFeature1": "Odaklı dinleme pratiği",
-    "ctaFeature2": "App Store’dan indir",
+    "ctaFeature1": "$4.99 tek seferlik satın alma",
+    "ctaFeature2": "Mikrofon gerekmez",
     "ctaFeature3": "iPhone ve iPad",
     "footerTagline": "Kulağını eğit. Benzer İngilizce sesler arasındaki farkı duy.",
     "footerProduct": "Ürün",
@@ -1632,7 +1654,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Diğer ünlü karşıtlıkları",
     "seoPairsGroupRL": "/r/ ve /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "/θ/ karşıtlıkları"
+    "seoPairsGroupTheta": "/θ/ karşıtlıkları",
+    "heroPricingMicrocopy": "App Store'da $4.99'a mevcut. Tek seferlik satın alma. Abonelik yok.",
+    "demoSectionHeading": "Farkı duyabilir misin?"
   },
   "زبان فارسی": {
     "name": "فارسی",
@@ -1730,8 +1754,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "دانلود از",
     "getItOn": "دریافت از",
-    "ctaFeature1": "تمرین شنیداری متمرکز",
-    "ctaFeature2": "دانلود از App Store",
+    "ctaFeature1": "$4.99 خرید یک‌بار",
+    "ctaFeature2": "نیاز به میکروفون ندارد",
     "ctaFeature3": "iPhone و iPad",
     "footerTagline": "گوش خود را تمرین دهید. تفاوت صداهای مشابه انگلیسی را بشنوید.",
     "footerProduct": "محصول",
@@ -1771,7 +1795,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "دیگر تقابل‌های واکه‌ای",
     "seoPairsGroupRL": "/r/ در برابر /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "تقابل‌های /θ/"
+    "seoPairsGroupTheta": "تقابل‌های /θ/",
+    "heroPricingMicrocopy": "در App Store به قیمت $4.99 موجود است. خرید یک‌بار. بدون اشتراک.",
+    "demoSectionHeading": "آیا تفاوت را می‌شنوید؟"
   },
   "廣東話": {
     "name": "廣東話",
@@ -1869,8 +1895,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "由 App Store 下載",
     "getItOn": "由 Google Play 取得",
-    "ctaFeature1": "集中聽力練習",
-    "ctaFeature2": "由 App Store 下載",
+    "ctaFeature1": "$4.99 一次性購買",
+    "ctaFeature2": "唔使麥克風",
     "ctaFeature3": "iPhone 同 iPad",
     "footerTagline": "訓練耳仔。聽出相近英文聲音嘅分別。",
     "footerProduct": "產品",
@@ -1906,7 +1932,9 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "其他元音對比",
     "seoPairsGroupRL": "/r/ 對 /l/",
     "seoPairsGroupFvw": "/f/、/v/、/w/",
-    "seoPairsGroupTheta": "/θ/ 對比"
+    "seoPairsGroupTheta": "/θ/ 對比",
+    "heroPricingMicrocopy": "喺App Store以$4.99購買。一次性付款，無需訂閱。",
+    "demoSectionHeading": "你聽到分別嗎？"
   },
   "bahasa Indo": {
     "name": "Bahasa Indonesia",
@@ -2004,8 +2032,8 @@ export const supplementalTranslations = {
     "googlePlay": "Google Play",
     "downloadOn": "Unduh di",
     "getItOn": "Dapatkan di",
-    "ctaFeature1": "Latihan mendengar terfokus",
-    "ctaFeature2": "Unduh di App Store",
+    "ctaFeature1": "$4.99 pembelian sekali",
+    "ctaFeature2": "Tanpa mikrofon",
     "ctaFeature3": "iPhone dan iPad",
     "footerTagline": "Latih telingamu. Dengarkan perbedaan antara bunyi bahasa Inggris yang mirip.",
     "footerProduct": "Produk",
@@ -2045,6 +2073,8 @@ export const supplementalTranslations = {
     "seoPairsGroupOtherVowels": "Kontras vokal lainnya",
     "seoPairsGroupRL": "/r/ vs /l/",
     "seoPairsGroupFvw": "/f/, /v/, /w/",
-    "seoPairsGroupTheta": "Kontras /θ/"
+    "seoPairsGroupTheta": "Kontras /θ/",
+    "heroPricingMicrocopy": "Tersedia di App Store seharga $4.99. Pembelian sekali. Tanpa langganan.",
+    "demoSectionHeading": "Bisakah kamu mendengar perbedaannya?"
   }
 };

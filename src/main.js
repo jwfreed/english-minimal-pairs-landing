@@ -357,6 +357,16 @@ function renderShareBlock() {
 function renderChallengeMode() {
   document.body.classList.toggle(CHALLENGE_MODE_CLASS, heroDemoState.isChallengeMode);
 
+  // hero-primer is aria-hidden while invisible; remove that attribute when
+  // challenge mode makes it visible, and restore it when leaving challenge mode.
+  if (dom.heroPrimer) {
+    if (heroDemoState.isChallengeMode) {
+      dom.heroPrimer.removeAttribute('aria-hidden');
+    } else {
+      dom.heroPrimer.setAttribute('aria-hidden', 'true');
+    }
+  }
+
   if (!heroDemoState.isChallengeMode) {
     return;
   }
