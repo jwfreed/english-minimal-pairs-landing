@@ -12,6 +12,20 @@ const CTA_UNLOCKED_CLASS = 'is-muted';
 const CHALLENGE_QUERY_PARAM = 'challenge';
 const CHALLENGE_LANG_PARAM = 'lang';
 const CHALLENGE_MODE_CLASS = 'challenge-mode';
+const DEMO_RESULT_COPY = {
+  allCorrect: {
+    lead: 'Nice work — you heard the contrast.',
+    body: 'These sounds can still be worth practicing. Many English learners hear a contrast in one round but benefit from repeating it across different words and voices.',
+  },
+  partialCorrect: {
+    lead: 'These sounds are genuinely hard to distinguish.',
+    body: 'Many English learners struggle with contrasts like this. Focused listening practice helps you notice the difference over time.',
+  },
+  noneCorrect: {
+    lead: 'These sounds are genuinely hard to distinguish.',
+    body: 'That result is useful: it shows which contrast needs attention. Try another round and listen for the vowel difference.',
+  },
+};
 
 const heroDemoState = {
   runtimeLocale: 'en',
@@ -333,16 +347,35 @@ function renderFeedback(selectedIndex, isCorrect) {
   ].join(' ');
 }
 
-function renderSummary() {
-  const leadKey = heroDemoState.isChallengeMode ? 'challengeResultLead' : 'demoSummaryLead';
-  const bodyKey = heroDemoState.isChallengeMode ? 'challengeResultBody' : 'demoSummaryBody';
+function getDemoResultCopy(correctCount, totalCount) {
+  if (correctCount === totalCount) {
+    return DEMO_RESULT_COPY.allCorrect;
+  }
 
-  dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, leadKey);
+  if (correctCount === 0) {
+    return DEMO_RESULT_COPY.noneCorrect;
+  }
+
+  return DEMO_RESULT_COPY.partialCorrect;
+}
+
+function renderSummary() {
+  const correctCount = heroDemoState.correct;
+  const totalCount = DEMO_MAX_ROUNDS;
+
+  if (heroDemoState.isChallengeMode) {
+    dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, 'challengeResultLead');
+    dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, 'challengeResultBody');
+  } else {
+    const resultCopy = getDemoResultCopy(correctCount, totalCount);
+    dom.heroDemoSummaryLead.textContent = resultCopy.lead;
+    dom.heroDemoSummaryBody.textContent = resultCopy.body;
+  }
+
   dom.heroDemoScore.textContent = formatMessage(
     getTranslation(heroDemoState.runtimeLocale, 'demoScore'),
-    { correct: heroDemoState.correct, total: DEMO_MAX_ROUNDS }
+    { correct: correctCount, total: totalCount }
   );
-  dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, bodyKey);
 }
 
 function renderShareBlock() {

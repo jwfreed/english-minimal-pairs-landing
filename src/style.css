@@ -587,6 +587,11 @@ body.challenge-mode .hero-primer {
   color: white;
 }
 
+#hero-demo-test .hero-demo-action-secondary {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
 .hero-demo-feedback {
   margin-top: 1.25rem;
   padding-top: 1.25rem;
