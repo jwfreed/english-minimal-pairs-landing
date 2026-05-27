@@ -1,5 +1,5 @@
 import './style.css';
-import { applyTranslations, getCurrentLanguage, setLanguage, translations } from './i18n.js';
+import { applyTranslations, getCurrentLanguage, resolveRuntimeLocale, setLanguage, translations } from './i18n.js';
 import { getRuntimeLocaleMeta } from './landing-copy-runtime.js';
 import {
   HERO_DEMO_CONTRASTS,
@@ -31,7 +31,8 @@ const heroDemoState = {
 const dom = {};
 
 function getTranslation(locale, key) {
-  return translations[locale]?.[key] ?? translations.en?.[key] ?? '';
+  const runtimeLocale = resolveRuntimeLocale(locale) || 'en';
+  return translations[runtimeLocale]?.[key] ?? translations.en?.[key] ?? '';
 }
 
 function formatMessage(template, replacements = {}) {
@@ -69,8 +70,9 @@ function findDemoLocaleBySlug(slug) {
 
 function buildChallengeUrl(runtimeLocale = heroDemoState.runtimeLocale, demoLocale = heroDemoState.demoLocale) {
   const url = new URL(window.location.href);
+  const challengeRuntimeLocale = resolveRuntimeLocale(runtimeLocale) || 'en';
   url.searchParams.set(CHALLENGE_QUERY_PARAM, getChallengeSlug(demoLocale));
-  url.searchParams.set(CHALLENGE_LANG_PARAM, runtimeLocale);
+  url.searchParams.set(CHALLENGE_LANG_PARAM, challengeRuntimeLocale);
   return url.toString();
 }
 
@@ -83,7 +85,7 @@ function readChallengeParams() {
   return {
     challengeSlug,
     forcedDemoLocale,
-    challengeRuntimeLocale: translations[challengeRuntimeLocale] ? challengeRuntimeLocale : null,
+    challengeRuntimeLocale: resolveRuntimeLocale(challengeRuntimeLocale),
   };
 }
 
@@ -567,7 +569,7 @@ function resetHeroDemoState() {
 }
 
 function applyRuntimeLanguage(runtimeLocale, { persist = false } = {}) {
-  heroDemoState.runtimeLocale = translations[runtimeLocale] ? runtimeLocale : 'en';
+  heroDemoState.runtimeLocale = resolveRuntimeLocale(runtimeLocale) || 'en';
   resetHeroDemoState();
 
   if (persist) {

@@ -44,6 +44,16 @@ const MICROCOPY_KEYS = [
   'onboarding_headphones',
 ];
 
+const RUNTIME_LOCALE_ALIAS_EXPECTATIONS = {
+  zh: '中文',
+  'zh-CN': '中文',
+  yue: '廣東話',
+  'zh-HK': '廣東話',
+  es: 'idioma español',
+  ar: 'اللغة العربية',
+  fa: 'زبان فارسی',
+};
+
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
@@ -153,6 +163,18 @@ function collectIssues(languages, runtimeKeys, translations, canonicalRuntimeKey
   };
 }
 
+function collectLocaleAliasIssues(resolveRuntimeLocale) {
+  if (typeof resolveRuntimeLocale !== 'function') {
+    return ['resolveRuntimeLocale export is missing'];
+  }
+
+  return Object.entries(RUNTIME_LOCALE_ALIAS_EXPECTATIONS)
+    .filter(([alias, expectedRuntimeLocale]) => resolveRuntimeLocale(alias) !== expectedRuntimeLocale)
+    .map(([alias, expectedRuntimeLocale]) => (
+      `${alias}: expected runtime locale ${expectedRuntimeLocale}, got ${resolveRuntimeLocale(alias) || 'null'}`
+    ));
+}
+
 async function main() {
   const data = readJson(jsonPath);
   const html = fs.readFileSync(htmlPath, 'utf8');
@@ -169,6 +191,7 @@ async function main() {
     canonicalModule.getRuntimeLocaleMeta,
     canonicalModule.RUNTIME_LOCALE_TO_ARTIFACT_LOCALE
   );
+  result.findings.runtime.push(...collectLocaleAliasIssues(runtimeModule.resolveRuntimeLocale));
 
   console.log(JSON.stringify(result, null, 2));
 

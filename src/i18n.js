@@ -6,11 +6,16 @@ import { HERO_DEMO_BROWSER_LANGUAGE_MAP, HERO_DEMO_CONTRASTS } from './hero-demo
 export const USER_LANGUAGE_STORAGE_KEY = 'soundwise_user_language';
 const LEGACY_LANGUAGE_STORAGE_KEY = 'language';
 
+const translationSourceLocales = new Set([
+  ...Object.keys(supplementalTranslations),
+  ...Object.keys(heroDemoTranslations),
+]);
+
 const translationSource = Object.fromEntries(
-  Object.entries(supplementalTranslations).map(([locale, supplementalLocale]) => [
+  [...translationSourceLocales].map((locale) => [
     locale,
     {
-      ...supplementalLocale,
+      ...(supplementalTranslations[locale] || {}),
       ...(heroDemoTranslations[locale] || {}),
     },
   ])
@@ -46,6 +51,63 @@ function normalizeBrowserLanguage(languageCode) {
   return (languageCode || '').trim().toLowerCase();
 }
 
+function getMappedRuntimeLocale(normalizedCandidate) {
+  if (!normalizedCandidate) {
+    return null;
+  }
+
+  const demoLocaleName = normalizedCandidate.replaceAll('-', '_');
+  if (HERO_DEMO_CONTRASTS[demoLocaleName]) {
+    return HERO_DEMO_CONTRASTS[demoLocaleName].runtimeLocale;
+  }
+
+  const languageParts = normalizedCandidate.split('-');
+  if (
+    (languageParts[0] === 'zh' || languageParts[0] === 'yue')
+    && (languageParts.includes('hk') || languageParts.includes('mo'))
+  ) {
+    return HERO_DEMO_CONTRASTS.cantonese.runtimeLocale;
+  }
+
+  const exactDemoLocale = HERO_DEMO_BROWSER_LANGUAGE_MAP[normalizedCandidate];
+  if (exactDemoLocale) {
+    return HERO_DEMO_CONTRASTS[exactDemoLocale].runtimeLocale;
+  }
+
+  if (browserLanguageMap[normalizedCandidate]) {
+    return browserLanguageMap[normalizedCandidate];
+  }
+
+  const baseLanguage = languageParts[0];
+  const baseDemoLocale = HERO_DEMO_BROWSER_LANGUAGE_MAP[baseLanguage];
+  if (baseDemoLocale) {
+    return HERO_DEMO_CONTRASTS[baseDemoLocale].runtimeLocale;
+  }
+
+  return browserLanguageMap[baseLanguage] || null;
+}
+
+export function resolveRuntimeLocale(languageCode) {
+  const candidate = (languageCode || '').trim();
+  if (!candidate) {
+    return null;
+  }
+
+  if (translations[candidate]) {
+    return candidate;
+  }
+
+  const caseInsensitiveLocale = Object.keys(translations).find(
+    (runtimeLocale) => runtimeLocale.toLowerCase() === candidate.toLowerCase()
+  );
+  if (caseInsensitiveLocale) {
+    return caseInsensitiveLocale;
+  }
+
+  const mappedRuntimeLocale = getMappedRuntimeLocale(normalizeBrowserLanguage(candidate));
+  return translations[mappedRuntimeLocale] ? mappedRuntimeLocale : null;
+}
+
 function detectBrowserLanguage() {
   const candidates = [
     ...(Array.isArray(navigator.languages) ? navigator.languages : []),
@@ -54,26 +116,9 @@ function detectBrowserLanguage() {
   ].filter(Boolean);
 
   for (const candidate of candidates) {
-    const normalizedCandidate = normalizeBrowserLanguage(candidate);
-    const exactDemoLocale = HERO_DEMO_BROWSER_LANGUAGE_MAP[normalizedCandidate];
-
-    if (exactDemoLocale) {
-      return HERO_DEMO_CONTRASTS[exactDemoLocale].runtimeLocale;
-    }
-
-    if (browserLanguageMap[normalizedCandidate]) {
-      return browserLanguageMap[normalizedCandidate];
-    }
-
-    const baseLanguage = normalizedCandidate.split('-')[0];
-    const baseDemoLocale = HERO_DEMO_BROWSER_LANGUAGE_MAP[baseLanguage];
-
-    if (baseDemoLocale) {
-      return HERO_DEMO_CONTRASTS[baseDemoLocale].runtimeLocale;
-    }
-
-    if (browserLanguageMap[baseLanguage]) {
-      return browserLanguageMap[baseLanguage];
+    const runtimeLocale = resolveRuntimeLocale(candidate);
+    if (runtimeLocale) {
+      return runtimeLocale;
     }
   }
 
@@ -92,28 +137,35 @@ function applyDirectionalSafety(element, isRtl) {
 
 export function getCurrentLanguage() {
   const storedLang = localStorage.getItem(USER_LANGUAGE_STORAGE_KEY);
-  if (storedLang && translations[storedLang]) {
-    return storedLang;
+  const storedRuntimeLocale = resolveRuntimeLocale(storedLang);
+  if (storedRuntimeLocale) {
+    if (storedRuntimeLocale !== storedLang) {
+      localStorage.setItem(USER_LANGUAGE_STORAGE_KEY, storedRuntimeLocale);
+    }
+    return storedRuntimeLocale;
   }
 
   const legacyLang = localStorage.getItem(LEGACY_LANGUAGE_STORAGE_KEY);
-  if (legacyLang && translations[legacyLang]) {
-    localStorage.setItem(USER_LANGUAGE_STORAGE_KEY, legacyLang);
-    return legacyLang;
+  const legacyRuntimeLocale = resolveRuntimeLocale(legacyLang);
+  if (legacyRuntimeLocale) {
+    localStorage.setItem(USER_LANGUAGE_STORAGE_KEY, legacyRuntimeLocale);
+    return legacyRuntimeLocale;
   }
 
   return detectBrowserLanguage();
 }
 
 export function setLanguage(lang) {
-  localStorage.setItem(USER_LANGUAGE_STORAGE_KEY, lang);
+  const runtimeLocale = resolveRuntimeLocale(lang) || 'en';
+  localStorage.setItem(USER_LANGUAGE_STORAGE_KEY, runtimeLocale);
   localStorage.removeItem(LEGACY_LANGUAGE_STORAGE_KEY);
-  applyTranslations(lang);
+  applyTranslations(runtimeLocale);
 }
 
 export function applyTranslations(lang) {
-  const t = translations[lang] || translations.en;
-  const { htmlLang, isRtl } = getRuntimeLocaleMeta(lang);
+  const runtimeLocale = resolveRuntimeLocale(lang) || 'en';
+  const t = translations[runtimeLocale] || translations.en;
+  const { htmlLang, isRtl } = getRuntimeLocaleMeta(runtimeLocale);
 
   document.querySelectorAll('[data-i18n]').forEach((element) => {
     const key = element.getAttribute('data-i18n');
@@ -143,8 +195,8 @@ export function applyTranslations(lang) {
   });
 
   const langSelector = document.getElementById('language-selector');
-  if (langSelector && translations[lang]) {
-    langSelector.textContent = `${translations[lang].flag} ${translations[lang].name}`;
+  if (langSelector && translations[runtimeLocale]) {
+    langSelector.textContent = `${translations[runtimeLocale].flag} ${translations[runtimeLocale].name}`;
     applyDirectionalSafety(langSelector, isRtl);
   }
 
