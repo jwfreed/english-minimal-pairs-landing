@@ -356,15 +356,10 @@ function getDemoResultCopy(correctCount, totalCount) {
 function renderSummary() {
   const correctCount = heroDemoState.correct;
   const totalCount = DEMO_MAX_ROUNDS;
+  const resultCopy = getDemoResultCopy(correctCount, totalCount);
 
-  if (heroDemoState.isChallengeMode) {
-    dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, 'challengeResultLead');
-    dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, 'challengeResultBody');
-  } else {
-    const resultCopy = getDemoResultCopy(correctCount, totalCount);
-    dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, resultCopy.leadKey);
-    dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, resultCopy.bodyKey);
-  }
+  dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, resultCopy.leadKey);
+  dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, resultCopy.bodyKey);
 
   dom.heroDemoScore.textContent = formatMessage(
     getTranslation(heroDemoState.runtimeLocale, 'demoScore'),
