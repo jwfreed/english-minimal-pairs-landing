@@ -12,21 +12,6 @@ const CTA_UNLOCKED_CLASS = 'is-muted';
 const CHALLENGE_QUERY_PARAM = 'challenge';
 const CHALLENGE_LANG_PARAM = 'lang';
 const CHALLENGE_MODE_CLASS = 'challenge-mode';
-const DEMO_RESULT_COPY = {
-  allCorrect: {
-    lead: 'Nice work — you heard the contrast.',
-    body: 'These sounds can still be worth practicing. Many English learners hear a contrast in one round but benefit from repeating it across different words and voices.',
-  },
-  partialCorrect: {
-    lead: 'These sounds are genuinely hard to distinguish.',
-    body: 'Many English learners struggle with contrasts like this. Focused listening practice helps you notice the difference over time.',
-  },
-  noneCorrect: {
-    lead: 'These sounds are genuinely hard to distinguish.',
-    body: 'That result is useful: it shows which contrast needs attention. Try another round and listen for the vowel difference.',
-  },
-};
-
 const heroDemoState = {
   runtimeLocale: 'en',
   demoLocale: 'english',
@@ -349,14 +334,23 @@ function renderFeedback(selectedIndex, isCorrect) {
 
 function getDemoResultCopy(correctCount, totalCount) {
   if (correctCount === totalCount) {
-    return DEMO_RESULT_COPY.allCorrect;
+    return {
+      leadKey: 'demoSummaryAllCorrectLead',
+      bodyKey: 'demoSummaryAllCorrectBody',
+    };
   }
 
   if (correctCount === 0) {
-    return DEMO_RESULT_COPY.noneCorrect;
+    return {
+      leadKey: 'demoSummaryNoneCorrectLead',
+      bodyKey: 'demoSummaryNoneCorrectBody',
+    };
   }
 
-  return DEMO_RESULT_COPY.partialCorrect;
+  return {
+    leadKey: 'demoSummaryPartialCorrectLead',
+    bodyKey: 'demoSummaryPartialCorrectBody',
+  };
 }
 
 function renderSummary() {
@@ -368,13 +362,18 @@ function renderSummary() {
     dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, 'challengeResultBody');
   } else {
     const resultCopy = getDemoResultCopy(correctCount, totalCount);
-    dom.heroDemoSummaryLead.textContent = resultCopy.lead;
-    dom.heroDemoSummaryBody.textContent = resultCopy.body;
+    dom.heroDemoSummaryLead.textContent = getTranslation(heroDemoState.runtimeLocale, resultCopy.leadKey);
+    dom.heroDemoSummaryBody.textContent = getTranslation(heroDemoState.runtimeLocale, resultCopy.bodyKey);
   }
 
   dom.heroDemoScore.textContent = formatMessage(
     getTranslation(heroDemoState.runtimeLocale, 'demoScore'),
-    { correct: correctCount, total: totalCount }
+    {
+      correct: correctCount,
+      total: totalCount,
+      correctCount,
+      totalCount,
+    }
   );
 }
 
