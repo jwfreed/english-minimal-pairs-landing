@@ -197,6 +197,12 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 - Log in the same sheet as community engagement.
 - Look for correlation patterns over 2–4 week windows, not day-to-day noise.
 
+## Landing Page GA4 Events
+
+| Event | Trigger | Parameters |
+| --- | --- | --- |
+| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | `button_text`, `page_path`, `link_url` |
+
 ---
 
 ## Event Naming Suggestions

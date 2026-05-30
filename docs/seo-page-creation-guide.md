@@ -312,7 +312,7 @@ The `utm_content` value should match the slug without leading or trailing slashe
 
 For community links pointing to the website, use the source, medium, and campaign conventions in `docs/analytics-and-attribution.md` instead. Do not mix community attribution values into on-page App Store CTA links.
 
-The site currently tracks App Store clicks with the `app_store_click` Google Analytics event in `src/main.js` for links containing `apps.apple.com`. Keep App Store CTA links on that domain if this click tracking should apply. If analytics tooling changes, update this guide and `docs/analytics-and-attribution.md` together.
+The site currently tracks App Store clicks with the `app_store_click` Google Analytics event in `src/main.js` and `src/seo-page.js` for links containing `apps.apple.com`. Keep App Store CTA links on that domain if this click tracking should apply. If analytics tooling changes, update this guide and `docs/analytics-and-attribution.md` together.
 
 ## Internal Linking
 

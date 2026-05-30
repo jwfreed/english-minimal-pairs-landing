@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "validate:app-store-tracking": "node scripts/validate-app-store-tracking.mjs",
     "preview": "vite preview",
     "validate:landing-copy": "node scripts/validate-landing-copy.mjs",
     "deploy": "npm run build && touch dist/CNAME && echo 'getsoundwise.co' > dist/CNAME"

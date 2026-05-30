@@ -933,9 +933,13 @@ function setupCtaTracking() {
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
     link.addEventListener('click', () => {
       if (typeof window.gtag === 'function') {
+        const buttonText = link.textContent.trim().replace(/\s+/g, ' ');
+
         // beacon transport sends reliably even as the page unloads — no need
         // to preventDefault or delay navigation.
         window.gtag('event', 'app_store_click', {
+          button_text: buttonText || link.getAttribute('aria-label') || undefined,
+          page_path: window.location.pathname,
           link_url: link.href,
           link_id: link.id || undefined,
           transport_type: 'beacon',
