@@ -28,7 +28,7 @@ Build job steps:
 1. Check out the repository.
 2. Set up Node.js 20.
 3. Install dependencies with `npm ci`.
-4. Build the site with `npm run build`.
+4. Build the site with `npm run build`; the `prebuild` step generates localized homepage route entries from `index.html`.
 5. Write `getsoundwise.co` to `dist/CNAME`.
 6. Upload `dist/` with `actions/upload-pages-artifact`.
 
@@ -104,6 +104,7 @@ Package script:
 After `npm run build`, `dist/` should contain the built static site, including:
 
 - `index.html`
+- Built localized homepage directories such as `ja/`, `zh/`, `yue/`, and `hi-ur/`
 - Built support/legal HTML pages
 - Built SEO page directories such as `ship-vs-sheep/`
 - Vite-generated assets under `dist/assets/`

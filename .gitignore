@@ -8,9 +8,26 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.generated
 dist
 dist-ssr
 *.local
+
+# Generated localized homepage route entries. These are rebuilt from index.html.
+ja/index.html
+zh/index.html
+th/index.html
+es/index.html
+ar/index.html
+ru/index.html
+ko/index.html
+hi-ur/index.html
+pt/index.html
+vi/index.html
+tr/index.html
+fa/index.html
+yue/index.html
+id/index.html
 
 # Playwright artifacts
 .playwright-cli/

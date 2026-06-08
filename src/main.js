@@ -6,6 +6,7 @@ import {
   HERO_DEMO_LOCALE_ORDER,
   RUNTIME_LOCALE_TO_DEMO_LOCALE,
 } from './hero-demo-config.js';
+import { HOMEPAGE_ROUTE_BY_SLUG } from './localized-homepage-routes.js';
 
 const DEMO_MAX_ROUNDS = 2;
 const CTA_UNLOCKED_CLASS = 'is-muted';
@@ -87,6 +88,16 @@ function readChallengeParams() {
     forcedDemoLocale,
     challengeRuntimeLocale: resolveRuntimeLocale(challengeRuntimeLocale),
   };
+}
+
+function readExplicitHomepageRuntimeLocale() {
+  const initialRuntimeLocale = resolveRuntimeLocale(document.body.dataset.initialRuntimeLocale);
+  if (initialRuntimeLocale) {
+    return initialRuntimeLocale;
+  }
+
+  const slug = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  return HOMEPAGE_ROUTE_BY_SLUG[slug]?.runtimeLocale || null;
 }
 
 function showStage(element, isVisible) {
@@ -976,7 +987,9 @@ function warmSpeechVoices() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const challengeParams = readChallengeParams();
-  const currentLang = challengeParams.challengeRuntimeLocale || getCurrentLanguage();
+  const currentLang = challengeParams.challengeRuntimeLocale
+    || readExplicitHomepageRuntimeLocale()
+    || getCurrentLanguage();
 
   heroDemoState.isChallengeMode = Boolean(challengeParams.forcedDemoLocale);
   heroDemoState.forcedDemoLocale = challengeParams.forcedDemoLocale;

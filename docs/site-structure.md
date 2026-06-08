@@ -17,6 +17,7 @@ The architecture is intentionally simple:
 | Path | Purpose |
 | --- | --- |
 | `index.html` | Main Soundwise landing page. |
+| `<locale>/index.html` | Generated localized homepage route entries such as `ja/index.html` and `zh/index.html`. They are rebuilt from `index.html` and ignored by Git. |
 | `support.html` | Public support page. |
 | `privacy/index.html`, `terms/index.html` | Primary English legal pages with clean public URLs. |
 | `privacy.html`, `terms.html` | Lightweight compatibility pages for existing public links. They redirect to the clean English legal URLs. |
@@ -37,6 +38,7 @@ The site uses Vite's multi-page build support. Each production HTML page must be
 Current page groups:
 
 - Homepage: `index.html`
+- Localized homepages: generated `<locale>/index.html` entries for `/ja/`, `/zh/`, `/th/`, `/es/`, `/ar/`, `/ru/`, `/ko/`, `/hi-ur/`, `/pt/`, `/vi/`, `/tr/`, `/fa/`, `/yue/`, and `/id/`
 - Support page: `support.html`
 - SEO pages: 20 minimal-pair contrast pages registered via `seoPageSlugs` in `vite.config.js` (pages 1–20, from `ship-vs-sheep` through `heart-vs-hurt`). The full list lives in `vite.config.js`; the indexed URLs are in `public/sitemap.xml`.
 - Legal pages: primary English `privacy/index.html` and `terms/index.html`, legacy English `privacy.html` and `terms.html`, and localized `privacy-*.html` / `terms-*.html` pages

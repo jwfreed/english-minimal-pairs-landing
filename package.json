@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run generate:localized-homepages",
     "build": "vite build",
+    "generate:localized-homepages": "node scripts/generate-localized-homepages.mjs",
     "validate:app-store-tracking": "node scripts/validate-app-store-tracking.mjs",
     "preview": "vite preview",
     "validate:landing-copy": "node scripts/validate-landing-copy.mjs",
+    "validate:localized-homepages": "node scripts/validate-localized-homepages.mjs",
     "deploy": "npm run build && touch dist/CNAME && echo 'getsoundwise.co' > dist/CNAME"
   },
   "devDependencies": {

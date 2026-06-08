@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
 
 const seoPageSlugs = [
   'ship-vs-sheep',
@@ -48,6 +49,13 @@ const seoPageEntries = Object.fromEntries(
   seoPageSlugs.map((slug) => [slug, `${slug}/index.html`]),
 )
 
+const localizedHomepageEntries = Object.fromEntries(
+  LOCALIZED_HOMEPAGE_ROUTES.map((route) => [
+    `homepage-${route.slug}`,
+    `${route.slug}/index.html`,
+  ]),
+)
+
 // English legal pages have clean primary URLs while legacy .html URLs and
 // translated legal .html URLs remain built for existing public links.
 const legalPageEntries = {
@@ -70,6 +78,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         support: 'support.html',
+        ...localizedHomepageEntries,
         ...seoPageEntries,
         ...legalPageEntries,
       }
