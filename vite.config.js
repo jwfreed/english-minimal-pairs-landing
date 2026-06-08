@@ -23,6 +23,8 @@ const seoPageSlugs = [
   'heart-vs-hurt',
   'minimal-pairs-practice',
   'english-ear-training',
+  'ja/minimal-pairs-practice',
+  'ja/english-ear-training',
 ]
 
 const legalLocales = [
