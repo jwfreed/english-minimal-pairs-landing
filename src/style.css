@@ -2342,6 +2342,12 @@ body.seo-body .seo-content {
   padding-left: 1.4rem;
 }
 
+html[dir="rtl"] .seo-content ul,
+html[dir="rtl"] .seo-content ol {
+  padding-left: 0;
+  padding-right: 1.4rem;
+}
+
 .seo-content li + li {
   margin-top: 0.35rem;
 }
@@ -2413,6 +2419,11 @@ body.seo-body .seo-content {
   padding: 1rem 1.25rem;
 }
 
+html[dir="rtl"] .seo-content blockquote {
+  border-left: 0;
+  border-right: 4px solid var(--primary);
+}
+
 .seo-content blockquote p {
   color: var(--text-primary);
   font-weight: 700;
@@ -2437,6 +2448,11 @@ body.seo-body .seo-content {
   padding: 0.9rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-light);
+}
+
+html[dir="rtl"] .seo-content th,
+html[dir="rtl"] .seo-content td {
+  text-align: right;
 }
 
 .seo-content th {
@@ -2536,6 +2552,13 @@ body.seo-body .seo-content {
     gap: 0.65rem;
     border-left: 2px solid var(--border);
     padding-left: 1rem;
+  }
+
+  html[dir="rtl"] .seo-toc {
+    border-left: 0;
+    border-right: 2px solid var(--border);
+    padding-left: 0;
+    padding-right: 1rem;
   }
 
   .seo-toc p {
