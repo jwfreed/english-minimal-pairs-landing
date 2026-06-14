@@ -40,6 +40,8 @@ const seoPageSlugs = [
   'ar/minimal-pairs-practice',
   'hi-ur/english-ear-training',
   'hi-ur/minimal-pairs-practice',
+  'id/english-ear-training',
+  'id/minimal-pairs-practice',
 ]
 
 const legalLocales = [
