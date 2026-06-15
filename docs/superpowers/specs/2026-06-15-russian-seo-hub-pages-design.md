@@ -9,7 +9,7 @@ Add two Russian Soundwise SEO hub pages:
 - `/ru/english-ear-training/`
 - `/ru/minimal-pairs-practice/`
 
-The provided Russian Markdown files are the source of truth. Preserve the Russian prose exactly except for HTML escaping, required wrapping, and existing static markup conventions.
+The provided Russian Markdown files are the source of truth. Preserve the Russian prose exactly except for HTML escaping, tag wrapping, whitespace normalization, and existing static-site markup conventions.
 
 ## Existing Structure
 
@@ -128,11 +128,12 @@ Run targeted checks for:
 - `lang="ru"` in both Russian pages
 - Russian canonical URLs
 - `hreflang="ru"` in both new Russian pages
-- reciprocal `ru` alternates in the existing `english-ear-training` page family
-- reciprocal `ru` alternates in the existing `minimal-pairs-practice` page family
+- bidirectional hreflang coverage for `english-ear-training`: Russian page includes all existing alternates, and existing localized pages include the new `ru` alternate
+- bidirectional hreflang coverage for `minimal-pairs-practice`: Russian page includes all existing alternates, and existing localized pages include the new `ru` alternate
 - generated `dist/ru/english-ear-training/index.html`
 - generated `dist/ru/minimal-pairs-practice/index.html`
 - Russian copy preservation against the supplied source files
+- successful JSON-LD parsing for all structured-data blocks on both Russian pages
 
 If available, also run relevant validators such as:
 
@@ -140,6 +141,10 @@ If available, also run relevant validators such as:
 - `rtk npm run validate:localized-homepages`
 
 If a script is unavailable or fails, capture and report the raw output.
+
+## Git Safety
+
+Do not commit, push, or open a PR during implementation unless the user explicitly asks after reviewing the diff.
 
 ## Out Of Scope
 
