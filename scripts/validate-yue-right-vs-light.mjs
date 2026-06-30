@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root = process.cwd();
 const pagePath = path.join(root, 'yue', 'right-vs-light', 'index.html');
+const englishPagePath = path.join(root, 'right-vs-light', 'index.html');
 const viteConfigPath = path.join(root, 'vite.config.js');
 const sitemapPath = path.join(root, 'public', 'sitemap.xml');
 
@@ -105,6 +106,7 @@ function expectJsonLd(page) {
 }
 
 const page = readRequired(pagePath);
+const englishPage = readRequired(englishPagePath);
 const viteConfig = readRequired(viteConfigPath);
 const sitemap = readRequired(sitemapPath);
 
@@ -131,6 +133,12 @@ if (page) {
   if (/TODO|TBD/.test(page)) {
     issues.push('yue/right-vs-light/index.html: contains TODO/TBD placeholder');
   }
+}
+
+if (englishPage) {
+  expectContains(englishPage, '<link rel="alternate" hreflang="en" href="https://getsoundwise.co/right-vs-light/" />', 'right-vs-light/index.html');
+  expectContains(englishPage, '<link rel="alternate" hreflang="yue-Hant-HK" href="https://getsoundwise.co/yue/right-vs-light/" />', 'right-vs-light/index.html');
+  expectContains(englishPage, '<link rel="alternate" hreflang="x-default" href="https://getsoundwise.co/right-vs-light/" />', 'right-vs-light/index.html');
 }
 
 expectContains(viteConfig, "'yue/right-vs-light'", 'vite.config.js');
