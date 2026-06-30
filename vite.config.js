@@ -17,6 +17,7 @@ const seoPageSlugs = [
   'cup-vs-cop',
   'rice-vs-lice',
   'right-vs-light',
+  'yue/right-vs-light',
   'three-vs-tree',
   'thin-vs-tin',
   'fan-vs-van',
