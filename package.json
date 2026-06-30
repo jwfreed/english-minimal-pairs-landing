@@ -12,6 +12,7 @@
     "preview": "vite preview",
     "validate:landing-copy": "node scripts/validate-landing-copy.mjs",
     "validate:localized-homepages": "node scripts/validate-localized-homepages.mjs",
+    "validate:localized": "node scripts/validate-localized-seo-page.mjs",
     "deploy": "npm run build && touch dist/CNAME && echo 'getsoundwise.co' > dist/CNAME"
   },
   "devDependencies": {
