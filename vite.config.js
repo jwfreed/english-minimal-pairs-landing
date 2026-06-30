@@ -4,6 +4,7 @@ import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
 const seoPageSlugs = [
   'ship-vs-sheep',
   'ja/ship-vs-sheep',
+  'zh/ship-vs-sheep',
   'bit-vs-beat',
   'sit-vs-seat',
   'live-vs-leave',
