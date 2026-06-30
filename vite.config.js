@@ -5,6 +5,7 @@ const seoPageSlugs = [
   'ship-vs-sheep',
   'ja/ship-vs-sheep',
   'zh/ship-vs-sheep',
+  'es/ship-vs-sheep',
   'bit-vs-beat',
   'sit-vs-seat',
   'live-vs-leave',
