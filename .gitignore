@@ -14,6 +14,9 @@ dist
 dist-ssr
 *.local
 
+# Local Superpowers workflow notes/plans
+docs/superpowers/
+
 # Generated localized homepage route entries. These are rebuilt from index.html.
 ja/index.html
 zh/index.html
