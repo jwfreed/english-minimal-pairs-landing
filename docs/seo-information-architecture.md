@@ -137,6 +137,21 @@ Localized breadcrumbs must use **localized hub crumbs and localized link targets
 - The hub crumb on a `/ja/` page links to `/ja/minimal-pairs-practice/`, not the English
   hub.
 
+### Policy scope: default for new pages, opportunistic for legacy
+
+To avoid mass edits and JSON-LD drift, apply this in two tiers:
+
+- **New pages (mandatory):** the three-crumb pair breadcrumb (`Soundwise → Hub → Pair`) is
+  the **default and required** structure for every newly authored SEO page.
+- **Existing/legacy pages (opportunistic):** pages currently ship a two-crumb trail
+  (`Soundwise → Page`). Migrate them to three crumbs **opportunistically** — when a page is
+  already being edited for another reason — not in a single sweeping rewrite. Do not
+  bulk-edit all 20 pages or shared markup purely to add a crumb; that risks breaking
+  consistency and introducing visible/JSON-LD divergence.
+
+When a page is migrated, the visible breadcrumb and `BreadcrumbList` JSON-LD must be updated
+together in the same change (see below).
+
 ### Visible breadcrumbs and JSON-LD must match
 
 Two representations are required and they must be identical in label set and order:
@@ -179,7 +194,21 @@ yet include the intermediate hub crumb:
 
 Bringing pair pages up to the three-crumb policy and pointing localized home crumbs at the
 localized home are the two outstanding alignment tasks. New pages should be authored to the
-**policy** above; existing pages should be migrated toward it.
+**policy** above; existing pages should be migrated **opportunistically**, per the scope
+tiers in *Policy scope* above — not in a single sweeping pass.
+
+### Shared-template target (not yet implemented)
+
+Today, every SEO page defines its breadcrumb **twice and by hand**: as inline
+`seo-breadcrumb` HTML and as a separate `BreadcrumbList` JSON-LD block. There is no shared
+breadcrumb function (`src/seo-page.js` handles page behavior/analytics, not markup
+generation), so visible/JSON-LD divergence is possible per page.
+
+**Target rule:** breadcrumb structure should be derived from a single shared
+template/source so the visible trail and `BreadcrumbList` JSON-LD are generated from the
+same data and cannot drift. No page should hand-author breadcrumb structure independently.
+This is a **target**; introducing that shared template is future work, and until it exists,
+authors are responsible for keeping the two representations identical by hand.
 
 ---
 
@@ -408,7 +437,9 @@ A short summary of the rules above, for quick reference:
 5. **Breadcrumbs and JSON-LD always agree.** Visible trail and `BreadcrumbList` carry the
    same crumbs in the same order.
 6. **Reusable page templates.** Hubs and pair pages each follow a fixed structure
-   (`docs/seo-page-creation-guide.md`); new pages reuse it by swapping content.
+   (`docs/seo-page-creation-guide.md`); new pages reuse it by swapping content. Breadcrumb
+   structure should converge on a single shared source (target state, §3) so visible and
+   JSON-LD trails cannot diverge.
 7. **Localized navigation consistency.** Identical IA in every language; only labels and
    link targets change.
 8. **Scalable multilingual architecture.** New pages and locales slot into the existing
