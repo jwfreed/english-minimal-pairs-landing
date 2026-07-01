@@ -295,6 +295,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://getsoundwise.co/pt/ship-vs-sheep/</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getsoundwise.co/id/ship-vs-sheep/</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getsoundwise.co/ru/ship-vs-sheep/</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://getsoundwise.co/tr/ship-vs-sheep/</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://getsoundwise.co/bit-vs-beat/</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
