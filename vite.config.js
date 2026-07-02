@@ -24,6 +24,8 @@ const seoPageSlugs = [
   'right-vs-light',
   'yue/right-vs-light',
   'ko/right-vs-light',
+  'hi-ur/vest-vs-west',
+  'fa/vest-vs-west',
   'three-vs-tree',
   'thin-vs-tin',
   'fan-vs-van',
