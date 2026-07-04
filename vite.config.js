@@ -10,6 +10,8 @@ const seoPageSlugs = [
   'id/ship-vs-sheep',
   'ru/ship-vs-sheep',
   'tr/ship-vs-sheep',
+  'pat-vs-bat',
+  'ar/pat-vs-bat',
   'bit-vs-beat',
   'sit-vs-seat',
   'live-vs-leave',
