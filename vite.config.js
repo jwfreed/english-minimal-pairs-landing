@@ -28,6 +28,7 @@ const seoPageSlugs = [
   'fa/vest-vs-west',
   'three-vs-tree',
   'thin-vs-tin',
+  'th/thin-vs-tin',
   'fan-vs-van',
   'vest-vs-west',
   'bet-vs-bat',
