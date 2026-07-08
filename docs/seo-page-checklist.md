@@ -73,6 +73,8 @@ Do not add direct `gtag` calls for `exercise_start` or `exercise_complete` in th
 
 ## Validation Commands
 
+Before running validation, confirm the page is included in the `exercisePages` allowlist in `scripts/validate-seo-exercise.mjs`. The allowlist is the guardrail that keeps rollout intentional and one page at a time.
+
 Run all commands from the repository root:
 
 ```bash
