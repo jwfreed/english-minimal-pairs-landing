@@ -68,21 +68,48 @@ for (const filePath of collectHtmlFiles()) {
   }
 }
 
-const requiredSeoSourceSnippets = [
-  "import { getContrastById } from './contrast-catalog.js';",
-  "import { createExercise } from './exercise-engine.js';",
-  "import setupFunnelTracking from './funnel-tracking.js';",
-  "document.querySelectorAll('[data-exercise]')",
-  'mount.dataset.contrast',
-  'getContrastById',
-  'createExercise',
-  "experience_surface: 'seo_contrast_page'",
-  'setupFunnelTracking();',
+const requiredSeoSourcePatterns = [
+  {
+    description: 'imports contrast catalog data',
+    pattern: /import\s+\{[^}]*getContrastById[^}]*\}\s+from\s+['"]\.\/contrast-catalog\.js['"]/,
+  },
+  {
+    description: 'imports the reusable exercise engine',
+    pattern: /import\s+\{[^}]*createExercise[^}]*\}\s+from\s+['"]\.\/exercise-engine\.js['"]/,
+  },
+  {
+    description: 'imports centralized funnel tracking',
+    pattern: /import\s+\w+\s+from\s+['"]\.\/funnel-tracking\.js['"]/,
+  },
+  {
+    description: 'discovers declarative exercise mounts',
+    pattern: /querySelectorAll\(\s*['"]\[data-exercise\]['"]\s*\)/,
+  },
+  {
+    description: 'reads the mount contrast ID instead of hardcoding page data',
+    pattern: /\.dataset\.contrast\b/,
+  },
+  {
+    description: 'looks up contrast data from the catalog',
+    pattern: /getContrastById\(/,
+  },
+  {
+    description: 'delegates lifecycle behavior to createExercise',
+    pattern: /createExercise\(/,
+  },
+  {
+    description: 'marks SEO exercise analytics with the SEO surface',
+    pattern: /experience_surface\s*:\s*['"]seo_contrast_page['"]/,
+  },
+  {
+    description: 'registers centralized funnel tracking',
+    pattern: /setupFunnelTracking\(\s*\)/,
+  },
 ];
 
-for (const snippet of requiredSeoSourceSnippets) {
-  if (!seoSource.includes(snippet)) {
-    fail(`src/seo-page.js is missing required SEO exercise snippet: ${snippet}`);
+for (const { description, pattern } of requiredSeoSourcePatterns) {
+  if (!pattern.test(seoSource)) {
+    fail(`src/seo-page.js does not satisfy SEO exercise boundary: ${description}`);
   }
 }
 
