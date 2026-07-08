@@ -74,7 +74,7 @@ Homepage behavior must stay user-visible compatible with the pre-extraction impl
 
 ### `src/seo-page.js`
 
-Owns SEO page behavior. In Phase 2 it must not mount exercises yet. Future phases may let SEO pages create an exercise by resolving a URL slug to a catalog contrast and passing an SEO-specific adapter into `createExercise`.
+Owns SEO page behavior. SEO pages can mount exercises by declaring `data-exercise` and `data-contrast` in HTML, then letting this adapter resolve the catalog contrast and pass SEO-specific callbacks into `createExercise`.
 
 ## Ownership Boundaries
 
@@ -103,6 +103,41 @@ The homepage chooses a contrast from the visitor's selected UI language and can 
 
 SEO pages will start from a URL that maps to a catalog contrast. They should reuse the same engine lifecycle and analytics pipeline, but provide their own copy, mount DOM, and `experience_surface` value. SEO pages must not duplicate lifecycle logic or define contrast content inline.
 
+## SEO Integration Pattern
+
+SEO pages add exercises by declaring a small HTML mount, then letting `src/seo-page.js` act as the surface adapter:
+
+```html
+<div
+  id="ship-vs-sheep-listening-exercise"
+  class="seo-exercise"
+  data-exercise
+  data-contrast="ship-vs-sheep"
+></div>
+```
+
+```text
+SEO HTML mount
+    ↓
+seo-page.js adapter
+    ↓
+contrast-catalog lookup
+    ↓
+exercise-engine
+    ↓
+funnel-tracking
+```
+
+To add an exercise to a new SEO page:
+
+1. Add one `data-exercise` mount to the page.
+2. Set `data-contrast` to a valid `CONTRAST_CATALOG` ID.
+3. Keep page-specific copy and layout in the HTML/CSS surface.
+4. Let `src/seo-page.js` render exercise controls and pass adapter callbacks into `createExercise`.
+5. Do not add page-local scoring, audio lifecycle, or direct GA4 exercise calls.
+
+SEO exercise analytics must keep the existing event names and include `experience_surface: 'seo_contrast_page'` in `exerciseParams`. App Store click tracking remains the existing `app_store_click` path in `src/seo-page.js`.
+
 ## Analytics Event Ownership
 
 `exercise-engine.js` dispatches semantic Soundwise lifecycle events. Host surfaces provide `exerciseParams` in the event detail through adapter callbacks so params can include the correct `language` and `experience_surface`.
@@ -127,4 +162,4 @@ Homepage behavior changes require explicit regression verification. At minimum, 
 - The engine must not contain homepage-specific DOM or language assumptions.
 - GA4 forwarding must remain centralized in `src/funnel-tracking.js`.
 - The website must not track fake native app training starts.
-- Phase 2 does not add SEO exercise mounts.
+- Phase 3 mounts the SEO exercise on `/ship-vs-sheep/` only.
