@@ -3,6 +3,12 @@ import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
+const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
+const SEO_EXERCISE_CLASS_NAME = 'seo-exercise';
+
+function getSeoExerciseMountId(contrastId) {
+  return `${contrastId}-listening-exercise`;
+}
 
 function formatPairName(contrast) {
   return contrast.words.map((word) => word.text.toUpperCase()).join(' / ');
@@ -28,6 +34,15 @@ function buildSeoExerciseEventDetail(contrast, detail = {}) {
     contrast_id: contrast.id,
     exerciseParams: buildExerciseParams(contrast),
   };
+}
+
+function prepareSeoExerciseMount(mount, contrast) {
+  if (!mount.id) {
+    mount.id = getSeoExerciseMountId(contrast.id);
+  }
+
+  mount.classList.add(SEO_EXERCISE_CLASS_NAME);
+  return mount;
 }
 
 function createElement(tagName, { className, textContent, attributes = {} } = {}) {
@@ -400,14 +415,16 @@ function createSeoExercise(mount, contrast) {
 }
 
 function setupSeoExercises() {
-  document.querySelectorAll('[data-exercise]').forEach((mount) => {
+  document.querySelectorAll(SEO_EXERCISE_MOUNT_SELECTOR).forEach((mount) => {
     const contrast = getContrastById(mount.dataset.contrast);
 
     if (!contrast) {
+      console.warn(`No exercise contrast found for "${mount.dataset.contrast}".`);
       mount.hidden = true;
       return;
     }
 
+    prepareSeoExerciseMount(mount, contrast);
     createSeoExercise(mount, contrast);
   });
 }

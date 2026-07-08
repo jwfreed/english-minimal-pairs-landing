@@ -11,9 +11,9 @@ SEO pages
     ↓
 seo-page.js
     ↓
-exercise-engine.js
-    ↓
 contrast-catalog.js
+    ↓
+exercise-engine.js
     ↓
 funnel-tracking.js
     ↓
@@ -108,13 +108,10 @@ SEO pages will start from a URL that maps to a catalog contrast. They should reu
 SEO pages add exercises by declaring a small HTML mount, then letting `src/seo-page.js` act as the surface adapter:
 
 ```html
-<div
-  id="ship-vs-sheep-listening-exercise"
-  class="seo-exercise"
-  data-exercise
-  data-contrast="ship-vs-sheep"
-></div>
+<div data-exercise data-contrast="ship-vs-sheep"></div>
 ```
+
+The SEO adapter applies the standard `seo-exercise` class and, when no `id` is provided, assigns the predictable ID `<contrast-id>-listening-exercise`. A page may provide an explicit ID only when it has a real accessibility or linking need.
 
 ```text
 SEO HTML mount
@@ -132,11 +129,69 @@ To add an exercise to a new SEO page:
 
 1. Add one `data-exercise` mount to the page.
 2. Set `data-contrast` to a valid `CONTRAST_CATALOG` ID.
-3. Keep page-specific copy and layout in the HTML/CSS surface.
+3. Keep page-specific copy, article structure, and CTA placement in the HTML/CSS surface.
 4. Let `src/seo-page.js` render exercise controls and pass adapter callbacks into `createExercise`.
 5. Do not add page-local scoring, audio lifecycle, or direct GA4 exercise calls.
 
 SEO exercise analytics must keep the existing event names and include `experience_surface: 'seo_contrast_page'` in `exerciseParams`. App Store click tracking remains the existing `app_store_click` path in `src/seo-page.js`.
+
+## Adding A New Pronunciation Page
+
+A new SEO pronunciation page should be mostly content plus one declarative exercise mount.
+
+1. Create or update the page HTML using the existing SEO page structure.
+2. Confirm the page includes `<script type="module" src="/src/seo-page.js"></script>`.
+3. Add the exercise mount near the article section that explains active listening practice, before the primary article CTA:
+
+   ```html
+   <div data-exercise data-contrast="right-vs-light"></div>
+   ```
+
+4. Confirm `data-contrast` matches a key in `CONTRAST_CATALOG`.
+5. Add the page path and contrast ID to the `exercisePages` allowlist in `scripts/validate-seo-exercise.mjs`.
+6. Keep pronunciation facts in the catalog. Do not duplicate IPA or sound contrast labels in JavaScript.
+7. Keep page copy, examples, headings, related links, and App Store CTA copy in the HTML.
+8. Run the SEO exercise validator and the shared analytics validators before shipping.
+
+The mount should support the customer journey: explain the listening problem, let the visitor try the exercise, then show the CTA. Avoid burying the exercise below related links, FAQ, or the conversion CTA.
+
+## Catalog Data Rules
+
+`src/contrast-catalog.js` is domain data. Add only fields with an immediate consumer in code or documentation.
+
+Required fields:
+
+- `id`: stable lowercase hyphenated ID, usually `<word-a>-vs-<word-b>`
+- `words`: exactly two word records with `text` and `ipa`
+- `contrast`: visitor-visible sound contrast label, also used in analytics params
+
+Do not add speculative fields such as difficulty, tags, learning order, route paths, titles, slugs, or SEO metadata until a concrete feature consumes them. Page URLs and page-specific SEO copy belong to the HTML surface, not the catalog.
+
+## Common Mistakes
+
+- Adding more than one `data-exercise` mount to a page.
+- Setting `data-contrast` to a route slug that does not exist in `CONTRAST_CATALOG`.
+- Forgetting to add an intentionally rolled-out page to the SEO exercise validator allowlist.
+- Copying exercise scoring, round, or answer logic into an SEO page.
+- Calling `gtag('event', 'exercise_start')` or `gtag('event', 'exercise_complete')` from `src/seo-page.js`.
+- Adding fake native-app events such as `training_start`.
+- Moving `app_store_click` into funnel tracking.
+- Adding catalog fields for future ideas before anything consumes them.
+- Placing the exercise after the article CTA, related links, or FAQ.
+
+## Testing And Rollout Checklist
+
+Before shipping a page with an SEO exercise:
+
+1. Run `npm run validate:seo-exercise`.
+2. Run `npm run validate:exercise-engine`.
+3. Run `npm run validate:funnel-tracking`.
+4. Run `npm run validate:app-store-tracking`.
+5. Run `npm run build`.
+6. Manually open the homepage and verify the existing homepage exercise still starts, completes, scores, promotes the CTA, and sends one `exercise_start` plus one `exercise_complete`.
+7. Manually open the SEO page and verify the exercise renders at the intended point in the article, starts, completes, scores, and keeps the article CTA usable.
+8. Stub or inspect `window.gtag` and confirm SEO exercise params include `exercise_id`, `pair_name`, `sound_contrast`, `language`, and `experience_surface: 'seo_contrast_page'`.
+9. Confirm App Store CTA clicks still send only `app_store_click` with the existing payload shape.
 
 ## Analytics Event Ownership
 
@@ -162,4 +217,4 @@ Homepage behavior changes require explicit regression verification. At minimum, 
 - The engine must not contain homepage-specific DOM or language assumptions.
 - GA4 forwarding must remain centralized in `src/funnel-tracking.js`.
 - The website must not track fake native app training starts.
-- Phase 3 mounts the SEO exercise on `/ship-vs-sheep/` only.
+- The current SEO exercise allowlist mounts the exercise on `/ship-vs-sheep/` only.

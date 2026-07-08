@@ -1,10 +1,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const targetPage = 'ship-vs-sheep/index.html';
-const targetSource = fs.readFileSync(targetPage, 'utf8');
+const exercisePages = [
+  {
+    filePath: 'ship-vs-sheep/index.html',
+    contrastId: 'ship-vs-sheep',
+  },
+];
+const exercisePagePaths = new Set(exercisePages.map((page) => page.filePath));
 const seoSource = fs.readFileSync('src/seo-page.js', 'utf8');
 const docSource = fs.readFileSync('docs/exercise-architecture.md', 'utf8');
+const rolloutChecklistSource = fs.readFileSync('docs/seo-page-checklist.md', 'utf8');
 const styleSource = fs.readFileSync('src/style.css', 'utf8');
 
 let hasFailure = false;
@@ -39,32 +45,34 @@ function collectHtmlFiles(root = '.') {
   return files;
 }
 
-const requiredTargetSnippets = [
-  'data-exercise',
-  'data-contrast="ship-vs-sheep"',
-  'id="ship-vs-sheep-listening-exercise"',
-  '<script type="module" src="/src/seo-page.js"></script>',
-];
+for (const { filePath, contrastId } of exercisePages) {
+  const targetSource = fs.readFileSync(filePath, 'utf8');
+  const requiredTargetSnippets = [
+    'data-exercise',
+    `data-contrast="${contrastId}"`,
+    '<script type="module" src="/src/seo-page.js"></script>',
+  ];
 
-for (const snippet of requiredTargetSnippets) {
-  if (!targetSource.includes(snippet)) {
-    fail(`${targetPage} is missing required SEO exercise snippet: ${snippet}`);
+  for (const snippet of requiredTargetSnippets) {
+    if (!targetSource.includes(snippet)) {
+      fail(`${filePath} is missing required SEO exercise snippet: ${snippet}`);
+    }
+  }
+
+  const exerciseMountCount = countOccurrences(targetSource, 'data-exercise');
+  if (exerciseMountCount !== 1) {
+    fail(`${filePath} should contain exactly one data-exercise mount, found ${exerciseMountCount}`);
   }
 }
 
-const exerciseMountCount = countOccurrences(targetSource, 'data-exercise');
-if (exerciseMountCount !== 1) {
-  fail(`${targetPage} should contain exactly one data-exercise mount, found ${exerciseMountCount}`);
-}
-
 for (const filePath of collectHtmlFiles()) {
-  if (filePath === targetPage) {
+  if (exercisePagePaths.has(filePath)) {
     continue;
   }
 
   const source = fs.readFileSync(filePath, 'utf8');
   if (source.includes('data-exercise')) {
-    fail(`Phase 3 should only mount the SEO exercise on ${targetPage}; found data-exercise in ${filePath}`);
+    fail(`SEO exercise rollout should only mount exercises on allowlisted pages; found data-exercise in ${filePath}`);
   }
 }
 
@@ -83,7 +91,11 @@ const requiredSeoSourcePatterns = [
   },
   {
     description: 'discovers declarative exercise mounts',
-    pattern: /querySelectorAll\(\s*['"]\[data-exercise\]['"]\s*\)/,
+    pattern: /querySelectorAll\(\s*SEO_EXERCISE_MOUNT_SELECTOR\s*\)/,
+  },
+  {
+    description: 'requires contrast IDs on SEO exercise mounts',
+    pattern: /SEO_EXERCISE_MOUNT_SELECTOR\s*=\s*['"]\[data-exercise\]\[data-contrast\]['"]/,
   },
   {
     description: 'reads the mount contrast ID instead of hardcoding page data',
@@ -104,6 +116,14 @@ const requiredSeoSourcePatterns = [
   {
     description: 'registers centralized funnel tracking',
     pattern: /setupFunnelTracking\(\s*\)/,
+  },
+  {
+    description: 'applies the standard SEO exercise class in the adapter',
+    pattern: /classList\.add\(\s*SEO_EXERCISE_CLASS_NAME\s*\)/,
+  },
+  {
+    description: 'generates predictable mount IDs from contrast IDs',
+    pattern: /getSeoExerciseMountId\([^)]*\)/,
   },
 ];
 
@@ -134,11 +154,30 @@ const requiredDocSnippets = [
   'seo_contrast_page',
   'SEO HTML mount',
   'seo-page.js adapter',
+  'Adding A New Pronunciation Page',
+  'Common Mistakes',
+  'Testing And Rollout Checklist',
 ];
 
 for (const snippet of requiredDocSnippets) {
   if (!docSource.includes(snippet)) {
     fail(`docs/exercise-architecture.md is missing SEO integration documentation: ${snippet}`);
+  }
+}
+
+const requiredChecklistSnippets = [
+  'Required Files',
+  'Required Page Structure',
+  '<div data-exercise data-contrast="right-vs-light"></div>',
+  'Analytics Contract',
+  'Validation Commands',
+  'Manual QA',
+  'Acceptance Criteria',
+];
+
+for (const snippet of requiredChecklistSnippets) {
+  if (!rolloutChecklistSource.includes(snippet)) {
+    fail(`docs/seo-page-checklist.md is missing rollout guidance: ${snippet}`);
   }
 }
 
