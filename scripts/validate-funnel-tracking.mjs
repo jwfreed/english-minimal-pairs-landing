@@ -1,16 +1,41 @@
 import fs from 'node:fs';
 
-// Guards the SEO funnel measurement in src/main.js:
-//  - exercise_start and exercise_complete are each emitted exactly once
-//    (no duplicate semantic events, no per-round inflation), and
-//  - the pre-existing app_store_click tracking is preserved.
-const source = fs.readFileSync('src/main.js', 'utf8');
+// Guards the homepage funnel measurement:
+//  - exercise_start and exercise_complete are forwarded from src/funnel-tracking.js
+//    exactly once per page load using in-memory closure state,
+//  - event params are built by the homepage and passed through event.detail.exerciseParams,
+//  - the pre-existing app_store_click tracking in src/main.js is preserved.
+const mainSource = fs.readFileSync('src/main.js', 'utf8');
+const funnelSource = fs.readFileSync('src/funnel-tracking.js', 'utf8');
 
-const exactlyOnce = [
+const exactlyOnceInFunnelModule = [
   "'event', 'exercise_start'",
   "'event', 'exercise_complete'",
 ];
-const required = ["'event', 'app_store_click'"];
+const requiredInMain = [
+  "import setupFunnelTracking from './funnel-tracking.js';",
+  "experience_surface: 'homepage'",
+  "exerciseParams: buildExerciseParams(",
+  "'event', 'app_store_click'",
+];
+const requiredInFunnelModule = [
+  'export default function setupFunnelTracking()',
+  "window.addEventListener('soundwise:demo_started'",
+  "window.addEventListener('soundwise:demo_completed'",
+  "window.addEventListener('soundwise:challenge_completed'",
+  "typeof window.gtag !== 'function'",
+  "window.gtag('event', 'exercise_start', event.detail.exerciseParams)",
+  "window.gtag('event', 'exercise_complete', event.detail.exerciseParams)",
+  'let exerciseStartSent = false',
+  'let exerciseCompleteSent = false',
+];
+const forbiddenInFunnelModule = [
+  'hero-demo-config',
+  'buildExerciseParams',
+  'localStorage',
+  'sessionStorage',
+  'document.cookie',
+];
 
 let hasFailure = false;
 
@@ -18,17 +43,31 @@ function countOccurrences(haystack, needle) {
   return haystack.split(needle).length - 1;
 }
 
-for (const snippet of exactlyOnce) {
-  const count = countOccurrences(source, snippet);
+for (const snippet of exactlyOnceInFunnelModule) {
+  const count = countOccurrences(funnelSource, snippet);
   if (count !== 1) {
-    console.error(`src/main.js should fire ${snippet} exactly once, found ${count}`);
+    console.error(`src/funnel-tracking.js should fire ${snippet} exactly once, found ${count}`);
     hasFailure = true;
   }
 }
 
-for (const snippet of required) {
-  if (!countOccurrences(source, snippet)) {
-    console.error(`src/main.js is missing preserved tracking snippet: ${snippet}`);
+for (const snippet of requiredInMain) {
+  if (!mainSource.includes(snippet)) {
+    console.error(`src/main.js is missing required tracking snippet: ${snippet}`);
+    hasFailure = true;
+  }
+}
+
+for (const snippet of requiredInFunnelModule) {
+  if (!funnelSource.includes(snippet)) {
+    console.error(`src/funnel-tracking.js is missing required tracking snippet: ${snippet}`);
+    hasFailure = true;
+  }
+}
+
+for (const snippet of forbiddenInFunnelModule) {
+  if (funnelSource.includes(snippet)) {
+    console.error(`src/funnel-tracking.js includes forbidden snippet: ${snippet}`);
     hasFailure = true;
   }
 }

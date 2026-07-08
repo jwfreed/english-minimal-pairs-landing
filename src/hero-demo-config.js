@@ -1,3 +1,5 @@
+import { CONTRAST_CATALOG } from './contrast-catalog.js';
+
 export const HERO_DEMO_LOCALE_ORDER = [
   'english',
   'japanese',
@@ -16,143 +18,98 @@ export const HERO_DEMO_LOCALE_ORDER = [
   'indonesian',
 ];
 
-export const HERO_DEMO_CONTRASTS = {
+const HERO_DEMO_LOCALE_META = {
   english: {
     runtimeLocale: 'en',
     nativeName: 'English',
-    contrast: '/ɪ/ vs /iː/',
-    words: [
-      { text: 'ship', ipa: '/ʃɪp/' },
-      { text: 'sheep', ipa: '/ʃiːp/' },
-    ],
+    contrastId: 'ship-vs-sheep',
   },
   japanese: {
     runtimeLocale: '日本語',
     nativeName: '日本語',
-    contrast: '/r/ vs /l/',
-    words: [
-      { text: 'right', ipa: '/raɪt/' },
-      { text: 'light', ipa: '/laɪt/' },
-    ],
+    contrastId: 'right-vs-light',
   },
   mandarin: {
     runtimeLocale: '中文',
     nativeName: '普通话',
-    contrast: '/θ/ vs /s/',
-    words: [
-      { text: 'think', ipa: '/θɪŋk/' },
-      { text: 'sink', ipa: '/sɪŋk/' },
-    ],
+    contrastId: 'think-vs-sink',
   },
   thai: {
     runtimeLocale: 'ภาษาไทย',
     nativeName: 'ไทย',
-    contrast: '/θ/ vs /t/',
-    words: [
-      { text: 'thin', ipa: '/θɪn/' },
-      { text: 'tin', ipa: '/tɪn/' },
-    ],
+    contrastId: 'thin-vs-tin',
   },
   spanish: {
     runtimeLocale: 'idioma español',
     nativeName: 'Español',
-    contrast: '/ɪ/ vs /iː/',
-    words: [
-      { text: 'ship', ipa: '/ʃɪp/' },
-      { text: 'sheep', ipa: '/ʃiːp/' },
-    ],
+    contrastId: 'ship-vs-sheep',
   },
   arabic: {
     runtimeLocale: 'اللغة العربية',
     nativeName: 'العربية',
-    contrast: '/p/ vs /b/',
-    words: [
-      { text: 'pack', ipa: '/pæk/' },
-      { text: 'back', ipa: '/bæk/' },
-    ],
+    contrastId: 'pack-vs-back',
   },
   russian: {
     runtimeLocale: 'русский язык',
     nativeName: 'Русский',
-    contrast: '/w/ vs /v/',
-    words: [
-      { text: 'wine', ipa: '/waɪn/' },
-      { text: 'vine', ipa: '/vaɪn/' },
-    ],
+    contrastId: 'wine-vs-vine',
   },
   korean: {
     runtimeLocale: '한국어',
     nativeName: '한국어',
-    contrast: '/f/ vs /p/',
-    words: [
-      { text: 'fan', ipa: '/fæn/' },
-      { text: 'pan', ipa: '/pæn/' },
-    ],
+    contrastId: 'fan-vs-pan',
   },
   hindi_urdu: {
     runtimeLocale: 'हिंदी/اردو',
     nativeName: 'हिंदी',
-    contrast: '/v/ vs /w/',
-    words: [
-      { text: 'vest', ipa: '/vest/' },
-      { text: 'west', ipa: '/west/' },
-    ],
+    contrastId: 'vest-vs-west',
   },
   portuguese: {
     runtimeLocale: 'Português',
     nativeName: 'Português',
-    contrast: '/ɪ/ vs /iː/',
-    words: [
-      { text: 'live', ipa: '/lɪv/' },
-      { text: 'leave', ipa: '/liːv/' },
-    ],
+    contrastId: 'live-vs-leave',
   },
   vietnamese: {
     runtimeLocale: 'Tiếng Việt',
     nativeName: 'Tiếng Việt',
-    contrast: '/d/ vs /ð/',
-    words: [
-      { text: 'day', ipa: '/deɪ/' },
-      { text: 'they', ipa: '/ðeɪ/' },
-    ],
+    contrastId: 'day-vs-they',
   },
   turkish: {
     runtimeLocale: 'Türkçe',
     nativeName: 'Türkçe',
-    contrast: '/θ/ vs /t/',
-    words: [
-      { text: 'thin', ipa: '/θɪn/' },
-      { text: 'tin', ipa: '/tɪn/' },
-    ],
+    contrastId: 'thin-vs-tin',
   },
   persian: {
     runtimeLocale: 'زبان فارسی',
     nativeName: 'فارسی',
-    contrast: '/θ/ vs /s/',
-    words: [
-      { text: 'think', ipa: '/θɪŋk/' },
-      { text: 'sink', ipa: '/sɪŋk/' },
-    ],
+    contrastId: 'think-vs-sink',
   },
   cantonese: {
     runtimeLocale: '廣東話',
     nativeName: '廣東話',
-    contrast: '/l/ vs /n/',
-    words: [
-      { text: 'light', ipa: '/laɪt/' },
-      { text: 'night', ipa: '/naɪt/' },
-    ],
+    contrastId: 'light-vs-night',
   },
   indonesian: {
     runtimeLocale: 'bahasa Indo',
     nativeName: 'Bahasa Indonesia',
-    contrast: '/f/ vs /p/',
-    words: [
-      { text: 'fan', ipa: '/fæn/' },
-      { text: 'pan', ipa: '/pæn/' },
-    ],
+    contrastId: 'fan-vs-pan',
   },
 };
+
+export const HERO_DEMO_CONTRASTS = Object.fromEntries(
+  Object.entries(HERO_DEMO_LOCALE_META).map(([demoLocale, meta]) => {
+    const contrast = CONTRAST_CATALOG[meta.contrastId] || CONTRAST_CATALOG['ship-vs-sheep'];
+
+    return [
+      demoLocale,
+      {
+        runtimeLocale: meta.runtimeLocale,
+        nativeName: meta.nativeName,
+        ...contrast,
+      },
+    ];
+  })
+);
 
 export const HERO_DEMO_BROWSER_LANGUAGE_MAP = {
   ja: 'japanese',

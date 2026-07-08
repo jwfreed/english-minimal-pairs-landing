@@ -1,4 +1,6 @@
 import './style.css';
+import { createExercise } from './exercise-engine.js';
+import setupFunnelTracking from './funnel-tracking.js';
 import { applyTranslations, getCurrentLanguage, resolveRuntimeLocale, setLanguage, translations } from './i18n.js';
 import { getRuntimeLocaleMeta } from './landing-copy-runtime.js';
 import {
@@ -30,6 +32,7 @@ const heroDemoState = {
 };
 
 const dom = {};
+let heroExercise = null;
 
 function getTranslation(locale, key) {
   const runtimeLocale = resolveRuntimeLocale(locale) || 'en';
@@ -60,39 +63,8 @@ function buildExerciseParams(detail = {}) {
     pair_name: `${first.text.toUpperCase()} / ${second.text.toUpperCase()}`,
     sound_contrast: config.contrast,
     language: detail.runtimeLocale || heroDemoState.runtimeLocale,
+    experience_surface: 'homepage',
   };
-}
-
-// The hero demo already dispatches soundwise:* CustomEvents for its own state
-// machine. This forwards the two funnel-relevant ones to GA4 as exercise_start
-// and exercise_complete. Each fires at most once per page session so a
-// per-round demo_started or a language-switch replay cannot inflate the funnel.
-function setupFunnelTracking() {
-  let exerciseStartSent = false;
-  let exerciseCompleteSent = false;
-
-  window.addEventListener('soundwise:demo_started', (event) => {
-    if (exerciseStartSent || typeof window.gtag !== 'function') {
-      return;
-    }
-
-    exerciseStartSent = true;
-    window.gtag('event', 'exercise_start', buildExerciseParams(event.detail));
-  });
-
-  const handleExerciseComplete = (event) => {
-    if (exerciseCompleteSent || typeof window.gtag !== 'function') {
-      return;
-    }
-
-    exerciseCompleteSent = true;
-    window.gtag('event', 'exercise_complete', buildExerciseParams(event.detail));
-  };
-
-  // demo_completed fires for the standard demo; challenge_completed is the same
-  // completion state reached via a shared challenge link.
-  window.addEventListener('soundwise:demo_completed', handleExerciseComplete);
-  window.addEventListener('soundwise:challenge_completed', handleExerciseComplete);
 }
 
 function getDemoConfig(runtimeLocale = heroDemoState.runtimeLocale) {
@@ -104,6 +76,61 @@ function getDemoConfig(runtimeLocale = heroDemoState.runtimeLocale) {
     demoLocale,
     config: HERO_DEMO_CONTRASTS[demoLocale] || HERO_DEMO_CONTRASTS.english,
   };
+}
+
+function syncHeroDemoState(snapshot = heroExercise?.getSnapshot()) {
+  if (!snapshot) {
+    return;
+  }
+
+  heroDemoState.round = snapshot.round;
+  heroDemoState.correct = snapshot.correct;
+  heroDemoState.targetIndex = snapshot.targetIndex;
+  heroDemoState.stage = snapshot.stage;
+  heroDemoState.playbackToken = snapshot.playbackToken;
+  heroDemoState.audioUnlocked = snapshot.audioUnlocked;
+  heroDemoState.hasCompletedDemo = snapshot.hasCompletedDemo;
+}
+
+function getExerciseOptions() {
+  return {
+    challengeMode: heroDemoState.isChallengeMode,
+    maxRounds: DEMO_MAX_ROUNDS,
+  };
+}
+
+function updateExerciseContext() {
+  if (!heroExercise) {
+    return;
+  }
+
+  const { config } = getDemoConfig();
+  heroExercise.updateContext({
+    nextContrast: config,
+    nextUiLocale: heroDemoState.runtimeLocale,
+    nextOptions: getExerciseOptions(),
+  });
+}
+
+function buildExerciseEventDetail(eventName, detail = {}) {
+  const baseDetail = {
+    runtimeLocale: heroDemoState.runtimeLocale,
+    demoLocale: heroDemoState.demoLocale,
+    ...detail,
+  };
+
+  if (
+    eventName === 'demo_started'
+    || eventName === 'demo_completed'
+    || eventName === 'challenge_completed'
+  ) {
+    return {
+      ...baseDetail,
+      exerciseParams: buildExerciseParams(baseDetail),
+    };
+  }
+
+  return baseDetail;
 }
 
 function getChallengeSlug(demoLocale = heroDemoState.demoLocale) {
@@ -191,7 +218,8 @@ function getEnglishVoice() {
 }
 
 function markUserInteraction() {
-  heroDemoState.audioUnlocked = true;
+  heroExercise?.unlockAudio();
+  syncHeroDemoState();
 }
 
 function unlockPrimaryCta() {
@@ -259,34 +287,52 @@ function speakWord(text, activeButton) {
   });
 }
 
-async function playWord(index, activeButton, { allowWithoutInteraction = false } = {}) {
+function createHeroExercise() {
   const { config } = getDemoConfig();
-  const word = config.words[index];
 
-  if (!word || (!heroDemoState.audioUnlocked && !allowWithoutInteraction)) {
-    return;
-  }
+  return createExercise({
+    mount: {
+      buildEventDetail: buildExerciseEventDetail,
+      dispatchEvent: dispatchDemoEvent,
+      getTargetIndex: () => Math.round(Math.random()),
+      onFeedback(feedback, snapshot) {
+        syncHeroDemoState(snapshot);
 
-  unlockPrimaryCta();
-  await speakWord(word.text, activeButton);
+        if (!feedback) {
+          if (dom.heroDemoFeedbackCopy) {
+            dom.heroDemoFeedbackCopy.textContent = '';
+          }
+          return;
+        }
+
+        renderFeedback(feedback.selectedIndex, feedback.correct);
+      },
+      onStateChange(snapshot) {
+        syncHeroDemoState(snapshot);
+        renderDemo();
+      },
+      onPlaybackReady: unlockPrimaryCta,
+      onListenPrompt: () => {
+        announce(getTranslation(heroDemoState.runtimeLocale, 'demoListenPrompt'));
+      },
+      onFeedbackReady: () => {
+        announce(dom.heroDemoFeedbackCopy?.textContent || '');
+      },
+      onPreviewPrompt: () => {
+        announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
+      },
+      playWord: (word, activeButton) => speakWord(word.text, activeButton),
+      wait: (ms) => new Promise((resolve) => window.setTimeout(resolve, ms)),
+    },
+    contrast: config,
+    uiLocale: heroDemoState.runtimeLocale,
+    options: getExerciseOptions(),
+  });
 }
 
-async function replayContrast() {
-  if (!heroDemoState.audioUnlocked) {
-    return;
-  }
-
-  const { config } = getDemoConfig();
-  const playbackToken = ++heroDemoState.playbackToken;
-
-  for (const word of config.words) {
-    if (playbackToken !== heroDemoState.playbackToken) {
-      return;
-    }
-
-    await speakWord(word.text);
-    await new Promise((resolve) => window.setTimeout(resolve, 220));
-  }
+async function playWord(index, activeButton, { allowWithoutInteraction = false } = {}) {
+  updateExerciseContext();
+  return heroExercise?.playWord(index, activeButton, { allowWithoutInteraction });
 }
 
 function buildPreviewButton(word, index, action) {
@@ -481,12 +527,13 @@ function renderDemo() {
   // so we bail early here and let setupHeroDemo() call renderDemo() once ready.
   if (!dom.nativeLanguage) return;
 
-  const { config } = getDemoConfig();
+  const { demoLocale, config } = getDemoConfig();
   const { isRtl } = getRuntimeLocaleMeta(heroDemoState.runtimeLocale);
   const visibleRound = Math.min(heroDemoState.round, DEMO_MAX_ROUNDS);
   const showSummary = heroDemoState.stage === 'summary';
 
-  heroDemoState.demoLocale = getDemoConfig().demoLocale;
+  heroDemoState.demoLocale = demoLocale;
+  updateExerciseContext();
 
   dom.nativeLanguage.value = heroDemoState.runtimeLocale;
   dom.heroDemoRound.textContent = formatMessage(
@@ -533,69 +580,18 @@ function renderDemo() {
 }
 
 async function beginRoundTest() {
-  heroDemoState.stage = 'test';
-  heroDemoState.targetIndex = Math.round(Math.random());
-  dom.heroDemoFeedbackCopy.textContent = '';
-  renderDemo();
-  dispatchDemoEvent('demo_started', {
-    runtimeLocale: heroDemoState.runtimeLocale,
-    demoLocale: heroDemoState.demoLocale,
-    round: heroDemoState.round,
-    challengeMode: heroDemoState.isChallengeMode,
-  });
-
-  if (heroDemoState.audioUnlocked) {
-    announce(getTranslation(heroDemoState.runtimeLocale, 'demoListenPrompt'));
-    await playWord(heroDemoState.targetIndex, dom.heroDemoPlay);
-  }
+  updateExerciseContext();
+  await heroExercise?.startRound(dom.heroDemoPlay);
 }
 
 async function handleGuess(selectedIndex) {
-  if (heroDemoState.stage !== 'test' || heroDemoState.targetIndex === null) {
-    return;
-  }
-
-  const isCorrect = selectedIndex === heroDemoState.targetIndex;
-  if (isCorrect) {
-    heroDemoState.correct += 1;
-  }
-
-  dispatchDemoEvent('demo_round_completed', {
-    runtimeLocale: heroDemoState.runtimeLocale,
-    demoLocale: heroDemoState.demoLocale,
-    round: heroDemoState.round,
-    correct: isCorrect,
-  });
-
-  heroDemoState.stage = heroDemoState.round >= DEMO_MAX_ROUNDS ? 'summary' : 'feedback';
-  heroDemoState.hasCompletedDemo = heroDemoState.stage === 'summary';
-  renderFeedback(selectedIndex, isCorrect);
-  renderDemo();
-  unlockPrimaryCta();
-  announce(dom.heroDemoFeedbackCopy.textContent || '');
-  await replayContrast();
-
-  if (heroDemoState.hasCompletedDemo) {
-    dispatchDemoEvent(heroDemoState.isChallengeMode ? 'challenge_completed' : 'demo_completed', {
-      runtimeLocale: heroDemoState.runtimeLocale,
-      demoLocale: heroDemoState.demoLocale,
-      correct: heroDemoState.correct,
-      total: DEMO_MAX_ROUNDS,
-    });
-  }
+  updateExerciseContext();
+  await heroExercise?.answer(selectedIndex);
 }
 
 function nextRound() {
-  if (heroDemoState.stage !== 'feedback' || heroDemoState.round >= DEMO_MAX_ROUNDS) {
-    return;
-  }
-
-  heroDemoState.round += 1;
-  heroDemoState.targetIndex = null;
-  heroDemoState.stage = 'preview';
-  dom.heroDemoFeedbackCopy.textContent = '';
-  renderDemo();
-  announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
+  updateExerciseContext();
+  heroExercise?.nextRound();
 }
 
 function syncLanguageMenu(runtimeLocale) {
@@ -606,12 +602,19 @@ function syncLanguageMenu(runtimeLocale) {
 }
 
 function resetHeroDemoState() {
-  heroDemoState.round = 1;
-  heroDemoState.correct = 0;
-  heroDemoState.targetIndex = null;
-  heroDemoState.stage = 'preview';
-  heroDemoState.hasCompletedDemo = false;
-  heroDemoState.playbackToken += 1;
+  updateExerciseContext();
+
+  if (heroExercise) {
+    syncHeroDemoState(heroExercise.reset({ notify: false }));
+  } else {
+    heroDemoState.round = 1;
+    heroDemoState.correct = 0;
+    heroDemoState.targetIndex = null;
+    heroDemoState.stage = 'preview';
+    heroDemoState.hasCompletedDemo = false;
+    heroDemoState.playbackToken += 1;
+    heroDemoState.audioUnlocked = false;
+  }
 
   if (dom.heroDemoFeedbackCopy) {
     dom.heroDemoFeedbackCopy.textContent = '';
@@ -784,6 +787,8 @@ function setupHeroDemo() {
   dom.heroShareStatus = document.getElementById('hero-share-status');
   dom.heroShareLinkWrap = document.getElementById('hero-share-link-wrap');
   dom.heroShareLink = document.getElementById('hero-share-link');
+  heroExercise = createHeroExercise();
+  syncHeroDemoState();
 
   populateNativeLanguageDropdown();
 

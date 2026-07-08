@@ -9,6 +9,7 @@
     "build": "vite build",
     "generate:localized-homepages": "node scripts/generate-localized-homepages.mjs",
     "validate:app-store-tracking": "node scripts/validate-app-store-tracking.mjs",
+    "validate:exercise-engine": "node --test scripts/exercise-engine.test.mjs",
     "validate:funnel-tracking": "node scripts/validate-funnel-tracking.mjs",
     "preview": "vite preview",
     "validate:landing-copy": "node scripts/validate-landing-copy.mjs",
