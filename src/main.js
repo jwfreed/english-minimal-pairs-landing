@@ -47,6 +47,54 @@ function dispatchDemoEvent(name, detail = {}) {
   window.dispatchEvent(new CustomEvent(`soundwise:${name}`, { detail }));
 }
 
+// Grounded parameters for the SEO funnel exercise_* events. Everything here is
+// derived from the active demo contrast config and the visitor's chosen UI
+// language — no PII, no invented values.
+function buildExerciseParams(detail = {}) {
+  const demoLocale = detail.demoLocale || heroDemoState.demoLocale;
+  const config = HERO_DEMO_CONTRASTS[demoLocale] || HERO_DEMO_CONTRASTS.english;
+  const [first, second] = config.words;
+
+  return {
+    exercise_id: config.words.map((word) => word.text.toLowerCase()).join('-'),
+    pair_name: `${first.text.toUpperCase()} / ${second.text.toUpperCase()}`,
+    sound_contrast: config.contrast,
+    language: detail.runtimeLocale || heroDemoState.runtimeLocale,
+  };
+}
+
+// The hero demo already dispatches soundwise:* CustomEvents for its own state
+// machine. This forwards the two funnel-relevant ones to GA4 as exercise_start
+// and exercise_complete. Each fires at most once per page session so a
+// per-round demo_started or a language-switch replay cannot inflate the funnel.
+function setupFunnelTracking() {
+  let exerciseStartSent = false;
+  let exerciseCompleteSent = false;
+
+  window.addEventListener('soundwise:demo_started', (event) => {
+    if (exerciseStartSent || typeof window.gtag !== 'function') {
+      return;
+    }
+
+    exerciseStartSent = true;
+    window.gtag('event', 'exercise_start', buildExerciseParams(event.detail));
+  });
+
+  const handleExerciseComplete = (event) => {
+    if (exerciseCompleteSent || typeof window.gtag !== 'function') {
+      return;
+    }
+
+    exerciseCompleteSent = true;
+    window.gtag('event', 'exercise_complete', buildExerciseParams(event.detail));
+  };
+
+  // demo_completed fires for the standard demo; challenge_completed is the same
+  // completion state reached via a shared challenge link.
+  window.addEventListener('soundwise:demo_completed', handleExerciseComplete);
+  window.addEventListener('soundwise:challenge_completed', handleExerciseComplete);
+}
+
 function getDemoConfig(runtimeLocale = heroDemoState.runtimeLocale) {
   const demoLocale = heroDemoState.forcedDemoLocale
     || RUNTIME_LOCALE_TO_DEMO_LOCALE[runtimeLocale]
@@ -1014,6 +1062,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeroDemo();
   setupLanguageSwitcher();
   setupCtaTracking();
+  // Register before any demo interaction can dispatch soundwise:* events.
+  setupFunnelTracking();
 
   // Non-critical setup — deferred to window 'load' which fires after all
   // resources (images, fonts) are fetched, reliably after FCP/LCP.
