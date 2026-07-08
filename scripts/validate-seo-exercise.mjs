@@ -6,6 +6,10 @@ const exercisePages = [
     filePath: 'ship-vs-sheep/index.html',
     contrastId: 'ship-vs-sheep',
   },
+  {
+    filePath: 'right-vs-light/index.html',
+    contrastId: 'right-vs-light',
+  },
 ];
 const exercisePagePaths = new Set(exercisePages.map((page) => page.filePath));
 const seoSource = fs.readFileSync('src/seo-page.js', 'utf8');
