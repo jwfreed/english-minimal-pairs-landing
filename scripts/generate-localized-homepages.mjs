@@ -58,6 +58,15 @@ function replaceOptional(source, pattern, replacement) {
   return source.replace(pattern, replacement);
 }
 
+function stripUnavailableOptionalSections(source, runtimeLocale) {
+  const t = translations[runtimeLocale] || translations.en;
+
+  return source.replace(
+    /\n\s*<!-- English-only testimonial; localized pages omit this until approved translations exist\. -->\s*<section\b(?=[^>]*\bdata-localized-optional-key="([^"]+)")[\s\S]*?<\/section>\n?/g,
+    (match, translationKey) => (String(t[translationKey] || '').trim() ? match : '\n')
+  );
+}
+
 function buildLocalizedHtml(template, route) {
   const { htmlLang } = getRuntimeLocaleMeta(route.runtimeLocale);
   const canonicalUrl = getHomepageUrl(route.slug);
@@ -68,6 +77,7 @@ function buildLocalizedHtml(template, route) {
   const escapedRuntimeLocale = escapeAttribute(route.runtimeLocale);
 
   let html = template;
+  html = stripUnavailableOptionalSections(html, route.runtimeLocale);
   html = replaceRequired(html, /<html lang="[^"]*">/, `<html lang="${escapeAttribute(htmlLang)}">`, 'html lang');
   html = replaceRequired(html, /<body(.*?)>/, `<body$1 data-initial-runtime-locale="${escapedRuntimeLocale}">`, 'initial locale marker');
   html = replaceRequired(html, /<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${escapedCanonicalUrl}" />`, 'canonical');

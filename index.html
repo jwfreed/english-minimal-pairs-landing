@@ -165,7 +165,7 @@
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <div class="badge" data-i18n="heroBadge">Ear training for English learners</div>
+          <div class="badge" data-i18n="heroBadge">English Ear Training</div>
           <h1 class="hero-title">
             <span data-i18n="heroTitle">Hear the difference between English words that sound the same.</span>
           </h1>
@@ -206,7 +206,7 @@
     </section>
 
     <!-- Interactive Demo Section -->
-    <section id="demo" class="demo-section">
+    <section id="demo" class="demo-section demo-section-prominent">
       <div class="container">
         <h2 class="demo-section-heading" data-i18n="demoSectionHeading">Can you hear the difference?</h2>
 
@@ -270,6 +270,22 @@
             <label class="sr-only" for="hero-share-link" data-i18n="demoShareFallback">Copy challenge link</label>
             <input id="hero-share-link" class="hero-share-link" type="text" readonly />
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- English-only testimonial; localized pages omit this until approved translations exist. -->
+    <section class="testimonials testimonial-compact" data-localized-optional-key="testimonial1">
+      <div class="container">
+        <div class="testimonial-compact-card">
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="testimonial-text" data-i18n="testimonial1">
+            im FLABBERGASTED by how POWERFUL this method is! as a brazilian i struggle with a few words and this app literally helps me gain my confidence back!
+          </blockquote>
+          <p class="testimonial-author">
+            <strong>rafaismyname</strong>
+            <span data-i18n="testimonial1Author">App Store reviewer</span>
+          </p>
         </div>
       </div>
     </section>
@@ -446,52 +462,52 @@
         <h2 class="section-title" data-i18n="featuresTitle">Focused English Listening Practice</h2>
 
         <div class="features-grid">
+          <div class="feature-card feature-card-priority">
+            <div class="feature-icon">
+              <img src="/native-speaker-audio.webp" alt="English listening practice" width="60" height="60" loading="lazy" decoding="async">
+            </div>
+            <h3 data-i18n="featureCard3Title">Hear difficult English sound contrasts</h3>
+            <p data-i18n="featureCard3Text">Train with English audio so your ear adapts to real English sounds</p>
+          </div>
+
           <div class="feature-card">
             <div class="feature-icon">
               <img src="/personalized-l1.webp" alt="Personalized" width="60" height="60" loading="lazy" decoding="async">
             </div>
-            <h3 data-i18n="featureCard1Title">Personalized to Your L1</h3>
+            <h3 data-i18n="featureCard1Title">Practice sounds chosen for your first language</h3>
             <p data-i18n="featureCard1Text">Focuses on the specific sound pairs that challenge speakers of your native language</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/multiple-languages.webp" alt="Multiple Languages" width="60" height="60" loading="lazy" decoding="async">
+              <img src="/auto-save-progress.webp" alt="Immediate feedback" width="60" height="60" loading="lazy" decoding="async">
             </div>
-            <h3 data-i18n="featureCard2Title">Multiple Languages</h3>
-            <p data-i18n="featureCard2Text">Interface available in 14 languages, with support for learners worldwide</p>
+            <h3 data-i18n="featureCard6Title">Get immediate feedback</h3>
+            <p data-i18n="featureCard6Text">See the correct word, the exact sound difference, IPA transcription, and replay to compare</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/native-speaker-audio.webp" alt="English voice audio" width="60" height="60" loading="lazy" decoding="async">
+              <img src="/quick-sessions.webp" alt="Adaptive practice" width="60" height="60" loading="lazy" decoding="async">
             </div>
-            <h3 data-i18n="featureCard3Title">English voice audio</h3>
-            <p data-i18n="featureCard3Text">Train with English audio so your ear adapts to real English sounds</p>
+            <h3 data-i18n="featureCard4Title">Build with adaptive practice</h3>
+            <p data-i18n="featureCard4Text">Starts slow, speeds up as you improve, and adjusts when you make mistakes</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon">
               <img src="/track-progress.webp" alt="Track Progress" width="60" height="60" loading="lazy" decoding="async">
             </div>
-            <h3 data-i18n="featureCard4Title">Track Progress</h3>
-            <p data-i18n="featureCard4Text">See your perception accuracy improve over time with detailed charts and statistics</p>
+            <h3 data-i18n="featureCard5Title">Track progress by sound contrast</h3>
+            <p data-i18n="featureCard5Text">See your perception accuracy improve over time with detailed charts and statistics</p>
           </div>
 
           <div class="feature-card">
             <div class="feature-icon">
-              <img src="/quick-sessions.webp" alt="Quick Sessions" width="60" height="60" loading="lazy" decoding="async">
+              <img src="/multiple-languages.webp" alt="Voice variation" width="60" height="60" loading="lazy" decoding="async">
             </div>
-            <h3 data-i18n="featureCard5Title">Quick Sessions</h3>
-            <p data-i18n="featureCard5Text">Practice a few English sound contrasts at a time.</p>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon">
-              <img src="/auto-save-progress.webp" alt="Auto-Save Progress" width="60" height="60" loading="lazy" decoding="async">
-            </div>
-            <h3 data-i18n="featureCard6Title">Auto-Save Progress</h3>
-            <p data-i18n="featureCard6Text">Your results are automatically saved after every practice session</p>
+            <h3 data-i18n="featureCard2Title">Hear varied English voices</h3>
+            <p data-i18n="featureCard2Text">Interface available in 14 languages, with support for learners worldwide</p>
           </div>
         </div>
       </div>
@@ -505,11 +521,13 @@
           <p class="credibility-body" data-i18n="credibilityBody">
             Soundwise uses techniques commonly used in pronunciation training: minimal pairs, repeated listening, immediate feedback, and focused contrast practice.
           </p>
-          <ul class="credibility-bullets" aria-label="What Soundwise includes">
+          <ul class="credibility-bullets credibility-bullets-core" aria-label="Core Soundwise learning principles">
             <li data-i18n="credibilityBulletRealPairs">Real English minimal pairs</li>
             <li data-i18n="credibilityBulletIdentificationPractice">Listen-and-choose identification practice</li>
             <li data-i18n="credibilityBulletImmediateFeedback">Immediate feedback after each response</li>
             <li data-i18n="credibilityBulletRepeatedExposure">Repeated exposure to difficult contrasts</li>
+          </ul>
+          <ul class="credibility-bullets credibility-bullets-support" aria-label="What Soundwise includes">
             <li data-i18n="credibilityBulletL1Targeting">Targeted practice by first-language background (14 L1 backgrounds)</li>
             <li data-i18n="credibilityBulletEnglishVoiceAudio">English voice audio</li>
             <li data-i18n="credibilityBulletProgressTracking">Progress tracking by sound contrast</li>

@@ -914,6 +914,12 @@ body.challenge-mode .hero-primer {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+.demo-section-prominent {
+  padding: 4.75rem 0 5.5rem;
+  background:
+    linear-gradient(180deg, #fff7ed 0%, var(--bg-secondary) 42%, var(--bg-secondary) 100%);
+}
+
 .demo-section-heading {
   font-size: 1.75rem;
   font-weight: 800;
@@ -932,7 +938,7 @@ body.challenge-mode .hero-primer {
 /* Language selector inside demo section gets lighter, more compact styling */
 .demo-section .language-selector {
   max-width: 360px;
-  margin: 0 auto 1.75rem;
+  margin: 0 auto 1.25rem;
   text-align: left;
   background: white;
   backdrop-filter: none;
@@ -954,15 +960,23 @@ body.challenge-mode .hero-primer {
 
 /* Demo card inside demo section: wider, higher contrast */
 .demo-section .hero-demo-card {
-  max-width: 720px;
+  max-width: 780px;
   margin: 0 auto;
   background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
-  border: none;
-  box-shadow: var(--shadow-xl), 0 0 0 1px rgba(230, 126, 34, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: var(--shadow-xl), 0 18px 42px rgba(180, 83, 9, 0.22);
+}
+
+.demo-section .hero-demo-title {
+  font-size: 1.65rem;
+}
+
+.demo-section .hero-demo-action {
+  min-width: min(100%, 12rem);
 }
 
 .demo-section .hero-cta-reveal {
-  max-width: 720px;
+  max-width: 780px;
   margin: 1.25rem auto 0;
   color: var(--text-primary);
 }
@@ -976,7 +990,7 @@ body.challenge-mode .hero-primer {
 }
 
 .demo-section .hero-share-block {
-  max-width: 720px;
+  max-width: 780px;
   margin: 1rem auto 0;
   background: white;
   border: 1px solid var(--border);
@@ -1868,6 +1882,36 @@ body.challenge-mode .hero-primer {
   font-size: 0.875rem;
 }
 
+.testimonial-compact {
+  padding: 3rem 0;
+  background: white;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.testimonial-compact-card {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.75rem 2rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.testimonial-compact .stars {
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-compact .testimonial-text {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.testimonial-compact .testimonial-author {
+  margin: 0;
+}
+
 /* ===========================
    Features
    =========================== */
@@ -1890,6 +1934,12 @@ body.challenge-mode .hero-primer {
   padding: 2rem;
   border-radius: var(--radius-xl);
   transition: var(--transition);
+}
+
+.feature-card-priority {
+  background: white;
+  border: 1px solid rgba(230, 126, 34, 0.24);
+  box-shadow: var(--shadow-md);
 }
 
 .feature-card:hover {
@@ -3043,6 +3093,22 @@ html[lang="한국어"] body {
   grid-template-columns: 1fr;
   gap: 0.75rem;
   text-align: left;
+}
+
+.credibility-bullets-core {
+  margin-bottom: 1rem;
+}
+
+.credibility-bullets-core li {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.credibility-bullets-support {
+  opacity: 0.86;
 }
 
 @media (min-width: 640px) {
