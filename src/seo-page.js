@@ -475,6 +475,7 @@ function setupCtaTracking() {
           page_path: window.location.pathname,
           link_url: link.href,
           link_id: link.id || undefined,
+          cta_position: link.dataset.ctaPosition || undefined,
           transport_type: 'beacon',
         });
       }
