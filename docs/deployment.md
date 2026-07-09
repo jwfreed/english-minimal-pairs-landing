@@ -155,13 +155,13 @@ If the workflow was changed, restore the CNAME generation step.
 
 Confirm the page is listed in `vite.config.js` under `build.rollupOptions.input`.
 
-For clean URLs, use:
+For clean SEO URLs, use a content source path:
 
 ```text
-example-page/index.html
+content/pairs/example-page/index.html
 ```
 
-and add an input entry pointing to that file.
+and add a `seoPageSlugs` entry for the public route slug. `vite.config.js` maps content source paths back to the existing clean public URL layout during build.
 
 ### Page is live but not in the sitemap
 

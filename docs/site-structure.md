@@ -17,12 +17,13 @@ The architecture is intentionally simple:
 | Path | Purpose |
 | --- | --- |
 | `index.html` | Main Soundwise landing page. |
-| `<locale>/index.html` | Generated localized homepage route entries such as `ja/index.html` and `zh/index.html`. They are rebuilt from `index.html` and ignored by Git. |
+| `content/locales/<locale>/index.html` | Generated localized homepage source entries such as `content/locales/ja/index.html` and `content/locales/zh/index.html`. They are rebuilt from `index.html`, ignored by Git, and emitted at public routes such as `/ja/`. |
 | `support.html` | Public support page. |
-| `privacy/index.html`, `terms/index.html` | Primary English legal pages with clean public URLs. |
-| `privacy.html`, `terms.html` | Lightweight compatibility pages for existing public links. They redirect to the clean English legal URLs. |
-| `privacy-*.html`, `terms-*.html` | Localized legal variants. These intentionally stay at the repository root to preserve existing `.html` URLs. |
-| `*-vs-*/index.html` | Clean-URL SEO pages for English minimal-pair sound contrasts. |
+| `legal/privacy/index.html`, `legal/terms/index.html` | Primary English legal page sources with clean public URLs. |
+| `legal/privacy/privacy.html`, `legal/terms/terms.html` | Lightweight compatibility page sources for existing public `.html` links. They redirect to the clean English legal URLs. |
+| `legal/privacy/privacy-*.html`, `legal/terms/terms-*.html` | Localized legal variant sources emitted at existing root `.html` URLs. |
+| `content/pairs/*/index.html` | Clean-URL SEO page sources for English minimal-pair sound contrasts and SEO hubs. |
+| `content/locales/*/*/index.html` | Localized SEO page and SEO hub sources. |
 | `src/` | Shared CSS, landing-page JavaScript, i18n runtime code, and SEO-page behavior. |
 | `public/` | Static assets copied directly into `dist/`. |
 | `scripts/` | Repository validation scripts. |
@@ -38,10 +39,10 @@ The site uses Vite's multi-page build support. Each production HTML page must be
 Current page groups:
 
 - Homepage: `index.html`
-- Localized homepages: generated `<locale>/index.html` entries for `/ja/`, `/zh/`, `/th/`, `/es/`, `/ar/`, `/ru/`, `/ko/`, `/hi-ur/`, `/pt/`, `/vi/`, `/tr/`, `/fa/`, `/yue/`, and `/id/`
+- Localized homepages: generated `content/locales/<locale>/index.html` source entries for `/ja/`, `/zh/`, `/th/`, `/es/`, `/ar/`, `/ru/`, `/ko/`, `/hi-ur/`, `/pt/`, `/vi/`, `/tr/`, `/fa/`, `/yue/`, and `/id/`
 - Support page: `support.html`
-- SEO pages: 20 minimal-pair contrast pages registered via `seoPageSlugs` in `vite.config.js` (pages 1–20, from `ship-vs-sheep` through `heart-vs-hurt`). The full list lives in `vite.config.js`; the indexed URLs are in `public/sitemap.xml`.
-- Legal pages: primary English `privacy/index.html` and `terms/index.html`, legacy English `privacy.html` and `terms.html`, and localized `privacy-*.html` / `terms-*.html` pages
+- SEO pages: minimal-pair contrast pages and SEO hubs registered via `seoPageSlugs` in `vite.config.js`. English sources live in `content/pairs/`; localized sources live in `content/locales/`. The indexed URLs are in `public/sitemap.xml`.
+- Legal pages: primary English `legal/privacy/index.html` and `legal/terms/index.html`, legacy English `legal/privacy/privacy.html` and `legal/terms/terms.html`, and localized `legal/privacy/privacy-*.html` / `legal/terms/terms-*.html` pages
 
 ### Legal Pages
 
@@ -63,27 +64,27 @@ https://getsoundwise.co/terms.html
 
 The legacy English `.html` files are compatibility pages only. They use a meta refresh redirect, a canonical tag pointing to the clean URL, and a visible fallback link. Do not put full legal copy in the legacy files.
 
-Localized legal pages are intentionally different. They remain at the repository root:
+Localized legal pages are intentionally different. Their source files live in `legal/`, but Vite emits them at root `.html` URLs:
 
 ```text
 https://getsoundwise.co/privacy-ja.html
 https://getsoundwise.co/terms-ja.html
 ```
 
-GitHub Pages serves static files and directories directly from the Vite output. Moving translated files into nested folders would change public URLs and would require a separate compatibility plan for every existing translation. For this static site, keeping translated legal files at the root is the lowest-risk structure.
+GitHub Pages serves static files and directories directly from the Vite output. `vite.config.js` maps the nested legal source files back to the existing root `.html` output paths so no public redirects are required.
 
 Localized legal pages use this naming pattern:
 
 ```text
-privacy-[locale].html
-terms-[locale].html
+legal/privacy/privacy-[locale].html
+legal/terms/terms-[locale].html
 ```
 
 Use short lowercase locale identifiers that match the existing pattern, for example `ja`, `zh`, `yue`, `es`, or compound identifiers such as `hi-ur` when one page intentionally serves more than one language community.
 
 When adding a new privacy or terms translation:
 
-1. Create both files at the repository root if both documents are available, for example `privacy-de.html` and `terms-de.html`.
+1. Create both source files under `legal/` if both documents are available, for example `legal/privacy/privacy-de.html` and `legal/terms/terms-de.html`.
 2. Keep each translated page self-canonical on its own root `.html` URL.
 3. Add the locale code to `legalLocales` in `vite.config.js`.
 4. Add the language link to the existing legal language switchers.
@@ -98,7 +99,7 @@ Do not rewrite legal copy as part of file-organization work. Treat copy updates 
 Clean URL pages use a directory plus `index.html`, for example:
 
 ```text
-ship-vs-sheep/index.html
+content/pairs/ship-vs-sheep/index.html
 ```
 
 This builds to a URL like:
@@ -107,7 +108,7 @@ This builds to a URL like:
 https://getsoundwise.co/ship-vs-sheep/
 ```
 
-Minimal-pair SEO pages currently live as top-level route directories, not under a shared `seo/` or `minimal-pairs/` folder. This preserves short production URLs and avoids redirects. Group these pages conceptually through documentation and the `seoPageSlugs` list in `vite.config.js`, not by changing their public route paths.
+Minimal-pair SEO source pages live in `content/pairs/`, while localized SEO sources live in `content/locales/`. Vite maps those source paths back to short production URLs such as `/ship-vs-sheep/` and `/ja/ship-vs-sheep/`; do not create root source directories to preserve public URLs.
 
 Root-level pages use `.html` filenames, for example:
 
@@ -152,6 +153,7 @@ src/style.css
 - `seoPageSlugs` for clean-URL minimal-pair pages.
 - `legalLocales` for translated privacy and terms pages.
 - `seoPageEntries` and `legalPageEntries` derive the Vite input map from those lists.
+- `preservePublicHtmlRoutes()` maps nested source files back to the existing public HTML output paths.
 - Root utility pages such as `index.html` and `support.html` remain explicit in the input map.
 
 ```js
@@ -226,7 +228,7 @@ Each SEO page should include unique page metadata in its HTML `<head>`. Existing
 
 For a new clean-URL SEO page:
 
-1. Create `[word-a]-vs-[word-b]/index.html`.
+1. Create `content/pairs/[word-a]-vs-[word-b]/index.html`.
 2. Follow the content and metadata guidance in `docs/seo-page-creation-guide.md`.
 3. Use lowercase ASCII slugs with hyphens.
 4. Add the slug, without leading or trailing slashes, to `seoPageSlugs` in `vite.config.js`.
@@ -236,8 +238,8 @@ For a new clean-URL SEO page:
 
 For a new legal translation:
 
-1. Create `privacy-[locale].html` and/or `terms-[locale].html` at the repository root.
-2. Follow the existing root `.html` URL convention.
+1. Create `legal/privacy/privacy-[locale].html` and/or `legal/terms/terms-[locale].html`.
+2. Follow the existing root `.html` public URL convention.
 3. Add the locale to `legalLocales` in `vite.config.js`.
 4. Update legal language switcher links.
 5. Run `npm run build`.

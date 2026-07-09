@@ -4,7 +4,7 @@ Use this checklist when adding one new SEO pronunciation page, or an intentional
 
 ## Required Files
 
-- SEO page HTML, for example `right-vs-light/index.html`
+- SEO page HTML, for example `content/pairs/right-vs-light/index.html`
 - Existing shared script: `src/seo-page.js`
 - Existing shared styles: `src/style.css`
 - Existing contrast catalog: `src/contrast-catalog.js`
@@ -30,7 +30,7 @@ Add the page to the validator allowlist in `scripts/validate-seo-exercise.mjs`:
 
 ```js
 {
-  filePath: 'right-vs-light/index.html',
+  filePath: 'content/pairs/right-vs-light/index.html',
   contrastId: 'right-vs-light',
 },
 ```

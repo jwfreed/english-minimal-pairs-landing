@@ -2,8 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const pagePath = path.join(root, 'yue', 'right-vs-light', 'index.html');
-const englishPagePath = path.join(root, 'right-vs-light', 'index.html');
+const pagePath = path.join(root, 'content', 'locales', 'yue', 'right-vs-light', 'index.html');
+const englishPagePath = path.join(root, 'content', 'pairs', 'right-vs-light', 'index.html');
 const viteConfigPath = path.join(root, 'vite.config.js');
 const sitemapPath = path.join(root, 'public', 'sitemap.xml');
 

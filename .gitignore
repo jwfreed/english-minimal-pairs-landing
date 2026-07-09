@@ -18,20 +18,20 @@ dist-ssr
 docs/superpowers/
 
 # Generated localized homepage route entries. These are rebuilt from index.html.
-ja/index.html
-zh/index.html
-th/index.html
-es/index.html
-ar/index.html
-ru/index.html
-ko/index.html
-hi-ur/index.html
-pt/index.html
-vi/index.html
-tr/index.html
-fa/index.html
-yue/index.html
-id/index.html
+content/locales/ja/index.html
+content/locales/zh/index.html
+content/locales/th/index.html
+content/locales/es/index.html
+content/locales/ar/index.html
+content/locales/ru/index.html
+content/locales/ko/index.html
+content/locales/hi-ur/index.html
+content/locales/pt/index.html
+content/locales/vi/index.html
+content/locales/tr/index.html
+content/locales/fa/index.html
+content/locales/yue/index.html
+content/locales/id/index.html
 
 # Playwright artifacts
 .playwright-cli/

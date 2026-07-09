@@ -4,6 +4,7 @@ import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
 const sourcePath = path.join(root, 'index.html');
+const localizedContentDir = path.join(root, 'content', 'locales');
 
 const routeModule = await import(pathToFileURL(path.join(root, 'src', 'localized-homepage-routes.js')).href);
 const i18nModule = await import(pathToFileURL(path.join(root, 'src', 'i18n.js')).href);
@@ -96,7 +97,7 @@ function main() {
   const template = fs.readFileSync(sourcePath, 'utf8');
 
   for (const route of LOCALIZED_HOMEPAGE_ROUTES) {
-    const outputPath = path.join(root, route.slug, 'index.html');
+    const outputPath = path.join(localizedContentDir, route.slug, 'index.html');
     fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     fs.writeFileSync(outputPath, buildLocalizedHtml(template, route));
   }

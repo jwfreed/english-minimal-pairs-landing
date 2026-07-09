@@ -62,22 +62,22 @@ indexes the individual pair pages.
 
 ## 2. URL Architecture
 
-### The rule: flat, top-level, clean URLs
+### The rule: flat, top-level, clean public URLs
 
-Every SEO page lives at the site root as a directory with an `index.html`:
+Every SEO page is emitted at the site root as a clean public URL. English source files live under `content/pairs/`:
 
 ```text
-ship-vs-sheep/index.html      →  https://getsoundwise.co/ship-vs-sheep/
-bit-vs-beat/index.html        →  https://getsoundwise.co/bit-vs-beat/
-minimal-pairs-practice/index.html → https://getsoundwise.co/minimal-pairs-practice/
-english-ear-training/index.html   → https://getsoundwise.co/english-ear-training/
+content/pairs/ship-vs-sheep/index.html             →  https://getsoundwise.co/ship-vs-sheep/
+content/pairs/bit-vs-beat/index.html               →  https://getsoundwise.co/bit-vs-beat/
+content/pairs/minimal-pairs-practice/index.html    →  https://getsoundwise.co/minimal-pairs-practice/
+content/pairs/english-ear-training/index.html      →  https://getsoundwise.co/english-ear-training/
 ```
 
-Localized pages prepend a locale segment, but the page slug stays flat:
+Localized source files live under `content/locales/` and prepend a locale segment in the public URL, but the page slug stays flat:
 
 ```text
-ja/ship-vs-sheep/index.html         →  https://getsoundwise.co/ja/ship-vs-sheep/
-ja/minimal-pairs-practice/index.html →  https://getsoundwise.co/ja/minimal-pairs-practice/
+content/locales/ja/ship-vs-sheep/index.html         →  https://getsoundwise.co/ja/ship-vs-sheep/
+content/locales/ja/minimal-pairs-practice/index.html →  https://getsoundwise.co/ja/minimal-pairs-practice/
 ```
 
 **Pair pages stay at `/ship-vs-sheep/` and `/ja/ship-vs-sheep/`. Do NOT nest them under a
@@ -89,14 +89,11 @@ hub path.** There is no `/minimal-pairs-practice/ship-vs-sheep/` and none should
 | --- | --- |
 | **Shorter URLs** | `/ship-vs-sheep/` is memorable, linkable, and clean in search results. |
 | **Cleaner slugs** | The slug carries the keyword directly with no path noise. |
-| **Existing routing** | Every slug is already registered in `seoPageSlugs` in `vite.config.js`; the build derives `slug/index.html` from each entry. |
-| **Easier maintenance** | New pages are one slug string plus one directory — no path migrations. |
+| **Existing routing** | Every slug is already registered in `seoPageSlugs` in `vite.config.js`; the build maps each content source path back to its existing public route. |
+| **Easier maintenance** | New pages are one slug string plus one content directory — no public path migrations. |
 | **Existing Vite configuration** | Vite's multi-page build maps each flat slug to an entry point. Nesting would change public URLs and require redirects for already-indexed pages. |
 
-This matches the existing decision recorded in `docs/site-structure.md`: *"Minimal-pair SEO
-pages currently live as top-level route directories… This preserves short production URLs
-and avoids redirects. Group these pages conceptually through documentation and the
-`seoPageSlugs` list… not by changing their public route paths."*
+This matches the existing decision recorded in `docs/site-structure.md`: source files are grouped under `content/`, while public SEO URLs stay short and flat through the Vite output map.
 
 The hierarchy in Section 1 is therefore expressed **conceptually** (breadcrumbs, links,
 schema), never through the URL path.
@@ -187,8 +184,8 @@ Example `BreadcrumbList` for a pair page under the policy:
 The existing pages currently ship a **two-crumb** trail (`Soundwise → Page`) and do **not**
 yet include the intermediate hub crumb:
 
-- `ship-vs-sheep/index.html`: `Soundwise → Ship vs Sheep`
-- `ja/ship-vs-sheep/index.html`: `Soundwise → ship vs sheep の聞き分け`
+- `content/pairs/ship-vs-sheep/index.html`: `Soundwise → Ship vs Sheep`
+- `content/locales/ja/ship-vs-sheep/index.html`: `Soundwise → ship vs sheep の聞き分け`
 - Localized hub breadcrumbs currently link the first crumb to `/` (English home) rather
   than the localized home (e.g. `/ja/`).
 
@@ -278,7 +275,7 @@ nothing, fails review.
 
 ### Current implementation status
 
-`ja/ship-vs-sheep/index.html` currently links **upward and laterally to English pages**
+`content/locales/ja/ship-vs-sheep/index.html` currently links **upward and laterally to English pages**
 (`/minimal-pairs-practice/`, `/english-ear-training/`, `/bit-vs-beat/`, …) even though the
 Japanese hubs (`/ja/minimal-pairs-practice/`, `/ja/english-ear-training/`) already exist.
 Under the same-language-preference rule the hub links should point to the `/ja/` hubs; the
@@ -368,7 +365,7 @@ language for the *same* content. They are **not** navigation and must not be con
 internal links:
 
 - Hubs already declare a full hreflang cluster (`en` + all 14 locales + `x-default`), as in
-  `minimal-pairs-practice/index.html`.
+  `content/pairs/minimal-pairs-practice/index.html`.
 - A page can (and should) declare hreflang alternates for languages it does **not** link to
   in its visible navigation.
 - Keep hreflang clusters consistent and reciprocal across a page's localized set. Aligning
@@ -384,7 +381,7 @@ New pages slot into the existing architecture **without changing the URL structu
 ### Adding a new pair page
 
 ```text
- 1. Create  /[word-a]-vs-[word-b]/index.html   (flat, top-level slug)
+ 1. Create  content/pairs/[word-a]-vs-[word-b]/index.html
         │
  2. Register the slug in seoPageSlugs (vite.config.js)
         │
@@ -406,7 +403,7 @@ Minimal Pairs Practice Hub through **breadcrumbs and links**, not through its pa
 
 ### Adding a localized version of an existing page
 
-- Create `<locale>/<slug>/index.html` and register `<locale>/<slug>` in `seoPageSlugs`.
+- Create `content/locales/<locale>/<slug>/index.html` and register `<locale>/<slug>` in `seoPageSlugs`.
 - Reuse the same structure; localize labels, breadcrumbs, and link targets.
 - Point internal links at same-language hubs/pairs that exist; fall back to English only
   where a localized target is not yet live.

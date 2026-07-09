@@ -1,4 +1,6 @@
 import { defineConfig } from 'vite'
+import fs from 'node:fs'
+import path from 'node:path'
 import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
 
 const seoPageSlugs = [
@@ -86,34 +88,150 @@ const legalLocales = [
   'id',
 ]
 
+function getSeoPageSourcePath(slug) {
+  return slug.includes('/')
+    ? `content/locales/${slug}/index.html`
+    : `content/pairs/${slug}/index.html`
+}
+
+function getLocalizedHomepageSourcePath(slug) {
+  return `content/locales/${slug}/index.html`
+}
+
+function getLegacyLegalSourcePath(kind, locale) {
+  return `legal/${kind}/${kind}-${locale}.html`
+}
+
 const seoPageEntries = Object.fromEntries(
-  seoPageSlugs.map((slug) => [slug, `${slug}/index.html`]),
+  seoPageSlugs.map((slug) => [slug, getSeoPageSourcePath(slug)]),
 )
 
 const localizedHomepageEntries = Object.fromEntries(
   LOCALIZED_HOMEPAGE_ROUTES.map((route) => [
     `homepage-${route.slug}`,
-    `${route.slug}/index.html`,
+    getLocalizedHomepageSourcePath(route.slug),
   ]),
 )
 
 // English legal pages have clean primary URLs while legacy .html URLs and
 // translated legal .html URLs remain built for existing public links.
 const legalPageEntries = {
-  privacy: 'privacy/index.html',
-  terms: 'terms/index.html',
-  privacyLegacy: 'privacy.html',
-  termsLegacy: 'terms.html',
+  privacy: 'legal/privacy/index.html',
+  terms: 'legal/terms/index.html',
+  privacyLegacy: 'legal/privacy/privacy.html',
+  termsLegacy: 'legal/terms/terms.html',
   ...Object.fromEntries(
-    legalLocales.map((locale) => [`privacy-${locale}`, `privacy-${locale}.html`]),
+    legalLocales.map((locale) => [`privacy-${locale}`, getLegacyLegalSourcePath('privacy', locale)]),
   ),
   ...Object.fromEntries(
-    legalLocales.map((locale) => [`terms-${locale}`, `terms-${locale}.html`]),
+    legalLocales.map((locale) => [`terms-${locale}`, getLegacyLegalSourcePath('terms', locale)]),
   ),
+}
+
+const htmlOutputFileNames = new Map([
+  ...seoPageSlugs.map((slug) => [getSeoPageSourcePath(slug), `${slug}/index.html`]),
+  ...LOCALIZED_HOMEPAGE_ROUTES.map((route) => [
+    getLocalizedHomepageSourcePath(route.slug),
+    `${route.slug}/index.html`,
+  ]),
+  ['legal/privacy/index.html', 'privacy/index.html'],
+  ['legal/terms/index.html', 'terms/index.html'],
+  ['legal/privacy/privacy.html', 'privacy.html'],
+  ['legal/terms/terms.html', 'terms.html'],
+  ...legalLocales.map((locale) => [
+    getLegacyLegalSourcePath('privacy', locale),
+    `privacy-${locale}.html`,
+  ]),
+  ...legalLocales.map((locale) => [
+    getLegacyLegalSourcePath('terms', locale),
+    `terms-${locale}.html`,
+  ]),
+])
+
+function preservePublicHtmlRoutes() {
+  let outDir
+
+  function distPath(fileName) {
+    return path.join(outDir, ...fileName.split('/'))
+  }
+
+  function removeEmptyDirectories(directory) {
+    if (!fs.existsSync(directory)) {
+      return
+    }
+
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        removeEmptyDirectories(path.join(directory, entry.name))
+      }
+    }
+
+    try {
+      fs.rmdirSync(directory)
+    } catch {
+      // Directory still contains non-migrated files.
+    }
+  }
+
+  function renameBundleAssets(bundle) {
+    for (const [bundleKey, item] of Object.entries(bundle)) {
+      if (item.type !== 'asset') {
+        continue
+      }
+
+      const outputFileName = htmlOutputFileNames.get(item.fileName)
+      if (!outputFileName || outputFileName === item.fileName) {
+        continue
+      }
+
+      if (bundle[outputFileName]) {
+        this.error(`Cannot emit ${outputFileName}; output path already exists`)
+      }
+
+      delete bundle[bundleKey]
+      item.fileName = outputFileName
+      bundle[outputFileName] = item
+    }
+  }
+
+  return {
+    name: 'preserve-public-html-routes',
+    enforce: 'post',
+    configResolved(config) {
+      outDir = path.resolve(config.root, config.build.outDir)
+    },
+    generateBundle(_, bundle) {
+      renameBundleAssets.call(this, bundle)
+    },
+    writeBundle() {
+      for (const [sourceFileName, outputFileName] of htmlOutputFileNames) {
+        if (sourceFileName === outputFileName) {
+          continue
+        }
+
+        const sourcePath = distPath(sourceFileName)
+        if (!fs.existsSync(sourcePath)) {
+          continue
+        }
+
+        const outputPath = distPath(outputFileName)
+        if (fs.existsSync(outputPath)) {
+          this.error(`Cannot emit ${outputFileName}; output path already exists`)
+        }
+
+        fs.mkdirSync(path.dirname(outputPath), { recursive: true })
+        fs.renameSync(sourcePath, outputPath)
+      }
+
+      removeEmptyDirectories(path.join(outDir, 'content'))
+      removeEmptyDirectories(path.join(outDir, 'legal'))
+    },
+  }
 }
 
 export default defineConfig({
   base: '/',
+  plugins: [preservePublicHtmlRoutes()],
   build: {
     rollupOptions: {
       input: {

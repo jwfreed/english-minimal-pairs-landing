@@ -38,12 +38,12 @@ Use lowercase ASCII words, hyphens between words, and the order that matches the
 
 ## Page Creation Workflow
 
-This repository is a Vite static site with vanilla JavaScript. Root public pages are HTML files in the repo root, clean-URL SEO pages use `[slug]/index.html`, and `vite.config.js` lists each HTML entry under `build.rollupOptions.input`. GitHub Pages deploys the built `dist/` folder through `.github/workflows/deploy.yml`.
+This repository is a Vite static site with vanilla JavaScript. Root utility pages are HTML files in the repo root, clean-URL SEO source pages live under `content/pairs/` or `content/locales/`, and `vite.config.js` lists each HTML entry under `build.rollupOptions.input`. GitHub Pages deploys the built `dist/` folder through `.github/workflows/deploy.yml`.
 
-For a clean URL such as `https://getsoundwise.co/ship-vs-sheep/`, create a directory with an `index.html` file:
+For an English clean URL such as `https://getsoundwise.co/ship-vs-sheep/`, create a source directory with an `index.html` file:
 
 ```text
-ship-vs-sheep/index.html
+content/pairs/ship-vs-sheep/index.html
 ```
 
 Then add that slug to `seoPageSlugs` in `vite.config.js`:
@@ -54,11 +54,11 @@ const seoPageSlugs = [
 ]
 ```
 
-The Vite config derives the HTML input path from the slug, so `ship-vs-sheep` maps to `ship-vs-sheep/index.html`.
+The Vite config derives the HTML input path from the slug, so `ship-vs-sheep` maps to `content/pairs/ship-vs-sheep/index.html` and emits `dist/ship-vs-sheep/index.html`. A localized slug such as `ja/ship-vs-sheep` maps to `content/locales/ja/ship-vs-sheep/index.html` and emits `dist/ja/ship-vs-sheep/index.html`.
 
 Recommended workflow:
 
-1. Create the page directory and route file, for example `ship-vs-sheep/index.html`.
+1. Create the page source directory and route file, for example `content/pairs/ship-vs-sheep/index.html`.
 2. Add page metadata in the HTML `<head>`.
 3. Write learner-first content using the standard page structure below.
 4. Add links to related minimal-pair pages only when those pages exist.

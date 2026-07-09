@@ -5,6 +5,7 @@ import { pathToFileURL } from 'node:url';
 const root = process.cwd();
 const distDir = path.join(root, 'dist');
 const sitemapPath = path.join(root, 'public', 'sitemap.xml');
+const localizedContentDir = path.join(root, 'content', 'locales');
 
 const routeModule = await import(pathToFileURL(path.join(root, 'src', 'localized-homepage-routes.js')).href);
 const i18nModule = await import(pathToFileURL(path.join(root, 'src', 'i18n.js')).href);
@@ -105,7 +106,7 @@ if (builtRootSource) {
 }
 
 for (const route of LOCALIZED_HOMEPAGE_ROUTES) {
-  const generatedPath = path.join(root, route.slug, 'index.html');
+  const generatedPath = path.join(localizedContentDir, route.slug, 'index.html');
   const generatedSource = readIfExists(generatedPath);
   if (!generatedSource) {
     issues.push(`${path.relative(root, generatedPath)}: file does not exist`);

@@ -17,25 +17,25 @@ const requiredColumns = [
 const targetPages = [
   {
     page: '/fill-vs-feel/',
-    filePath: 'fill-vs-feel/index.html',
+    filePath: 'content/pairs/fill-vs-feel/index.html',
     contrastId: 'fill-vs-feel',
     deeperSectionIds: ['difference'],
   },
   {
     page: '/live-vs-leave/',
-    filePath: 'live-vs-leave/index.html',
+    filePath: 'content/pairs/live-vs-leave/index.html',
     contrastId: 'live-vs-leave',
     deeperSectionIds: ['difference'],
   },
   {
     page: '/ship-vs-sheep/',
-    filePath: 'ship-vs-sheep/index.html',
+    filePath: 'content/pairs/ship-vs-sheep/index.html',
     contrastId: 'ship-vs-sheep',
     deeperSectionIds: ['difference'],
   },
   {
     page: '/bit-vs-beat/',
-    filePath: 'bit-vs-beat/index.html',
+    filePath: 'content/pairs/bit-vs-beat/index.html',
     contrastId: 'bit-vs-beat',
     deeperSectionIds: ['difference'],
   },
