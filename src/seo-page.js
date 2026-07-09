@@ -1,6 +1,7 @@
 import { getContrastById } from './contrast-catalog.js';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
+import { getSeoExerciseCopy } from './seo-exercise-translations.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
@@ -127,8 +128,9 @@ function speakWord(text, activeButton) {
   });
 }
 
-function buildWordButton(contrast, index, action) {
+function buildWordButton(contrast, index, action, uiCopy) {
   const word = contrast.words[index];
+  const wordLabel = word.text.toUpperCase();
   const button = createElement('button', {
     className: `seo-exercise-word seo-exercise-word-${action}`,
     attributes: {
@@ -136,8 +138,8 @@ function buildWordButton(contrast, index, action) {
       'data-word-index': String(index),
       'data-action': action,
       'aria-label': action === 'guess'
-        ? `Choose ${word.text}`
-        : `Play pronunciation for ${word.text}`,
+        ? uiCopy.chooseWordLabel(wordLabel)
+        : uiCopy.playWordLabel(wordLabel),
     },
   });
 
@@ -157,7 +159,7 @@ function buildWordButton(contrast, index, action) {
   if (action !== 'guess') {
     const icon = createElement('span', {
       className: 'seo-exercise-word-speaker',
-      textContent: 'Listen',
+      textContent: uiCopy.speakerLabel,
       attributes: { 'aria-hidden': 'true' },
     });
     const body = createElement('span', { className: 'seo-exercise-word-body' });
@@ -170,13 +172,13 @@ function buildWordButton(contrast, index, action) {
   return button;
 }
 
-function renderWordButtons(container, contrast, action) {
+function renderWordButtons(container, contrast, action, uiCopy) {
   container.replaceChildren(
-    ...contrast.words.map((word, index) => buildWordButton(contrast, index, action))
+    ...contrast.words.map((word, index) => buildWordButton(contrast, index, action, uiCopy))
   );
 }
 
-function renderFeedbackCopy(element, contrast, feedback) {
+function renderFeedbackCopy(element, feedback, uiCopy) {
   if (!feedback) {
     element.textContent = '';
     return;
@@ -184,43 +186,35 @@ function renderFeedbackCopy(element, contrast, feedback) {
 
   const selectedWord = feedback.selectedWord?.text.toUpperCase() || '';
   const correctWord = feedback.correctWord?.text.toUpperCase() || '';
-  const status = feedback.correct ? 'Correct.' : 'Not quite.';
 
-  element.textContent = `${status} You chose: ${selectedWord}. Correct answer: ${correctWord}.`;
+  element.textContent = uiCopy.feedback({
+    selectedWord,
+    correctWord,
+    correct: feedback.correct,
+  });
 }
 
-function renderSummaryCopy(elements, snapshot) {
+function renderSummaryCopy(elements, snapshot, uiCopy) {
   const { score, summaryLead, summaryBody } = elements;
+  const summary = uiCopy.summary(snapshot);
 
-  score.textContent = `You got ${snapshot.correct} out of ${snapshot.total} correct.`;
-
-  if (snapshot.correct === snapshot.total) {
-    summaryLead.textContent = 'Nice work - you heard the contrast.';
-    summaryBody.textContent = 'Keep practicing across more voices and word pairs so the distinction becomes automatic.';
-    return;
-  }
-
-  if (snapshot.correct === 0) {
-    summaryLead.textContent = 'This contrast needs more ear training.';
-    summaryBody.textContent = 'That is normal. Focused listening practice helps your brain separate sounds that used to feel identical.';
-    return;
-  }
-
-  summaryLead.textContent = 'You are starting to hear the contrast.';
-  summaryBody.textContent = 'A few more focused repetitions can help make the difference clearer.';
+  score.textContent = uiCopy.scoreLabel(snapshot.correct, snapshot.total);
+  summaryLead.textContent = summary.lead;
+  summaryBody.textContent = summary.body;
 }
 
 function createSeoExercise(mount, contrast) {
+  const uiCopy = getSeoExerciseCopy(document.documentElement.lang || 'en');
   const titleId = `${mount.id || contrast.id}-title`;
   const liveRegion = createElement('p', {
     className: 'seo-exercise-live',
-    textContent: 'Hear the contrast, then test your ear.',
+    textContent: uiCopy.liveInitial,
     attributes: { 'aria-live': 'polite' },
   });
 
   const header = createElement('div', { className: 'seo-exercise-header' });
   header.append(
-    createElement('p', { className: 'seo-exercise-label', textContent: 'Try this contrast' }),
+    createElement('p', { className: 'seo-exercise-label', textContent: uiCopy.label }),
     createElement('h2', {
       className: 'seo-exercise-title',
       textContent: formatPairName(contrast),
@@ -235,16 +229,16 @@ function createSeoExercise(mount, contrast) {
     className: 'seo-exercise-choices',
     attributes: {
       role: 'group',
-      'aria-label': 'Preview the two words',
+      'aria-label': uiCopy.previewChoicesAriaLabel,
     },
   });
   const startButton = createElement('button', {
     className: 'seo-exercise-action',
-    textContent: 'Start the listening test',
+    textContent: uiCopy.startButton,
     attributes: { type: 'button' },
   });
   preview.append(
-    createElement('p', { className: 'seo-exercise-prompt', textContent: 'Listen to both words first.' }),
+    createElement('p', { className: 'seo-exercise-prompt', textContent: uiCopy.previewPrompt }),
     previewWords,
     startButton
   );
@@ -252,18 +246,18 @@ function createSeoExercise(mount, contrast) {
   const test = createElement('div', { className: 'seo-exercise-stage' });
   const playButton = createElement('button', {
     className: 'seo-exercise-action seo-exercise-action-secondary',
-    textContent: 'Play the sample',
+    textContent: uiCopy.playButton,
     attributes: { type: 'button' },
   });
   const guessWords = createElement('div', {
     className: 'seo-exercise-choices',
     attributes: {
       role: 'group',
-      'aria-label': 'Choose the word you heard',
+      'aria-label': uiCopy.guessChoicesAriaLabel,
     },
   });
   test.append(
-    createElement('p', { className: 'seo-exercise-prompt', textContent: 'Which word did you hear?' }),
+    createElement('p', { className: 'seo-exercise-prompt', textContent: uiCopy.testPrompt }),
     playButton,
     guessWords
   );
@@ -274,17 +268,17 @@ function createSeoExercise(mount, contrast) {
     className: 'seo-exercise-choices',
     attributes: {
       role: 'group',
-      'aria-label': 'Replay the contrast',
+      'aria-label': uiCopy.replayChoicesAriaLabel,
     },
   });
   const nextButton = createElement('button', {
     className: 'seo-exercise-action',
-    textContent: 'Try one more round',
+    textContent: uiCopy.nextButton,
     attributes: { type: 'button' },
   });
   feedback.append(
     feedbackCopy,
-    createElement('p', { className: 'seo-exercise-prompt', textContent: 'Listen again:' }),
+    createElement('p', { className: 'seo-exercise-prompt', textContent: uiCopy.feedbackReplayPrompt }),
     replayWords,
     nextButton
   );
@@ -299,16 +293,16 @@ function createSeoExercise(mount, contrast) {
     summaryBody,
     createElement('p', {
       className: 'seo-exercise-next-step',
-      textContent: 'When you are ready, continue with the Soundwise app practice below.',
+      textContent: uiCopy.nextStep,
     })
   );
 
   mount.setAttribute('role', 'region');
   mount.setAttribute('aria-labelledby', titleId);
   mount.replaceChildren(header, round, preview, test, feedback, summary, liveRegion);
-  renderWordButtons(previewWords, contrast, 'preview');
-  renderWordButtons(guessWords, contrast, 'guess');
-  renderWordButtons(replayWords, contrast, 'replay');
+  renderWordButtons(previewWords, contrast, 'preview', uiCopy);
+  renderWordButtons(guessWords, contrast, 'guess', uiCopy);
+  renderWordButtons(replayWords, contrast, 'replay', uiCopy);
 
   let exercise = null;
 
@@ -317,7 +311,7 @@ function createSeoExercise(mount, contrast) {
       return;
     }
 
-    round.textContent = `Round ${Math.min(snapshot.round, snapshot.total)} of ${snapshot.total}`;
+    round.textContent = uiCopy.roundLabel(Math.min(snapshot.round, snapshot.total), snapshot.total);
     showStage(preview, snapshot.stage === 'preview');
     showStage(test, snapshot.stage === 'test');
     showStage(feedback, snapshot.stage === 'feedback' || snapshot.stage === 'summary');
@@ -325,7 +319,7 @@ function createSeoExercise(mount, contrast) {
     showStage(nextButton, snapshot.stage === 'feedback' && snapshot.round < snapshot.total);
 
     if (snapshot.stage === 'summary') {
-      renderSummaryCopy({ score, summaryLead, summaryBody }, snapshot);
+      renderSummaryCopy({ score, summaryLead, summaryBody }, snapshot, uiCopy);
     }
   };
 
@@ -334,22 +328,22 @@ function createSeoExercise(mount, contrast) {
       buildEventDetail: (eventName, detail) => buildSeoExerciseEventDetail(contrast, detail),
       dispatchEvent: dispatchSoundwiseEvent,
       getTargetIndex: () => Math.round(Math.random()),
-      onFeedback: (payload) => renderFeedbackCopy(feedbackCopy, contrast, payload),
+      onFeedback: (payload) => renderFeedbackCopy(feedbackCopy, payload, uiCopy),
       onStateChange: render,
       onListenPrompt: () => {
-        liveRegion.textContent = 'Listen carefully. Which word did you hear?';
+        liveRegion.textContent = uiCopy.listenPrompt;
       },
       onFeedbackReady: () => {
         liveRegion.textContent = feedbackCopy.textContent;
       },
       onPreviewPrompt: () => {
-        liveRegion.textContent = 'Listen to both words first.';
+        liveRegion.textContent = uiCopy.previewPrompt;
       },
       playWord: (word, activeButton) => speakWord(word.text, activeButton),
       wait: (ms) => new Promise((resolve) => window.setTimeout(resolve, ms)),
     },
     contrast,
-    uiLocale: document.documentElement.lang || 'en',
+    uiLocale: uiCopy.locale,
     options: {
       experienceSurface: SEO_EXERCISE_SURFACE,
     },
