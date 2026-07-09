@@ -7,6 +7,18 @@ const exercisePages = [
     contrastId: 'ship-vs-sheep',
   },
   {
+    filePath: 'fill-vs-feel/index.html',
+    contrastId: 'fill-vs-feel',
+  },
+  {
+    filePath: 'live-vs-leave/index.html',
+    contrastId: 'live-vs-leave',
+  },
+  {
+    filePath: 'bit-vs-beat/index.html',
+    contrastId: 'bit-vs-beat',
+  },
+  {
     filePath: 'right-vs-light/index.html',
     contrastId: 'right-vs-light',
   },

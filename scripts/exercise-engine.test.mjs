@@ -76,6 +76,40 @@ test('contrast catalog exposes canonical URL-addressable contrast data', () => {
   assert.equal(CONTRAST_CATALOG['ship-vs-sheep'], contrast);
 });
 
+test('/ɪ/ vs /iː/ SEO journey contrasts are available in the catalog', () => {
+  const expectedContrasts = [
+    {
+      id: 'ship-vs-sheep',
+      words: ['ship', 'sheep'],
+      ipa: ['/ʃɪp/', '/ʃiːp/'],
+    },
+    {
+      id: 'fill-vs-feel',
+      words: ['fill', 'feel'],
+      ipa: ['/fɪl/', '/fiːl/'],
+    },
+    {
+      id: 'live-vs-leave',
+      words: ['live', 'leave'],
+      ipa: ['/lɪv/', '/liːv/'],
+    },
+    {
+      id: 'bit-vs-beat',
+      words: ['bit', 'beat'],
+      ipa: ['/bɪt/', '/biːt/'],
+    },
+  ];
+
+  for (const expected of expectedContrasts) {
+    const contrast = getContrastById(expected.id);
+
+    assert.ok(contrast, `${expected.id} should exist`);
+    assert.deepEqual(contrast.words.map((word) => word.text), expected.words);
+    assert.deepEqual(contrast.words.map((word) => word.ipa), expected.ipa);
+    assert.equal(contrast.contrast, '/ɪ/ vs /iː/');
+  }
+});
+
 test('exercise starts a round, dispatches demo_started, and plays the target after audio unlock', async () => {
   const { events, exercise, playedWords, snapshots } = createHarness();
 

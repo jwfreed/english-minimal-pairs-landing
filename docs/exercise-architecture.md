@@ -217,4 +217,4 @@ Homepage behavior changes require explicit regression verification. At minimum, 
 - The engine must not contain homepage-specific DOM or language assumptions.
 - GA4 forwarding must remain centralized in `src/funnel-tracking.js`.
 - The website must not track fake native app training starts.
-- The current SEO exercise allowlist mounts the exercise on `/ship-vs-sheep/` only.
+- The current SEO exercise allowlist mounts exercises only on intentionally rolled-out SEO pages.

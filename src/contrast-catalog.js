@@ -7,6 +7,22 @@ export const CONTRAST_CATALOG = {
     ],
     contrast: '/ɪ/ vs /iː/',
   },
+  'fill-vs-feel': {
+    id: 'fill-vs-feel',
+    words: [
+      { text: 'fill', ipa: '/fɪl/' },
+      { text: 'feel', ipa: '/fiːl/' },
+    ],
+    contrast: '/ɪ/ vs /iː/',
+  },
+  'bit-vs-beat': {
+    id: 'bit-vs-beat',
+    words: [
+      { text: 'bit', ipa: '/bɪt/' },
+      { text: 'beat', ipa: '/biːt/' },
+    ],
+    contrast: '/ɪ/ vs /iː/',
+  },
   'right-vs-light': {
     id: 'right-vs-light',
     words: [

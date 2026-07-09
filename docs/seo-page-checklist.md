@@ -1,6 +1,6 @@
 # SEO Pronunciation Page Checklist
 
-Use this checklist when adding one new SEO pronunciation page with the reusable listening exercise. Do not use it to migrate every page at once.
+Use this checklist when adding one new SEO pronunciation page, or an intentionally scoped sound-family cluster, with the reusable listening exercise. Do not use it for unbounded bulk migration.
 
 ## Required Files
 
@@ -34,6 +34,62 @@ Add the page to the validator allowlist in `scripts/validate-seo-exercise.mjs`:
   contrastId: 'right-vs-light',
 },
 ```
+
+## Preferred Learning Journey Structure
+
+For high-intent minimal-pair SEO pages, the page should teach the sound contrast before it sells the app. The preferred order is:
+
+1. Hero headline names the sound problem, not only the word pair.
+2. Quick answer explains what sound the learner is confusing and why that happens.
+3. Vowel or consonant comparison gives concrete listening cues.
+4. Listening-before-pronunciation section explains why hearing comes first.
+5. Practice section introduces the active listening pattern and mounts the exercise.
+6. Related sound-family section links to nearby pages that train the same contrast.
+7. App CTA invites the learner to continue the same type of training in Soundwise.
+8. FAQ and secondary related links answer objections without blocking the core journey.
+
+The word pair is the search entry point. The sound contrast is the teaching objective.
+
+## Exercise Placement Guidance
+
+Place the exercise at the moment the article moves from explanation to action. The best location is inside or immediately after the practice section, after the page has explained:
+
+- which two sounds are being confused,
+- why the sounds may collapse into one listening category,
+- what cue the learner should listen for,
+- why active choice plus feedback works better than passive exposure.
+
+Do not place the exercise after the primary CTA, FAQ, tables of related words, or long sentence-practice sections. The visitor should understand the sound problem, try the contrast, and then see a clear next step.
+
+Use short instructional copy immediately before the mount. Good copy tells the learner what to listen for, such as vowel quality rather than spelling, meaning, context, or length alone.
+
+## Sound-Family Cross-Linking Guidance
+
+When several pages teach the same sound contrast, link them as a learning sequence, not as a generic SEO list. The copy should explain that the consonants or words change while the underlying sound contrast stays the same.
+
+For a sound-family sprint:
+
+- keep the cluster limited to the intended sound family,
+- link the other primary pages from the practice or related-contrast section,
+- use learner-facing labels such as "Keep training the same /ɪ/ vs /iː/ contrast",
+- avoid burying the only sound-family links below FAQ,
+- keep broad hub links secondary to the sound-family journey.
+
+## CTA Guidance
+
+The App Store CTA should feel like the continuation of the listening exercise, not a separate marketing interruption. CTA copy should connect the completed exercise to more repetitions, more voices, more minimal pairs, or continued ear training.
+
+Preserve existing App Store URLs, link IDs, and tracking shape unless there is a planned analytics migration. Do not add new CTA events for SEO page experiments; the existing `app_store_click` event is the contract.
+
+## Common Pitfalls
+
+- Framing the page as two vocabulary words instead of one sound contrast.
+- Explaining pronunciation mechanics without giving the learner an immediate listening task.
+- Treating vowel length as the whole explanation when vowel quality is the more stable cue.
+- Placing related links where they read like an SEO footer instead of a learning path.
+- Putting the app CTA before the visitor has experienced the exercise.
+- Adding a second exercise mount to make the page feel more interactive.
+- Editing `exercise-engine.js` or analytics modules for page-specific copy changes.
 
 ## Required Catalog Entry
 
@@ -73,7 +129,7 @@ Do not add direct `gtag` calls for `exercise_start` or `exercise_complete` in th
 
 ## Validation Commands
 
-Before running validation, confirm the page is included in the `exercisePages` allowlist in `scripts/validate-seo-exercise.mjs`. The allowlist is the guardrail that keeps rollout intentional and one page at a time.
+Before running validation, confirm each target page is included in the `exercisePages` allowlist in `scripts/validate-seo-exercise.mjs`. The allowlist is the guardrail that keeps rollout intentional and scoped.
 
 Run all commands from the repository root:
 
@@ -89,7 +145,7 @@ Use the repo's supported Node version if the local shell defaults to an older No
 
 ## Manual QA
 
-Check the new SEO page:
+Check each new or updated SEO page:
 
 - Exercise appears before the primary article CTA.
 - Exercise title, contrast label, word buttons, IPA, feedback, score, and summary render correctly.
@@ -114,8 +170,8 @@ With `window.gtag` stubbed or network calls inspected:
 
 ## Acceptance Criteria
 
-- One page is added or updated intentionally; no bulk migration.
-- The page uses exactly one `data-exercise` mount.
+- Each page is added or updated intentionally; no unbounded bulk migration.
+- Each page uses exactly one `data-exercise` mount.
 - `data-contrast` resolves to a catalog entry.
 - `scripts/validate-seo-exercise.mjs` allowlists the page and contrast ID.
 - No scoring, lifecycle, or GA4 exercise forwarding is duplicated outside the shared modules.
