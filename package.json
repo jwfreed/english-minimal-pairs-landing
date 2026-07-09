@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run generate:localized-homepages",
+    "prebuild": "npm run generate:localized-homepages && npm run validate:content-routes",
     "build": "vite build",
     "generate:localized-homepages": "node scripts/generate-localized-homepages.mjs",
+    "validate:content-routes": "node scripts/validate-content-route-registration.mjs",
     "validate:app-store-tracking": "node scripts/validate-app-store-tracking.mjs",
     "validate:exercise-engine": "node --test scripts/exercise-engine.test.mjs",
     "validate:funnel-tracking": "node scripts/validate-funnel-tracking.mjs",
