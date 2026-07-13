@@ -22,6 +22,10 @@ const exercisePages = [
     filePath: 'content/pairs/right-vs-light/index.html',
     contrastId: 'right-vs-light',
   },
+  {
+    filePath: 'content/pairs/man-vs-men/index.html',
+    contrastId: 'man-vs-men',
+  },
 ];
 const exercisePagePaths = new Set(exercisePages.map((page) => page.filePath));
 const seoSource = fs.readFileSync('src/seo-page.js', 'utf8');

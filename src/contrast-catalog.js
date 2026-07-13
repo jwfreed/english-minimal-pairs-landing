@@ -71,6 +71,14 @@ export const CONTRAST_CATALOG = {
     ],
     contrast: '/f/ vs /p/',
   },
+  'man-vs-men': {
+    id: 'man-vs-men',
+    words: [
+      { text: 'man', ipa: '/mæn/' },
+      { text: 'men', ipa: '/mɛn/' },
+    ],
+    contrast: '/æ/ vs /ɛ/',
+  },
   'vest-vs-west': {
     id: 'vest-vs-west',
     words: [
