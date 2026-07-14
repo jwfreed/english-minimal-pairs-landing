@@ -67,6 +67,17 @@ function stripUnavailableOptionalSections(source, runtimeLocale) {
   );
 }
 
+function localizeAvailableLearningLinks(source, locale) {
+  let html = source.replace(/href="\/([^"/]+)\/"/g, (match, slug) => {
+    const localizedSource = path.join(localizedContentDir, locale, slug, 'index.html');
+    return fs.existsSync(localizedSource) ? `href="/${locale}/${slug}/"` : match;
+  });
+
+  html = html.replaceAll('href="/privacy/"', `href="/privacy-${locale}.html"`);
+  html = html.replaceAll('href="/terms/"', `href="/terms-${locale}.html"`);
+  return html;
+}
+
 function buildLocalizedHtml(template, route) {
   const { htmlLang } = getRuntimeLocaleMeta(route.runtimeLocale);
   const canonicalUrl = getHomepageUrl(route.slug);
@@ -78,6 +89,7 @@ function buildLocalizedHtml(template, route) {
 
   let html = template;
   html = stripUnavailableOptionalSections(html, route.runtimeLocale);
+  html = localizeAvailableLearningLinks(html, route.slug);
   html = replaceRequired(html, /<html lang="[^"]*">/, `<html lang="${escapeAttribute(htmlLang)}">`, 'html lang');
   html = replaceRequired(html, /<body(.*?)>/, `<body$1 data-initial-runtime-locale="${escapedRuntimeLocale}">`, 'initial locale marker');
   html = replaceRequired(html, /<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${escapedCanonicalUrl}" />`, 'canonical');

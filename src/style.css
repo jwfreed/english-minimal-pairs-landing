@@ -176,6 +176,8 @@ body {
   cursor: pointer;
   transition: var(--transition);
   border-bottom: 1px solid var(--border-light);
+  color: inherit;
+  text-decoration: none;
 }
 
 .lang-option:last-child {

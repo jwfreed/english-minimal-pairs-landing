@@ -596,8 +596,13 @@ function nextRound() {
 
 function syncLanguageMenu(runtimeLocale) {
   document.querySelectorAll('.lang-option').forEach((option) => {
-    option.classList.toggle('is-active', option.dataset.lang === runtimeLocale);
-    option.setAttribute('aria-pressed', String(option.dataset.lang === runtimeLocale));
+    const isActive = option.dataset.lang === runtimeLocale;
+    option.classList.toggle('is-active', isActive);
+    if (isActive) {
+      option.setAttribute('aria-current', 'page');
+    } else {
+      option.removeAttribute('aria-current');
+    }
   });
 }
 
@@ -870,11 +875,8 @@ function setupLanguageSwitcher() {
   });
 
   document.querySelectorAll('.lang-option').forEach((option) => {
-    option.addEventListener('click', (event) => {
-      const runtimeLocale = event.currentTarget.dataset.lang;
-      applyRuntimeLanguage(runtimeLocale, { persist: true });
+    option.addEventListener('click', () => {
       languageDropdown?.classList.remove('show');
-      announce(getTranslation(heroDemoState.runtimeLocale, 'demoHearDifference'));
     });
   });
 }

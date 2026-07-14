@@ -92,6 +92,12 @@ When adding a new privacy or terms translation:
 6. Do not add translated legal pages to `public/sitemap.xml` unless there is a deliberate localized SEO strategy.
 7. Run `npm run build`.
 
+The build also runs `npm run validate:internal-links` against `dist/`. The validator
+checks that sitemap routes are reachable, internal targets exist and are canonical, pair
+pages link contextually to their parent hubs and related practice, hubs cover their
+intended children, hreflang links are reciprocal, and localized pages do not bypass an
+available same-language target.
+
 Do not rewrite legal copy as part of file-organization work. Treat copy updates as separate legal/content changes.
 
 ### SEO Pages

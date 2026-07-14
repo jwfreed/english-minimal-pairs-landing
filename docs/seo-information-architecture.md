@@ -225,7 +225,9 @@ and pairs point sideways to siblings.
 ### Same-language preference
 
 When a localized version of a target page exists, **link to the same-language version.**
-Only fall back to English when no localized equivalent exists yet.
+Only fall back to English when no localized equivalent exists yet **and** the English page
+is an intentional, instructionally relevant next step. The absence of a translation is
+not, by itself, a reason to add a fallback link.
 
 ```text
 On /ja/ship-vs-sheep/:
@@ -254,12 +256,15 @@ nothing, fails review.
 
 ### Current implementation status
 
-`content/locales/ja/ship-vs-sheep/index.html` currently links **upward and laterally to English pages**
-(`/minimal-pairs-practice/`, `/english-ear-training/`, `/bit-vs-beat/`, …) even though the
-Japanese hubs (`/ja/minimal-pairs-practice/`, `/ja/english-ear-training/`) already exist.
-Under the same-language-preference rule the hub links should point to the `/ja/` hubs; the
-lateral pair links may remain English until localized pair pages exist. This is a known
-deviation to correct, and new localized pages should follow the policy from the start.
+All localized pair pages link upward to their same-language Minimal Pairs Practice and
+English Ear Training hubs. Localized homepages and hubs also prefer an available
+same-language pair page. English lateral or directory links remain only where no localized
+page exists and the source page deliberately offers further English-language practice.
+
+`npm run validate:internal-links` checks built output for broken and noncanonical links,
+redirects, orphans, dead ends, sitemap reachability, reciprocal hreflang, contextual
+pair/hub relationships, parent/child hub coverage, and avoidable cross-language links.
+It runs automatically after `npm run build`.
 
 ---
 
@@ -327,8 +332,15 @@ ja  zh  yue  ko  es  pt  ar  hi-ur  fa  id  ru  th  tr  vi
 ```
 
 Each has `/<locale>/minimal-pairs-practice/` and `/<locale>/english-ear-training/`.
-Localized **pair** pages are rolling out per the flagship matrix; only `ja/ship-vs-sheep`
-exists today.
+One localized flagship **pair** page currently exists per locale:
+
+```text
+ja/ship-vs-sheep      zh/ship-vs-sheep      es/ship-vs-sheep
+pt/ship-vs-sheep      id/ship-vs-sheep      ru/ship-vs-sheep
+tr/ship-vs-sheep      ar/pat-vs-bat          th/thin-vs-tin
+ko/right-vs-light     vi/right-vs-light      yue/right-vs-light
+fa/vest-vs-west       hi-ur/vest-vs-west
+```
 
 ### Navigation never crosses languages — except as fallback
 
