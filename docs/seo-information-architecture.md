@@ -19,11 +19,6 @@ Read this alongside:
 - `docs/seo-keyword-map.md` — keyword clusters and page priority.
 - `docs/phase-1-localized-flagship-seo-matrix.md` — localized rollout tracking.
 
-> **Scope note.** Some policies below (the hub-level breadcrumb crumb and strict
-> same-language internal linking) are the **target** architecture. A few existing pages do
-> not yet match them. Where that is true, this document says so explicitly under
-> **Current implementation status** so the gap is visible and can be closed deliberately.
-
 ---
 
 ## 1. Site Hierarchy
@@ -134,20 +129,10 @@ Localized breadcrumbs must use **localized hub crumbs and localized link targets
 - The hub crumb on a `/ja/` page links to `/ja/minimal-pairs-practice/`, not the English
   hub.
 
-### Policy scope: default for new pages, opportunistic for legacy
-
-To avoid mass edits and JSON-LD drift, apply this in two tiers:
-
-- **New pages (mandatory):** the three-crumb pair breadcrumb (`Soundwise → Hub → Pair`) is
-  the **default and required** structure for every newly authored SEO page.
-- **Existing/legacy pages (opportunistic):** pages currently ship a two-crumb trail
-  (`Soundwise → Page`). Migrate them to three crumbs **opportunistically** — when a page is
-  already being edited for another reason — not in a single sweeping rewrite. Do not
-  bulk-edit all 20 pages or shared markup purely to add a crumb; that risks breaking
-  consistency and introducing visible/JSON-LD divergence.
-
-When a page is migrated, the visible breadcrumb and `BreadcrumbList` JSON-LD must be updated
-together in the same change (see below).
+The three-crumb pair breadcrumb (`Soundwise → Hub → Pair`) is required for English and
+localized pair pages. The two-crumb hub breadcrumb (`Soundwise → Hub`) is required for
+English and localized hub pages. The visible breadcrumb and `BreadcrumbList` JSON-LD must
+always be updated together.
 
 ### Visible breadcrumbs and JSON-LD must match
 
@@ -181,31 +166,25 @@ Example `BreadcrumbList` for a pair page under the policy:
 
 ### Current implementation status
 
-The existing pages currently ship a **two-crumb** trail (`Soundwise → Page`) and do **not**
-yet include the intermediate hub crumb:
-
-- `content/pairs/ship-vs-sheep/index.html`: `Soundwise → Ship vs Sheep`
-- `content/locales/ja/ship-vs-sheep/index.html`: `Soundwise → ship vs sheep の聞き分け`
-- Localized hub breadcrumbs currently link the first crumb to `/` (English home) rather
-  than the localized home (e.g. `/ja/`).
-
-Bringing pair pages up to the three-crumb policy and pointing localized home crumbs at the
-localized home are the two outstanding alignment tasks. New pages should be authored to the
-**policy** above; existing pages should be migrated **opportunistically**, per the scope
-tiers in *Policy scope* above — not in a single sweeping pass.
+All English and localized pair pages use the required three-crumb hierarchy. All localized
+pair and hub pages link the first crumb to the matching localized homepage. Homepages and
+utility/legal pages do not emit breadcrumb markup.
 
 ### Shared-template target (not yet implemented)
 
-Today, every SEO page defines its breadcrumb **twice and by hand**: as inline
+Every SEO page defines its breadcrumb **twice and by hand**: as inline
 `seo-breadcrumb` HTML and as a separate `BreadcrumbList` JSON-LD block. There is no shared
 breadcrumb function (`src/seo-page.js` handles page behavior/analytics, not markup
-generation), so visible/JSON-LD divergence is possible per page.
+generation). `scripts/validate-breadcrumbs.mjs` prevents visible/schema divergence and
+checks the hierarchy, labels, canonical route targets, positions, and page-class coverage
+for source and built HTML.
 
 **Target rule:** breadcrumb structure should be derived from a single shared
 template/source so the visible trail and `BreadcrumbList` JSON-LD are generated from the
 same data and cannot drift. No page should hand-author breadcrumb structure independently.
-This is a **target**; introducing that shared template is future work, and until it exists,
-authors are responsible for keeping the two representations identical by hand.
+Introducing that shared template remains future work. Until it exists, authors must keep
+the two representations identical and run `npm run validate:breadcrumbs`; the check also
+runs automatically before each production build.
 
 ---
 
