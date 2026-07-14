@@ -81,6 +81,23 @@ The first GA4 + Search Console pull should be structured around the three measur
 
 This isn't new instrumentation — all four are already defined in the Metric Definitions table above. This section exists so the next analysis pass has one starting point instead of re-deriving priority from the full table each time.
 
+## Changelog: Metadata Optimization (2026-07-14)
+
+All English pair pages were moved to the problem-led title/description pattern
+(`X vs Y Pronunciation: /a/ vs /b/ Practice`; template in
+`docs/seo-page-creation-guide.md`), two broken localized titles (ko/yue
+right-vs-light) were fixed, and the two English hub descriptions were trimmed.
+Three things matter for interpreting data against this change:
+
+- **This optimization completed before the first Search Console baseline pull.**
+  There is no "before" CTR snapshot; the first pull sets the baseline on the new
+  metadata.
+- **CTR impact should be evaluated only after Google recrawls the affected pages**,
+  not against the deployment date itself — snippets update on recrawl, per page.
+- **Future metadata optimization decisions should use query-level impressions and
+  CTR (Search Console) plus `app_store_click` data (GA4)**, not intuition or
+  further template rewrites. No further metadata changes until that evidence exists.
+
 ## Reuse for Future Sound-Family Clusters
 
 This framework is written to generalize, not to be rewritten per cluster:

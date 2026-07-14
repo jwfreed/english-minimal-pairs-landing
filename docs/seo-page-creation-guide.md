@@ -185,26 +185,37 @@ Every SEO page needs unique metadata.
 Title tag pattern:
 
 ```text
-[Word A] vs [Word B]: How to Hear the Difference
+[Word A] vs [Word B] Pronunciation: /a/ vs /b/ Practice
 ```
 
 Example:
 
 ```text
-Ship vs Sheep: How to Hear the Difference
+Ship vs Sheep Pronunciation: /ɪ/ vs /iː/ Practice
 ```
+
+The word pair leads (it is the query head term), "Pronunciation" matches the primary
+query modifier in `docs/seo-keyword-map.md`, and the IPA contrast tells the learner
+exactly which sound distinction the page trains. Pages append ` | Soundwise`; keep the
+pre-brand portion at or under roughly 50 characters so the brand survives truncation.
 
 Meta description pattern:
 
 ```text
-Learn why [word a] and [word b] sound similar to English learners and how focused minimal-pair listening practice can help you hear the difference.
+Can’t hear the difference between “[word a]” and “[word b]”? Compare /a/ and /b/, [one short pair-specific clause], and practice with English minimal pairs.
 ```
 
 Example:
 
 ```text
-Learn why ship and sheep sound similar to English learners and how focused minimal-pair listening practice can help you hear the difference.
+Can’t hear the difference between “ship” and “sheep”? Compare /ɪ/ and /iː/, hear the short-vs-long vowel contrast, and practice with English minimal pairs.
 ```
+
+Write a different middle clause for every pair (what specifically changes in the sound,
+or what the contrast means, e.g. singular/plural for man/men) so no two descriptions
+read as duplicates. Keep the full description at or under roughly 155 characters.
+Keep `<title>`, `og:title`, `twitter:title`, and the LearningResource `name` in sync;
+`og:description`/`twitter:description` may carry distinct social copy.
 
 Canonical URL expectation:
 
@@ -393,7 +404,7 @@ Brief for `/ship-vs-sheep/`:
 - Primary keyword: `ship vs sheep`
 - Secondary keywords: `ship sheep pronunciation`, `ship vs sheep sound`, `ship sheep minimal pair`, `i vs short i English`
 - Suggested H1: `Ship vs Sheep: How to Hear the Difference`
-- Suggested title: `Ship vs Sheep: How to Hear the Difference`
-- Suggested description: `Learn why ship and sheep sound similar to English learners and how focused minimal-pair listening practice can help you hear the difference.`
+- Suggested title: `Ship vs Sheep Pronunciation: /ɪ/ vs /iː/ Practice`
+- Suggested description: `Can’t hear the difference between “ship” and “sheep”? Compare /ɪ/ and /iː/, hear the short-vs-long vowel contrast, and practice with English minimal pairs.`
 - CTA: `Practice this contrast in Soundwise.`
 - UTM content value: `ship-vs-sheep`
