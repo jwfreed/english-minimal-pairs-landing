@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run generate:localized-homepages && npm run validate:content-routes && npm run validate:breadcrumbs",
+    "prebuild": "npm run generate:localized-homepages && npm run validate:content-routes && npm run validate:breadcrumbs && npm run validate:seo-exercise",
     "build": "vite build",
     "postbuild": "npm run validate:breadcrumbs:dist && npm run validate:localized-homepages && npm run validate:seo-architecture && npm run validate:internal-links",
     "generate:localized-homepages": "node scripts/generate-localized-homepages.mjs",
@@ -24,6 +24,7 @@
     "validate:landing-copy": "node scripts/validate-landing-copy.mjs",
     "validate:localized-homepages": "node scripts/validate-localized-homepages.mjs",
     "validate:localized": "node scripts/validate-localized-seo-page.mjs",
+    "test": "node --test scripts/*.test.mjs",
     "deploy": "npm run build && touch dist/CNAME && echo 'getsoundwise.co' > dist/CNAME"
   },
   "devDependencies": {

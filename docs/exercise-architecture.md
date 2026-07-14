@@ -135,6 +135,73 @@ To add an exercise to a new SEO page:
 
 SEO exercise analytics must keep the existing event names and include `experience_surface: 'seo_contrast_page'` in `exerciseParams`. App Store click tracking remains the existing `app_store_click` path in `src/seo-page.js`.
 
+## Journey Coverage
+
+Coverage terminology is intentionally precise:
+
+- An **eligible exercise page** has an exact contrast in `CONTRAST_CATALOG`, a registered route that can mount the shared adapter, and explicit exercise UI translation for the page locale.
+- An **exercise mount** is an actual `data-exercise` instance in source HTML and generated output. One eligible page produces one rendered mount.
+
+| Category | Count |
+|---|---:|
+| English eligible exercise pages | 8 |
+| Localized eligible exercise pages | 1 |
+| Total rendered exercise mounts | 9 |
+
+The matrix below is the checked-in journey inventory. A warning in the CTA column means the App Store action exists, but the page cannot yet bridge to it through an on-page exercise completion. It does not mean the link or its tracking is broken.
+
+<!-- journey-coverage:start -->
+| Page | Search intent | Explanation | Exercise | Completion | CTA |
+|---|---:|---:|---:|---:|---:|
+| `/bad-vs-bed/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/bet-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/bit-vs-beat/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/cap-vs-cup/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/cup-vs-cop/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/fan-vs-van/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/fill-vs-feel/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/full-vs-fool/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/heart-vs-hurt/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/law-vs-low/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/live-vs-leave/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/man-vs-men/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/pat-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/pull-vs-pool/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/rice-vs-lice/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/right-vs-light/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/sit-vs-seat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/thin-vs-tin/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/three-vs-tree/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/vest-vs-west/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/ar/pat-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/es/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/fa/vest-vs-west/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/hi-ur/vest-vs-west/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/id/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/ja/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/ko/right-vs-light/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/pt/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/ru/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/th/thin-vs-tin/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/tr/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/vi/right-vs-light/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/yue/right-vs-light/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/zh/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+<!-- journey-coverage:end -->
+
+### Practice-Promise Reporting Policy
+
+`validate-seo-exercise.mjs` currently reports, but does not fail the build for, explicit unscoped promises of an on-page interactive exercise. The initial vocabulary is deliberately narrow: direct cues such as “Try the listening exercise,” “Try the listening test,” or “use the exercise below.”
+
+The following remain approved explanatory language and are not treated as an on-page promise:
+
+- descriptions of a learning method, such as “listen-and-choose practice” or “practice examples”;
+- listening strategies and instructions that do not claim a widget is present;
+- claims explicitly scoped to Soundwise, the app, or the App Store.
+
+Promotion from reporting to build-blocking validation requires a separate vocabulary review and a clean false-positive audit. The current report must not silently become enforcement.
+
 ## Adding A New Pronunciation Page
 
 A new SEO pronunciation page should be mostly content plus one declarative exercise mount.
@@ -148,7 +215,7 @@ A new SEO pronunciation page should be mostly content plus one declarative exerc
    ```
 
 4. Confirm `data-contrast` matches a key in `CONTRAST_CATALOG`.
-5. Add the page path and contrast ID to the `exercisePages` allowlist in `scripts/validate-seo-exercise.mjs`.
+5. Run `scripts/validate-seo-exercise.mjs`. It derives eligible pair pages from exact catalog support and explicit exercise UI translation, then requires the standard mount.
 6. Keep pronunciation facts in the catalog. Do not duplicate IPA or sound contrast labels in JavaScript.
 7. Keep page copy, examples, headings, related links, and App Store CTA copy in the HTML.
 8. Run the SEO exercise validator and the shared analytics validators before shipping.
@@ -171,7 +238,7 @@ Do not add speculative fields such as difficulty, tags, learning order, route pa
 
 - Adding more than one `data-exercise` mount to a page.
 - Setting `data-contrast` to a route slug that does not exist in `CONTRAST_CATALOG`.
-- Forgetting to add an intentionally rolled-out page to the SEO exercise validator allowlist.
+- Mounting an exercise on a localized page that only receives the English fallback instead of an explicit exercise UI translation.
 - Copying exercise scoring, round, or answer logic into an SEO page.
 - Calling `gtag('event', 'exercise_start')` or `gtag('event', 'exercise_complete')` from `src/seo-page.js`.
 - Adding fake native-app events such as `training_start`.
@@ -217,4 +284,4 @@ Homepage behavior changes require explicit regression verification. At minimum, 
 - The engine must not contain homepage-specific DOM or language assumptions.
 - GA4 forwarding must remain centralized in `src/funnel-tracking.js`.
 - The website must not track fake native app training starts.
-- The current SEO exercise allowlist mounts exercises only on intentionally rolled-out SEO pages.
+- The SEO exercise validator requires a mount only when an existing pair page has both an exact catalog contrast and explicit UI translation for its document locale. It rejects mounts that would imply unsupported catalog or localization coverage.

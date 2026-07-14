@@ -26,14 +26,7 @@ Add one exercise mount in the article body near the section that explains active
 
 The adapter adds the `seo-exercise` class and the default ID `<contrast-id>-listening-exercise`. Add a manual `id` only when the page has a real link or accessibility requirement.
 
-Add the page to the validator allowlist in `scripts/validate-seo-exercise.mjs`:
-
-```js
-{
-  filePath: 'content/pairs/right-vs-light/index.html',
-  contrastId: 'right-vs-light',
-},
-```
+The exercise validator derives eligibility from the route slug, an exact `CONTRAST_CATALOG` entry, and an explicit exercise UI translation for the page's `html[lang]`. Unsupported locales must not rely on the English fallback to imply localized exercise coverage.
 
 ## Preferred Learning Journey Structure
 
@@ -129,7 +122,9 @@ Do not add direct `gtag` calls for `exercise_start` or `exercise_complete` in th
 
 ## Validation Commands
 
-Before running validation, confirm each target page is included in the `exercisePages` allowlist in `scripts/validate-seo-exercise.mjs`. The allowlist is the guardrail that keeps rollout intentional and scoped.
+Before running validation, confirm the pair has an exact catalog entry. Localized pages also need explicit UI copy in `src/seo-exercise-translations.js`. The validator reports both capability blockers separately and requires every eligible route to expose the standard exercise journey.
+
+The validator also includes a report-only practice-promise scan. Explicit unscoped cues such as “Try the listening exercise” are reported as covered or uncovered, but uncovered findings do not fail the build. Generic learning-method language and claims explicitly scoped to Soundwise or the app are outside this initial vocabulary. Enforcement requires a separate vocabulary and false-positive review.
 
 Run all commands from the repository root:
 
@@ -173,7 +168,8 @@ With `window.gtag` stubbed or network calls inspected:
 - Each page is added or updated intentionally; no unbounded bulk migration.
 - Each page uses exactly one `data-exercise` mount.
 - `data-contrast` resolves to a catalog entry.
-- `scripts/validate-seo-exercise.mjs` allowlists the page and contrast ID.
+- Localized exercise pages have explicit UI translation rather than relying on fallback copy.
+- `scripts/validate-seo-exercise.mjs` confirms the route, configuration, explanation-before-practice order, and post-practice App Store action.
 - No scoring, lifecycle, or GA4 exercise forwarding is duplicated outside the shared modules.
 - Validators and build pass.
 - Manual homepage and target SEO page smoke tests pass.
