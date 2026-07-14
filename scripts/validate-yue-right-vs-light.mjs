@@ -24,6 +24,12 @@ function expectContains(source, expected, label) {
   }
 }
 
+function expectNotContains(source, unexpected, label) {
+  if (source.includes(unexpected)) {
+    issues.push(`${label}: must not contain ${unexpected}`);
+  }
+}
+
 function extractJsonLd(source) {
   return [...source.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map((match) => JSON.parse(match[1]));
@@ -114,8 +120,8 @@ if (page) {
   expectContains(page, '<html lang="zh-Hant-HK">', 'yue/right-vs-light/index.html');
   expectContains(page, '<link rel="canonical" href="https://getsoundwise.co/yue/right-vs-light/" />', 'yue/right-vs-light/index.html');
   expectContains(page, '<link rel="alternate" hreflang="en" href="https://getsoundwise.co/right-vs-light/" />', 'yue/right-vs-light/index.html');
-  expectContains(page, '<link rel="alternate" hreflang="yue-Hant-HK" href="https://getsoundwise.co/yue/right-vs-light/" />', 'yue/right-vs-light/index.html');
-  expectContains(page, '<link rel="alternate" hreflang="x-default" href="https://getsoundwise.co/right-vs-light/" />', 'yue/right-vs-light/index.html');
+  expectContains(page, '<link rel="alternate" hreflang="zh-Hant-HK" href="https://getsoundwise.co/yue/right-vs-light/" />', 'yue/right-vs-light/index.html');
+  expectNotContains(page, 'hreflang="x-default"', 'yue/right-vs-light/index.html');
   expectContains(page, 'right vs light', 'yue/right-vs-light/index.html');
   expectContains(page, 'utm_content=yue-right-vs-light', 'yue/right-vs-light/index.html');
   expectContains(page, 'href="/yue/minimal-pairs-practice/"', 'yue/right-vs-light/index.html');
@@ -137,8 +143,8 @@ if (page) {
 
 if (englishPage) {
   expectContains(englishPage, '<link rel="alternate" hreflang="en" href="https://getsoundwise.co/right-vs-light/" />', 'right-vs-light/index.html');
-  expectContains(englishPage, '<link rel="alternate" hreflang="yue-Hant-HK" href="https://getsoundwise.co/yue/right-vs-light/" />', 'right-vs-light/index.html');
-  expectContains(englishPage, '<link rel="alternate" hreflang="x-default" href="https://getsoundwise.co/right-vs-light/" />', 'right-vs-light/index.html');
+  expectContains(englishPage, '<link rel="alternate" hreflang="zh-Hant-HK" href="https://getsoundwise.co/yue/right-vs-light/" />', 'right-vs-light/index.html');
+  expectNotContains(englishPage, 'hreflang="x-default"', 'right-vs-light/index.html');
 }
 
 expectContains(viteConfig, "'yue/right-vs-light'", 'vite.config.js');

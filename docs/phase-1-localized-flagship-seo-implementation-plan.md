@@ -191,7 +191,8 @@ When hreflang is added:
 - Include a self-reference on every page in the alternate set.
 - Include the English source page.
 - Include localized alternates only where the same source pair has localized versions.
-- Include `x-default` pointing to the English source page unless a newer repo convention says otherwise.
+- Omit `x-default` from flagship pair clusters. The current repository convention reserves
+  it for the homepage cluster, where `/` is a real locale-selection fallback.
 - Keep hreflang reciprocal across every page in the set.
 - Do not list unrelated pairs as alternates of each other.
 - Use `/pat-vs-bat/` as the English alternate for `/ar/pat-vs-bat/`, after that English page exists.

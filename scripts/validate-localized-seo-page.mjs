@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { HREFLANG_BY_LOCALE } from '../src/localized-homepage-routes.js';
 
 const root = process.cwd();
 const distDir = path.join(root, 'dist');
@@ -22,22 +23,7 @@ const languageByLocale = {
   vi: ['vi'],
 };
 
-const hreflangByLocale = {
-  ja: 'ja',
-  zh: 'zh-Hans',
-  yue: 'yue-Hant-HK',
-  ko: 'ko',
-  es: 'es',
-  pt: 'pt',
-  ar: 'ar',
-  'hi-ur': 'hi',
-  fa: 'fa',
-  id: 'id',
-  ru: 'ru',
-  th: 'th',
-  tr: 'tr',
-  vi: 'vi',
-};
+const hreflangByLocale = HREFLANG_BY_LOCALE;
 
 const forbiddenClaims = [
   'clinically proven',
@@ -406,15 +392,11 @@ function validateHreflang(source, page) {
     failures.push(`missing self hreflang ${selfHreflang} for ${currentUrl}`);
   }
 
-  if (!links.some((link) => link.hreflang === 'x-default')) {
-    failures.push('missing x-default hreflang');
+  if (links.some((link) => link.hreflang === 'x-default')) {
+    failures.push('x-default must be omitted because SEO content pages are not locale-selection fallbacks');
   }
 
   for (const link of links) {
-    if (link.hreflang === 'x-default') {
-      continue;
-    }
-
     const routePath = urlToRoutePath(link.href);
     if (!routePath) {
       failures.push(`${link.hreflang} points outside ${origin}: ${link.href}`);
@@ -426,11 +408,15 @@ function validateHreflang(source, page) {
       continue;
     }
 
-    if (link.href === currentUrl) {
-      continue;
-    }
-
     const alternateSource = fs.readFileSync(routeFilePath(routePath), 'utf8');
+    const alternateCanonicals = getLinkTags(alternateSource).filter((alternateLink) => (
+      alternateLink.rel === 'canonical' && alternateLink.href
+    ));
+    if (alternateCanonicals.length !== 1 || alternateCanonicals[0].href !== link.href) {
+      failures.push(
+        `${link.hreflang} alternate URL ${link.href} must exactly match target canonical ${alternateCanonicals[0]?.href || 'missing'}`,
+      );
+    }
     const reciprocalLinks = getLinkTags(alternateSource).filter((alternateLink) => (
       alternateLink.rel === 'alternate'
       && alternateLink.hreflang

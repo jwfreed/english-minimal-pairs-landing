@@ -44,7 +44,6 @@ function validLocalizedPage({
     <link rel="canonical" href="${url}" />
     <link rel="alternate" hreflang="en" href="${alternateHref}" />
     <link rel="alternate" hreflang="ko" href="${url}" />
-    <link rel="alternate" hreflang="x-default" href="https://getsoundwise.co/right-vs-light/" />
     ${jsonLd({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -100,7 +99,10 @@ function validLocalizedPage({
 </html>`;
 }
 
-function validEnglishAlternate({ includeKo = true } = {}) {
+function validEnglishAlternate({
+  includeKo = true,
+  canonicalHref = 'https://getsoundwise.co/right-vs-light/',
+} = {}) {
   const koAlternate = includeKo
     ? '<link rel="alternate" hreflang="ko" href="https://getsoundwise.co/ko/right-vs-light/" />'
     : '';
@@ -110,10 +112,9 @@ function validEnglishAlternate({ includeKo = true } = {}) {
   <head>
     <title>right vs light | Soundwise</title>
     <meta name="description" content="English page." />
-    <link rel="canonical" href="https://getsoundwise.co/right-vs-light/" />
+    <link rel="canonical" href="${canonicalHref}" />
     <link rel="alternate" hreflang="en" href="https://getsoundwise.co/right-vs-light/" />
     ${koAlternate}
-    <link rel="alternate" hreflang="x-default" href="https://getsoundwise.co/right-vs-light/" />
   </head>
   <body>English alternate</body>
 </html>`;
@@ -170,6 +171,34 @@ test('accepts multiple explicit --page values', async () => {
   assert.equal(result.code, 0);
   assert.match(result.stdout, /PASS ko\/right-vs-light/);
   assert.match(result.stdout, /PASS ja\/ship-vs-sheep/);
+});
+
+test('fails when an hreflang URL does not exactly match the target canonical', async () => {
+  const root = createFixture();
+  writeFile(root, 'dist/right-vs-light/index.html', validEnglishAlternate({
+    canonicalHref: 'https://getsoundwise.co/noncanonical-right-vs-light/',
+  }));
+
+  const result = await runValidator(root, ['--locale', 'ko', '--slug', 'right-vs-light']);
+  const output = `${result.stdout}\n${result.stderr}`;
+
+  assert.notEqual(result.code, 0);
+  assert.match(output, /must exactly match target canonical/);
+});
+
+test('rejects x-default on SEO content clusters', async () => {
+  const root = createFixture();
+  const page = validLocalizedPage().replace(
+    '    <link rel="alternate" hreflang="ko"',
+    '    <link rel="alternate" hreflang="x-default" href="https://getsoundwise.co/" />\n    <link rel="alternate" hreflang="ko"',
+  );
+  writeFile(root, 'dist/ko/right-vs-light/index.html', page);
+
+  const result = await runValidator(root, ['--locale', 'ko', '--slug', 'right-vs-light']);
+  const output = `${result.stdout}\n${result.stderr}`;
+
+  assert.notEqual(result.code, 0);
+  assert.match(output, /x-default must be omitted/);
 });
 
 test('fails with targeted messages for common SEO regressions', async () => {

@@ -208,8 +208,13 @@ Learn why ship and sheep sound similar to English learners and how focused minim
 
 Canonical URL expectation:
 
-- If canonical tags are added to the site, use the HTTPS clean URL, for example `https://getsoundwise.co/ship-vs-sheep/`.
-- This repository does not currently use canonical tags on the homepage, so do not claim canonical support exists until it is implemented.
+- Every indexable page uses one self-referencing canonical with the HTTPS production URL,
+  for example `https://getsoundwise.co/ship-vs-sheep/`.
+- Localized alternatives remain self-canonical; do not canonicalize them to English.
+- Use `HREFLANG_BY_LOCALE` in `src/localized-homepage-routes.js` for language tags. Route
+  slugs such as `hi-ur` and `yue` are not themselves valid Google hreflang values.
+- Omit `x-default` from hubs and pair pages. It is reserved for the homepage cluster,
+  where `/` provides a real language-selection fallback.
 
 Open Graph and Twitter card notes:
 

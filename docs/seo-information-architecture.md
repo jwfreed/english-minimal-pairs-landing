@@ -355,13 +355,35 @@ same-language version.
 language for the *same* content. They are **not** navigation and must not be confused with
 internal links:
 
-- Hubs already declare a full hreflang cluster (`en` + all 14 locales + `x-default`), as in
+- Hubs already declare a full hreflang cluster (`en` + all 14 locales), as in
   `content/pairs/minimal-pairs-practice/index.html`.
 - A page can (and should) declare hreflang alternates for languages it does **not** link to
   in its visible navigation.
 - Keep hreflang clusters consistent and reciprocal across a page's localized set. Aligning
   these clusters is tracked separately (see the localized hub hreflang work in repo
   history); do not let navigation changes silently alter hreflang.
+- URL locale slugs are routing identifiers, not necessarily valid hreflang values. Use
+  `HREFLANG_BY_LOCALE` in `src/localized-homepage-routes.js` as the canonical mapping.
+  In particular, `/hi-ur/` serves the repository's Hindi content under `hreflang="hi"`,
+  `/zh/` uses `zh-Hans`, and the Traditional Chinese/Cantonese `/yue/` experience uses
+  `zh-Hant-HK`. Do not emit the route slugs `hi-ur` or `yue` as hreflang values.
+- Every indexable member of a cluster must be self-canonical, list itself, and declare the
+  same complete set of alternates as every other member. `npm run
+  validate:seo-architecture` enforces these rules against `dist/` after each build.
+- Every alternate URL must exactly equal the canonical URL declared by the target page.
+  A localized page must never point hreflang at a redirect, duplicate URL form, or page
+  that canonicalizes elsewhere.
+
+### x-default policy
+
+`x-default` is intentionally present only in the homepage cluster. The English homepage
+at `/` contains the site's global language selector, so it is the real locale-selection
+fallback for unmatched users.
+
+`x-default` is intentionally omitted from both hub clusters and every pair-page cluster.
+Those pages are language-specific content experiences, not locale-selection fallbacks;
+English remains their `hreflang="en"` alternate. Do not add `x-default` to a content
+cluster unless that URL becomes a genuine language or locale selection experience.
 
 ---
 

@@ -158,6 +158,8 @@ src/style.css
 
 - `seoPageSlugs` for clean-URL minimal-pair pages.
 - `legalLocales` for translated privacy and terms pages.
+- `HREFLANG_BY_LOCALE` in `src/localized-homepage-routes.js` for the supported search
+  language tag associated with each locale route slug.
 - `seoPageEntries` and `legalPageEntries` derive the Vite input map from those lists.
 - `preservePublicHtmlRoutes()` maps nested source files back to the existing public HTML output paths.
 - Root utility pages such as `index.html` and `support.html` remain explicit in the input map.
@@ -229,6 +231,16 @@ Each SEO page should include unique page metadata in its HTML `<head>`. Existing
 ```html
 <link rel="canonical" href="https://getsoundwise.co/ship-vs-sheep/" />
 ```
+
+All indexable pages are expected to be self-canonical. Pages that participate in a
+localized cluster must use the centralized hreflang mapping and declare an identical,
+reciprocal alternate set. `npm run validate:seo-architecture` checks these requirements
+against the generated `dist/` output, including sitemap alignment and canonical-target
+existence.
+
+The homepage cluster alone uses `x-default`, pointing to `/`, because the homepage has a
+global language selector. SEO hubs and pair pages omit `x-default`; their English pages
+are ordinary `hreflang="en"` alternates rather than locale-selection fallbacks.
 
 ## Conventions for Adding Pages
 
