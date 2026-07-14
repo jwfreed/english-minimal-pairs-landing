@@ -150,10 +150,12 @@ const pages = new Map(walkHtml(distDir).map((filePath) => {
     .flatMap((meta) => (meta.content || '').toLowerCase().split(/[\s,]+/));
   const isRedirect = metas.some((meta) => meta['http-equiv']?.toLowerCase() === 'refresh');
   const isIndexable = !robots.includes('noindex') && !isRedirect;
+  const title = (html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || '').replace(/\s+/g, ' ').trim();
 
   return [route, {
     route,
     filePath,
+    title,
     canonicals,
     canonical: canonicals[0] || null,
     alternates,
@@ -205,6 +207,17 @@ for (const page of pages.values()) {
 
   if (page.isIndexable && page.canonical !== `${SITE_ORIGIN}${page.route}`) {
     errors.push(`${page.route} is indexable but not self-canonical: ${page.canonical || 'missing'}`);
+  }
+}
+
+// Hub title brand policy: localized hubs stay keyword/benefit focused; the
+// "| Soundwise" suffix needs search evidence plus localization review first
+// (docs/seo-page-creation-guide.md, "Hub title policy").
+const hubContentKeys = new Set(['/english-ear-training/', '/minimal-pairs-practice/']);
+for (const page of pages.values()) {
+  if (localeForRoute(page.route) === 'en' || !hubContentKeys.has(contentKey(page.route))) continue;
+  if (/\|\s*Soundwise\s*$/.test(page.title)) {
+    errors.push(`${page.route} localized hub title must not default to the "| Soundwise" brand suffix (see docs/seo-page-creation-guide.md "Hub title policy"): ${page.title}`);
   }
 }
 

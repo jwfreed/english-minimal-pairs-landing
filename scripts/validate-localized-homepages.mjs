@@ -8,16 +8,16 @@ const sitemapPath = path.join(root, 'public', 'sitemap.xml');
 const localizedContentDir = path.join(root, 'content', 'locales');
 
 const routeModule = await import(pathToFileURL(path.join(root, 'src', 'localized-homepage-routes.js')).href);
-const i18nModule = await import(pathToFileURL(path.join(root, 'src', 'i18n.js')).href);
 const runtimeCopyModule = await import(pathToFileURL(path.join(root, 'src', 'landing-copy-runtime.js')).href);
+const seoModule = await import(pathToFileURL(path.join(root, 'src', 'localized-homepage-seo.js')).href);
 
 const {
   HOMEPAGE_HREFLANG_ROUTES,
   LOCALIZED_HOMEPAGE_ROUTES,
   getHomepageUrl,
 } = routeModule;
-const { translations } = i18nModule;
 const { getRuntimeLocaleMeta } = runtimeCopyModule;
+const { getLocalizedSeoMetadata } = seoModule;
 
 const issues = [];
 
@@ -27,14 +27,6 @@ function readIfExists(filePath) {
 
 function escapeRegex(value) {
   return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function getExpectedSeo(runtimeLocale) {
-  const t = translations[runtimeLocale] || translations.en;
-  return {
-    title: `${t.heroTitle} | Soundwise`,
-    description: t.heroSubtitle,
-  };
 }
 
 function expectContains(source, expected, label) {
@@ -57,7 +49,7 @@ function validateHomepageHtml(
   { expectInitialLocale = true, expectLocalizedSeo = true } = {}
 ) {
   const { htmlLang } = getRuntimeLocaleMeta(route.runtimeLocale);
-  const expectedSeo = getExpectedSeo(route.runtimeLocale);
+  const expectedSeo = getLocalizedSeoMetadata(route.runtimeLocale);
   const canonicalUrl = getHomepageUrl(route.slug);
   const label = path.relative(root, filePath);
 
@@ -73,6 +65,8 @@ function validateHomepageHtml(
     expectMetaContent(source, 'name="description"', expectedSeo.description, label);
     expectMetaContent(source, 'property="og:title"', expectedSeo.title, label);
     expectMetaContent(source, 'property="og:description"', expectedSeo.description, label);
+    expectMetaContent(source, 'name="twitter:title"', expectedSeo.title, label);
+    expectMetaContent(source, 'name="twitter:description"', expectedSeo.description, label);
   }
   expectMetaContent(source, 'property="og:url"', canonicalUrl, label);
 

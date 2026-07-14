@@ -124,25 +124,88 @@ page, after recrawl. Scope was fix-class only:
 - Truncating metadata trimmed: es and id minimal-pairs hub titles/descriptions,
   id and tr flagship pair descriptions.
 
+## Changelog: Batch 2A–D Complete — Baseline-Preservation Release (2026-07-14)
+
+**Status: Batch 2A–D is complete; this entry is the completion record.**
+Delivered: (A) the homepage SEO metadata architecture (optional
+`seoTitle`/`seoDescription` with hero fallback, shared helper, generator and
+validator in lockstep — infrastructure only, no fields populated), (B) the
+localized hub title policy, documented and validator-enforced, (C) the three
+confirmed locale metadata fixes (ko 변별→구분, tr "Dinleme Kulağı"→"Kulak
+Eğitimi", hi-ur अंग्रेज़ी spelling), and (D) the Vietnamese visible-copy issue
+documented as deferred, untouched. Intentionally deferred: homepage
+seoTitle/seoDescription population, hub brand-suffix experiments, and all
+visible-copy parity fixes (see "Deferred Localized Metadata Experiments"
+below).
+
+**This is the SEO baseline-preservation release.** Deployed 2026-07-14, inside
+the same pre-baseline window as the English optimization and Batch 1, so all
+three share one Search Console before/after dividing line. Do not populate
+homepage SEO fields or begin SERP experiments until Search Console baseline
+data exists. Scope was architecture preparation plus the three register fixes
+already confirmed by native-guidance review — no experimental SERP copy.
+
+- **Homepage SEO metadata architecture (infrastructure only).**
+  `src/localized-homepage-seo.js` now owns the homepage title/description
+  formula; `scripts/generate-localized-homepages.mjs` and
+  `scripts/validate-localized-homepages.mjs` both consume it, so generator and
+  validator cannot drift. Locale copy may define optional
+  `seoTitle`/`seoDescription` overrides with fallback to
+  `heroTitle | Soundwise` / `heroSubtitle` (rules in
+  `docs/seo-page-creation-guide.md`, "Localized homepage SEO metadata").
+  **No locale defines these fields yet** — generated homepages are
+  byte-identical to before, deliberately, to keep the baseline clean. The
+  homepage validator now also checks `twitter:title`/`twitter:description`
+  sync. Unit coverage: `scripts/localized-homepage-seo.test.mjs`.
+- **Hub title brand policy (decided and enforced).** Localized hubs stay
+  keyword + benefit focused with no `| Soundwise` suffix by default; English
+  hubs keep their branded titles. Policy and exception conditions live in
+  `docs/seo-page-creation-guide.md` ("Hub title policy");
+  `scripts/validate-seo-architecture.mjs` fails the build if a localized hub
+  title gains the suffix.
+- **ko hubs:** the clinical 변별 replaced with learner-natural 구분 in head
+  metadata (title/og/twitter/description) and LearningResource JSON-LD
+  (name/description/teaches) on both hubs. Visible breadcrumb, H1, FAQ, and
+  body still use 변별 on purpose — same coupling as the vi case below.
+- **tr ear-training hub:** "İngilizce Dinleme Kulağı" (unnatural construction)
+  replaced with "İngilizce Kulak Eğitimi" — the term the page's own reviewed
+  description and FAQ copy already use — in title/og/twitter and
+  LearningResource name. Tagline "Önce sesi ayır, sonra daha net konuş" kept.
+  Visible breadcrumb/H1 and two cross-page link texts deferred (coupling).
+- **hi-ur hubs:** metadata spelling standardized on nuqta forms (अंग्रेज़ी) in
+  head metadata and LearningResource JSON-LD on both hubs, matching the
+  Hindustani register target. Breadcrumb/H1/FAQ/body deferred (coupling).
+
+No pair-page, English homepage/hub, canonical, hreflang, sitemap, URL,
+structured-data-architecture, analytics, or exercise changes.
+
 ## Deferred Localized Metadata Experiments (post-baseline only)
 
 Do not start these until the first Search Console baseline exists and shows
-query-level evidence. They also require a metadata architecture decision first:
+query-level evidence:
 
-- **Localized homepage SEO titles.** Homepage `<title>` is generated as
-  `heroTitle | Soundwise` (`scripts/generate-localized-homepages.mjs`), so SEO
-  titles are coupled to visible hero copy. Experiment: add optional per-locale
-  `seoTitle`/`seoDescription` (fallback to hero fields), update the generator and
-  `scripts/validate-localized-homepages.mjs` in lockstep, and write brand +
-  category-keyword titles per locale (several current titles run 73–84 chars and
-  truncate).
-- **Hub title branding.** All 28 localized hub titles omit `| Soundwise` while
-  English hubs and localized pair pages include it. Decide a site-wide hub brand
-  policy before touching any of them.
-- **Minor register polish.** ko hubs use the clinical 변별 where learners search
-  발음 구분/구별; tr hub says "İngilizce Dinleme Kulağı" (unusual construction);
-  hi-ur pages mix अंग्रेजी/अंग्रेज़ी spellings; vi body/breadcrumb copy still says
-  "luyện tai nghe" (see above).
+- **Populate localized homepage `seoTitle`/`seoDescription`.** The architecture
+  landed 2026-07-14 (above); the 14 per-locale strings have not been written.
+  Write them per locale as reviewed native-quality copy (brand +
+  category-keyword; several current hero-coupled titles run 73–84 chars and
+  truncate), gated on baseline query evidence per locale.
+- **Hub brand-suffix experiments.** The default policy is decided (no suffix on
+  localized hubs). Revisiting a specific locale requires the three conditions
+  in `docs/seo-page-creation-guide.md` ("Hub title policy") — branded-query
+  evidence first.
+- **Deferred visible-copy parity fixes (coordinated body-copy changes, not
+  metadata edits).** Each couples visible breadcrumb + BreadcrumbList JSON-LD +
+  H1/FAQ/body across pages that reuse the hub breadcrumb label, so each is its
+  own reviewed change:
+  - vi: "luyện tai nghe" → "luyện nghe phân biệt âm" (breadcrumb/H1/body on
+    `/vi/english-ear-training/` and every vi page reusing the label).
+  - ko: 변별 → 구분 in visible breadcrumb/H1/FAQ/body on both hubs and pages
+    reusing the labels.
+  - tr: "İngilizce Dinleme Kulağı" → "İngilizce Kulak Eğitimi" in visible
+    breadcrumb/H1 plus link texts on `/tr/minimal-pairs-practice/` and
+    `/tr/ship-vs-sheep/`.
+  - hi-ur: अंग्रेजी → अंग्रेज़ी in visible breadcrumb/H1/FAQ/body on both hubs
+    (and review pair-page body copy for the same mix).
 
 ## Reuse for Future Sound-Family Clusters
 

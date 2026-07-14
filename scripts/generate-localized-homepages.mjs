@@ -9,6 +9,7 @@ const localizedContentDir = path.join(root, 'content', 'locales');
 const routeModule = await import(pathToFileURL(path.join(root, 'src', 'localized-homepage-routes.js')).href);
 const i18nModule = await import(pathToFileURL(path.join(root, 'src', 'i18n.js')).href);
 const runtimeCopyModule = await import(pathToFileURL(path.join(root, 'src', 'landing-copy-runtime.js')).href);
+const seoModule = await import(pathToFileURL(path.join(root, 'src', 'localized-homepage-seo.js')).href);
 
 const {
   HOMEPAGE_HREFLANG_ROUTES,
@@ -17,6 +18,7 @@ const {
 } = routeModule;
 const { translations } = i18nModule;
 const { getRuntimeLocaleMeta } = runtimeCopyModule;
+const { getLocalizedSeoMetadata } = seoModule;
 
 function escapeHtml(value) {
   return String(value)
@@ -27,14 +29,6 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value).replaceAll('"', '&quot;');
-}
-
-function getLocalizedSeo(runtimeLocale) {
-  const t = translations[runtimeLocale] || translations.en;
-  return {
-    title: `${t.heroTitle} | Soundwise`,
-    description: t.heroSubtitle,
-  };
 }
 
 function buildHreflangCluster() {
@@ -81,7 +75,7 @@ function localizeAvailableLearningLinks(source, locale) {
 function buildLocalizedHtml(template, route) {
   const { htmlLang } = getRuntimeLocaleMeta(route.runtimeLocale);
   const canonicalUrl = getHomepageUrl(route.slug);
-  const seo = getLocalizedSeo(route.runtimeLocale);
+  const seo = getLocalizedSeoMetadata(route.runtimeLocale);
   const title = escapeHtml(seo.title);
   const description = escapeAttribute(seo.description);
   const escapedCanonicalUrl = escapeAttribute(canonicalUrl);
