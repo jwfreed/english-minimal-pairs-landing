@@ -98,6 +98,52 @@ Three things matter for interpreting data against this change:
   CTR (Search Console) plus `app_store_click` data (GA4)**, not intuition or
   further template rewrites. No further metadata changes until that evidence exists.
 
+## Changelog: Localized Metadata Parity, Batch 1 (2026-07-14)
+
+**Deployed 2026-07-14. This date is the SEO measurement baseline marker:** it
+shipped the same day as the English metadata optimization, inside the same
+pre-baseline window, so English and localized changes share one Search Console
+before/after dividing line. Evaluate both against the first baseline pull, per
+page, after recrawl. Scope was fix-class only:
+
+- Vietnamese ear-training hub title/description no longer use "luyện tai nghe"
+  ("tai nghe" reads as *headphones*); head metadata and LearningResource JSON-LD
+  now say "luyện nghe phân biệt âm".
+
+  **Deferred vi visible-copy note:** the visible breadcrumb, H1, and body on
+  `/vi/english-ear-training/` still say "luyện tai nghe" on purpose. The
+  breadcrumb validators require visible breadcrumb text to equal BreadcrumbList
+  JSON-LD names, and the hub's breadcrumb label is reused on other vi pages, so
+  fixing the visible copy is a coordinated body-copy change across the vi pages
+  (visible breadcrumb + breadcrumb JSON-LD + H1/body together), not a metadata
+  edit. Batch 1 was metadata-only; do this as its own reviewed change.
+- The 10 non-CJK localized pair pages (ar, es, fa, hi-ur, id, pt, ru, th, tr, vi)
+  promoted their problem-led og:description into the meta description and now
+  keep meta = og = twitter descriptions (and titles) synchronized, matching the
+  English pattern. ja/ko/yue/zh already complied and were not touched.
+- Truncating metadata trimmed: es and id minimal-pairs hub titles/descriptions,
+  id and tr flagship pair descriptions.
+
+## Deferred Localized Metadata Experiments (post-baseline only)
+
+Do not start these until the first Search Console baseline exists and shows
+query-level evidence. They also require a metadata architecture decision first:
+
+- **Localized homepage SEO titles.** Homepage `<title>` is generated as
+  `heroTitle | Soundwise` (`scripts/generate-localized-homepages.mjs`), so SEO
+  titles are coupled to visible hero copy. Experiment: add optional per-locale
+  `seoTitle`/`seoDescription` (fallback to hero fields), update the generator and
+  `scripts/validate-localized-homepages.mjs` in lockstep, and write brand +
+  category-keyword titles per locale (several current titles run 73–84 chars and
+  truncate).
+- **Hub title branding.** All 28 localized hub titles omit `| Soundwise` while
+  English hubs and localized pair pages include it. Decide a site-wide hub brand
+  policy before touching any of them.
+- **Minor register polish.** ko hubs use the clinical 변별 where learners search
+  발음 구분/구별; tr hub says "İngilizce Dinleme Kulağı" (unusual construction);
+  hi-ur pages mix अंग्रेजी/अंग्रेज़ी spellings; vi body/breadcrumb copy still says
+  "luyện tai nghe" (see above).
+
 ## Reuse for Future Sound-Family Clusters
 
 This framework is written to generalize, not to be rewritten per cluster:
