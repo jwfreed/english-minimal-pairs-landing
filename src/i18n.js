@@ -23,6 +23,14 @@ const translationSource = Object.fromEntries(
 
 export const translations = buildLandingTranslations(translationSource);
 
+export function formatTranslationHtml(translation, { formatPhonemes = false } = {}) {
+  const html = String(translation ?? '');
+
+  return formatPhonemes
+    ? html.replace(/\/([^/]+)\//g, (match) => `<span style="text-transform:none">${match}</span>`)
+    : html;
+}
+
 const browserLanguageMap = {
   en: 'en',
   ja: HERO_DEMO_CONTRASTS.japanese.runtimeLocale,
@@ -180,9 +188,9 @@ export function applyTranslations(lang) {
       listItem.style.display = translation === '' ? 'none' : '';
     }
 
-    const html = element.classList.contains('seo-pairs-group-heading')
-      ? translation.replace(/\/([^/]+)\//g, (m) => `<span style="text-transform:none">${m}</span>`)
-      : translation;
+    const html = formatTranslationHtml(translation, {
+      formatPhonemes: element.classList.contains('seo-pairs-group-heading'),
+    });
     element.innerHTML = html;
     applyDirectionalSafety(element, isRtl);
   });

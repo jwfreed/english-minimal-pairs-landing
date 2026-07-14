@@ -16,7 +16,7 @@ const {
   LOCALIZED_HOMEPAGE_ROUTES,
   getHomepageUrl,
 } = routeModule;
-const { translations } = i18nModule;
+const { formatTranslationHtml, translations } = i18nModule;
 const { getRuntimeLocaleMeta } = runtimeCopyModule;
 const { getLocalizedSeoMetadata } = seoModule;
 
@@ -72,6 +72,54 @@ function localizeAvailableLearningLinks(source, locale) {
   return html;
 }
 
+function addStaticDirectionAttributes(attributes, isRtl) {
+  if (!isRtl) {
+    return attributes;
+  }
+
+  return `${attributes} dir="auto" style="unicode-bidi: plaintext;"`;
+}
+
+function localizeVisibleContent(source, runtimeLocale) {
+  const t = translations[runtimeLocale] || translations.en;
+  const { isRtl } = getRuntimeLocaleMeta(runtimeLocale);
+  const expectedElementCount = [...source.matchAll(/\bdata-i18n="[^"]+"/g)].length;
+  let localizedElementCount = 0;
+
+  let html = source.replace(
+    /<([a-z][a-z0-9-]*)([^>]*\bdata-i18n="([^"]+)"[^>]*)>[\s\S]*?<\/\1>/gi,
+    (match, tagName, attributes, translationKey) => {
+      const translation = t[translationKey];
+      if (translation === undefined) {
+        throw new Error(`Missing ${runtimeLocale} homepage translation for ${translationKey}`);
+      }
+
+      localizedElementCount += 1;
+      const localizedAttributes = addStaticDirectionAttributes(attributes, isRtl);
+      const localizedHtml = formatTranslationHtml(translation, {
+        formatPhonemes: /\bseo-pairs-group-heading\b/.test(attributes),
+      });
+      return `<${tagName}${localizedAttributes}>${localizedHtml}</${tagName}>`;
+    }
+  );
+
+  if (localizedElementCount !== expectedElementCount) {
+    throw new Error(
+      `Localized ${localizedElementCount} of ${expectedElementCount} homepage elements for ${runtimeLocale}`
+    );
+  }
+
+  const languageLabel = escapeHtml(`${t.flag} ${t.name}`);
+  html = replaceRequired(
+    html,
+    /(<button id="language-selector"[^>]*>)[\s\S]*?(<\/button>)/,
+    `$1\n                ${languageLabel}\n              $2`,
+    `${runtimeLocale} language selector label`
+  );
+
+  return html;
+}
+
 function buildLocalizedHtml(template, route) {
   const { htmlLang } = getRuntimeLocaleMeta(route.runtimeLocale);
   const canonicalUrl = getHomepageUrl(route.slug);
@@ -83,6 +131,7 @@ function buildLocalizedHtml(template, route) {
 
   let html = template;
   html = stripUnavailableOptionalSections(html, route.runtimeLocale);
+  html = localizeVisibleContent(html, route.runtimeLocale);
   html = localizeAvailableLearningLinks(html, route.slug);
   html = replaceRequired(html, /<html lang="[^"]*">/, `<html lang="${escapeAttribute(htmlLang)}">`, 'html lang');
   html = replaceRequired(html, /<body(.*?)>/, `<body$1 data-initial-runtime-locale="${escapedRuntimeLocale}">`, 'initial locale marker');

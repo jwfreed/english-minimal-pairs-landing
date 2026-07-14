@@ -7,7 +7,7 @@
     "dev": "vite",
     "prebuild": "npm run generate:localized-homepages && npm run validate:content-routes && npm run validate:breadcrumbs",
     "build": "vite build",
-    "postbuild": "npm run validate:breadcrumbs:dist && npm run validate:seo-architecture && npm run validate:internal-links",
+    "postbuild": "npm run validate:breadcrumbs:dist && npm run validate:localized-homepages && npm run validate:seo-architecture && npm run validate:internal-links",
     "generate:localized-homepages": "node scripts/generate-localized-homepages.mjs",
     "validate:content-routes": "node scripts/validate-content-route-registration.mjs",
     "validate:internal-links": "node scripts/validate-internal-links.mjs",

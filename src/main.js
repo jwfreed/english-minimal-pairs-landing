@@ -635,14 +635,16 @@ function resetHeroDemoState() {
   }
 }
 
-function applyRuntimeLanguage(runtimeLocale, { persist = false } = {}) {
+function applyRuntimeLanguage(runtimeLocale, { persist = false, translateDocument = true } = {}) {
   heroDemoState.runtimeLocale = resolveRuntimeLocale(runtimeLocale) || 'en';
   resetHeroDemoState();
 
-  if (persist) {
-    setLanguage(heroDemoState.runtimeLocale);
-  } else {
-    applyTranslations(heroDemoState.runtimeLocale);
+  if (translateDocument) {
+    if (persist) {
+      setLanguage(heroDemoState.runtimeLocale);
+    } else {
+      applyTranslations(heroDemoState.runtimeLocale);
+    }
   }
 
   syncLanguageMenu(heroDemoState.runtimeLocale);
@@ -1042,6 +1044,7 @@ function warmSpeechVoices() {
 
 document.addEventListener('DOMContentLoaded', () => {
   const challengeParams = readChallengeParams();
+  const staticRuntimeLocale = resolveRuntimeLocale(document.body.dataset.initialRuntimeLocale);
   const currentLang = challengeParams.challengeRuntimeLocale
     || readExplicitHomepageRuntimeLocale()
     || getCurrentLanguage();
@@ -1050,15 +1053,17 @@ document.addEventListener('DOMContentLoaded', () => {
   heroDemoState.forcedDemoLocale = challengeParams.forcedDemoLocale;
   heroDemoState.challengeSlug = challengeParams.challengeSlug;
 
-  // For non-English languages, apply translations (HTML default is English).
-  // For English the HTML already has the correct content — skipping 40+
-  // innerHTML mutations avoids a large style-recalculation/layout cycle
-  // that would otherwise delay the LCP paint.
-  if (currentLang !== 'en') {
-    // Full language switch: updates translations + state + demo locale.
-    // renderDemo() inside returns early (dom.* guard) and is called properly
-    // once setupHeroDemo() populates dom.*.
-    applyRuntimeLanguage(currentLang, { persist: false });
+  // Localized routes already contain their visible L1 copy in the generated HTML.
+  // Only translate the document when runtime state intentionally overrides that
+  // static locale (for example, a challenge-language parameter or root-page
+  // browser-language detection).
+  const documentRuntimeLocale = staticRuntimeLocale || 'en';
+
+  if (currentLang !== 'en' || currentLang !== documentRuntimeLocale) {
+    applyRuntimeLanguage(currentLang, {
+      persist: false,
+      translateDocument: documentRuntimeLocale !== currentLang,
+    });
   } else {
     // English fast path: state is already at English defaults, just mark
     // the language menu so the correct option shows as active.
