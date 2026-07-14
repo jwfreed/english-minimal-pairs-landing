@@ -7,6 +7,10 @@ import {
   SITE_ORIGIN,
 } from '../src/localized-homepage-routes.js';
 import { validateFaqQuestionParity } from './faq-parity.mjs';
+import {
+  isPairPageRoute,
+  validatePairLearningResourceMetadata,
+} from './learning-resource-metadata.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -45,6 +49,21 @@ function linkElements(html) {
 
 function metaElements(html) {
   return [...html.matchAll(/<meta\b([^>]*)>/gi)].map((match) => parseAttributes(match[1]));
+}
+
+function jsonLdBlocks(html) {
+  const blocks = [];
+  const failures = [];
+
+  for (const match of html.matchAll(/<script\b(?=[^>]*type=["']application\/ld\+json["'])[^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      blocks.push(JSON.parse(match[1]));
+    } catch (error) {
+      failures.push(`JSON-LD does not parse: ${error.message}`);
+    }
+  }
+
+  return { blocks, failures };
 }
 
 function relIncludes(attributes, value) {
@@ -218,6 +237,23 @@ for (const page of pages.values()) {
 
   for (const failure of validateFaqQuestionParity(page.html)) {
     errors.push(`${page.route} FAQ parity: ${failure}`);
+  }
+}
+
+for (const page of pages.values()) {
+  const locale = localeForRoute(page.route);
+  if (!isPairPageRoute(page.route, locale)) continue;
+
+  const jsonLd = jsonLdBlocks(page.html);
+  for (const failure of [
+    ...jsonLd.failures,
+    ...validatePairLearningResourceMetadata({
+      blocks: jsonLd.blocks,
+      route: page.route,
+      locale,
+    }),
+  ]) {
+    errors.push(`${page.route} structured metadata: ${failure}`);
   }
 }
 

@@ -71,7 +71,11 @@ function validLocalizedPage({
       '@context': 'https://schema.org',
       '@type': 'LearningResource',
       name: 'right vs light',
+      description: '한국어 모국어 학습자를 위해 영어 right와 light의 첫소리 /r/, /l/ 차이를 설명하고, 최소 대립쌍으로 그 차이를 천천히 듣는 방법을 안내합니다.',
       url,
+      learningResourceType: 'Minimal pair listening practice',
+      educationalUse: 'English listening practice',
+      teaches: '한국어 모국어 학습자를 위해 영어 right와 light의 첫소리 /r/, /l/ 차이를 설명하고, 최소 대립쌍으로 그 차이를 천천히 듣는 방법을 안내합니다.',
       inLanguage: 'ko',
     })}
   </head>
@@ -171,6 +175,36 @@ test('accepts multiple explicit --page values', async () => {
   assert.equal(result.code, 0);
   assert.match(result.stdout, /PASS ko\/right-vs-light/);
   assert.match(result.stdout, /PASS ja\/ship-vs-sheep/);
+});
+
+test('rejects generic English teaches metadata on a localized pair page', async () => {
+  const root = createFixture();
+  const page = validLocalizedPage().replace(
+    '"teaches":"한국어 모국어 학습자를 위해 영어 right와 light의 첫소리 /r/, /l/ 차이를 설명하고, 최소 대립쌍으로 그 차이를 천천히 듣는 방법을 안내합니다."',
+    '"teaches":"English minimal-pair listening contrast"',
+  );
+  writeFile(root, 'dist/ko/right-vs-light/index.html', page);
+
+  const result = await runValidator(root, ['--locale', 'ko', '--slug', 'right-vs-light']);
+  const output = `${result.stdout}\n${result.stderr}`;
+
+  assert.notEqual(result.code, 0);
+  assert.match(output, /localized, pair-specific LearningResource\.teaches/);
+});
+
+test('rejects learningResourceType drift on a localized pair page', async () => {
+  const root = createFixture();
+  const page = validLocalizedPage().replace(
+    'Minimal pair listening practice',
+    'Practice page',
+  );
+  writeFile(root, 'dist/ko/right-vs-light/index.html', page);
+
+  const result = await runValidator(root, ['--locale', 'ko', '--slug', 'right-vs-light']);
+  const output = `${result.stdout}\n${result.stderr}`;
+
+  assert.notEqual(result.code, 0);
+  assert.match(output, /learningResourceType must be "Minimal pair listening practice"/);
 });
 
 test('fails when an hreflang URL does not exactly match the target canonical', async () => {

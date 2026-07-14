@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { HREFLANG_BY_LOCALE } from '../src/localized-homepage-routes.js';
 import { validateFaqQuestionParity } from './faq-parity.mjs';
+import { validatePairLearningResourceMetadata } from './learning-resource-metadata.mjs';
 
 const root = process.cwd();
 const distDir = path.join(root, 'dist');
@@ -327,6 +328,12 @@ function validateJsonLd(source, page) {
   if (learningResource && !expectedLanguages.includes(learningResource.inLanguage)) {
     failures.push(`LearningResource.inLanguage is ${learningResource.inLanguage}, expected one of ${expectedLanguages.join(', ')}`);
   }
+
+  failures.push(...validatePairLearningResourceMetadata({
+    blocks,
+    route: `/${page.locale}/${page.slug}/`,
+    locale: page.locale,
+  }));
 
   return { blocks, failures };
 }
