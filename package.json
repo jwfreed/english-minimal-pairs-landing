@@ -16,6 +16,7 @@
     "validate:breadcrumbs:dist": "node scripts/validate-breadcrumbs.mjs --dist",
     "validate:app-store-tracking": "node scripts/validate-app-store-tracking.mjs",
     "validate:exercise-engine": "node --test scripts/exercise-engine.test.mjs",
+    "validate:faq-parity": "node --test scripts/faq-parity.test.mjs",
     "validate:funnel-tracking": "node scripts/validate-funnel-tracking.mjs",
     "validate:seo-conversion-matrix": "node scripts/validate-seo-page-conversion-matrix.mjs",
     "validate:seo-exercise": "node scripts/validate-seo-exercise.mjs",

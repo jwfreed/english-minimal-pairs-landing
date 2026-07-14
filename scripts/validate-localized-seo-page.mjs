@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { HREFLANG_BY_LOCALE } from '../src/localized-homepage-routes.js';
+import { validateFaqQuestionParity } from './faq-parity.mjs';
 
 const root = process.cwd();
 const distDir = path.join(root, 'dist');
@@ -353,17 +354,7 @@ function validateBreadcrumbParity(source, blocks, page) {
 function validateFaqParity(source, blocks) {
   const visibleFaq = getVisibleFaq(source);
   const schemaFaq = getJsonLdByType(blocks, 'FAQPage')?.mainEntity || [];
-  const failures = [];
-
-  if (visibleFaq.length !== schemaFaq.length) {
-    failures.push(`visible FAQ count ${visibleFaq.length} does not match schema count ${schemaFaq.length}`);
-  }
-
-  const visibleQuestions = visibleFaq.map((faq) => faq.question);
-  const schemaQuestions = schemaFaq.map((faq) => normalizeText(faq.name || ''));
-  if (JSON.stringify(visibleQuestions) !== JSON.stringify(schemaQuestions)) {
-    failures.push(`visible FAQ questions ${JSON.stringify(visibleQuestions)} do not match schema ${JSON.stringify(schemaQuestions)}`);
-  }
+  const failures = validateFaqQuestionParity(source, blocks);
 
   for (const faq of visibleFaq) {
     if (!faq.answer) {

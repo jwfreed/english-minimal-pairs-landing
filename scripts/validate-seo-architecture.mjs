@@ -6,6 +6,7 @@ import {
   LOCALIZED_HOMEPAGE_ROUTES,
   SITE_ORIGIN,
 } from '../src/localized-homepage-routes.js';
+import { validateFaqQuestionParity } from './faq-parity.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distDir = path.join(root, 'dist');
@@ -155,6 +156,7 @@ const pages = new Map(walkHtml(distDir).map((filePath) => {
   return [route, {
     route,
     filePath,
+    html,
     title,
     canonicals,
     canonical: canonicals[0] || null,
@@ -207,6 +209,15 @@ for (const page of pages.values()) {
 
   if (page.isIndexable && page.canonical !== `${SITE_ORIGIN}${page.route}`) {
     errors.push(`${page.route} is indexable but not self-canonical: ${page.canonical || 'missing'}`);
+  }
+}
+
+for (const page of pages.values()) {
+  if (localeForRoute(page.route) !== 'en') continue;
+  if (!/\bclass=["'][^"']*\bseo-faq\b[^"']*["']/i.test(page.html)) continue;
+
+  for (const failure of validateFaqQuestionParity(page.html)) {
+    errors.push(`${page.route} FAQ parity: ${failure}`);
   }
 }
 
