@@ -8,7 +8,7 @@ This document assumes no enterprise analytics stack. Optimize for clarity and lo
 
 ## Last Updated
 
-2026-05-07
+2026-07-15
 
 ---
 
@@ -221,6 +221,35 @@ must not set this value. Validators reject checked-in `data-cta-position` values
 GA4 administrators should register `page_slug`, `locale`, and `cta_position` as event-scoped custom
 dimensions. Register `exercise_completed` as an event-scoped custom dimension if the property does not
 already expose boolean event parameters in the intended reporting workflow.
+
+## Deployment Milestones
+
+### SEO Attribution Contract Live
+
+**Date:** 2026-07-15
+
+**Repository:** `jwfreed/english-minimal-pairs-landing`
+
+**Environment:** Production
+
+**Deployment:** GitHub Pages
+
+**Commit:** `e5b4d1d0fb97b1f33c73ad515dd35eda8136b688`
+
+**Verified:**
+
+- `app_store_click` fires from production pages.
+- SEO parameters are present:
+  - `page_slug`
+  - `locale`
+  - `cta_position`
+  - `exercise_completed`
+- GA4 DebugView confirmed production events.
+
+**Known limitation:**
+
+- GA4 custom dimensions only collect future data.
+- Historical events before this deployment should not be treated as equivalent to events using the complete SEO attribution contract.
 
 ---
 
