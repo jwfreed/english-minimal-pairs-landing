@@ -201,7 +201,26 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 
 | Event | Trigger | Parameters |
 | --- | --- | --- |
-| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | `button_text`, `page_path`, `link_url` |
+| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | All surfaces: `button_text`, `page_path`, `link_url`. SEO pages also require `page_slug`, `locale`, `cta_position`, `exercise_completed`. |
+
+### SEO App Store Click Contract
+
+SEO pages extend the existing `app_store_click` event; they do not send a second conversion event.
+
+| Parameter | Requirement | Purpose | Allowed or example values |
+| --- | --- | --- | --- |
+| `page_slug` | Required on SEO pages | Identifies the landing-page topic without coupling reporting to localized route prefixes | `ship-vs-sheep`, `minimal-pairs-practice` |
+| `locale` | Required on SEO pages | Identifies the canonical Soundwise route locale | `en`, `ja`, `hi-ur`, `yue` |
+| `cta_position` | Required on SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `post-exercise-footer` |
+| `exercise_completed` | Required boolean on SEO pages | Distinguishes clicks before and after verified exercise lifecycle completion | `true`, `false` |
+
+`exercise_completed` becomes `true` only after the shared exercise engine dispatches
+`soundwise:demo_completed` or `soundwise:challenge_completed`. Visibility, scrolling, and elapsed time
+must not set this value. Validators reject checked-in `data-cta-position` values outside the allowlist.
+
+GA4 administrators should register `page_slug`, `locale`, and `cta_position` as event-scoped custom
+dimensions. Register `exercise_completed` as an event-scoped custom dimension if the property does not
+already expose boolean event parameters in the intended reporting workflow.
 
 ---
 

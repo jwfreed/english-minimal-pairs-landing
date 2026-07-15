@@ -2,6 +2,7 @@ import { getContrastById } from './contrast-catalog.js';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
+import { buildSeoAppStoreAttribution } from './app-store-attribution.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
@@ -465,6 +466,15 @@ function setupSmoothScroll() {
 }
 
 function setupCtaTracking() {
+  let exerciseCompleted = false;
+
+  const markExerciseCompleted = () => {
+    exerciseCompleted = true;
+  };
+
+  window.addEventListener('soundwise:demo_completed', markExerciseCompleted);
+  window.addEventListener('soundwise:challenge_completed', markExerciseCompleted);
+
   document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
     link.addEventListener('click', () => {
       if (typeof window.gtag === 'function') {
@@ -475,7 +485,12 @@ function setupCtaTracking() {
           page_path: window.location.pathname,
           link_url: link.href,
           link_id: link.id || undefined,
-          cta_position: link.dataset.ctaPosition || undefined,
+          ...buildSeoAppStoreAttribution({
+            link,
+            pathname: window.location.pathname,
+            documentLanguage: document.documentElement.lang,
+            exerciseCompleted,
+          }),
           transport_type: 'beacon',
         });
       }
