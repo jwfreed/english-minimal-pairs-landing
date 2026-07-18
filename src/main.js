@@ -9,6 +9,7 @@ import {
   RUNTIME_LOCALE_TO_DEMO_LOCALE,
 } from './hero-demo-config.js';
 import { HOMEPAGE_ROUTE_BY_SLUG } from './localized-homepage-routes.js';
+import { buildExerciseAttribution } from './app-store-attribution.js';
 
 const DEMO_MAX_ROUNDS = 2;
 const CTA_UNLOCKED_CLASS = 'is-muted';
@@ -53,7 +54,7 @@ function dispatchDemoEvent(name, detail = {}) {
 // Grounded parameters for the SEO funnel exercise_* events. Everything here is
 // derived from the active demo contrast config and the visitor's chosen UI
 // language — no PII, no invented values.
-function buildExerciseParams(detail = {}) {
+function buildExerciseParams(eventName, detail = {}) {
   const demoLocale = detail.demoLocale || heroDemoState.demoLocale;
   const config = HERO_DEMO_CONTRASTS[demoLocale] || HERO_DEMO_CONTRASTS.english;
   const [first, second] = config.words;
@@ -64,6 +65,11 @@ function buildExerciseParams(detail = {}) {
     sound_contrast: config.contrast,
     language: detail.runtimeLocale || heroDemoState.runtimeLocale,
     experience_surface: 'homepage',
+    ...buildExerciseAttribution({
+      eventName,
+      pageSlug: 'homepage',
+      locale: detail.runtimeLocale || heroDemoState.runtimeLocale,
+    }),
   };
 }
 
@@ -126,7 +132,7 @@ function buildExerciseEventDetail(eventName, detail = {}) {
   ) {
     return {
       ...baseDetail,
-      exerciseParams: buildExerciseParams(baseDetail),
+      exerciseParams: buildExerciseParams(eventName, baseDetail),
     };
   }
 

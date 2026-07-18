@@ -201,7 +201,23 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 
 | Event | Trigger | Parameters |
 | --- | --- | --- |
+| `exercise_start` | First exercise round started, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: false` |
+| `exercise_complete` | Final exercise round completed, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: true` |
 | `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | All surfaces: `button_text`, `page_path`, `link_url`. SEO pages also require `page_slug`, `locale`, `cta_position`, `exercise_completed`. |
+
+### Exercise Event Contract
+
+`page_slug` and `locale` identify the page and canonical route locale that produced the exercise
+interaction. `cta_position` is not sent on exercise events: it identifies the physical App Store CTA
+clicked (`hero`, `mid-content`, or `post-exercise-footer`) and therefore applies only to
+`app_store_click`.
+
+`exercise_completed` is intentionally present even though `event_name` distinguishes
+`exercise_start` from `exercise_complete`. It provides one normalized lifecycle-state field across
+exercise events and the downstream SEO `app_store_click`, so GA4 explorations can filter or compare
+the funnel without deriving equivalent state separately for each event name. On exercise events it is
+deterministic (`false` for start, `true` for completion); on `app_store_click` it records whether a
+verified completion happened earlier in the same page load. It does not replace `event_name`.
 
 ### SEO App Store Click Contract
 

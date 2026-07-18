@@ -257,7 +257,7 @@ Before shipping a page with an SEO exercise:
 5. Run `npm run build`.
 6. Manually open the homepage and verify the existing homepage exercise still starts, completes, scores, promotes the CTA, and sends one `exercise_start` plus one `exercise_complete`.
 7. Manually open the SEO page and verify the exercise renders at the intended point in the article, starts, completes, scores, and keeps the article CTA usable.
-8. Stub or inspect `window.gtag` and confirm SEO exercise params include `exercise_id`, `pair_name`, `sound_contrast`, `language`, and `experience_surface: 'seo_contrast_page'`.
+8. Stub or inspect `window.gtag` and confirm SEO exercise params include `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface: 'seo_contrast_page'`, `page_slug`, `locale`, and the correct `exercise_completed` boolean. `cta_position` remains exclusive to `app_store_click`.
 9. Confirm App Store CTA clicks still send only `app_store_click` with the existing payload shape.
 
 ## Analytics Event Ownership

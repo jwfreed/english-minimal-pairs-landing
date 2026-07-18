@@ -7,6 +7,10 @@ export const SEO_CTA_POSITIONS = Object.freeze([
 ]);
 
 const SEO_CTA_POSITION_SET = new Set(SEO_CTA_POSITIONS);
+const EXERCISE_COMPLETION_EVENTS = new Set([
+  'demo_completed',
+  'challenge_completed',
+]);
 const SEO_LOCALE_BY_HREFLANG = Object.freeze(
   Object.fromEntries(
     Object.entries(HREFLANG_BY_LOCALE).map(([locale, hreflang]) => [hreflang.toLowerCase(), locale])
@@ -70,5 +74,17 @@ export function buildSeoAppStoreAttribution({
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,
+  };
+}
+
+export function buildExerciseAttribution({
+  eventName,
+  pageSlug,
+  locale,
+}) {
+  return {
+    page_slug: pageSlug,
+    locale,
+    exercise_completed: EXERCISE_COMPLETION_EVENTS.has(eventName),
   };
 }

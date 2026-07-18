@@ -14,7 +14,7 @@ const seoTrackingSource = fs.readFileSync('src/seo-page.js', 'utf8');
 const attributionSource = fs.readFileSync('src/app-store-attribution.js', 'utf8');
 const allowedSeoCtaPositions = new Set(SEO_CTA_POSITIONS);
 const requiredSeoTrackingSnippets = [
-  "import { buildSeoAppStoreAttribution } from './app-store-attribution.js';",
+  'buildSeoAppStoreAttribution,',
   "window.addEventListener('soundwise:demo_completed', markExerciseCompleted)",
   "window.addEventListener('soundwise:challenge_completed', markExerciseCompleted)",
   'exerciseCompleted = true',

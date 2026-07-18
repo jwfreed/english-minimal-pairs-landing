@@ -117,6 +117,12 @@ Required exercise params:
 - `sound_contrast`
 - `language`
 - `experience_surface: 'seo_contrast_page'`
+- `page_slug`
+- `locale`
+- `exercise_completed` (`false` on start, `true` on completion)
+
+`cta_position` is intentionally absent from exercise events. It describes the physical App Store CTA
+that was clicked and applies only to `app_store_click`.
 
 Do not add direct `gtag` calls for `exercise_start` or `exercise_complete` in the SEO page. Do not create new training events. App Store clicks remain the separate `app_store_click` path.
 

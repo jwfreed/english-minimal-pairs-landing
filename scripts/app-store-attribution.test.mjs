@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import {
   SEO_CTA_POSITIONS,
+  buildExerciseAttribution,
   buildSeoAppStoreAttribution,
   getSeoCtaPosition,
   getSeoPageLocale,
@@ -61,6 +62,30 @@ test('SEO attribution reports only verified exercise completion', () => {
 
   assert.equal(
     buildSeoAppStoreAttribution({ ...baseInput, exerciseCompleted: true }).exercise_completed,
+    true
+  );
+});
+
+test('exercise attribution reports page context and lifecycle completion', () => {
+  const baseInput = {
+    pageSlug: 'ship-vs-sheep',
+    locale: 'ja',
+  };
+
+  assert.deepEqual(buildExerciseAttribution({ ...baseInput, eventName: 'demo_started' }), {
+    page_slug: 'ship-vs-sheep',
+    locale: 'ja',
+    exercise_completed: false,
+  });
+
+  assert.deepEqual(buildExerciseAttribution({ ...baseInput, eventName: 'demo_completed' }), {
+    page_slug: 'ship-vs-sheep',
+    locale: 'ja',
+    exercise_completed: true,
+  });
+
+  assert.equal(
+    buildExerciseAttribution({ ...baseInput, eventName: 'challenge_completed' }).exercise_completed,
     true
   );
 });

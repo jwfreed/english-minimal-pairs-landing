@@ -2,7 +2,12 @@ import { getContrastById } from './contrast-catalog.js';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
-import { buildSeoAppStoreAttribution } from './app-store-attribution.js';
+import {
+  buildExerciseAttribution,
+  buildSeoAppStoreAttribution,
+  getSeoPageLocale,
+  getSeoPageSlug,
+} from './app-store-attribution.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
@@ -16,13 +21,18 @@ function formatPairName(contrast) {
   return contrast.words.map((word) => word.text.toUpperCase()).join(' / ');
 }
 
-function buildExerciseParams(contrast) {
+function buildExerciseParams(contrast, eventName) {
   return {
     exercise_id: contrast.id,
     pair_name: formatPairName(contrast),
     sound_contrast: contrast.contrast,
     language: document.documentElement.lang || 'en',
     experience_surface: 'seo_contrast_page',
+    ...buildExerciseAttribution({
+      eventName,
+      pageSlug: getSeoPageSlug(window.location.pathname),
+      locale: getSeoPageLocale(window.location.pathname, document.documentElement.lang),
+    }),
   };
 }
 
@@ -30,11 +40,11 @@ function dispatchSoundwiseEvent(name, detail = {}) {
   window.dispatchEvent(new CustomEvent(`soundwise:${name}`, { detail }));
 }
 
-function buildSeoExerciseEventDetail(contrast, detail = {}) {
+function buildSeoExerciseEventDetail(contrast, eventName, detail = {}) {
   return {
     ...detail,
     contrast_id: contrast.id,
-    exerciseParams: buildExerciseParams(contrast),
+    exerciseParams: buildExerciseParams(contrast, eventName),
   };
 }
 
@@ -326,7 +336,7 @@ function createSeoExercise(mount, contrast) {
 
   exercise = createExercise({
     mount: {
-      buildEventDetail: (eventName, detail) => buildSeoExerciseEventDetail(contrast, detail),
+      buildEventDetail: (eventName, detail) => buildSeoExerciseEventDetail(contrast, eventName, detail),
       dispatchEvent: dispatchSoundwiseEvent,
       getTargetIndex: () => Math.round(Math.random()),
       onFeedback: (payload) => renderFeedbackCopy(feedbackCopy, payload, uiCopy),

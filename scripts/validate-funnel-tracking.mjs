@@ -15,7 +15,8 @@ const exactlyOnceInFunnelModule = [
 const requiredInMain = [
   "import setupFunnelTracking from './funnel-tracking.js';",
   "experience_surface: 'homepage'",
-  "exerciseParams: buildExerciseParams(",
+  'exerciseParams: buildExerciseParams(eventName, baseDetail)',
+  "pageSlug: 'homepage'",
   "'event', 'app_store_click'",
 ];
 const requiredInFunnelModule = [
