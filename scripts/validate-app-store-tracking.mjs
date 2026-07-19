@@ -15,10 +15,11 @@ const attributionSource = fs.readFileSync('src/app-store-attribution.js', 'utf8'
 const allowedSeoCtaPositions = new Set(SEO_CTA_POSITIONS);
 const requiredSeoTrackingSnippets = [
   'buildSeoAppStoreAttribution,',
-  "window.addEventListener('soundwise:demo_completed', markExerciseCompleted)",
-  "window.addEventListener('soundwise:challenge_completed', markExerciseCompleted)",
+  "browserWindow.addEventListener('soundwise:demo_completed', markExerciseCompleted)",
+  "browserWindow.addEventListener('soundwise:challenge_completed', markExerciseCompleted)",
   'exerciseCompleted = true',
   '...buildSeoAppStoreAttribution({',
+  "event.target?.closest?.('a[href*=\"apps.apple.com\"]')",
 ];
 const requiredAttributionSnippets = [
   'page_slug:',

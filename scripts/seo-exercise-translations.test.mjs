@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  SEO_EXERCISE_TRANSLATIONS,
   getSeoExerciseCopy,
   resolveSeoExerciseLocale,
 } from '../src/seo-exercise-translations.js';
@@ -21,6 +22,7 @@ test('returns localized SEO exercise UI copy with formatted dynamic labels', () 
   assert.equal(copy.roundLabel(2, 3), 'รอบที่ 2 จาก 3');
   assert.equal(copy.feedback({ selectedWord: 'SHIP', correctWord: 'SHEEP', correct: false }), 'ยังไม่ใช่ คุณเลือก: SHIP คำตอบที่ถูกต้อง: SHEEP');
   assert.equal(copy.scoreLabel(2, 3), 'คุณตอบถูก 2 จาก 3 ข้อ');
+  assert.equal(copy.summaryCta({ correct: 1, total: 2 }).headline, 'ฝึกแยกคู่เสียงนี้ต่อ');
 });
 
 test('falls back to English SEO exercise UI copy for unsupported locales', () => {
@@ -30,4 +32,23 @@ test('falls back to English SEO exercise UI copy for unsupported locales', () =>
   assert.equal(copy.startButton, 'Start the listening test');
   assert.equal(copy.roundLabel(1, 2), 'Round 1 of 2');
   assert.equal(copy.feedback({ selectedWord: 'SHIP', correctWord: 'SHEEP', correct: true }), 'Correct. You chose: SHIP. Correct answer: SHEEP.');
+});
+
+test('provides score-aware English CTA copy for incomplete and perfect results', () => {
+  const copy = getSeoExerciseCopy('en');
+  const incomplete = copy.summaryCta({ correct: 1, total: 2 });
+  const perfect = copy.summaryCta({ correct: 2, total: 2 });
+
+  assert.equal(incomplete.headline, 'Keep training this sound contrast');
+  assert.match(incomplete.body, /You got 1 out of 2 correct\./);
+  assert.equal(incomplete.label, 'Continue practicing in Soundwise');
+  assert.equal(perfect.headline, 'Keep building your listening skills');
+  assert.match(perfect.body, /You got 2 out of 2 correct\./);
+  assert.equal(perfect.label, 'Practice more in Soundwise');
+});
+
+test('only explicitly translated localized exercise routes are treated as supported', () => {
+  assert.deepEqual(Object.keys(SEO_EXERCISE_TRANSLATIONS).sort(), ['en', 'th']);
+  assert.equal(resolveSeoExerciseLocale('th-TH'), 'th');
+  assert.equal(resolveSeoExerciseLocale('ja'), 'en');
 });

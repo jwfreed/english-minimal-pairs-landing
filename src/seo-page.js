@@ -2,6 +2,7 @@ import { getContrastById } from './contrast-catalog.js';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
+import { createSeoExerciseSummaryCta } from './seo-exercise-summary-cta.js';
 import {
   buildExerciseAttribution,
   buildSeoAppStoreAttribution,
@@ -12,6 +13,7 @@ import {
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
 const SEO_EXERCISE_CLASS_NAME = 'seo-exercise';
+const EXERCISE_COMPLETION_EVENTS = new Set(['demo_completed', 'challenge_completed']);
 
 function getSeoExerciseMountId(contrastId) {
   return `${contrastId}-listening-exercise`;
@@ -301,12 +303,16 @@ function createSeoExercise(mount, contrast) {
   summary.append(
     summaryLead,
     score,
-    summaryBody,
-    createElement('p', {
-      className: 'seo-exercise-next-step',
-      textContent: uiCopy.nextStep,
-    })
+    summaryBody
   );
+
+  const existingAppStoreLink = document.querySelector('a[href*="apps.apple.com"]');
+  const summaryCta = createSeoExerciseSummaryCta({
+    document,
+    container: summary,
+    uiCopy,
+    appStoreHref: existingAppStoreLink?.href,
+  });
 
   mount.setAttribute('role', 'region');
   mount.setAttribute('aria-labelledby', titleId);
@@ -328,6 +334,7 @@ function createSeoExercise(mount, contrast) {
     showStage(feedback, snapshot.stage === 'feedback' || snapshot.stage === 'summary');
     showStage(summary, snapshot.stage === 'summary');
     showStage(nextButton, snapshot.stage === 'feedback' && snapshot.round < snapshot.total);
+    summaryCta.sync(snapshot);
 
     if (snapshot.stage === 'summary') {
       renderSummaryCopy({ score, summaryLead, summaryBody }, snapshot, uiCopy);
@@ -337,7 +344,13 @@ function createSeoExercise(mount, contrast) {
   exercise = createExercise({
     mount: {
       buildEventDetail: (eventName, detail) => buildSeoExerciseEventDetail(contrast, eventName, detail),
-      dispatchEvent: dispatchSoundwiseEvent,
+      dispatchEvent: (eventName, detail, snapshot) => {
+        dispatchSoundwiseEvent(eventName, detail);
+
+        if (EXERCISE_COMPLETION_EVENTS.has(eventName)) {
+          summaryCta.show(snapshot);
+        }
+      },
       getTargetIndex: () => Math.round(Math.random()),
       onFeedback: (payload) => renderFeedbackCopy(feedbackCopy, payload, uiCopy),
       onStateChange: render,
@@ -475,43 +488,50 @@ function setupSmoothScroll() {
   });
 }
 
-function setupCtaTracking() {
+export function setupCtaTracking({
+  root = document,
+  browserWindow = window,
+} = {}) {
   let exerciseCompleted = false;
 
   const markExerciseCompleted = () => {
     exerciseCompleted = true;
   };
 
-  window.addEventListener('soundwise:demo_completed', markExerciseCompleted);
-  window.addEventListener('soundwise:challenge_completed', markExerciseCompleted);
+  browserWindow.addEventListener('soundwise:demo_completed', markExerciseCompleted);
+  browserWindow.addEventListener('soundwise:challenge_completed', markExerciseCompleted);
 
-  document.querySelectorAll('a[href*="apps.apple.com"]').forEach((link) => {
-    link.addEventListener('click', () => {
-      if (typeof window.gtag === 'function') {
-        const buttonText = link.textContent.trim().replace(/\s+/g, ' ');
+  root.addEventListener('click', (event) => {
+    const link = event.target?.closest?.('a[href*="apps.apple.com"]');
 
-        window.gtag('event', 'app_store_click', {
-          button_text: buttonText || link.getAttribute('aria-label') || undefined,
-          page_path: window.location.pathname,
-          link_url: link.href,
-          link_id: link.id || undefined,
-          ...buildSeoAppStoreAttribution({
-            link,
-            pathname: window.location.pathname,
-            documentLanguage: document.documentElement.lang,
-            exerciseCompleted,
-          }),
-          transport_type: 'beacon',
-        });
-      }
+    if (!link || typeof browserWindow.gtag !== 'function') {
+      return;
+    }
+
+    const buttonText = link.textContent.trim().replace(/\s+/g, ' ');
+
+    browserWindow.gtag('event', 'app_store_click', {
+      button_text: buttonText || link.getAttribute('aria-label') || undefined,
+      page_path: browserWindow.location.pathname,
+      link_url: link.href,
+      link_id: link.id || undefined,
+      ...buildSeoAppStoreAttribution({
+        link,
+        pathname: browserWindow.location.pathname,
+        documentLanguage: root.documentElement.lang,
+        exerciseCompleted,
+      }),
+      transport_type: 'beacon',
     });
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  setupFaqAccordion();
-  setupSmoothScroll();
-  setupCtaTracking();
-  setupFunnelTracking();
-  setupSeoExercises();
-});
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    setupFaqAccordion();
+    setupSmoothScroll();
+    setupCtaTracking();
+    setupFunnelTracking();
+    setupSeoExercises();
+  });
+}

@@ -152,12 +152,14 @@ Check each new or updated SEO page:
 - Exercise title, contrast label, word buttons, IPA, feedback, score, and summary render correctly.
 - Start exercise, answer both rounds, and confirm completion.
 - Article App Store CTA remains visible and clickable after completion.
+- The score-aware `exercise-summary` App Store CTA is absent before completion and appears once after
+  verified exercise completion.
 - No unrelated SEO pages gained an exercise mount.
 
 Check the homepage:
 
 - Homepage exercise still starts and completes.
-- Score, summary, CTA promotion, challenge/share behavior, language switching, and App Store CTA behavior are unchanged.
+- Score, summary, challenge/share behavior, language switching, and homepage App Store CTA behavior are unchanged.
 
 ## Analytics Verification
 
@@ -167,6 +169,8 @@ With `window.gtag` stubbed or network calls inspected:
 - Completing the SEO exercise sends exactly one `exercise_complete`.
 - Both exercise events include `experience_surface: 'seo_contrast_page'`.
 - Clicking the SEO App Store CTA sends exactly one `app_store_click`.
+- Clicking the completed-summary CTA sends `app_store_click` with
+  `cta_position: 'exercise-summary'` and `exercise_completed: true`.
 - Homepage exercise events still use `experience_surface: 'homepage'`.
 
 ## Acceptance Criteria

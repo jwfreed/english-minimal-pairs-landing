@@ -209,7 +209,7 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 
 `page_slug` and `locale` identify the page and canonical route locale that produced the exercise
 interaction. `cta_position` is not sent on exercise events: it identifies the physical App Store CTA
-clicked (`hero`, `mid-content`, or `post-exercise-footer`) and therefore applies only to
+clicked (`hero`, `mid-content`, `exercise-summary`, or `post-exercise-footer`) and therefore applies only to
 `app_store_click`.
 
 `exercise_completed` is intentionally present even though `event_name` distinguishes
@@ -227,12 +227,31 @@ SEO pages extend the existing `app_store_click` event; they do not send a second
 | --- | --- | --- | --- |
 | `page_slug` | Required on SEO pages | Identifies the landing-page topic without coupling reporting to localized route prefixes | `ship-vs-sheep`, `minimal-pairs-practice` |
 | `locale` | Required on SEO pages | Identifies the canonical Soundwise route locale | `en`, `ja`, `hi-ur`, `yue` |
-| `cta_position` | Required on SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `post-exercise-footer` |
+| `cta_position` | Required on SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `exercise-summary`, `post-exercise-footer` |
 | `exercise_completed` | Required boolean on SEO pages | Distinguishes clicks before and after verified exercise lifecycle completion | `true`, `false` |
 
 `exercise_completed` becomes `true` only after the shared exercise engine dispatches
 `soundwise:demo_completed` or `soundwise:challenge_completed`. Visibility, scrolling, and elapsed time
 must not set this value. Validators reject checked-in `data-cta-position` values outside the allowlist.
+
+#### Completed Exercise Summary CTA Experiment
+
+The `exercise-summary` App Store CTA appears only after the shared exercise engine dispatches a
+verified completion event. It renders inside the completed SEO exercise summary, uses score-aware
+supporting copy, and reuses the page's existing App Store destination. For this CTA,
+`exercise_completed` is always `true`. Existing App Store CTAs retain their current locations and
+`cta_position` values.
+
+The primary experiment metric is:
+
+```text
+app_store_click where cta_position = exercise-summary
+divided by
+exercise_complete
+```
+
+Guardrails are `exercise_complete / exercise_start`, duplicate `app_store_click` rate, and the event
+integrity of existing CTA positions.
 
 GA4 administrators should register `page_slug`, `locale`, and `cta_position` as event-scoped custom
 dimensions. Register `exercise_completed` as an event-scoped custom dimension if the property does not

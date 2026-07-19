@@ -39,8 +39,17 @@ test('SEO locale uses canonical product route values', () => {
 });
 
 test('CTA positions are allowlisted and inferred for legacy SEO markup', () => {
-  assert.deepEqual(SEO_CTA_POSITIONS, ['hero', 'mid-content', 'post-exercise-footer']);
+  assert.deepEqual(SEO_CTA_POSITIONS, [
+    'hero',
+    'mid-content',
+    'exercise-summary',
+    'post-exercise-footer',
+  ]);
   assert.equal(getSeoCtaPosition(createLink({ declaredPosition: 'hero' })), 'hero');
+  assert.equal(
+    getSeoCtaPosition(createLink({ declaredPosition: 'exercise-summary' })),
+    'exercise-summary'
+  );
   assert.equal(getSeoCtaPosition(createLink({ context: '.seo-nav' })), 'hero');
   assert.equal(getSeoCtaPosition(createLink({ context: '.footer' })), 'post-exercise-footer');
   assert.equal(getSeoCtaPosition(createLink()), 'mid-content');
@@ -77,12 +86,14 @@ test('exercise attribution reports page context and lifecycle completion', () =>
     locale: 'ja',
     exercise_completed: false,
   });
+  assert.equal('cta_position' in buildExerciseAttribution({ ...baseInput, eventName: 'demo_started' }), false);
 
   assert.deepEqual(buildExerciseAttribution({ ...baseInput, eventName: 'demo_completed' }), {
     page_slug: 'ship-vs-sheep',
     locale: 'ja',
     exercise_completed: true,
   });
+  assert.equal('cta_position' in buildExerciseAttribution({ ...baseInput, eventName: 'demo_completed' }), false);
 
   assert.equal(
     buildExerciseAttribution({ ...baseInput, eventName: 'challenge_completed' }).exercise_completed,

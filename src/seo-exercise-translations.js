@@ -12,7 +12,6 @@ const englishSeoExerciseCopy = {
   testPrompt: 'Which word did you hear?',
   feedbackReplayPrompt: 'Listen again:',
   nextButton: 'Try one more round',
-  nextStep: 'When you are ready, continue with the Soundwise app practice below.',
   speakerLabel: 'Listen',
   listenPrompt: 'Listen carefully. Which word did you hear?',
   chooseWordLabel: (word) => `Choose ${word}`,
@@ -43,6 +42,21 @@ const englishSeoExerciseCopy = {
       body: 'A few more focused repetitions can help make the difference clearer.',
     };
   },
+  summaryCta: ({ correct, total }) => {
+    if (correct === total) {
+      return {
+        headline: 'Keep building your listening skills',
+        body: `You got ${correct} out of ${total} correct. Continue with more English sound contrasts in Soundwise.`,
+        label: 'Practice more in Soundwise',
+      };
+    }
+
+    return {
+      headline: 'Keep training this sound contrast',
+      body: `You got ${correct} out of ${total} correct. A little more listening practice can make this contrast easier to recognize.`,
+      label: 'Continue practicing in Soundwise',
+    };
+  },
 };
 
 const thaiSeoExerciseCopy = {
@@ -57,7 +71,6 @@ const thaiSeoExerciseCopy = {
   testPrompt: 'คุณได้ยินคำไหน',
   feedbackReplayPrompt: 'ฟังอีกครั้ง:',
   nextButton: 'ลองอีกหนึ่งรอบ',
-  nextStep: 'เมื่อพร้อมแล้ว ฝึกต่อในแอป Soundwise ด้านล่าง',
   speakerLabel: 'ฟัง',
   listenPrompt: 'ตั้งใจฟัง คุณได้ยินคำไหน',
   chooseWordLabel: (word) => `เลือก ${word}`,
@@ -86,6 +99,21 @@ const thaiSeoExerciseCopy = {
     return {
       lead: 'คุณเริ่มฟังความต่างของเสียงนี้ออกแล้ว',
       body: 'ฝึกซ้ำอีกเล็กน้อยจะช่วยให้ความต่างชัดขึ้น',
+    };
+  },
+  summaryCta: ({ correct, total }) => {
+    if (correct === total) {
+      return {
+        headline: 'พัฒนาทักษะการฟังของคุณต่อไป',
+        body: `คุณตอบถูก ${correct} จาก ${total} ข้อ ฝึกแยกคู่เสียงภาษาอังกฤษอื่น ๆ ต่อใน Soundwise`,
+        label: 'ฝึกต่อใน Soundwise',
+      };
+    }
+
+    return {
+      headline: 'ฝึกแยกคู่เสียงนี้ต่อ',
+      body: `คุณตอบถูก ${correct} จาก ${total} ข้อ การฝึกฟังเพิ่มอีกเล็กน้อยจะช่วยให้แยกคู่เสียงนี้ได้ง่ายขึ้น`,
+      label: 'ฝึกต่อใน Soundwise',
     };
   },
 };

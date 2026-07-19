@@ -2613,7 +2613,8 @@ html[dir="rtl"] .seo-content td {
 .seo-exercise-summary-lead,
 .seo-exercise-score,
 .seo-exercise-summary-body,
-.seo-exercise-next-step,
+.seo-exercise-summary-cta-headline,
+.seo-exercise-summary-cta-body,
 .seo-exercise-live {
   margin: 0;
 }
@@ -2621,7 +2622,7 @@ html[dir="rtl"] .seo-content td {
 .seo-exercise-prompt,
 .seo-exercise-feedback-copy,
 .seo-exercise-summary-body,
-.seo-exercise-next-step {
+.seo-exercise-summary-cta-body {
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -2639,9 +2640,56 @@ html[dir="rtl"] .seo-content td {
   margin-top: 0.75rem;
 }
 
-.seo-exercise-summary-body,
-.seo-exercise-next-step {
+.seo-exercise-summary-body {
   margin-top: 0.75rem;
+}
+
+.seo-exercise-summary-cta {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-top: 1.25rem;
+  padding: 1rem;
+}
+
+.seo-content .seo-exercise-summary-cta-headline {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.seo-exercise-summary-cta-body {
+  margin-top: 0.45rem;
+}
+
+.seo-content a.seo-exercise-summary-cta-link {
+  align-items: center;
+  background: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius);
+  color: white;
+  display: inline-flex;
+  font-weight: 800;
+  justify-content: center;
+  margin-top: 0.85rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.seo-content a.seo-exercise-summary-cta-link:hover,
+.seo-content a.seo-exercise-summary-cta-link:focus-visible {
+  border-color: var(--primary-dark);
+  box-shadow: var(--shadow);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.seo-content a.seo-exercise-summary-cta-link:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 3px;
 }
 
 .seo-exercise-choices {
@@ -2847,6 +2895,10 @@ html[dir="rtl"] .seo-content td {
 
   .seo-exercise-choices {
     grid-template-columns: 1fr;
+  }
+
+  .seo-exercise-summary-cta-link {
+    width: 100%;
   }
 }
 

@@ -178,6 +178,27 @@ test('challenge mode dispatches challenge_completed without changing scoring beh
   assert.equal(events.at(-1).detail.correct, 2);
 });
 
+test('reset restores the initial exercise state after completion', async () => {
+  const { exercise, feedback, snapshots } = createHarness({ targetIndexes: [0, 0] });
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  await exercise.answer(0);
+  exercise.nextRound();
+  await exercise.startRound();
+  await exercise.answer(0);
+
+  const resetSnapshot = exercise.reset();
+
+  assert.equal(resetSnapshot.stage, 'preview');
+  assert.equal(resetSnapshot.round, 1);
+  assert.equal(resetSnapshot.correct, 0);
+  assert.equal(resetSnapshot.targetIndex, null);
+  assert.equal(resetSnapshot.hasCompletedDemo, false);
+  assert.equal(feedback.at(-1), null);
+  assert.equal(snapshots.at(-1).stage, 'preview');
+});
+
 test('exercise engine remains surface agnostic and analytics-neutral', () => {
   const engineSource = fs.readFileSync('src/exercise-engine.js', 'utf8');
   const forbiddenSnippets = [

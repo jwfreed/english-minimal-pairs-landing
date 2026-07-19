@@ -3,6 +3,7 @@ import { HREFLANG_BY_LOCALE } from './localized-homepage-routes.js';
 export const SEO_CTA_POSITIONS = Object.freeze([
   'hero',
   'mid-content',
+  'exercise-summary',
   'post-exercise-footer',
 ]);
 
