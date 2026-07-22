@@ -11,15 +11,20 @@ const { translations } = i18nModule;
 
 test('homepage source emphasizes English ear training and demo-first hierarchy', () => {
   assert.match(indexHtml, /data-i18n="heroBadge">English Ear Training</);
+  assert.match(indexHtml, /Hear the English sounds your brain keeps mixing up/);
   assert.match(indexHtml, /<section id="demo" class="demo-section demo-section-prominent">/);
   assert.ok(indexHtml.indexOf('class="demo-section') < indexHtml.indexOf('class="problem-section"'));
+  assert.ok(indexHtml.indexOf('class="problem-section"') < indexHtml.indexOf('class="how-it-works"'));
+  assert.ok(indexHtml.indexOf('class="how-it-works"') < indexHtml.indexOf('class="seo-pairs-section"'));
+  assert.ok(indexHtml.indexOf('<section class="seo-pairs-section"') < indexHtml.indexOf('<section class="features"'));
+  assert.ok(indexHtml.indexOf('<section class="features"') < indexHtml.indexOf('<section class="testimonials testimonial-compact"'));
 });
 
 test('English copy leads features with learner outcomes', () => {
-  assert.equal(translations.en.featureCard3Title, 'Hear difficult sounds clearly');
-  assert.equal(translations.en.featureCard1Title, 'Practice what matters for your language');
-  assert.equal(translations.en.featureCard6Title, 'Get immediate feedback');
-  assert.equal(translations.en.featureCard4Title, 'Build automatic recognition');
+  assert.equal(translations.en.featureCard3Title, 'Understand sounds you used to confuse');
+  assert.equal(translations.en.featureCard1Title, 'Focus on the contrasts that matter for your language');
+  assert.equal(translations.en.featureCard6Title, 'Know exactly what you heard');
+  assert.equal(translations.en.featureCard4Title, 'Move from guessing to recognition');
 });
 
 test('feature card markup preserves title and body translation pairings', () => {
