@@ -2532,11 +2532,13 @@ html[dir="rtl"] .seo-content td {
 }
 
 .seo-content .seo-cta h2,
-.seo-content .seo-cta p {
+.seo-content .seo-cta p,
+.seo-content .seo-cta li {
   color: white;
 }
 
-.seo-content .seo-cta p {
+.seo-content .seo-cta p,
+.seo-content .seo-cta li {
   opacity: 0.9;
 }
 
