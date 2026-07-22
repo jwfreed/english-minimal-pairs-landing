@@ -316,19 +316,14 @@ body {
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: clamp(2.25rem, calc(1.25rem + 5vw), 4rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
   margin-bottom: 1.5rem;
-  max-width: 800px;
+  max-width: 56rem;
   margin-left: auto;
   margin-right: auto;
-}
-
-@media (min-width: 768px) {
-  .hero-title {
-    font-size: 4rem;
-  }
 }
 
 .highlight {
@@ -362,13 +357,15 @@ body.challenge-mode .hero-primer {
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
-  line-height: 1.75;
+  font-size: clamp(1.0625rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  letter-spacing: -0.005em;
   margin-bottom: 2rem;
-  max-width: 700px;
+  max-width: 48.75rem;
   margin-left: auto;
   margin-right: auto;
   opacity: 0.95;
+  text-wrap: balance;
 }
 
 /* Language Selector */
@@ -929,6 +926,7 @@ body.challenge-mode .hero-primer {
   color: var(--text-primary);
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 @media (min-width: 768px) {
@@ -1031,6 +1029,7 @@ body.challenge-mode .hero-primer {
   text-align: center;
   margin-bottom: 1rem;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 @media (min-width: 768px) {
@@ -1047,6 +1046,7 @@ body.challenge-mode .hero-primer {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  text-wrap: pretty;
 }
 
 .problem-grid {
@@ -2091,6 +2091,7 @@ body.challenge-mode .hero-primer {
   font-weight: 800;
   margin-bottom: 1rem;
   line-height: 1.2;
+  text-wrap: balance;
 }
 
 @media (min-width: 768px) {
@@ -2108,9 +2109,12 @@ body.challenge-mode .hero-primer {
 /* Final CTA standalone button (replaces app-badge) */
 .final-cta-btn {
   display: inline-flex;
+  max-width: 100%;
   margin-bottom: 2rem;
   background: white;
   color: var(--primary-dark);
+  text-align: center;
+  white-space: normal;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
