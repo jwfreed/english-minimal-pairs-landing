@@ -246,8 +246,7 @@ function updatePrimaryCtaText() {
     return;
   }
 
-  const key = heroDemoState.hasCompletedDemo ? 'demoPromotedCta' : 'ctaPrimary';
-  dom.heroPrimaryCtaText.textContent = getTranslation(heroDemoState.runtimeLocale, key);
+  dom.heroPrimaryCtaText.textContent = getTranslation(heroDemoState.runtimeLocale, 'ctaPrimary');
 }
 
 function setButtonBusy(button, isBusy) {

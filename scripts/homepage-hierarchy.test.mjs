@@ -16,12 +16,10 @@ test('homepage source emphasizes English ear training and demo-first hierarchy',
 });
 
 test('English copy leads features with learner outcomes', () => {
-  assert.equal(translations.en.featureCard3Title, 'Hear difficult English sound contrasts');
-  assert.equal(translations.en.featureCard1Title, 'Practice sounds chosen for your first language');
+  assert.equal(translations.en.featureCard3Title, 'Hear difficult sounds clearly');
+  assert.equal(translations.en.featureCard1Title, 'Practice what matters for your language');
   assert.equal(translations.en.featureCard6Title, 'Get immediate feedback');
-  assert.equal(translations.en.featureCard4Title, 'Build with adaptive practice');
-  assert.equal(translations.en.featureCard5Title, 'Track progress by sound contrast');
-  assert.equal(translations.en.featureCard2Title, 'Hear varied English voices');
+  assert.equal(translations.en.featureCard4Title, 'Build automatic recognition');
 });
 
 test('feature card markup preserves title and body translation pairings', () => {
@@ -34,16 +32,12 @@ test('feature card markup preserves title and body translation pairings', () => 
     'featureCard1Title',
     'featureCard6Title',
     'featureCard4Title',
-    'featureCard5Title',
-    'featureCard2Title',
   ]);
   assert.deepEqual(bodyKeys, [
     'featureCard3Text',
     'featureCard1Text',
     'featureCard6Text',
     'featureCard4Text',
-    'featureCard5Text',
-    'featureCard2Text',
   ]);
 });
 

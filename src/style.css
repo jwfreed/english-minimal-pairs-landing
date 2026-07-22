@@ -1549,7 +1549,7 @@ body.challenge-mode .hero-primer {
 
 @media (min-width: 1024px) {
   .steps {
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     align-items: center;
   }
 }
@@ -1607,7 +1607,7 @@ body.challenge-mode .hero-primer {
 
 @media (min-width: 1024px) {
   .step-arrow {
-    display: block;
+    display: none;
   }
 }
 
@@ -1898,6 +1898,17 @@ body.challenge-mode .hero-primer {
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+}
+
+.testimonial-section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.problem-segmentation-title {
+  font-size: 1.5rem;
+  margin: 0 auto 1.5rem;
+  max-width: 42rem;
 }
 
 .testimonial-compact .stars {
