@@ -1,4 +1,4 @@
-import { getContrastById } from './contrast-catalog.js';
+import { getContrastById, getRelatedContrasts } from './contrast-catalog.js';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
@@ -128,13 +128,13 @@ function speakWord(text, activeButton) {
       utterance.voice = englishVoice;
     }
 
-    const complete = () => {
+    const complete = (didPlay) => {
       setButtonBusy(activeButton, false);
-      resolve(true);
+      resolve(didPlay);
     };
 
-    utterance.onend = complete;
-    utterance.onerror = complete;
+    utterance.onend = () => complete(true);
+    utterance.onerror = () => complete(false);
 
     setButtonBusy(activeButton, true);
     synthesis.speak(utterance);
@@ -176,12 +176,17 @@ function buildWordButton(contrast, index, action, uiCopy) {
       attributes: { 'aria-hidden': 'true' },
     });
     const body = createElement('span', { className: 'seo-exercise-word-body' });
-    body.append(wordText, wordIpa);
+    body.append(wordText);
+
+    if (action === 'replay') {
+      body.append(wordIpa);
+    }
+
     button.append(icon, body);
     return button;
   }
 
-  button.append(wordText, wordIpa);
+  button.append(wordText);
   return button;
 }
 
@@ -216,6 +221,24 @@ function renderSummaryCopy(elements, snapshot, uiCopy) {
   summaryBody.textContent = summary.body;
 }
 
+function renderGeneralizationCopy(element, relatedContrasts, contrast, uiCopy) {
+  if (!relatedContrasts.length) {
+    element.hidden = true;
+    return;
+  }
+
+  const [heading, body, list] = element.children;
+  heading.textContent = uiCopy.generalizationHeading(contrast.contrast);
+  body.textContent = uiCopy.generalizationBody;
+  list.replaceChildren(
+    ...relatedContrasts.map((relatedContrast) => createElement('li', {
+      className: 'seo-exercise-generalization-pair',
+      textContent: formatPairName(relatedContrast),
+    }))
+  );
+  element.hidden = false;
+}
+
 function createSeoExercise(mount, contrast) {
   const uiCopy = getSeoExerciseCopy(document.documentElement.lang || 'en');
   const titleId = `${mount.id || contrast.id}-title`;
@@ -232,11 +255,14 @@ function createSeoExercise(mount, contrast) {
       className: 'seo-exercise-title',
       textContent: formatPairName(contrast),
       attributes: { id: titleId },
-    }),
-    createElement('p', { className: 'seo-exercise-contrast', textContent: contrast.contrast })
+    })
   );
 
   const round = createElement('p', { className: 'seo-exercise-round' });
+  const audioStatus = createElement('p', {
+    className: 'seo-exercise-audio-status',
+    attributes: { role: 'status' },
+  });
   const preview = createElement('div', { className: 'seo-exercise-stage' });
   const previewWords = createElement('div', {
     className: 'seo-exercise-choices',
@@ -277,6 +303,7 @@ function createSeoExercise(mount, contrast) {
 
   const feedback = createElement('div', { className: 'seo-exercise-stage seo-exercise-feedback' });
   const feedbackCopy = createElement('p', { className: 'seo-exercise-feedback-copy' });
+  const feedbackContrast = createElement('p', { className: 'seo-exercise-contrast' });
   const replayWords = createElement('div', {
     className: 'seo-exercise-choices',
     attributes: {
@@ -291,6 +318,7 @@ function createSeoExercise(mount, contrast) {
   });
   feedback.append(
     feedbackCopy,
+    feedbackContrast,
     createElement('p', { className: 'seo-exercise-prompt', textContent: uiCopy.feedbackReplayPrompt }),
     replayWords,
     nextButton
@@ -300,10 +328,20 @@ function createSeoExercise(mount, contrast) {
   const summaryLead = createElement('p', { className: 'seo-exercise-summary-lead' });
   const score = createElement('p', { className: 'seo-exercise-score' });
   const summaryBody = createElement('p', { className: 'seo-exercise-summary-body' });
+  const generalization = createElement('section', {
+    className: 'seo-exercise-generalization',
+    attributes: { hidden: '' },
+  });
+  generalization.append(
+    createElement('h3', { className: 'seo-exercise-generalization-heading' }),
+    createElement('p', { className: 'seo-exercise-generalization-body' }),
+    createElement('ul', { className: 'seo-exercise-generalization-list' })
+  );
   summary.append(
     summaryLead,
     score,
-    summaryBody
+    summaryBody,
+    generalization
   );
 
   const existingAppStoreLink = document.querySelector('a[href*="apps.apple.com"]');
@@ -316,7 +354,7 @@ function createSeoExercise(mount, contrast) {
 
   mount.setAttribute('role', 'region');
   mount.setAttribute('aria-labelledby', titleId);
-  mount.replaceChildren(header, round, preview, test, feedback, summary, liveRegion);
+  mount.replaceChildren(header, round, audioStatus, preview, test, feedback, summary, liveRegion);
   renderWordButtons(previewWords, contrast, 'preview', uiCopy);
   renderWordButtons(guessWords, contrast, 'guess', uiCopy);
   renderWordButtons(replayWords, contrast, 'replay', uiCopy);
@@ -338,6 +376,12 @@ function createSeoExercise(mount, contrast) {
 
     if (snapshot.stage === 'summary') {
       renderSummaryCopy({ score, summaryLead, summaryBody }, snapshot, uiCopy);
+      renderGeneralizationCopy(
+        generalization,
+        getRelatedContrasts(contrast.id),
+        contrast,
+        uiCopy
+      );
     }
   };
 
@@ -353,12 +397,20 @@ function createSeoExercise(mount, contrast) {
       },
       getTargetIndex: () => Math.round(Math.random()),
       onFeedback: (payload) => renderFeedbackCopy(feedbackCopy, payload, uiCopy),
+      onAudioUnavailable: () => {
+        audioStatus.textContent = uiCopy.audioUnavailable;
+        liveRegion.textContent = uiCopy.audioUnavailable;
+      },
+      onPlaybackReady: () => {
+        audioStatus.textContent = '';
+      },
       onStateChange: render,
       onListenPrompt: () => {
         liveRegion.textContent = uiCopy.listenPrompt;
       },
       onFeedbackReady: () => {
-        liveRegion.textContent = feedbackCopy.textContent;
+        feedbackContrast.textContent = uiCopy.feedbackContrast(contrast.contrast);
+        liveRegion.textContent = `${feedbackCopy.textContent} ${feedbackContrast.textContent}`;
       },
       onPreviewPrompt: () => {
         liveRegion.textContent = uiCopy.previewPrompt;

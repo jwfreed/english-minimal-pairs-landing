@@ -2,14 +2,19 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
 
-import { CONTRAST_CATALOG, getContrastById } from '../src/contrast-catalog.js';
+import {
+  CONTRAST_CATALOG,
+  getContrastById,
+  getRelatedContrasts,
+} from '../src/contrast-catalog.js';
 import { createExercise } from '../src/exercise-engine.js';
 
-function createHarness({ challengeMode = false, targetIndexes = [1, 0] } = {}) {
+function createHarness({ challengeMode = false, targetIndexes = [1, 0], shouldPlay = true } = {}) {
   const events = [];
   const playedWords = [];
   const feedback = [];
   const snapshots = [];
+  const audioUnavailable = [];
   let targetIndexCursor = 0;
 
   const contrast = getContrastById('ship-vs-sheep');
@@ -43,8 +48,12 @@ function createHarness({ challengeMode = false, targetIndexes = [1, 0] } = {}) {
       onStateChange(snapshot) {
         snapshots.push(snapshot);
       },
+      onAudioUnavailable(snapshot) {
+        audioUnavailable.push(snapshot);
+      },
       async playWord(word) {
         playedWords.push(word.text);
+        return shouldPlay;
       },
       async wait() {},
     },
@@ -58,6 +67,7 @@ function createHarness({ challengeMode = false, targetIndexes = [1, 0] } = {}) {
 
   return {
     contrast,
+    audioUnavailable,
     events,
     exercise,
     feedback,
@@ -110,6 +120,18 @@ test('/ɪ/ vs /iː/ SEO journey contrasts are available in the catalog', () => {
   }
 });
 
+test('related contrast examples are derived from verified catalog data, regardless of display order', () => {
+  assert.deepEqual(
+    getRelatedContrasts('ship-vs-sheep').map((contrast) => contrast.id),
+    ['bit-vs-beat', 'fill-vs-feel', 'live-vs-leave']
+  );
+  assert.deepEqual(
+    getRelatedContrasts('bet-vs-bat').map((contrast) => contrast.id),
+    ['bad-vs-bed', 'man-vs-men']
+  );
+  assert.deepEqual(getRelatedContrasts('unknown-contrast'), []);
+});
+
 test('exercise starts a round, dispatches demo_started, and plays the target after audio unlock', async () => {
   const { events, exercise, playedWords, snapshots } = createHarness();
 
@@ -126,6 +148,21 @@ test('exercise starts a round, dispatches demo_started, and plays the target aft
   assert.equal(events[0].detail.challengeMode, false);
   assert.equal(events[0].detail.exerciseParams.experience_surface, 'homepage');
   assert.equal(snapshots.at(-1).stage, 'test');
+});
+
+test('exercise returns to preview and rejects answers when playback is unavailable', async () => {
+  const { audioUnavailable, events, exercise, playedWords } = createHarness({ shouldPlay: false });
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  const answer = await exercise.answer(0);
+
+  assert.deepEqual(playedWords, ['sheep']);
+  assert.equal(exercise.getSnapshot().stage, 'preview');
+  assert.equal(exercise.getSnapshot().targetIndex, null);
+  assert.equal(audioUnavailable.length, 1);
+  assert.equal(events.at(-1).name, 'demo_started');
+  assert.equal(answer.accepted, false);
 });
 
 test('exercise scores answers, advances rounds, and dispatches completion after the final replay', async () => {

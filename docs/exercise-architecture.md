@@ -144,35 +144,35 @@ Coverage terminology is intentionally precise:
 
 | Category | Count |
 |---|---:|
-| English eligible exercise pages | 8 |
+| English eligible exercise pages | 21 |
 | Localized eligible exercise pages | 1 |
-| Total rendered exercise mounts | 9 |
+| Total rendered exercise mounts | 22 |
 
 The matrix below is the checked-in journey inventory. A warning in the CTA column means the App Store action exists, but the page cannot yet bridge to it through an on-page exercise completion. It does not mean the link or its tracking is broken.
 
 <!-- journey-coverage:start -->
 | Page | Search intent | Explanation | Exercise | Completion | CTA |
 |---|---:|---:|---:|---:|---:|
-| `/bad-vs-bed/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/bet-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/bad-vs-bed/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/bet-vs-bat/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/bit-vs-beat/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/cap-vs-cup/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/cup-vs-cop/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/fan-vs-van/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/cap-vs-cup/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/cup-vs-cop/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/fan-vs-van/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/fill-vs-feel/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/full-vs-fool/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/heart-vs-hurt/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/law-vs-low/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/full-vs-fool/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/heart-vs-hurt/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/law-vs-low/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/live-vs-leave/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/man-vs-men/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/pat-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/pull-vs-pool/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/rice-vs-lice/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/pat-vs-bat/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/pull-vs-pool/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/rice-vs-lice/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/right-vs-light/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/sit-vs-seat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/sit-vs-seat/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/thin-vs-tin/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/three-vs-tree/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/three-vs-tree/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/vest-vs-west/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/ar/pat-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
 | `/es/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |

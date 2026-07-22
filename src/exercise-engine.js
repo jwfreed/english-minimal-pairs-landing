@@ -93,8 +93,7 @@ export function createExercise({
       return false;
     }
 
-    await mount.playWord(word, activeTarget, getSnapshot());
-    return true;
+    return (await mount.playWord(word, activeTarget, getSnapshot())) !== false;
   };
 
   const controller = {
@@ -148,7 +147,13 @@ export function createExercise({
       }
 
       mount.onPlaybackReady?.(getSnapshot());
-      return playContrastWord(word, activeTarget);
+      const didPlay = await playContrastWord(word, activeTarget);
+
+      if (!didPlay) {
+        mount.onAudioUnavailable?.(getSnapshot());
+      }
+
+      return didPlay;
     },
 
     async replayContrast() {
@@ -158,12 +163,17 @@ export function createExercise({
 
       const playbackToken = ++state.playbackToken;
 
-      for (const word of currentContrast.words) {
+      for (const [index] of currentContrast.words.entries()) {
         if (playbackToken !== state.playbackToken) {
           return false;
         }
 
-        await playContrastWord(word);
+        const didPlay = await controller.playWord(index);
+
+        if (!didPlay) {
+          return false;
+        }
+
         await wait(REPLAY_WORD_DELAY_MS);
       }
 
@@ -186,7 +196,13 @@ export function createExercise({
 
       if (state.audioUnlocked) {
         mount.onListenPrompt?.(getSnapshot());
-        await controller.playWord(state.targetIndex, activeTarget);
+        const didPlay = await controller.playWord(state.targetIndex, activeTarget);
+
+        if (!didPlay) {
+          state.stage = 'preview';
+          state.targetIndex = null;
+          notifyState('audio_unavailable');
+        }
       }
 
       return getSnapshot();
