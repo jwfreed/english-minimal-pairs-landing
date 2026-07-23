@@ -4,6 +4,7 @@ import test from 'node:test';
 import { setupCtaTracking } from '../src/seo-page.js';
 import { getSeoExerciseCopy } from '../src/seo-exercise-translations.js';
 import { createSeoExerciseSummaryCta } from '../src/seo-exercise-summary-cta.js';
+import { resolveAppCapability } from '../src/app-capability-resolver.js';
 
 class FakeElement {
   constructor(tagName) {
@@ -56,6 +57,15 @@ const fakeDocument = {
   },
 };
 
+function exactCapability(locale = 'ja', pair = 'ship/sheep', contrastGroup = 'iVsI') {
+  return resolveAppCapability({
+    route: `/${locale}/${pair.replace('/', '-vs-')}/`,
+    locale,
+    flagshipPair: pair,
+    contrastGroup,
+  });
+}
+
 test('summary CTA is absent before completion, appears once after completion, and resets cleanly', () => {
   const container = new FakeElement('div');
   const appStoreHref = 'https://apps.apple.com/us/app/soundwise-english/id6753882308?utm_content=ship-vs-sheep';
@@ -64,6 +74,7 @@ test('summary CTA is absent before completion, appears once after completion, an
     container,
     uiCopy: getSeoExerciseCopy('en'),
     appStoreHref,
+    capability: exactCapability(),
   });
 
   controller.sync({ stage: 'preview', correct: 0, total: 2 });
@@ -79,7 +90,7 @@ test('summary CTA is absent before completion, appears once after completion, an
   assert.equal(container.children.length, 1);
   assert.equal(link.href, appStoreHref);
   assert.equal(link.dataset.ctaPosition, 'exercise-summary');
-  assert.equal(link.textContent, 'Continue practicing in Soundwise');
+  assert.equal(link.textContent, 'Soundwiseでship vs sheepを練習する');
   assert.match(firstRender.querySelector('.seo-exercise-summary-cta-body').textContent, /1 out of 2/);
 
   controller.sync({ stage: 'preview', correct: 0, total: 2 });
@@ -94,6 +105,7 @@ test('summary CTA renders perfect-score copy and localized supported copy', () =
     container: englishContainer,
     uiCopy: getSeoExerciseCopy('en'),
     appStoreHref: 'https://apps.apple.com/app/id6753882308',
+    capability: exactCapability(),
   });
   const perfect = englishController.show({ stage: 'summary', correct: 2, total: 2 });
 
@@ -104,7 +116,7 @@ test('summary CTA renders perfect-score copy and localized supported copy', () =
   assert.match(perfect.querySelector('.seo-exercise-summary-cta-body').textContent, /2 out of 2/);
   assert.equal(
     perfect.querySelector('.seo-exercise-summary-cta-link').textContent,
-    'Practice more in Soundwise'
+    'Soundwiseでship vs sheepを練習する'
   );
 
   const thaiContainer = new FakeElement('div');
@@ -113,11 +125,60 @@ test('summary CTA renders perfect-score copy and localized supported copy', () =
     container: thaiContainer,
     uiCopy: getSeoExerciseCopy('th'),
     appStoreHref: 'https://apps.apple.com/app/id6753882308',
+    capability: exactCapability('th', 'thin/tin', 'thetaT'),
+    locale: 'th',
   });
   const localized = thaiController.show({ stage: 'summary', correct: 1, total: 2 });
 
   assert.equal(localized.querySelector('.seo-exercise-summary-cta-headline').textContent, 'ฝึกแยกคู่เสียงนี้ต่อ');
   assert.match(localized.querySelector('.seo-exercise-summary-cta-body').textContent, /1 จาก 2/);
+});
+
+test('summary CTA cannot render when app capability is unsupported', () => {
+  const container = new FakeElement('div');
+  const capability = resolveAppCapability({
+    route: '/ja/heart-vs-hurt/',
+    locale: 'ja',
+    flagshipPair: 'heart/hurt',
+    contrastGroup: 'heartVsHurt',
+  });
+  const controller = createSeoExerciseSummaryCta({
+    document: fakeDocument,
+    container,
+    uiCopy: getSeoExerciseCopy('en'),
+    appStoreHref: 'https://apps.apple.com/app/id6753882308',
+    capability,
+  });
+
+  assert.equal(
+    controller.show({ stage: 'summary', correct: 2, total: 2 }),
+    null
+  );
+  assert.equal(container.children.length, 0);
+});
+
+test('summary CTA derives contrast-only wording from capability, not caller copy', () => {
+  const container = new FakeElement('div');
+  const capability = resolveAppCapability({
+    route: '/ru/fill-vs-feel/',
+    locale: 'ru',
+    flagshipPair: 'fill/feel',
+    contrastGroup: 'iVsI',
+  });
+  const controller = createSeoExerciseSummaryCta({
+    document: fakeDocument,
+    container,
+    uiCopy: getSeoExerciseCopy('en'),
+    appStoreHref: 'https://apps.apple.com/app/id6753882308',
+    capability,
+    locale: 'ru',
+  });
+
+  const rendered = controller.show({ stage: 'summary', correct: 1, total: 2 });
+  const label = rendered.querySelector('.seo-exercise-summary-cta-link').textContent;
+
+  assert.equal(label, 'Практиковать это звуковое различие в Soundwise');
+  assert.doesNotMatch(label, /fill|feel/iu);
 });
 
 test('delegated App Store tracking attributes one completed summary CTA activation exactly once', () => {

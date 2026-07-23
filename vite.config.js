@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import fs from 'node:fs'
 import path from 'node:path'
 import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
+import { alignSeoPageCtaHtml } from './src/seo-capability-cta.js'
 
 const seoPageSlugs = [
   'ship-vs-sheep',
@@ -229,9 +230,27 @@ function preservePublicHtmlRoutes() {
   }
 }
 
+function alignSeoCapabilityCtas() {
+  return {
+    name: 'align-seo-capability-ctas',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, context) {
+        const documentLanguage = html.match(/<html\b[^>]*\blang="([^"]+)"/iu)?.[1] || 'en'
+
+        return alignSeoPageCtaHtml({
+          html,
+          pathname: context.path,
+          documentLanguage,
+        })
+      },
+    },
+  }
+}
+
 export default defineConfig({
   base: '/',
-  plugins: [preservePublicHtmlRoutes()],
+  plugins: [alignSeoCapabilityCtas(), preservePublicHtmlRoutes()],
   build: {
     rollupOptions: {
       input: {

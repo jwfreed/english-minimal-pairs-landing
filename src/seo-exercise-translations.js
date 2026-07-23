@@ -51,14 +51,12 @@ const englishSeoExerciseCopy = {
       return {
         headline: 'Keep building your listening skills',
         body: `You got ${correct} out of ${total} correct. Continue with more English sound contrasts in Soundwise.`,
-        label: 'Practice more in Soundwise',
       };
     }
 
     return {
       headline: 'Keep training this sound contrast',
       body: `You got ${correct} out of ${total} correct. A little more listening practice can make this contrast easier to recognize.`,
-      label: 'Continue practicing in Soundwise',
     };
   },
 };
@@ -114,14 +112,12 @@ const thaiSeoExerciseCopy = {
       return {
         headline: 'พัฒนาทักษะการฟังของคุณต่อไป',
         body: `คุณตอบถูก ${correct} จาก ${total} ข้อ ฝึกแยกคู่เสียงภาษาอังกฤษอื่น ๆ ต่อใน Soundwise`,
-        label: 'ฝึกต่อใน Soundwise',
       };
     }
 
     return {
       headline: 'ฝึกแยกคู่เสียงนี้ต่อ',
       body: `คุณตอบถูก ${correct} จาก ${total} ข้อ การฝึกฟังเพิ่มอีกเล็กน้อยจะช่วยให้แยกคู่เสียงนี้ได้ง่ายขึ้น`,
-      label: 'ฝึกต่อใน Soundwise',
     };
   },
 };

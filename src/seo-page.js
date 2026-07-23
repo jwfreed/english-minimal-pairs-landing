@@ -4,6 +4,10 @@ import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
 import { createSeoExerciseSummaryCta } from './seo-exercise-summary-cta.js';
 import {
+  applyCapabilityToSeoCtas,
+  resolveSeoPageCapability,
+} from './seo-capability-cta.js';
+import {
   buildExerciseAttribution,
   buildSeoAppStoreAttribution,
   getSeoPageLocale,
@@ -239,7 +243,7 @@ function renderGeneralizationCopy(element, relatedContrasts, contrast, uiCopy) {
   element.hidden = false;
 }
 
-function createSeoExercise(mount, contrast) {
+function createSeoExercise(mount, contrast, capability) {
   const uiCopy = getSeoExerciseCopy(document.documentElement.lang || 'en');
   const titleId = `${mount.id || contrast.id}-title`;
   const liveRegion = createElement('p', {
@@ -350,6 +354,8 @@ function createSeoExercise(mount, contrast) {
     container: summary,
     uiCopy,
     appStoreHref: existingAppStoreLink?.href,
+    capability,
+    locale: capability?.evidence?.resolvedL1,
   });
 
   mount.setAttribute('role', 'region');
@@ -484,7 +490,7 @@ function createSeoExercise(mount, contrast) {
   render(exercise.getSnapshot());
 }
 
-function setupSeoExercises() {
+function setupSeoExercises(capability) {
   document.querySelectorAll(SEO_EXERCISE_MOUNT_SELECTOR).forEach((mount) => {
     const contrast = getContrastById(mount.dataset.contrast);
 
@@ -495,7 +501,7 @@ function setupSeoExercises() {
     }
 
     prepareSeoExerciseMount(mount, contrast);
-    createSeoExercise(mount, contrast);
+    createSeoExercise(mount, contrast, capability);
   });
 }
 
@@ -580,10 +586,19 @@ export function setupCtaTracking({
 
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
+    const capability = resolveSeoPageCapability({
+      pathname: window.location.pathname,
+      documentLanguage: document.documentElement.lang,
+    });
+
+    applyCapabilityToSeoCtas({
+      capability,
+      locale: capability?.evidence?.resolvedL1,
+    });
     setupFaqAccordion();
     setupSmoothScroll();
     setupCtaTracking();
     setupFunnelTracking();
-    setupSeoExercises();
+    setupSeoExercises(capability);
   });
 }

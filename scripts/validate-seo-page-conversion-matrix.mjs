@@ -1,4 +1,9 @@
 import fs from 'node:fs';
+import {
+  APP_CAPABILITY_CONTRACT,
+  APP_CAPABILITY_INVENTORY,
+  resolveAppCapability,
+} from '../src/app-capability-resolver.js';
 import { CONTRAST_CATALOG } from '../src/contrast-catalog.js';
 
 const matrixPath = 'docs/seo-page-conversion-matrix.md';
@@ -81,16 +86,6 @@ function getMatrixRows(source) {
   return { headers, rows };
 }
 
-function hasExactPairInCatalog(contrastId) {
-  const contrast = CONTRAST_CATALOG[contrastId];
-
-  if (!contrast || contrast.id !== contrastId || !Array.isArray(contrast.words)) {
-    return false;
-  }
-
-  return contrast.words.map((word) => word.text.toLowerCase()).join('-vs-') === contrastId;
-}
-
 function firstSectionIndex(source, sectionIds) {
   return Math.min(
     ...sectionIds
@@ -104,6 +99,10 @@ if (!fs.existsSync(matrixPath)) {
 } else {
   const matrixSource = fs.readFileSync(matrixPath, 'utf8');
   const { headers, rows } = getMatrixRows(matrixSource);
+
+  if (!matrixSource.includes(APP_CAPABILITY_CONTRACT)) {
+    fail(`${matrixPath} should reference ${APP_CAPABILITY_CONTRACT}`);
+  }
 
   for (const column of requiredColumns) {
     if (!headers.includes(column)) {
@@ -131,13 +130,25 @@ if (!fs.existsSync(matrixPath)) {
       }
     }
 
-    if (!hasExactPairInCatalog(contrastId)) {
-      fail(`${contrastId} is not an exact pair in src/contrast-catalog.js`);
+    const statuses = new Set(
+      Object.keys(APP_CAPABILITY_INVENTORY).map((locale) => (
+        resolveAppCapability({
+          route: page,
+          locale,
+          flagshipPair: contrast.words,
+          contrastGroup: contrast.capabilityGroup,
+        }).status
+      ))
+    );
+
+    if (statuses.size <= 1) {
+      fail(`${page} should exercise more than one L1 capability state, found ${[...statuses].join(', ')}`);
     }
 
-    if (row['App Support Type'] !== 'EXACT_PAIR_EXISTS') {
-      fail(`${page} should use App Support Type EXACT_PAIR_EXISTS, found "${row['App Support Type']}"`);
+    if (row['App Support Type'] !== 'L1_DEPENDENT') {
+      fail(`${page} should use App Support Type L1_DEPENDENT, found "${row['App Support Type']}"`);
     }
+
   }
 }
 

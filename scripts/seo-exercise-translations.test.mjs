@@ -45,10 +45,10 @@ test('provides score-aware English CTA copy for incomplete and perfect results',
 
   assert.equal(incomplete.headline, 'Keep training this sound contrast');
   assert.match(incomplete.body, /You got 1 out of 2 correct\./);
-  assert.equal(incomplete.label, 'Continue practicing in Soundwise');
   assert.equal(perfect.headline, 'Keep building your listening skills');
   assert.match(perfect.body, /You got 2 out of 2 correct\./);
-  assert.equal(perfect.label, 'Practice more in Soundwise');
+  assert.equal('label' in incomplete, false);
+  assert.equal('label' in perfect, false);
 });
 
 test('only explicitly translated localized exercise routes are treated as supported', () => {

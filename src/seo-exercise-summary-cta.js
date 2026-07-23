@@ -1,3 +1,5 @@
+import { getCapabilityCtaLabel } from './seo-capability-cta.js';
+
 export const SEO_EXERCISE_SUMMARY_CTA_POSITION = 'exercise-summary';
 
 export function createSeoExerciseSummaryCta({
@@ -5,6 +7,8 @@ export function createSeoExerciseSummaryCta({
   container,
   uiCopy,
   appStoreHref,
+  capability,
+  locale,
 }) {
   let element = null;
 
@@ -25,7 +29,11 @@ export function createSeoExerciseSummaryCta({
     },
 
     show(snapshot) {
-      if (snapshot?.stage !== 'summary' || !appStoreHref) {
+      if (
+        snapshot?.stage !== 'summary'
+        || !appStoreHref
+        || !capability?.recommendedCTA
+      ) {
         return null;
       }
 
@@ -52,7 +60,8 @@ export function createSeoExerciseSummaryCta({
 
       element.querySelector('.seo-exercise-summary-cta-headline').textContent = copy.headline;
       element.querySelector('.seo-exercise-summary-cta-body').textContent = copy.body;
-      element.querySelector('.seo-exercise-summary-cta-link').textContent = copy.label;
+      element.querySelector('.seo-exercise-summary-cta-link').textContent =
+        getCapabilityCtaLabel(capability, locale);
 
       return element;
     },
