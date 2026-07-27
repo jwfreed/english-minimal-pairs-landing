@@ -17,12 +17,12 @@ to enter or practice that objective.
 
 ## Current Scope
 
-**Architecture foundation complete. The `/ship-vs-sheep/` experiment is the
-only runtime integration; broader learner-facing rollout remains separate
-implementation work.**
+**Architecture foundation complete. Shared journey navigation has a bounded
+six-page English rollout; the `contrast_journey_v1` experiment assignment
+remains limited to `/ship-vs-sheep/`.**
 
-Completing the foundation and first experiment does not mean the broader
-Contrast Journey initiative or its learner-facing experience is complete.
+This rollout is not a global migration. It does not add localized consumers,
+new routes, or inferred contrast relationships.
 
 Contrast Journey does not replace or extend:
 
@@ -55,7 +55,7 @@ infer which pairs belong together.
 
 ## Object Model
 
-The current journey uses this relationship model:
+One journey uses this relationship model:
 
 ```js
 {
@@ -79,7 +79,7 @@ order is an intentional product requirement because the renderer presents it
 as the learner's reviewed example sequence; tests therefore protect both
 membership and sequence.
 
-## Current Journey
+## Current Journeys
 
 ### `/ɪ/ vs /iː/`
 
@@ -92,7 +92,43 @@ membership and sequence.
   4. live/leave
   5. sit/seat
 
-No other Contrast Journeys are currently defined.
+### `/ʊ/ vs /uː/`
+
+- Journey ID: `short-u-vs-long-u`
+- Primary SEO entry: `full-vs-fool` (full/fool)
+- Reviewed practice sequence:
+  1. full/fool
+  2. pull/pool
+
+## Initial Internal-Link Rollout
+
+The renderer is mounted on exactly these English source pages:
+
+| Source page | Repository evidence for inclusion |
+| --- | --- |
+| `/ship-vs-sheep/` | Existing experiment flagship and the primary SEO entry for the reviewed `/ɪ/ vs /iː/` sequence. |
+| `/bit-vs-beat/` | Published exercise-backed route in the same reviewed sequence; listed as high priority in `docs/seo-page-conversion-matrix.md`. |
+| `/fill-vs-feel/` | Published exercise-backed route in the same reviewed sequence; listed as high priority in `docs/seo-page-conversion-matrix.md`. |
+| `/live-vs-leave/` | Published exercise-backed route in the same reviewed sequence; listed as high priority in `docs/seo-page-conversion-matrix.md`. |
+| `/sit-vs-seat/` | Published exercise-backed route that completes the reviewed five-example `/ɪ/ vs /iː/` family already exposed by the homepage and practice hub. |
+| `/full-vs-fool/` | Published exercise-backed entry for a second exact contrast; its reviewed sibling `/pull-vs-pool/` is also published and cataloged. |
+
+`/pull-vs-pool/` is a validated destination in the second journey, not a
+rollout consumer. This deliberately tests a second contrast relationship
+without expanding the component across every eligible pair page.
+
+Each consumer keeps its existing page copy, exercise, metadata, and CTA
+contract. Its related-learning section resolves the reviewed pair sequence
+from `src/contrast-journey-catalog.js`, then leads to the existing article CTA.
+Hardcoded related-pair link lists were removed from those sections so the
+relationship catalog remains the only maintained source for those links.
+The build renderer rejects a journey mount unless an SEO practice CTA follows
+it, enforcing the intended learning-path-to-product order across consumers.
+
+Generated destination links expose renderer-owned pair IDs to the shared SEO
+analytics adapter. `contrast_journey_view` and `contrast_journey_click` measure
+destination exposure and navigation; practice progression continues through
+the existing `app_store_click` attribution contract.
 
 ## Extension Rules
 
@@ -130,7 +166,9 @@ scoped change and continue to use the existing capability resolver for claims.
 
 **Purpose:** Validate whether contrast-first framing improves engagement.
 
-**Scope:** Only `/ship-vs-sheep/`.
+**Experiment scope:** Only `/ship-vs-sheep/`. Other rollout consumers use the
+shared navigation renderer but do not receive the experiment content-variant
+identifier.
 
 **Hypothesis:** Framing a minimal-pair SEO page around the underlying contrast
 will improve learner understanding and downstream engagement.
@@ -142,9 +180,6 @@ identifier and page assignment are governed by
 `src/analytics-content-variants.js`.
 
 **Non-goals:** No broader SEO migration, localization rollout, or app changes.
-
-Review the experiment results before expanding Contrast Journey to additional
-pages.
 
 Related links are rendered only from `practicePairIds` after resolving their
 records through `CONTRAST_CATALOG`. The renderer receives Vite's published SEO

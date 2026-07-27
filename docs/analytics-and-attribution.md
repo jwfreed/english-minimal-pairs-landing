@@ -8,7 +8,7 @@ This document assumes no enterprise analytics stack. Optimize for clarity and lo
 
 ## Last Updated
 
-2026-07-15
+2026-07-27
 
 ---
 
@@ -203,6 +203,8 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 | --- | --- | --- |
 | `exercise_start` | First exercise round started, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: false`; experiment pages also send `content_variant`. |
 | `exercise_complete` | Final exercise round completed, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: true`; experiment pages also send `content_variant`. |
+| `contrast_journey_view` | A Contrast Journey list first enters the viewport; one event is sent for each visible destination link | `source_pair`, `destination_pair`, `language`, `locale`; experiment pages also send `content_variant`. |
+| `contrast_journey_click` | A learner activates a generated Contrast Journey destination link | `source_pair`, `destination_pair`, `language`, `locale`; experiment pages also send `content_variant`. |
 | `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | All surfaces: `button_text`, `page_path`, `link_url`. SEO pages also require `page_slug`, `locale`, `cta_position`, `exercise_completed`; experiment pages also send `content_variant`. |
 
 ### Exercise Event Contract
@@ -240,14 +242,35 @@ Legacy pages intentionally omit `content_variant`. Absence means the page is
 not assigned to a registered experiment variant; it must not be rewritten as a
 default or control label in event code.
 
+### Contrast Journey Link Contract
+
+`contrast_journey_view` measures destination-level exposure, not a page load.
+When the generated journey list first enters the viewport, the site sends one
+event for each link the learner could choose. A list is counted at most once per
+page load. The current page is rendered as non-linked text and therefore does
+not emit a destination impression.
+
+`contrast_journey_click` uses delegated click tracking on the same generated
+links. `source_pair` comes from the list's `data-contrast-journey` value and
+`destination_pair` comes from renderer-owned `data-destination-pair` metadata;
+page HTML must not maintain separate analytics IDs.
+
+Practice CTA progression continues to use the existing `app_store_click`
+contract. Analyze `page_slug`, `cta_position`, `exercise_completed`, and, where
+present, `content_variant` after a journey view or click. Do not emit a second
+`practice_cta_click` event for the same App Store activation.
+
 #### GA4 activation
 
 The website emits `content_variant` as an event parameter. Before using it in
 standard GA4 reports, register `content_variant` as an event-scoped custom
 dimension and validate incoming `exercise_start`, `exercise_complete`, and
-`app_store_click` events in DebugView or the equivalent live-event inspection
-workflow. Custom-dimension registration is not retroactive, so do not assume
-older events will become available after activation.
+`app_store_click` events, plus `contrast_journey_view` and
+`contrast_journey_click` where applicable, in DebugView or the equivalent
+live-event inspection workflow. Custom-dimension registration is not
+retroactive, so do not assume older events will become available after
+activation. Register `source_pair` and `destination_pair` as event-scoped
+custom dimensions before using the journey events in standard reports.
 
 ### SEO App Store Click Contract
 

@@ -18,6 +18,17 @@ export const CONTRAST_JOURNEY_CATALOG = Object.freeze({
       'sit-vs-seat',
     ]),
   }),
+  'short-u-vs-long-u': Object.freeze({
+    id: 'short-u-vs-long-u',
+    label: '/ʊ/ vs /uː/',
+    description:
+      'The difference between the short oo sound in full and the long oo sound in fool.',
+    flagshipPairId: 'full-vs-fool',
+    practicePairIds: Object.freeze([
+      'full-vs-fool',
+      'pull-vs-pool',
+    ]),
+  }),
 });
 
 function getContrastByReference(contrastIdOrLabel) {

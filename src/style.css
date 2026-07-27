@@ -2472,7 +2472,7 @@ html[dir="rtl"] .seo-content ol {
   gap: 0.35rem;
 }
 
-.contrast-journey-item.is-flagship {
+.contrast-journey-item.is-current {
   background: var(--bg-secondary);
   border-color: #fed7aa;
   border-left: 4px solid var(--primary);

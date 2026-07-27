@@ -18,6 +18,9 @@ const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
 const SEO_EXERCISE_CLASS_NAME = 'seo-exercise';
 const EXERCISE_COMPLETION_EVENTS = new Set(['demo_completed', 'challenge_completed']);
+const CONTRAST_JOURNEY_LIST_SELECTOR = '.contrast-journey-list[data-contrast-journey]';
+const CONTRAST_JOURNEY_LINK_SELECTOR =
+  'a.contrast-journey-link[data-destination-pair]';
 
 function getSeoExerciseMountId(contrastId) {
   return `${contrastId}-listening-exercise`;
@@ -586,6 +589,78 @@ export function setupCtaTracking({
   });
 }
 
+export function setupContrastJourneyTracking({
+  root = document,
+  browserWindow = window,
+  Observer = browserWindow.IntersectionObserver,
+} = {}) {
+  const journeyLists = [...root.querySelectorAll(CONTRAST_JOURNEY_LIST_SELECTOR)];
+
+  if (journeyLists.length === 0) {
+    return;
+  }
+
+  const language = root.documentElement.lang || 'en';
+  const locale = getSeoPageLocale(browserWindow.location.pathname, language);
+  const contentVariant = root.documentElement.dataset?.contentVariant;
+  const viewedLists = new WeakSet();
+  const sendJourneyEvent = (eventName, list, link, extraParams = {}) => {
+    const sourcePair = list?.dataset?.contrastJourney;
+    const destinationPair = link?.dataset?.destinationPair;
+
+    if (
+      !sourcePair
+      || !destinationPair
+      || typeof browserWindow.gtag !== 'function'
+    ) {
+      return;
+    }
+
+    browserWindow.gtag('event', eventName, {
+      source_pair: sourcePair,
+      destination_pair: destinationPair,
+      language,
+      locale,
+      ...(contentVariant ? { content_variant: contentVariant } : {}),
+      ...extraParams,
+    });
+  };
+
+  root.addEventListener('click', (event) => {
+    const link = event.target?.closest?.(CONTRAST_JOURNEY_LINK_SELECTOR);
+    const list = link?.closest?.(CONTRAST_JOURNEY_LIST_SELECTOR);
+
+    if (!link || !list) {
+      return;
+    }
+
+    sendJourneyEvent('contrast_journey_click', list, link, {
+      transport_type: 'beacon',
+    });
+  });
+
+  if (typeof Observer !== 'function') {
+    return;
+  }
+
+  const observer = new Observer((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting || viewedLists.has(entry.target)) {
+        continue;
+      }
+
+      viewedLists.add(entry.target);
+      entry.target.querySelectorAll(CONTRAST_JOURNEY_LINK_SELECTOR)
+        .forEach((link) => {
+          sendJourneyEvent('contrast_journey_view', entry.target, link);
+        });
+      observer.unobserve(entry.target);
+    }
+  });
+
+  journeyLists.forEach((list) => observer.observe(list));
+}
+
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const capability = resolveSeoPageCapability({
@@ -600,6 +675,7 @@ if (typeof document !== 'undefined') {
     setupFaqAccordion();
     setupSmoothScroll();
     setupCtaTracking();
+    setupContrastJourneyTracking();
     setupFunnelTracking();
     setupSeoExercises(capability);
   });

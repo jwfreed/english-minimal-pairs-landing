@@ -20,6 +20,19 @@ test('homepage source emphasizes English ear training and demo-first hierarchy',
   assert.ok(indexHtml.indexOf('<section class="features"') < indexHtml.indexOf('<section class="testimonials testimonial-compact"'));
 });
 
+test('homepage groups pat vs bat under its consonant contrast', () => {
+  const patGroup = indexHtml.match(
+    /<div class="seo-pairs-group">\s*<h3[^>]*>[\s\S]*?\/p\/[\s\S]*?\/b\/[\s\S]*?<\/h3>[\s\S]*?<\/div>/,
+  )?.[0] || '';
+  const vowelGroup = indexHtml.match(
+    /<div class="seo-pairs-group">\s*<h3[^>]*data-i18n="seoPairsGroupAeE"[\s\S]*?<\/div>/,
+  )?.[0] || '';
+
+  assert.match(patGroup, /<h3[^>]*dir="ltr"/);
+  assert.match(patGroup, /href="\/pat-vs-bat\/"/);
+  assert.doesNotMatch(vowelGroup, /href="\/pat-vs-bat\/"/);
+});
+
 test('English copy leads features with learner outcomes', () => {
   assert.equal(translations.en.featureCard3Title, 'Understand sounds you used to confuse');
   assert.equal(translations.en.featureCard1Title, 'Focus on the contrasts that matter for your language');

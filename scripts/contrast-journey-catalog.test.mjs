@@ -50,6 +50,18 @@ test('/ɪ/ vs /iː/ returns the reviewed practice pairs in journey order', () =>
   );
 });
 
+test('/ʊ/ vs /uː/ maps to its reviewed practice pair sequence', () => {
+  const contrast = getLearningContrastForPair('pull-vs-pool');
+  const practicePairs = getPracticePairsForContrast('/ʊ/ vs /uː/');
+
+  assert.equal(contrast.id, 'short-u-vs-long-u');
+  assert.equal(contrast.flagshipPairId, 'full-vs-fool');
+  assert.deepEqual(
+    practicePairs.map((pair) => pair.id),
+    ['full-vs-fool', 'pull-vs-pool']
+  );
+});
+
 test('ship-vs-sheep exposes the other reviewed pairs as related examples', () => {
   const journey = getContrastJourneyForPair('ship-vs-sheep');
 
