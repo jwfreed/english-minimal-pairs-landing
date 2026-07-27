@@ -101,16 +101,17 @@ test('CTA positions are allowlisted and inferred for legacy SEO markup', () => {
   assert.equal(getSeoCtaPosition(createLink()), 'mid-content');
 });
 
-test('SEO attribution reports only verified exercise completion', () => {
+test('SEO attribution preserves canonical language and verified exercise completion', () => {
   const baseInput = {
     link: createLink({ declaredPosition: 'mid-content' }),
-    pathname: '/ja/ship-vs-sheep/',
-    documentLanguage: 'ja',
+    pathname: '/zh/ship-vs-sheep/',
+    documentLanguage: 'zh-Hans',
   };
 
   assert.deepEqual(buildSeoAppStoreAttribution(baseInput), {
     page_slug: 'ship-vs-sheep',
-    locale: 'ja',
+    language: 'zh-Hans',
+    locale: 'zh',
     cta_position: 'mid-content',
     exercise_completed: false,
   });
@@ -127,7 +128,8 @@ test('SEO attribution reports only verified exercise completion', () => {
     }),
     {
       page_slug: 'ship-vs-sheep',
-      locale: 'ja',
+      language: 'zh-Hans',
+      locale: 'zh',
       cta_position: 'mid-content',
       exercise_completed: false,
       content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
@@ -191,6 +193,7 @@ test('App Store click events tag only the registered experiment page', () => {
   assert.deepEqual(
     {
       page_slug: experimentCall[2].page_slug,
+      language: experimentCall[2].language,
       locale: experimentCall[2].locale,
       cta_position: experimentCall[2].cta_position,
       exercise_completed: experimentCall[2].exercise_completed,
@@ -198,6 +201,7 @@ test('App Store click events tag only the registered experiment page', () => {
     },
     {
       page_slug: 'ship-vs-sheep',
+      language: 'en',
       locale: 'en',
       cta_position: 'mid-content',
       exercise_completed: false,
@@ -209,12 +213,14 @@ test('App Store click events tag only the registered experiment page', () => {
   assert.deepEqual(
     {
       page_slug: legacyCall[2].page_slug,
+      language: legacyCall[2].language,
       locale: legacyCall[2].locale,
       cta_position: legacyCall[2].cta_position,
       exercise_completed: legacyCall[2].exercise_completed,
     },
     {
       page_slug: 'bit-vs-beat',
+      language: 'en',
       locale: 'en',
       cta_position: 'mid-content',
       exercise_completed: false,

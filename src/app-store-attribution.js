@@ -73,6 +73,7 @@ export function buildSeoAppStoreAttribution({
 }) {
   return {
     page_slug: getSeoPageSlug(pathname),
+    language: documentLanguage || 'en',
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,
