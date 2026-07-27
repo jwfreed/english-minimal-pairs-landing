@@ -201,9 +201,9 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 
 | Event | Trigger | Parameters |
 | --- | --- | --- |
-| `exercise_start` | First exercise round started, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: false` |
-| `exercise_complete` | Final exercise round completed, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: true` |
-| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | All surfaces: `button_text`, `page_path`, `link_url`. SEO pages also require `page_slug`, `locale`, `cta_position`, `exercise_completed`. |
+| `exercise_start` | First exercise round started, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: false`; experiment pages also send `content_variant`. |
+| `exercise_complete` | Final exercise round completed, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: true`; experiment pages also send `content_variant`. |
+| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | All surfaces: `button_text`, `page_path`, `link_url`. SEO pages also require `page_slug`, `locale`, `cta_position`, `exercise_completed`; experiment pages also send `content_variant`. |
 
 ### Exercise Event Contract
 
@@ -219,6 +219,36 @@ the funnel without deriving equivalent state separately for each event name. On 
 deterministic (`false` for start, `true` for completion); on `app_store_click` it records whether a
 verified completion happened earlier in the same page load. It does not replace `event_name`.
 
+### Content Variant Registry
+
+`src/analytics-content-variants.js` is the single source of truth for
+experiment identifier values and their page assignments. Page HTML must not
+declare `data-content-variant` directly; Vite adds it from the registry so the
+existing exercise and App Store event paths receive the same value.
+
+| `content_variant` | Meaning | Current scope |
+| --- | --- | --- |
+| `contrast_journey_v1` | First experimental contrast-first presentation. This is an experiment cohort, not a permanent SEO page category. | English `/ship-vs-sheep/` only. |
+
+Future experiments must add one stable identifier and its exact page assignment
+to the registry, then add the same identifier to this table. Use lowercase
+snake_case with an explicit version suffix, keep one meaning per identifier,
+and do not create page-local spellings or reuse an experiment identifier as a
+permanent content taxonomy.
+
+Legacy pages intentionally omit `content_variant`. Absence means the page is
+not assigned to a registered experiment variant; it must not be rewritten as a
+default or control label in event code.
+
+#### GA4 activation
+
+The website emits `content_variant` as an event parameter. Before using it in
+standard GA4 reports, register `content_variant` as an event-scoped custom
+dimension and validate incoming `exercise_start`, `exercise_complete`, and
+`app_store_click` events in DebugView or the equivalent live-event inspection
+workflow. Custom-dimension registration is not retroactive, so do not assume
+older events will become available after activation.
+
 ### SEO App Store Click Contract
 
 SEO pages extend the existing `app_store_click` event; they do not send a second conversion event.
@@ -229,6 +259,7 @@ SEO pages extend the existing `app_store_click` event; they do not send a second
 | `locale` | Required on SEO pages | Identifies the canonical Soundwise route locale | `en`, `ja`, `hi-ur`, `yue` |
 | `cta_position` | Required on SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `exercise-summary`, `post-exercise-footer` |
 | `exercise_completed` | Required boolean on SEO pages | Distinguishes clicks before and after verified exercise lifecycle completion | `true`, `false` |
+| `content_variant` | Required only for pages assigned in `src/analytics-content-variants.js` | Identifies an experiment cohort without creating a new event | `contrast_journey_v1` |
 
 `exercise_completed` becomes `true` only after the shared exercise engine dispatches
 `soundwise:demo_completed` or `soundwise:challenge_completed`. Visibility, scrolling, and elapsed time
@@ -253,9 +284,10 @@ exercise_complete
 Guardrails are `exercise_complete / exercise_start`, duplicate `app_store_click` rate, and the event
 integrity of existing CTA positions.
 
-GA4 administrators should register `page_slug`, `locale`, and `cta_position` as event-scoped custom
-dimensions. Register `exercise_completed` as an event-scoped custom dimension if the property does not
-already expose boolean event parameters in the intended reporting workflow.
+GA4 administrators should register `page_slug`, `locale`, `cta_position`, and
+`content_variant` as event-scoped custom dimensions. Register
+`exercise_completed` as an event-scoped custom dimension if the property does
+not already expose boolean event parameters in the intended reporting workflow.
 
 ## Deployment Milestones
 

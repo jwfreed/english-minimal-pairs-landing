@@ -9,6 +9,8 @@ import {
   getSeoPageLocale,
   getSeoPageSlug,
 } from '../src/app-store-attribution.js';
+import { CONTENT_VARIANTS } from '../src/analytics-content-variants.js';
+import { setupCtaTracking } from '../src/seo-page.js';
 
 function createLink({ declaredPosition, context } = {}) {
   return {
@@ -19,6 +21,50 @@ function createLink({ declaredPosition, context } = {}) {
       return selector === context ? {} : null;
     },
   };
+}
+
+function captureSeoAppStoreClick({
+  pathname,
+  documentLanguage,
+  contentVariant,
+}) {
+  let clickListener;
+  const gtagCalls = [];
+  const root = {
+    documentElement: {
+      lang: documentLanguage,
+      dataset: contentVariant ? { contentVariant } : {},
+    },
+    addEventListener(name, listener) {
+      if (name === 'click') {
+        clickListener = listener;
+      }
+    },
+  };
+  const browserWindow = {
+    location: { pathname },
+    addEventListener() {},
+    gtag(...args) {
+      gtagCalls.push(args);
+    },
+  };
+  const link = {
+    dataset: { ctaPosition: 'mid-content' },
+    href: 'https://apps.apple.com/app/id6753882308',
+    id: 'article-app-store-cta',
+    textContent: 'Soundwise App',
+    getAttribute() {
+      return null;
+    },
+    closest(selector) {
+      return selector === 'a[href*="apps.apple.com"]' ? this : null;
+    },
+  };
+
+  setupCtaTracking({ root, browserWindow });
+  clickListener({ target: link });
+
+  return gtagCalls[0];
 }
 
 test('SEO page identity uses the terminal slug on English and localized routes', () => {
@@ -73,6 +119,20 @@ test('SEO attribution reports only verified exercise completion', () => {
     buildSeoAppStoreAttribution({ ...baseInput, exerciseCompleted: true }).exercise_completed,
     true
   );
+
+  assert.deepEqual(
+    buildSeoAppStoreAttribution({
+      ...baseInput,
+      contentVariant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+    }),
+    {
+      page_slug: 'ship-vs-sheep',
+      locale: 'ja',
+      cta_position: 'mid-content',
+      exercise_completed: false,
+      content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+    }
+  );
 });
 
 test('exercise attribution reports page context and lifecycle completion', () => {
@@ -99,4 +159,66 @@ test('exercise attribution reports page context and lifecycle completion', () =>
     buildExerciseAttribution({ ...baseInput, eventName: 'challenge_completed' }).exercise_completed,
     true
   );
+
+  assert.deepEqual(
+    buildExerciseAttribution({
+      ...baseInput,
+      eventName: 'demo_started',
+      contentVariant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+    }),
+    {
+      page_slug: 'ship-vs-sheep',
+      locale: 'ja',
+      exercise_completed: false,
+      content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+    }
+  );
+});
+
+test('App Store click events tag only the registered experiment page', () => {
+  const experimentCall = captureSeoAppStoreClick({
+    pathname: '/ship-vs-sheep/',
+    documentLanguage: 'en',
+    contentVariant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+  });
+  const legacyCall = captureSeoAppStoreClick({
+    pathname: '/bit-vs-beat/',
+    documentLanguage: 'en',
+  });
+
+  assert.equal(experimentCall[0], 'event');
+  assert.equal(experimentCall[1], 'app_store_click');
+  assert.deepEqual(
+    {
+      page_slug: experimentCall[2].page_slug,
+      locale: experimentCall[2].locale,
+      cta_position: experimentCall[2].cta_position,
+      exercise_completed: experimentCall[2].exercise_completed,
+      content_variant: experimentCall[2].content_variant,
+    },
+    {
+      page_slug: 'ship-vs-sheep',
+      locale: 'en',
+      cta_position: 'mid-content',
+      exercise_completed: false,
+      content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+    }
+  );
+
+  assert.equal(legacyCall[1], 'app_store_click');
+  assert.deepEqual(
+    {
+      page_slug: legacyCall[2].page_slug,
+      locale: legacyCall[2].locale,
+      cta_position: legacyCall[2].cta_position,
+      exercise_completed: legacyCall[2].exercise_completed,
+    },
+    {
+      page_slug: 'bit-vs-beat',
+      locale: 'en',
+      cta_position: 'mid-content',
+      exercise_completed: false,
+    }
+  );
+  assert.equal('content_variant' in legacyCall[2], false);
 });

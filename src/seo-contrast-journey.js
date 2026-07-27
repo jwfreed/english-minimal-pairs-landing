@@ -41,7 +41,7 @@ function renderPracticePair(pair, flagshipPairId) {
   ].join('');
 }
 
-export function renderSeoContrastJourneyHtml(html) {
+export function renderSeoContrastJourneyHtml(html, { publishedSeoPageSlugs } = {}) {
   return html.replace(
     CONTRAST_JOURNEY_MOUNT_PATTERN,
     (_, pairId) => {
@@ -56,6 +56,20 @@ export function renderSeoContrastJourneyHtml(html) {
       if (practicePairs.length !== journey.contrast.practicePairIds.length) {
         throw new Error(
           `Contrast Journey "${journey.contrast.id}" contains an unknown practice pair.`
+        );
+      }
+
+      if (!(publishedSeoPageSlugs instanceof Set)) {
+        throw new Error('Contrast Journey rendering requires the published SEO route registry.');
+      }
+
+      const unpublishedRelatedPairIds = journey.relatedPairs
+        .map((pair) => pair.id)
+        .filter((relatedPairId) => !publishedSeoPageSlugs.has(relatedPairId));
+
+      if (unpublishedRelatedPairIds.length > 0) {
+        throw new Error(
+          `Contrast Journey "${journey.contrast.id}" references unpublished SEO routes: ${unpublishedRelatedPairIds.join(', ')}.`
         );
       }
 

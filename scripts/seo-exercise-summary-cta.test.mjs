@@ -241,4 +241,5 @@ test('delegated App Store tracking attributes one completed summary CTA activati
       exercise_completed: true,
     }
   );
+  assert.equal('content_variant' in gtagCalls[0][2], false);
 });

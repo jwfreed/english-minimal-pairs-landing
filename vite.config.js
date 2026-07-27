@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import fs from 'node:fs'
 import path from 'node:path'
 import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
+import { applyContentVariantHtml } from './src/analytics-content-variants.js'
 import { alignSeoPageCtaHtml } from './src/seo-capability-cta.js'
 import { renderSeoContrastJourneyHtml } from './src/seo-contrast-journey.js'
 
@@ -249,13 +250,30 @@ function alignSeoCapabilityCtas() {
   }
 }
 
+function applyAnalyticsContentVariants() {
+  return {
+    name: 'apply-analytics-content-variants',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, context) {
+        return applyContentVariantHtml({
+          html,
+          pathname: context.path,
+        })
+      },
+    },
+  }
+}
+
 function renderSeoContrastJourneys() {
   return {
     name: 'render-seo-contrast-journeys',
     transformIndexHtml: {
       order: 'pre',
       handler(html) {
-        return renderSeoContrastJourneyHtml(html)
+        return renderSeoContrastJourneyHtml(html, {
+          publishedSeoPageSlugs: new Set(seoPageSlugs),
+        })
       },
     },
   }
@@ -264,6 +282,7 @@ function renderSeoContrastJourneys() {
 export default defineConfig({
   base: '/',
   plugins: [
+    applyAnalyticsContentVariants(),
     renderSeoContrastJourneys(),
     alignSeoCapabilityCtas(),
     preservePublicHtmlRoutes(),

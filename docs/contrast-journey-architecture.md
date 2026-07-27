@@ -17,12 +17,12 @@ to enter or practice that objective.
 
 ## Current Scope
 
-**Architecture foundation complete. Runtime integration and learner-facing
-experience remain separate implementation work.**
+**Architecture foundation complete. The `/ship-vs-sheep/` experiment is the
+only runtime integration; broader learner-facing rollout remains separate
+implementation work.**
 
-No production page currently consumes the journey catalog. Completing this
-foundation does not mean the broader Contrast Journey initiative or its
-learner-facing experience is complete.
+Completing the foundation and first experiment does not mean the broader
+Contrast Journey initiative or its learner-facing experience is complete.
 
 Contrast Journey does not replace or extend:
 
@@ -74,7 +74,10 @@ The current journey uses this relationship model:
 `flagshipPairId` identifies the SEO entry point independently of array
 position. `practicePairIds` represents the complete learning sequence,
 including the flagship pair. Its ordering is reviewed educational data; it is
-not automatically generated and must not be used to infer the flagship.
+not automatically generated and must not be used to infer the flagship. The
+order is an intentional product requirement because the renderer presents it
+as the learner's reviewed example sequence; tests therefore protect both
+membership and sequence.
 
 ## Current Journey
 
@@ -122,3 +125,28 @@ If a desired example does not exist in `CONTRAST_CATALOG`, handle that as a
 separate pronunciation-catalog change with its own evidence and validation.
 If a page or CTA should consume a journey, make that integration a separately
 scoped change and continue to use the existing capability resolver for claims.
+
+## Contrast Journey Experiment v1
+
+**Purpose:** Validate whether contrast-first framing improves engagement.
+
+**Scope:** Only `/ship-vs-sheep/`.
+
+**Hypothesis:** Framing a minimal-pair SEO page around the underlying contrast
+will improve learner understanding and downstream engagement.
+
+**Success metrics:** Existing `exercise_start`, `exercise_complete`, and
+`app_store_click` events, segmented by the registered content variant. The
+identifier and page assignment are governed by
+`docs/analytics-and-attribution.md` and
+`src/analytics-content-variants.js`.
+
+**Non-goals:** No broader SEO migration, localization rollout, or app changes.
+
+Review the experiment results before expanding Contrast Journey to additional
+pages.
+
+Related links are rendered only from `practicePairIds` after resolving their
+records through `CONTRAST_CATALOG`. The renderer receives Vite's published SEO
+route registry and fails the build if any related target is unpublished; page
+HTML must not maintain a second related-pair list.

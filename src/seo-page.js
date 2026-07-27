@@ -38,6 +38,7 @@ function buildExerciseParams(contrast, eventName) {
       eventName,
       pageSlug: getSeoPageSlug(window.location.pathname),
       locale: getSeoPageLocale(window.location.pathname, document.documentElement.lang),
+      contentVariant: document.documentElement.dataset.contentVariant,
     }),
   };
 }
@@ -578,6 +579,7 @@ export function setupCtaTracking({
         pathname: browserWindow.location.pathname,
         documentLanguage: root.documentElement.lang,
         exerciseCompleted,
+        contentVariant: root.documentElement.dataset?.contentVariant,
       }),
       transport_type: 'beacon',
     });

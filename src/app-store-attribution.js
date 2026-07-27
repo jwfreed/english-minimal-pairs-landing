@@ -69,12 +69,14 @@ export function buildSeoAppStoreAttribution({
   pathname,
   documentLanguage,
   exerciseCompleted,
+  contentVariant,
 }) {
   return {
     page_slug: getSeoPageSlug(pathname),
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,
+    ...(contentVariant ? { content_variant: contentVariant } : {}),
   };
 }
 
@@ -82,10 +84,12 @@ export function buildExerciseAttribution({
   eventName,
   pageSlug,
   locale,
+  contentVariant,
 }) {
   return {
     page_slug: pageSlug,
     locale,
     exercise_completed: EXERCISE_COMPLETION_EVENTS.has(eventName),
+    ...(contentVariant ? { content_variant: contentVariant } : {}),
   };
 }

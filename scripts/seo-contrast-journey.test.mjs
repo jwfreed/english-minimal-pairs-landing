@@ -6,17 +6,37 @@ import {
   getContrastJourneyForPair,
   getPracticePairsForContrast,
 } from '../src/contrast-journey-catalog.js';
+import { applyContentVariantHtml } from '../src/analytics-content-variants.js';
 import { renderSeoContrastJourneyHtml } from '../src/seo-contrast-journey.js';
 
 const SHIP_PAGE_PATH = 'content/pairs/ship-vs-sheep/index.html';
+const PUBLISHED_SHIP_JOURNEY_ROUTES = new Set([
+  'ship-vs-sheep',
+  'bit-vs-beat',
+  'fill-vs-feel',
+  'live-vs-leave',
+  'sit-vs-seat',
+]);
 
 function countOccurrences(source, needle) {
   return source.split(needle).length - 1;
 }
 
+function renderShipPage(source) {
+  return renderSeoContrastJourneyHtml(
+    applyContentVariantHtml({
+      html: source,
+      pathname: '/content/pairs/ship-vs-sheep/index.html',
+    }),
+    {
+      publishedSeoPageSlugs: PUBLISHED_SHIP_JOURNEY_ROUTES,
+    }
+  );
+}
+
 test('renders the reviewed ship-vs-sheep sequence from Contrast Journey data', () => {
   const source = fs.readFileSync(SHIP_PAGE_PATH, 'utf8');
-  const rendered = renderSeoContrastJourneyHtml(source);
+  const rendered = renderShipPage(source);
   const journey = getContrastJourneyForPair('ship-vs-sheep');
   const practicePairs = getPracticePairsForContrast(journey.contrast.id);
 
@@ -50,6 +70,16 @@ test('renders the reviewed ship-vs-sheep sequence from Contrast Journey data', (
     assert.match(rendered, new RegExp(`href="/${pair.id}/"`, 'u'));
   }
 
+  assert.deepEqual(
+    [...rendered.matchAll(/class="contrast-journey-link" href="\/([^/]+)\//gu)]
+      .map((match) => match[1]),
+    [
+      'bit-vs-beat',
+      'fill-vs-feel',
+      'live-vs-leave',
+      'sit-vs-seat',
+    ]
+  );
   assert.doesNotMatch(rendered, /slip vs sleep/iu);
 });
 
@@ -66,7 +96,7 @@ test('only the English ship-vs-sheep source opts into Contrast Journey rendering
 
 test('the experiment preserves SEO identity, exercise, CTA, and analytics hooks', () => {
   const source = fs.readFileSync(SHIP_PAGE_PATH, 'utf8');
-  const rendered = renderSeoContrastJourneyHtml(source);
+  const rendered = renderShipPage(source);
 
   for (const snippet of [
     '<title>Ship vs Sheep Pronunciation: /ɪ/ vs /iː/ Practice | Soundwise</title>',
@@ -85,14 +115,32 @@ test('the experiment preserves SEO identity, exercise, CTA, and analytics hooks'
     countOccurrences(rendered, 'apps.apple.com'),
     countOccurrences(source, 'apps.apple.com')
   );
+  assert.match(
+    rendered,
+    /<html lang="en" data-content-variant="contrast_journey_v1">/u
+  );
   assert.doesNotMatch(source, /gtag\('event', '(?:exercise_start|exercise_complete|app_store_click)'/u);
 });
 
 test('fails safely when an SEO mount references no reviewed journey', () => {
   assert.throws(
     () => renderSeoContrastJourneyHtml(
-      '<div data-contrast-journey="unknown-vs-pair"></div>'
+      '<div data-contrast-journey="unknown-vs-pair"></div>',
+      { publishedSeoPageSlugs: PUBLISHED_SHIP_JOURNEY_ROUTES }
     ),
     /No Contrast Journey found/u
+  );
+});
+
+test('fails safely rather than linking to an unpublished related SEO route', () => {
+  const source = fs.readFileSync(SHIP_PAGE_PATH, 'utf8');
+  const routesMissingSitVsSeat = new Set(PUBLISHED_SHIP_JOURNEY_ROUTES);
+  routesMissingSitVsSeat.delete('sit-vs-seat');
+
+  assert.throws(
+    () => renderSeoContrastJourneyHtml(source, {
+      publishedSeoPageSlugs: routesMissingSitVsSeat,
+    }),
+    /references unpublished SEO routes: sit-vs-seat/u
   );
 });
