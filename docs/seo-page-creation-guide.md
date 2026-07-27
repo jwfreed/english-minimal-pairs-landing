@@ -332,7 +332,7 @@ Approved CTA examples:
 - `Practice this contrast in Soundwise.`
 - `Train your ear with focused minimal-pair practice.`
 - `Try focused listening practice in Soundwise.`
-- `Soundwise is a free ear-training app for English learners.`
+- `Soundwise is a $4.99 one-time-purchase ear-training app for English learners.`
 
 Banned CTA and messaging examples:
 

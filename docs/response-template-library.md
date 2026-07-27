@@ -68,7 +68,7 @@ These are examples of how **not** to reply. Keep these in mind when adapting tem
 
 *(If the thread is specifically about apps or tools, add:)*
 
-> There's a free app called Soundwise that does this with adaptive drills. Worth trying if you want structured practice.
+> Soundwise is a $4.99 one-time-purchase app that does this with adaptive drills. Worth considering if you want structured practice.
 
 **When NOT to mention the product:** When the thread is general discussion about English difficulty, when the learner has already found their own tools, when several others have already given solid advice.
 
@@ -118,7 +118,7 @@ These are examples of how **not** to reply. Keep these in mind when adapting tem
 
 *(If appropriate:)*
 
-> Soundwise has a specific Japanese/Mandarin/Korean track that drills the /r/–/l/ contrast. It is free if you want structured practice on exactly this.
+> Soundwise has specific Japanese, Mandarin, and Korean tracks that drill the /r/–/l/ contrast. It is a $4.99 one-time purchase if you want structured practice on exactly this.
 
 **When NOT to mention the product:** When the thread is about pronunciation production coaching, speaking practice, or accent work — Soundwise trains perception, not production.
 
@@ -143,7 +143,7 @@ These are examples of how **not** to reply. Keep these in mind when adapting tem
 
 *(If appropriate:)*
 
-> There's a free ear-training app called Soundwise that targets these kinds of listening distinctions. Not a replacement for IELTS practice materials, but a useful warm-up drill.
+> Soundwise is a $4.99 one-time-purchase ear-training app that targets these kinds of listening distinctions. Not a replacement for IELTS practice materials, but a useful warm-up drill.
 
 **When NOT to mention the product:** When the learner's question is about test strategy, timing, note-taking, or the IELTS format specifically.
 
@@ -160,13 +160,13 @@ These are examples of how **not** to reply. Keep these in mind when adapting tem
 
 **Reply examples:**
 
-> For minimal-pair ear training specifically, there's a free app called Soundwise (iOS). It drills listening discrimination — you hear a word, pick which of two options it was, and get immediate feedback with IPA. It has tracks for 14 different L1 backgrounds. It is focused on perception, not pronunciation production.
+> For minimal-pair ear training specifically, Soundwise is a $4.99 one-time-purchase iOS app. It drills listening discrimination — you hear a word, pick which of two options it was, and get immediate feedback with IPA. It has tracks for 14 different L1 backgrounds. It is focused on perception, not pronunciation production.
 >
 > [App Store link]
 
 ---
 
-> There are a few options. For specifically training your ear to hear phoneme differences, Soundwise is free on iOS and does exactly that — minimal pairs with adaptive difficulty. For broader pronunciation guidance, you'd want something else.
+> There are a few options. For specifically training your ear to hear phoneme differences, Soundwise is a $4.99 one-time purchase on iOS and does exactly that — minimal pairs with adaptive difficulty. For broader pronunciation guidance, you'd want something else.
 
 **When NOT to mention the product:** Never withhold when someone has directly asked. This is the clearest case for a mention.
 
@@ -252,12 +252,12 @@ These are examples of how **not** to reply. Keep these in mind when adapting tem
 
 **Reply examples:**
 
-> For listening discrimination specifically, Soundwise is a free iOS app that does minimal-pair identification drills with adaptive difficulty and IPA feedback. It has tailored word sets for 14 L1 backgrounds — Japanese, Mandarin, Spanish, Arabic, Korean, and others. It is a focused supplement for students who need ear-training work on specific contrasts.
+> For listening discrimination specifically, Soundwise is a $4.99 one-time-purchase iOS app that does minimal-pair identification drills with adaptive difficulty and IPA feedback. It has tailored word sets for 14 L1 backgrounds — Japanese, Mandarin, Spanish, Arabic, Korean, and others. It is a focused supplement for students who need ear-training work on specific contrasts.
 >
 > It won't replace a curriculum but it is good for students who need to drill a specific problem sound on their own time.
 
 ---
 
-> For Japanese or Korean students struggling with /r/–/l/, or Spanish students on vowel contrasts, Soundwise has specific tracks for those. It is self-paced, free, and focused on listening not speaking. The main limitation is it is iOS only at the moment.
+> For Japanese or Korean students struggling with /r/–/l/, or Spanish students on vowel contrasts, Soundwise has specific tracks for those. It is self-paced, a $4.99 one-time purchase, and focused on listening not speaking. The main limitation is it is iOS only at the moment.
 
 **When NOT to mention the product:** When the teacher is asking about something else entirely (grammar apps, writing tools, speaking practice). Soundwise is specifically an ear-training tool.

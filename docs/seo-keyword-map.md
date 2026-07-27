@@ -63,7 +63,7 @@ Map learner pain points to keyword clusters, content targets, and community enga
 - r/EnglishLearning, r/languagelearning threads mentioning ship/sheep or vowel confusion
 - See `docs/response-template-library.md`, Category 1
 
-**Suggested CTA:** "Soundwise has a ship/sheep drill built in — free on iOS."
+**Suggested CTA:** "Soundwise has a ship/sheep drill built in — $4.99 as a one-time iOS purchase."
 
 **Priority:** High. This is a top-of-funnel search with strong learner pain and a direct product match.
 
@@ -132,7 +132,7 @@ Map learner pain points to keyword clusters, content targets, and community enga
 - r/IELTS threads on listening difficulty
 - See `docs/response-template-library.md`, Category 4
 
-**Suggested CTA:** "For the phoneme recognition side, Soundwise is a free ear-training app that trains exactly this."
+**Suggested CTA:** "For the phoneme recognition side, Soundwise is a $4.99 one-time-purchase ear-training app that trains exactly this."
 
 **Priority:** Medium-High. High intent, high motivation. Competition is dense. Target the perception angle specifically — it is underserved relative to general IELTS prep content.
 
@@ -219,7 +219,7 @@ Map learner pain points to keyword clusters, content targets, and community enga
 - "What are minimal pairs English" videos
 - Pronunciation teacher channels explaining the concept
 
-**Suggested CTA:** Direct. This is a high-fit cluster. "Soundwise is a free minimal-pairs app for English learners — iOS, 14 language backgrounds."
+**Suggested CTA:** Direct. This is a high-fit cluster. "Soundwise is a $4.99 one-time-purchase minimal-pairs app for English learners — iOS, 14 language backgrounds."
 
 **Priority:** High. High product-query alignment. Learners searching "minimal pairs app" are ready to convert.
 
@@ -319,7 +319,7 @@ Map learner pain points to keyword clusters, content targets, and community enga
 - Make it practical (minimal pairs, drilling, feedback)
 - Mention Soundwise as a dedicated tool
 
-**Suggested CTA:** Direct. "Soundwise is an ear-training app for English learners. Free on iOS."
+**Suggested CTA:** Direct. "Soundwise is a $4.99 one-time-purchase ear-training app for English learners on iOS."
 
 **Priority:** High. Strong alignment with product positioning. Lower search volume than "pronunciation app" but higher-quality learner intent.
 

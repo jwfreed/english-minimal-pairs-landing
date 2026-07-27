@@ -8,7 +8,7 @@ It is intentionally concise. Read it before writing anything public-facing.
 
 ## Last Updated
 
-2026-05-07
+2026-07-27
 
 ---
 
@@ -112,7 +112,7 @@ If asked about the research basis, the accurate framing is: minimal-pair percept
 Use CTAs in this order of preference:
 
 1. **Educational first** — answer the question, teach something useful.
-2. **Soft mention** — "There's a free app called Soundwise that drills exactly this."
+2. **Soft mention** — "Soundwise is a $4.99 one-time-purchase app that drills this kind of listening distinction."
 3. **Direct link** — only when someone has asked for a resource or the context clearly warrants it.
 
 Never lead with a CTA. Never post a link without substantive content.
@@ -139,7 +139,7 @@ Lead with the specific problem they mentioned. Acknowledge the difficulty is rea
 Frame listening perception as a prerequisite for the listening section. Emphasize that recognizing words accurately in fast speech is a trainable skill. Offer the app as a drill tool.
 
 **ESL teacher**
-Be direct about what the app does and does not do. Teachers appreciate precision. It is a supplemental ear-training tool, not a full curriculum. Mention that it is free, self-paced, and focused.
+Be direct about what the app does and does not do. Teachers appreciate precision. It is a supplemental ear-training tool, not a full curriculum. Mention that it is a one-time purchase, self-paced, and focused.
 
 **Community observer (non-active learner)**
 Do not pitch. They have not asked. If they engage, respond to the engagement.
@@ -185,7 +185,7 @@ Do not pitch. They have not asked. If they engage, respond to the engagement.
 - A minimal-pair identification app.
 - A focused drill tool that adjusts difficulty as you improve.
 - A supplement to broader English study.
-- A free iOS app available on the App Store.
+- A $4.99 one-time-purchase iOS app available on the App Store, with no subscription.
 
 ---
 
@@ -204,7 +204,7 @@ Do not pitch. They have not asked. If they engage, respond to the engagement.
 
 > "The /r/–/l/ contrast is notoriously hard for Japanese and Mandarin learners because both sounds map to a single category in those languages. Drilling minimal pairs — hearing 'rake' vs. 'lake' repeatedly with feedback — is one of the best-studied ways to train your ear to pick up the difference."
 
-> "Soundwise is a free ear-training app that drills this kind of listening distinction. It's not a magic fix, but the repetition is real practice."
+> "Soundwise is a $4.99 one-time-purchase ear-training app that drills this kind of listening distinction. It's not a magic fix, but the repetition is real practice."
 
 > "Struggling with ship vs. sheep is extremely common. Your brain is filtering English sounds through your L1 — it takes deliberate listening practice to reset that filter."
 
