@@ -2463,6 +2463,49 @@ html[dir="rtl"] .seo-content ol {
   box-shadow: none;
 }
 
+.contrast-journey-list {
+  margin-top: 1.5rem;
+}
+
+.contrast-journey-item {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contrast-journey-item.is-flagship {
+  background: var(--bg-secondary);
+  border-color: #fed7aa;
+  border-left: 4px solid var(--primary);
+}
+
+.contrast-journey-role {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contrast-journey-current,
+.seo-content a.contrast-journey-link {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+}
+
+.contrast-journey-pair {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.contrast-journey-ipa {
+  color: var(--text-secondary);
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+}
+
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr;

@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
 import { alignSeoPageCtaHtml } from './src/seo-capability-cta.js'
+import { renderSeoContrastJourneyHtml } from './src/seo-contrast-journey.js'
 
 const seoPageSlugs = [
   'ship-vs-sheep',
@@ -248,9 +249,25 @@ function alignSeoCapabilityCtas() {
   }
 }
 
+function renderSeoContrastJourneys() {
+  return {
+    name: 'render-seo-contrast-journeys',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html) {
+        return renderSeoContrastJourneyHtml(html)
+      },
+    },
+  }
+}
+
 export default defineConfig({
   base: '/',
-  plugins: [alignSeoCapabilityCtas(), preservePublicHtmlRoutes()],
+  plugins: [
+    renderSeoContrastJourneys(),
+    alignSeoCapabilityCtas(),
+    preservePublicHtmlRoutes(),
+  ],
   build: {
     rollupOptions: {
       input: {
