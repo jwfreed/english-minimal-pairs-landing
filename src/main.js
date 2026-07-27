@@ -9,7 +9,11 @@ import {
   RUNTIME_LOCALE_TO_DEMO_LOCALE,
 } from './hero-demo-config.js';
 import { HOMEPAGE_ROUTE_BY_SLUG } from './localized-homepage-routes.js';
-import { buildExerciseAttribution } from './app-store-attribution.js';
+import {
+  buildExerciseAttribution,
+  buildHomepageAppStoreAttribution,
+  getSeoPageLocale,
+} from './app-store-attribution.js';
 
 const DEMO_MAX_ROUNDS = 2;
 const CTA_UNLOCKED_CLASS = 'is-muted';
@@ -68,7 +72,10 @@ function buildExerciseParams(eventName, detail = {}) {
     ...buildExerciseAttribution({
       eventName,
       pageSlug: 'homepage',
-      locale: detail.runtimeLocale || heroDemoState.runtimeLocale,
+      locale: getSeoPageLocale(
+        window.location.pathname,
+        document.documentElement.lang
+      ),
     }),
   };
 }
@@ -1015,6 +1022,14 @@ function setupCtaTracking() {
           page_path: window.location.pathname,
           link_url: link.href,
           link_id: link.id || undefined,
+          ...buildHomepageAppStoreAttribution({
+            link,
+            pathname: window.location.pathname,
+            documentLanguage: document.documentElement.lang,
+            language: heroDemoState.runtimeLocale,
+            exerciseCompleted: heroDemoState.hasCompletedDemo,
+            contentVariant: document.documentElement.dataset?.contentVariant,
+          }),
           transport_type: 'beacon',
         });
       }

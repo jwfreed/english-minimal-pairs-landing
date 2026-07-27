@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {
   SEO_CTA_POSITIONS,
   buildExerciseAttribution,
+  buildHomepageAppStoreAttribution,
   buildSeoAppStoreAttribution,
   getSeoCtaPosition,
   getSeoPageLocale,
@@ -50,7 +51,7 @@ function captureSeoAppStoreClick({
   };
   const link = {
     dataset: { ctaPosition: 'mid-content' },
-    href: 'https://apps.apple.com/app/id6753882308',
+    href: 'https://apps.apple.com/app/id6753882308?utm_source=website&utm_medium=seo-page&utm_campaign=minimal-pair-pages&utm_content=ship-vs-sheep',
     id: 'article-app-store-cta',
     textContent: 'Soundwise App',
     getAttribute() {
@@ -137,6 +138,39 @@ test('SEO attribution preserves canonical language and verified exercise complet
   );
 });
 
+test('homepage attribution separates active language from canonical route locale', () => {
+  const baseInput = {
+    link: createLink({ declaredPosition: 'exercise-summary' }),
+    pathname: '/',
+    documentLanguage: 'en',
+    language: 'ja',
+  };
+
+  assert.deepEqual(buildHomepageAppStoreAttribution(baseInput), {
+    page_slug: 'homepage',
+    language: 'ja',
+    locale: 'en',
+    cta_position: 'exercise-summary',
+    exercise_completed: false,
+  });
+
+  assert.deepEqual(
+    buildHomepageAppStoreAttribution({
+      ...baseInput,
+      pathname: '/ja/',
+      documentLanguage: 'ja',
+      exerciseCompleted: true,
+    }),
+    {
+      page_slug: 'homepage',
+      language: 'ja',
+      locale: 'ja',
+      cta_position: 'exercise-summary',
+      exercise_completed: true,
+    }
+  );
+});
+
 test('exercise attribution reports page context and lifecycle completion', () => {
   const baseInput = {
     pageSlug: 'ship-vs-sheep',
@@ -190,6 +224,10 @@ test('App Store click events tag only the registered experiment page', () => {
 
   assert.equal(experimentCall[0], 'event');
   assert.equal(experimentCall[1], 'app_store_click');
+  assert.equal(
+    experimentCall[2].link_url,
+    'https://apps.apple.com/app/id6753882308?utm_source=website&utm_medium=seo-page&utm_campaign=minimal-pair-pages&utm_content=ship-vs-sheep'
+  );
   assert.deepEqual(
     {
       page_slug: experimentCall[2].page_slug,

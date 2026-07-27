@@ -11,8 +11,22 @@ const requiredSnippets = [
   "transport_type: 'beacon'",
 ];
 const seoTrackingSource = fs.readFileSync('src/seo-page.js', 'utf8');
+const mainTrackingSource = fs.readFileSync('src/main.js', 'utf8');
 const attributionSource = fs.readFileSync('src/app-store-attribution.js', 'utf8');
+const homepageSource = fs.readFileSync('index.html', 'utf8');
 const allowedSeoCtaPositions = new Set(SEO_CTA_POSITIONS);
+const requiredHomepageTrackingSnippets = [
+  'buildHomepageAppStoreAttribution,',
+  '...buildHomepageAppStoreAttribution({',
+  'language: heroDemoState.runtimeLocale',
+  'exerciseCompleted: heroDemoState.hasCompletedDemo',
+  'contentVariant: document.documentElement.dataset?.contentVariant',
+];
+const requiredHomepageCtaPositions = [
+  ['nav-app-store-cta', 'hero'],
+  ['demo-app-store-cta', 'exercise-summary'],
+  ['final-app-store-cta', 'post-exercise-footer'],
+];
 const requiredSeoTrackingSnippets = [
   'buildSeoAppStoreAttribution,',
   "browserWindow.addEventListener('soundwise:demo_completed', markExerciseCompleted)",
@@ -57,6 +71,25 @@ for (const snippet of requiredSeoTrackingSnippets) {
   }
 }
 
+for (const snippet of requiredHomepageTrackingSnippets) {
+  if (!mainTrackingSource.includes(snippet)) {
+    console.error(`src/main.js is missing required homepage attribution snippet: ${snippet}`);
+    hasFailure = true;
+  }
+}
+
+for (const [linkId, position] of requiredHomepageCtaPositions) {
+  const linkPattern = new RegExp(
+    `<a\\b(?=[^>]*\\bid="${linkId}")(?=[^>]*\\bdata-cta-position="${position}")[^>]*>`,
+    'u'
+  );
+
+  if (!linkPattern.test(homepageSource)) {
+    console.error(`index.html must classify ${linkId} as ${position}`);
+    hasFailure = true;
+  }
+}
+
 for (const snippet of requiredAttributionSnippets) {
   if (!attributionSource.includes(snippet)) {
     console.error(`src/app-store-attribution.js is missing required contract field: ${snippet}`);
@@ -66,6 +99,11 @@ for (const snippet of requiredAttributionSnippets) {
 
 if ((seoTrackingSource.split("'event', 'app_store_click'").length - 1) !== 1) {
   console.error('src/seo-page.js must dispatch app_store_click exactly once per click path');
+  hasFailure = true;
+}
+
+if ((mainTrackingSource.split("'event', 'app_store_click'").length - 1) !== 1) {
+  console.error('src/main.js must dispatch app_store_click exactly once per click path');
   hasFailure = true;
 }
 

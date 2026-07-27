@@ -17,6 +17,7 @@ const requiredInMain = [
   "experience_surface: 'homepage'",
   'exerciseParams: buildExerciseParams(eventName, baseDetail)',
   "pageSlug: 'homepage'",
+  'locale: getSeoPageLocale(',
   "'event', 'app_store_click'",
 ];
 const requiredInFunnelModule = [

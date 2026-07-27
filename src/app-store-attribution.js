@@ -81,6 +81,24 @@ export function buildSeoAppStoreAttribution({
   };
 }
 
+export function buildHomepageAppStoreAttribution({
+  link,
+  pathname,
+  documentLanguage,
+  language,
+  exerciseCompleted,
+  contentVariant,
+}) {
+  return {
+    page_slug: 'homepage',
+    language: language || documentLanguage || 'en',
+    locale: getSeoPageLocale(pathname, documentLanguage),
+    cta_position: getSeoCtaPosition(link),
+    exercise_completed: exerciseCompleted === true,
+    ...(contentVariant ? { content_variant: contentVariant } : {}),
+  };
+}
+
 export function buildExerciseAttribution({
   eventName,
   pageSlug,
