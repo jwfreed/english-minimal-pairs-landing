@@ -67,7 +67,7 @@ function buildExerciseParams(eventName, detail = {}) {
     exercise_id: config.words.map((word) => word.text.toLowerCase()).join('-'),
     pair_name: `${first.text.toUpperCase()} / ${second.text.toUpperCase()}`,
     sound_contrast: config.contrast,
-    language: detail.runtimeLocale || heroDemoState.runtimeLocale,
+    learner_language: detail.runtimeLocale || heroDemoState.runtimeLocale,
     experience_surface: 'homepage',
     ...buildExerciseAttribution({
       eventName,

@@ -102,7 +102,7 @@ test('CTA positions are allowlisted and inferred for legacy SEO markup', () => {
   assert.equal(getSeoCtaPosition(createLink()), 'mid-content');
 });
 
-test('SEO attribution preserves canonical language and verified exercise completion', () => {
+test('SEO attribution preserves learner language and verified exercise completion', () => {
   const baseInput = {
     link: createLink({ declaredPosition: 'mid-content' }),
     pathname: '/zh/ship-vs-sheep/',
@@ -111,7 +111,7 @@ test('SEO attribution preserves canonical language and verified exercise complet
 
   assert.deepEqual(buildSeoAppStoreAttribution(baseInput), {
     page_slug: 'ship-vs-sheep',
-    language: 'zh-Hans',
+    learner_language: 'zh-Hans',
     locale: 'zh',
     cta_position: 'mid-content',
     exercise_completed: false,
@@ -129,13 +129,14 @@ test('SEO attribution preserves canonical language and verified exercise complet
     }),
     {
       page_slug: 'ship-vs-sheep',
-      language: 'zh-Hans',
+      learner_language: 'zh-Hans',
       locale: 'zh',
       cta_position: 'mid-content',
       exercise_completed: false,
       content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
     }
   );
+  assert.equal('language' in buildSeoAppStoreAttribution(baseInput), false);
 });
 
 test('homepage attribution separates active language from canonical route locale', () => {
@@ -148,7 +149,7 @@ test('homepage attribution separates active language from canonical route locale
 
   assert.deepEqual(buildHomepageAppStoreAttribution(baseInput), {
     page_slug: 'homepage',
-    language: 'ja',
+    learner_language: 'ja',
     locale: 'en',
     cta_position: 'exercise-summary',
     exercise_completed: false,
@@ -163,12 +164,13 @@ test('homepage attribution separates active language from canonical route locale
     }),
     {
       page_slug: 'homepage',
-      language: 'ja',
+      learner_language: 'ja',
       locale: 'ja',
       cta_position: 'exercise-summary',
       exercise_completed: true,
     }
   );
+  assert.equal('language' in buildHomepageAppStoreAttribution(baseInput), false);
 });
 
 test('exercise attribution reports page context and lifecycle completion', () => {
@@ -231,7 +233,7 @@ test('App Store click events tag only the registered experiment page', () => {
   assert.deepEqual(
     {
       page_slug: experimentCall[2].page_slug,
-      language: experimentCall[2].language,
+      learner_language: experimentCall[2].learner_language,
       locale: experimentCall[2].locale,
       cta_position: experimentCall[2].cta_position,
       exercise_completed: experimentCall[2].exercise_completed,
@@ -239,7 +241,7 @@ test('App Store click events tag only the registered experiment page', () => {
     },
     {
       page_slug: 'ship-vs-sheep',
-      language: 'en',
+      learner_language: 'en',
       locale: 'en',
       cta_position: 'mid-content',
       exercise_completed: false,
@@ -251,18 +253,20 @@ test('App Store click events tag only the registered experiment page', () => {
   assert.deepEqual(
     {
       page_slug: legacyCall[2].page_slug,
-      language: legacyCall[2].language,
+      learner_language: legacyCall[2].learner_language,
       locale: legacyCall[2].locale,
       cta_position: legacyCall[2].cta_position,
       exercise_completed: legacyCall[2].exercise_completed,
     },
     {
       page_slug: 'bit-vs-beat',
-      language: 'en',
+      learner_language: 'en',
       locale: 'en',
       cta_position: 'mid-content',
       exercise_completed: false,
     }
   );
+  assert.equal('language' in experimentCall[2], false);
+  assert.equal('language' in legacyCall[2], false);
   assert.equal('content_variant' in legacyCall[2], false);
 });

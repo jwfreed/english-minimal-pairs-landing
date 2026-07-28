@@ -29,7 +29,7 @@ function createHarness({ challengeMode = false, targetIndexes = [1, 0], shouldPl
             exercise_id: contrast.id,
             pair_name: 'SHIP / SHEEP',
             sound_contrast: contrast.contrast,
-            language: 'en',
+            learner_language: 'en',
             experience_surface: 'homepage',
           },
         };

@@ -37,6 +37,7 @@ const requiredSeoTrackingSnippets = [
 ];
 const requiredAttributionSnippets = [
   'page_slug:',
+  'learner_language:',
   'locale:',
   'cta_position:',
   'exercise_completed:',
@@ -95,6 +96,11 @@ for (const snippet of requiredAttributionSnippets) {
     console.error(`src/app-store-attribution.js is missing required contract field: ${snippet}`);
     hasFailure = true;
   }
+}
+
+if (/^\s*language:/mu.test(attributionSource)) {
+  console.error('src/app-store-attribution.js must not emit the reserved language parameter');
+  hasFailure = true;
 }
 
 if ((seoTrackingSource.split("'event', 'app_store_click'").length - 1) !== 1) {

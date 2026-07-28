@@ -6,6 +6,7 @@ import fs from 'node:fs';
 //  - event params are built by the homepage and passed through event.detail.exerciseParams,
 //  - the pre-existing app_store_click tracking in src/main.js is preserved.
 const mainSource = fs.readFileSync('src/main.js', 'utf8');
+const seoPageSource = fs.readFileSync('src/seo-page.js', 'utf8');
 const funnelSource = fs.readFileSync('src/funnel-tracking.js', 'utf8');
 
 const exactlyOnceInFunnelModule = [
@@ -14,11 +15,15 @@ const exactlyOnceInFunnelModule = [
 ];
 const requiredInMain = [
   "import setupFunnelTracking from './funnel-tracking.js';",
+  'learner_language: detail.runtimeLocale || heroDemoState.runtimeLocale',
   "experience_surface: 'homepage'",
   'exerciseParams: buildExerciseParams(eventName, baseDetail)',
   "pageSlug: 'homepage'",
   'locale: getSeoPageLocale(',
   "'event', 'app_store_click'",
+];
+const requiredInSeoPage = [
+  "learner_language: document.documentElement.lang || 'en'",
 ];
 const requiredInFunnelModule = [
   'export default function setupFunnelTracking()',
@@ -58,6 +63,21 @@ for (const snippet of requiredInMain) {
     console.error(`src/main.js is missing required tracking snippet: ${snippet}`);
     hasFailure = true;
   }
+}
+
+for (const snippet of requiredInSeoPage) {
+  if (!seoPageSource.includes(snippet)) {
+    console.error(`src/seo-page.js is missing required tracking snippet: ${snippet}`);
+    hasFailure = true;
+  }
+}
+
+if (
+  mainSource.includes('\n    language: detail.runtimeLocale || heroDemoState.runtimeLocale')
+  || seoPageSource.includes("\n    language: document.documentElement.lang || 'en'")
+) {
+  console.error('exercise payload builders must not emit the reserved language parameter');
+  hasFailure = true;
 }
 
 for (const snippet of requiredInFunnelModule) {

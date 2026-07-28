@@ -35,7 +35,7 @@ function buildExerciseParams(contrast, eventName) {
     exercise_id: contrast.id,
     pair_name: formatPairName(contrast),
     sound_contrast: contrast.contrast,
-    language: document.documentElement.lang || 'en',
+    learner_language: document.documentElement.lang || 'en',
     experience_surface: 'seo_contrast_page',
     ...buildExerciseAttribution({
       eventName,
@@ -619,7 +619,7 @@ export function setupContrastJourneyTracking({
     browserWindow.gtag('event', eventName, {
       source_pair: sourcePair,
       destination_pair: destinationPair,
-      language,
+      learner_language: language,
       locale,
       ...(contentVariant ? { content_variant: contentVariant } : {}),
       ...extraParams,

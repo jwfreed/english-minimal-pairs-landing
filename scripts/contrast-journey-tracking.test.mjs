@@ -11,6 +11,8 @@ function createTrackingHarness({
   sourcePair = 'ship-vs-sheep',
   destinationPairs = ['bit-vs-beat', 'fill-vs-feel'],
   contentVariant = CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
+  documentLanguage = 'en',
+  pathname = `/${sourcePair}/`,
 } = {}) {
   const gtagCalls = [];
   const links = destinationPairs.map((destinationPair) => ({
@@ -38,7 +40,7 @@ function createTrackingHarness({
   let observer;
   const root = {
     documentElement: {
-      lang: 'en',
+      lang: documentLanguage,
       dataset: contentVariant ? { contentVariant } : {},
     },
     querySelectorAll(selector) {
@@ -52,7 +54,7 @@ function createTrackingHarness({
     },
   };
   const browserWindow = {
-    location: { pathname: `/${sourcePair}/` },
+    location: { pathname },
     gtag(...args) {
       gtagCalls.push(args);
     },
@@ -106,18 +108,19 @@ test('journey impressions report each visible destination once', () => {
     ['event', 'contrast_journey_view', {
       source_pair: 'ship-vs-sheep',
       destination_pair: 'bit-vs-beat',
-      language: 'en',
+      learner_language: 'en',
       locale: 'en',
       content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
     }],
     ['event', 'contrast_journey_view', {
       source_pair: 'ship-vs-sheep',
       destination_pair: 'fill-vs-feel',
-      language: 'en',
+      learner_language: 'en',
       locale: 'en',
       content_variant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
     }],
   ]);
+  assert.equal(gtagCalls.some(([, , params]) => 'language' in params), false);
   assert.deepEqual(observer.unobserved, [list]);
 });
 
@@ -138,11 +141,30 @@ test('journey clicks use delegated tracking and preserve legacy variant absence'
     ['event', 'contrast_journey_click', {
       source_pair: 'bit-vs-beat',
       destination_pair: 'ship-vs-sheep',
-      language: 'en',
+      learner_language: 'en',
       locale: 'en',
       transport_type: 'beacon',
     }],
   ]);
+  assert.equal('language' in gtagCalls[0][2], false);
+});
+
+test('journey events separate learner language from localized route locale', () => {
+  const {
+    gtagCalls,
+    list,
+    observer,
+  } = createTrackingHarness({
+    documentLanguage: 'zh-Hans',
+    pathname: '/zh/ship-vs-sheep/',
+  });
+
+  observer.callback([{ isIntersecting: true, target: list }]);
+
+  assert.equal(gtagCalls[0][1], 'contrast_journey_view');
+  assert.equal(gtagCalls[0][2].learner_language, 'zh-Hans');
+  assert.equal(gtagCalls[0][2].locale, 'zh');
+  assert.equal('language' in gtagCalls[0][2], false);
 });
 
 test('the SEO page adapter registers journey tracking once', () => {

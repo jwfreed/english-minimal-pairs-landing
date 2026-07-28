@@ -201,11 +201,11 @@ https://getsoundwise.co?utm_source=youtube&utm_medium=community&utm_campaign=yt-
 
 | Event | Trigger | Parameters |
 | --- | --- | --- |
-| `exercise_start` | First exercise round started, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: false`; experiment pages also send `content_variant`. |
-| `exercise_complete` | Final exercise round completed, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: true`; experiment pages also send `content_variant`. |
-| `contrast_journey_view` | A Contrast Journey list first enters the viewport; one event is sent for each visible destination link | `source_pair`, `destination_pair`, `language`, `locale`; experiment pages also send `content_variant`. |
-| `contrast_journey_click` | A learner activates a generated Contrast Journey destination link | `source_pair`, `destination_pair`, `language`, `locale`; experiment pages also send `content_variant`. |
-| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | Homepage and SEO pages: `button_text`, `page_path`, `link_url`, `page_slug`, `language`, `locale`, `cta_position`, `exercise_completed`; experiment pages also send `content_variant`. The non-indexable 404 utility page sends only the three generic click fields. |
+| `exercise_start` | First exercise round started, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `learner_language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: false`; experiment pages also send `content_variant`. |
+| `exercise_complete` | Final exercise round completed, once per page load | `exercise_id`, `pair_name`, `sound_contrast`, `learner_language`, `experience_surface`, `page_slug`, `locale`, `exercise_completed: true`; experiment pages also send `content_variant`. |
+| `contrast_journey_view` | A Contrast Journey list first enters the viewport; one event is sent for each visible destination link | `source_pair`, `destination_pair`, `learner_language`, `locale`; experiment pages also send `content_variant`. |
+| `contrast_journey_click` | A learner activates a generated Contrast Journey destination link | `source_pair`, `destination_pair`, `learner_language`, `locale`; experiment pages also send `content_variant`. |
+| `app_store_click` | Clicks on links to `apps.apple.com` from the homepage, SEO pages, or 404 page | Homepage and SEO pages: `button_text`, `page_path`, `link_url`, `page_slug`, `learner_language`, `locale`, `cta_position`, `exercise_completed`; experiment pages also send `content_variant`. The non-indexable 404 utility page sends only the three generic click fields. |
 
 ### Landing-Page Taxonomy
 
@@ -214,7 +214,7 @@ than a separate `page_type` parameter:
 
 | Surface | Identification |
 | --- | --- |
-| English or localized homepage | `page_slug = homepage`; `locale` is the canonical route locale; `language` is the active learner/UI language; GA4 `page_path` distinguishes `/` from localized routes such as `/ja/`. |
+| English or localized homepage | `page_slug = homepage`; `locale` is the canonical route locale; `learner_language` is the active learner/UI language context; GA4 `page_path` distinguishes `/` from localized routes such as `/ja/`. |
 | Pair page | `page_slug` is the exact pair ID, such as `ship-vs-sheep`; `locale` and `page_path` distinguish English and localized versions. Exercise events also send the same ID as `exercise_id`. |
 | Practice hub | `page_slug` is `minimal-pairs-practice` or `english-ear-training`; `locale` and `page_path` distinguish localized versions. |
 | Contrast Journey consumer | The page remains a pair page. Journey events add `source_pair` and `destination_pair`; exercise events add `sound_contrast`. |
@@ -240,7 +240,7 @@ event:
    and `source_pair`/`destination_pair` for journey movement before
    `app_store_click`.
 3. **Which language audiences convert?** Segment the engagement and conversion
-   events by `language` (active learner/UI language) and `locale` (canonical
+   events by `learner_language` (active learner/UI language context) and `locale` (canonical
    route locale). This intentionally distinguishes, for example, a learner
    using Japanese on `/` from a learner landing on `/ja/`.
 
@@ -253,8 +253,9 @@ conversion.
 ### Exercise Event Contract
 
 `page_slug` and `locale` identify the page and canonical route locale that produced the exercise
-interaction. `language` identifies the active learner/UI language and may differ from `locale` on
-the homepage. `cta_position` is not sent on exercise events: it identifies the physical App Store CTA
+interaction. `learner_language` identifies the active learner/UI language context and may differ from
+`locale` on the homepage. It is not proof of the user's native language or L1. `locale` remains the
+canonical route locale. `cta_position` is not sent on exercise events: it identifies the physical App Store CTA
 clicked (`hero`, `mid-content`, `exercise-summary`, or `post-exercise-footer`) and therefore applies only to
 `app_store_click`.
 
@@ -288,7 +289,8 @@ default or control label in event code.
 
 ### Contrast Journey Link Contract
 
-`contrast_journey_view` measures destination-level exposure, not a page load.
+`contrast_journey_view` measures destination-level exposure, not a module-level
+impression or page load.
 When the generated journey list first enters the viewport, the site sends one
 event for each link the learner could choose. A list is counted at most once per
 page load. The current page is rendered as non-linked text and therefore does
@@ -324,7 +326,7 @@ same measurement context; they do not send a second conversion event.
 | Parameter | Requirement | Purpose | Allowed or example values |
 | --- | --- | --- | --- |
 | `page_slug` | Required on homepage and SEO pages | Identifies the landing-page topic without coupling reporting to localized route prefixes | `homepage`, `ship-vs-sheep`, `minimal-pairs-practice` |
-| `language` | Required on homepage and SEO pages | Identifies the active learner/UI language | `en`, `ja`, `zh-Hans` |
+| `learner_language` | Required on homepage and SEO pages | Identifies the active learner/UI language context; it does not prove native language or L1 | `en`, `ja`, `zh-Hans` |
 | `locale` | Required on homepage and SEO pages | Identifies the canonical Soundwise route locale | `en`, `ja`, `hi-ur`, `yue` |
 | `cta_position` | Required on homepage and SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `exercise-summary`, `post-exercise-footer` |
 | `exercise_completed` | Required boolean on homepage and SEO pages | Distinguishes clicks before and after verified exercise lifecycle completion | `true`, `false` |
@@ -353,7 +355,7 @@ exercise_complete
 Guardrails are `exercise_complete / exercise_start`, duplicate `app_store_click` rate, and the event
 integrity of existing CTA positions.
 
-GA4 administrators should register `page_slug`, `language`, `locale`, `cta_position`, and
+GA4 administrators should register `page_slug`, `learner_language`, `locale`, `cta_position`, and
 `content_variant` as event-scoped custom dimensions. Register
 `exercise_completed` as an event-scoped custom dimension if the property does
 not already expose boolean event parameters in the intended reporting workflow.

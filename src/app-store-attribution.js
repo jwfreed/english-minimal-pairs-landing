@@ -73,7 +73,7 @@ export function buildSeoAppStoreAttribution({
 }) {
   return {
     page_slug: getSeoPageSlug(pathname),
-    language: documentLanguage || 'en',
+    learner_language: documentLanguage || 'en',
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,
@@ -91,7 +91,7 @@ export function buildHomepageAppStoreAttribution({
 }) {
   return {
     page_slug: 'homepage',
-    language: language || documentLanguage || 'en',
+    learner_language: language || documentLanguage || 'en',
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,

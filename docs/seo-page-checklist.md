@@ -115,7 +115,7 @@ Required exercise params:
 - `exercise_id`
 - `pair_name`
 - `sound_contrast`
-- `language`
+- `learner_language`
 - `experience_surface: 'seo_contrast_page'`
 - `page_slug`
 - `locale`
