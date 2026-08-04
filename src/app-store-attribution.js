@@ -1,4 +1,5 @@
 import { HREFLANG_BY_LOCALE } from './localized-homepage-routes.js';
+import { getContentVariantEventParameters } from './analytics-content-variants.js';
 
 export const SEO_CTA_POSITIONS = Object.freeze([
   'hero',
@@ -77,7 +78,7 @@ export function buildSeoAppStoreAttribution({
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,
-    ...(contentVariant ? { content_variant: contentVariant } : {}),
+    ...getContentVariantEventParameters(contentVariant),
   };
 }
 
@@ -95,7 +96,7 @@ export function buildHomepageAppStoreAttribution({
     locale: getSeoPageLocale(pathname, documentLanguage),
     cta_position: getSeoCtaPosition(link),
     exercise_completed: exerciseCompleted === true,
-    ...(contentVariant ? { content_variant: contentVariant } : {}),
+    ...getContentVariantEventParameters(contentVariant),
   };
 }
 
@@ -109,6 +110,6 @@ export function buildExerciseAttribution({
     page_slug: pageSlug,
     locale,
     exercise_completed: EXERCISE_COMPLETION_EVENTS.has(eventName),
-    ...(contentVariant ? { content_variant: contentVariant } : {}),
+    ...getContentVariantEventParameters(contentVariant),
   };
 }

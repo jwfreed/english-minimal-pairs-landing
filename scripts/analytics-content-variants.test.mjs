@@ -38,17 +38,23 @@ test('Contrast Journey v1 is assigned only to the English ship-vs-sheep page', (
   }
 });
 
-test('build metadata is injected from the registry without page-local duplication', () => {
+test('the experiment build carries its registry variant into the automatic page view', () => {
   const shipSource = fs.readFileSync(SHIP_SOURCE_PATH, 'utf8');
   const unrelatedSource = fs.readFileSync('content/pairs/bit-vs-beat/index.html', 'utf8');
 
   assert.doesNotMatch(shipSource, /data-content-variant=/u);
+  const experimentHtml = applyContentVariantHtml({
+    html: shipSource,
+    pathname: '/content/pairs/ship-vs-sheep/index.html',
+  });
+
   assert.match(
-    applyContentVariantHtml({
-      html: shipSource,
-      pathname: '/content/pairs/ship-vs-sheep/index.html',
-    }),
+    experimentHtml,
     /<html lang="en" data-content-variant="contrast_journey_v1">/u
+  );
+  assert.match(
+    experimentHtml,
+    /gtag\('config', 'G-FTKLKBSY0K', \{ content_variant: 'contrast_journey_v1' \}\);/u
   );
   assert.equal(
     applyContentVariantHtml({
