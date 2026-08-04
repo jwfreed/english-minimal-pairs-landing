@@ -12,6 +12,8 @@ const CONTENT_VARIANT_ASSIGNMENTS = Object.freeze([
   }),
 ]);
 
+const GTAG_CONFIG_PATTERN = /gtag\('config',\s*'([^']+)'\s*\);/u;
+
 function normalizePathname(pathname) {
   const normalized = pathname
     .split(/[?#]/u, 1)[0]
@@ -30,6 +32,10 @@ export function getContentVariantForPathname(pathname) {
   return assignment?.contentVariant;
 }
 
+export function getContentVariantEventParameters(contentVariant) {
+  return contentVariant ? { content_variant: contentVariant } : {};
+}
+
 export function applyContentVariantHtml({ html, pathname }) {
   const contentVariant = getContentVariantForPathname(pathname);
 
@@ -43,8 +49,19 @@ export function applyContentVariantHtml({ html, pathname }) {
     );
   }
 
-  return html.replace(
+  const htmlWithVariant = html.replace(
     /<html\b([^>]*)>/iu,
     `<html$1 data-content-variant="${contentVariant}">`
+  );
+
+  if (!GTAG_CONFIG_PATTERN.test(htmlWithVariant)) {
+    throw new Error(
+      `Content variant page "${pathname}" must use the standard gtag config call.`
+    );
+  }
+
+  return htmlWithVariant.replace(
+    GTAG_CONFIG_PATTERN,
+    `gtag('config', '$1', { content_variant: '${contentVariant}' });`
   );
 }

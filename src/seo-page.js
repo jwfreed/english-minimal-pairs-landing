@@ -3,6 +3,7 @@ import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
 import { createSeoExerciseSummaryCta } from './seo-exercise-summary-cta.js';
+import { getContentVariantEventParameters } from './analytics-content-variants.js';
 import {
   applyCapabilityToSeoCtas,
   resolveSeoPageCapability,
@@ -621,7 +622,7 @@ export function setupContrastJourneyTracking({
       destination_pair: destinationPair,
       learner_language: language,
       locale,
-      ...(contentVariant ? { content_variant: contentVariant } : {}),
+      ...getContentVariantEventParameters(contentVariant),
       ...extraParams,
     });
   };
