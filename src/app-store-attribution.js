@@ -4,6 +4,7 @@ import { getContentVariantEventParameters } from './analytics-content-variants.j
 export const SEO_CTA_POSITIONS = Object.freeze([
   'hero',
   'mid-content',
+  'post-interaction',
   'exercise-summary',
   'post-exercise-footer',
 ]);

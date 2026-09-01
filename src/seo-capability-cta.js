@@ -173,9 +173,13 @@ export function alignSeoPageCtaHtml({
   const contentEnd = footerIndex >= 0 ? footerIndex : html.length;
   const pageContent = html.slice(0, contentEnd).replace(
     APP_STORE_ANCHOR_PATTERN,
-    (_, attributes) => (
-      `<a${addCapabilityAttributes(attributes, capability)}>${label}</a>`
-    )
+    (_, attributes, content) => {
+      const alignedLabel = /\bdata-capability-copy=["']generic["']/iu.test(attributes)
+        ? content
+        : label;
+
+      return `<a${addCapabilityAttributes(attributes, capability)}>${alignedLabel}</a>`;
+    }
   );
 
   return `${pageContent}${html.slice(contentEnd)}`;
@@ -200,7 +204,11 @@ export function applyCapabilityToSeoCtas({
 
     link.dataset.appCapabilityCta = 'true';
     link.dataset.appCapabilityStatus = capability.status;
-    link.textContent = label;
+
+    if (link.dataset.capabilityCopy !== 'generic') {
+      link.textContent = label;
+    }
+
     updatedLinks.push(link);
   });
 

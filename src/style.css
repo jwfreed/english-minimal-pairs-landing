@@ -2335,6 +2335,39 @@ body.seo-body .seo-content {
   line-height: 1.75;
 }
 
+.seo-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.75rem;
+}
+
+.seo-hero-actions .btn {
+  min-height: 3rem;
+}
+
+.seo-hero-app-cta {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.seo-hero-app-cta:hover,
+.seo-hero-app-cta:focus-visible {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.seo-hero-product-note {
+  color: var(--text-secondary);
+  font-size: 0.925rem;
+  line-height: 1.55;
+  margin-top: 0.9rem;
+  max-width: 680px;
+}
+
 .seo-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -2766,6 +2799,11 @@ html[dir="rtl"] .seo-content td {
   padding: 1rem;
 }
 
+.seo-exercise-interaction-cta {
+  background: #fffaf5;
+  border-color: rgba(217, 119, 6, 0.35);
+}
+
 .seo-content .seo-exercise-summary-cta-headline {
   color: var(--text-primary);
   font-size: 1.05rem;
@@ -2984,6 +3022,15 @@ html[dir="rtl"] .seo-content td {
   .seo-lede {
     font-size: 1.05rem;
     line-height: 1.7;
+  }
+
+  .seo-hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .seo-hero-actions .btn {
+    width: 100%;
   }
 
   .seo-layout {

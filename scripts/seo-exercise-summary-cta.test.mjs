@@ -5,6 +5,7 @@ import { setupCtaTracking } from '../src/seo-page.js';
 import { getSeoExerciseCopy } from '../src/seo-exercise-translations.js';
 import { createSeoExerciseSummaryCta } from '../src/seo-exercise-summary-cta.js';
 import { resolveAppCapability } from '../src/app-capability-resolver.js';
+import * as seoPage from '../src/seo-page.js';
 
 class FakeElement {
   constructor(tagName) {
@@ -96,6 +97,123 @@ test('summary CTA is absent before completion, appears once after completion, an
   controller.sync({ stage: 'preview', correct: 0, total: 2 });
   assert.equal(controller.getElement(), null);
   assert.equal(container.children.length, 0);
+});
+
+test('treatment CTA appears after the first answer and yields to the completion CTA', () => {
+  const summaryContainer = new FakeElement('div');
+  const interactionContainer = new FakeElement('div');
+  const controller = createSeoExerciseSummaryCta({
+    document: fakeDocument,
+    container: summaryContainer,
+    uiCopy: getSeoExerciseCopy('en'),
+    appStoreHref: 'https://apps.apple.com/app/id6753882308?utm_content=bit-vs-beat',
+    capability: exactCapability('ja', 'bit/beat', 'iVsI'),
+    interactionCta: {
+      container: interactionContainer,
+      headline: 'You heard the contrast.',
+      body: 'Soundwise trains your ear with more pairs like this.',
+      linkId: 'exercise-bit-vs-beat-post-interaction-app-store-cta',
+      linkLabel: 'Practice More in Soundwise',
+    },
+  });
+
+  assert.equal(typeof controller.showInteraction, 'function');
+  assert.equal(controller.showInteraction({ stage: 'preview' }), null);
+
+  const firstRender = controller.showInteraction({ stage: 'feedback' });
+  const secondRender = controller.showInteraction({ stage: 'feedback' });
+  const link = firstRender.querySelector('.seo-exercise-summary-cta-link');
+
+  assert.equal(firstRender, secondRender);
+  assert.equal(interactionContainer.children.length, 1);
+  assert.equal(link.id, 'exercise-bit-vs-beat-post-interaction-app-store-cta');
+  assert.equal(link.dataset.ctaPosition, 'post-interaction');
+  assert.equal(link.textContent, 'Practice More in Soundwise');
+  assert.equal(
+    firstRender.querySelector('.seo-exercise-summary-cta-headline').textContent,
+    'You heard the contrast.'
+  );
+
+  controller.sync({ stage: 'summary', correct: 1, total: 2 });
+  assert.equal(controller.getInteractionElement(), null);
+  assert.equal(interactionContainer.children.length, 0);
+
+  assert.notEqual(controller.show({ stage: 'summary', correct: 1, total: 2 }), null);
+  assert.equal(summaryContainer.children.length, 1);
+});
+
+test('control exercises do not render a post-interaction CTA', () => {
+  const controller = createSeoExerciseSummaryCta({
+    document: fakeDocument,
+    container: new FakeElement('div'),
+    uiCopy: getSeoExerciseCopy('en'),
+    appStoreHref: 'https://apps.apple.com/app/id6753882308',
+    capability: exactCapability(),
+  });
+
+  assert.equal(typeof controller.showInteraction, 'function');
+  assert.equal(controller.showInteraction({ stage: 'feedback' }), null);
+  assert.equal(controller.getInteractionElement(), null);
+});
+
+test('generic treatment CTA remains available when learner-language capability is unknown', () => {
+  const interactionContainer = new FakeElement('div');
+  const unsupportedCapability = resolveAppCapability({
+    route: '/bit-vs-beat/',
+    locale: 'en',
+    flagshipPair: 'bit/beat',
+    contrastGroup: 'iVsI',
+  });
+  const controller = createSeoExerciseSummaryCta({
+    document: fakeDocument,
+    container: new FakeElement('div'),
+    uiCopy: getSeoExerciseCopy('en'),
+    appStoreHref: 'https://apps.apple.com/app/id6753882308?utm_content=bit-vs-beat',
+    capability: unsupportedCapability,
+    interactionCta: {
+      container: interactionContainer,
+      headline: 'You heard the contrast.',
+      body: 'Soundwise trains your ear with more pairs like this.',
+      linkId: 'exercise-bit-vs-beat-post-interaction-app-store-cta',
+      linkLabel: 'Practice More in Soundwise',
+    },
+  });
+
+  assert.notEqual(controller.showInteraction({ stage: 'feedback' }), null);
+  controller.sync({ stage: 'preview', round: 2, correct: 1, total: 2 });
+  controller.sync({ stage: 'test', round: 2, correct: 1, total: 2 });
+  controller.sync({ stage: 'summary', correct: 1, total: 2 });
+  assert.notEqual(controller.getInteractionElement(), null);
+  assert.equal(controller.show({ stage: 'summary', correct: 1, total: 2 }), null);
+});
+
+test('SEO exercise wiring configures the interaction CTA only for the conversion treatment', () => {
+  assert.equal(typeof seoPage.buildSeoExerciseInteractionCtaConfig, 'function');
+
+  const container = new FakeElement('div');
+  assert.deepEqual(
+    seoPage.buildSeoExerciseInteractionCtaConfig({
+      contentVariant: 'conversion_serp_cta_v1',
+      container,
+      contrastId: 'fill-vs-feel',
+    }),
+    {
+      container,
+      headline: 'You heard the contrast.',
+      body: 'Soundwise trains your ear with more pairs like this.',
+      linkId: 'exercise-fill-vs-feel-post-interaction-app-store-cta',
+      linkLabel: 'Practice More in Soundwise',
+    }
+  );
+
+  assert.equal(
+    seoPage.buildSeoExerciseInteractionCtaConfig({
+      contentVariant: 'contrast_journey_v1',
+      container,
+      contrastId: 'ship-vs-sheep',
+    }),
+    undefined
+  );
 });
 
 test('summary CTA renders perfect-score copy and localized supported copy', () => {

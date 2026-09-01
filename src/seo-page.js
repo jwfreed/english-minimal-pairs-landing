@@ -3,7 +3,10 @@ import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { getSeoExerciseCopy } from './seo-exercise-translations.js';
 import { createSeoExerciseSummaryCta } from './seo-exercise-summary-cta.js';
-import { getContentVariantEventParameters } from './analytics-content-variants.js';
+import {
+  CONTENT_VARIANTS,
+  getContentVariantEventParameters,
+} from './analytics-content-variants.js';
 import {
   applyCapabilityToSeoCtas,
   resolveSeoPageCapability,
@@ -25,6 +28,24 @@ const CONTRAST_JOURNEY_LINK_SELECTOR =
 
 function getSeoExerciseMountId(contrastId) {
   return `${contrastId}-listening-exercise`;
+}
+
+export function buildSeoExerciseInteractionCtaConfig({
+  contentVariant,
+  container,
+  contrastId,
+}) {
+  if (contentVariant !== CONTENT_VARIANTS.CONVERSION_SERP_CTA_V1) {
+    return undefined;
+  }
+
+  return {
+    container,
+    headline: 'You heard the contrast.',
+    body: 'Soundwise trains your ear with more pairs like this.',
+    linkId: `exercise-${contrastId}-post-interaction-app-store-cta`,
+    linkLabel: 'Practice More in Soundwise',
+  };
 }
 
 function formatPairName(contrast) {
@@ -361,6 +382,11 @@ function createSeoExercise(mount, contrast, capability) {
     appStoreHref: existingAppStoreLink?.href,
     capability,
     locale: capability?.evidence?.resolvedL1,
+    interactionCta: buildSeoExerciseInteractionCtaConfig({
+      contentVariant: document.documentElement.dataset.contentVariant,
+      container: feedback,
+      contrastId: contrast.id,
+    }),
   });
 
   mount.setAttribute('role', 'region');
@@ -384,6 +410,10 @@ function createSeoExercise(mount, contrast, capability) {
     showStage(summary, snapshot.stage === 'summary');
     showStage(nextButton, snapshot.stage === 'feedback' && snapshot.round < snapshot.total);
     summaryCta.sync(snapshot);
+
+    if (snapshot.stage === 'feedback') {
+      summaryCta.showInteraction(snapshot);
+    }
 
     if (snapshot.stage === 'summary') {
       renderSummaryCopy({ score, summaryLead, summaryBody }, snapshot, uiCopy);

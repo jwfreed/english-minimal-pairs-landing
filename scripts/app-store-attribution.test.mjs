@@ -89,6 +89,7 @@ test('CTA positions are allowlisted and inferred for legacy SEO markup', () => {
   assert.deepEqual(SEO_CTA_POSITIONS, [
     'hero',
     'mid-content',
+    'post-interaction',
     'exercise-summary',
     'post-exercise-footer',
   ]);
@@ -96,6 +97,10 @@ test('CTA positions are allowlisted and inferred for legacy SEO markup', () => {
   assert.equal(
     getSeoCtaPosition(createLink({ declaredPosition: 'exercise-summary' })),
     'exercise-summary'
+  );
+  assert.equal(
+    getSeoCtaPosition(createLink({ declaredPosition: 'post-interaction' })),
+    'post-interaction'
   );
   assert.equal(getSeoCtaPosition(createLink({ context: '.seo-nav' })), 'hero');
   assert.equal(getSeoCtaPosition(createLink({ context: '.footer' })), 'post-exercise-footer');

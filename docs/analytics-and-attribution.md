@@ -256,7 +256,7 @@ conversion.
 interaction. `learner_language` identifies the active learner/UI language context and may differ from
 `locale` on the homepage. It is not proof of the user's native language or L1. `locale` remains the
 canonical route locale. `cta_position` is not sent on exercise events: it identifies the physical App Store CTA
-clicked (`hero`, `mid-content`, `exercise-summary`, or `post-exercise-footer`) and therefore applies only to
+clicked (`hero`, `mid-content`, `post-interaction`, `exercise-summary`, or `post-exercise-footer`) and therefore applies only to
 `app_store_click`.
 
 `exercise_completed` is intentionally present even though `event_name` distinguishes
@@ -276,6 +276,7 @@ existing exercise and App Store event paths receive the same value.
 | `content_variant` | Meaning | Current scope |
 | --- | --- | --- |
 | `contrast_journey_v1` | First experimental contrast-first presentation. This is an experiment cohort, not a permanent SEO page category. | English `/ship-vs-sheep/` only. |
+| `conversion_serp_cta_v1` | Controlled SERP and on-page conversion treatment with first-screen actions and a post-interaction CTA. | English `/bit-vs-beat/` and `/fill-vs-feel/` only. |
 
 Future experiments must add one stable identifier and its exact page assignment
 to the registry, then add the same identifier to this table. Use lowercase
@@ -328,9 +329,9 @@ same measurement context; they do not send a second conversion event.
 | `page_slug` | Required on homepage and SEO pages | Identifies the landing-page topic without coupling reporting to localized route prefixes | `homepage`, `ship-vs-sheep`, `minimal-pairs-practice` |
 | `learner_language` | Required on homepage and SEO pages | Identifies the active learner/UI language context; it does not prove native language or L1 | `en`, `ja`, `zh-Hans` |
 | `locale` | Required on homepage and SEO pages | Identifies the canonical Soundwise route locale | `en`, `ja`, `hi-ur`, `yue` |
-| `cta_position` | Required on homepage and SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `exercise-summary`, `post-exercise-footer` |
+| `cta_position` | Required on homepage and SEO pages | Identifies the stable CTA location | `hero`, `mid-content`, `post-interaction`, `exercise-summary`, `post-exercise-footer` |
 | `exercise_completed` | Required boolean on homepage and SEO pages | Distinguishes clicks before and after verified exercise lifecycle completion | `true`, `false` |
-| `content_variant` | Required only for pages assigned in `src/analytics-content-variants.js` | Identifies an experiment cohort without creating a new event | `contrast_journey_v1` |
+| `content_variant` | Required only for pages assigned in `src/analytics-content-variants.js` | Identifies an experiment cohort without creating a new event | `contrast_journey_v1`, `conversion_serp_cta_v1` |
 
 `exercise_completed` becomes `true` only after the shared exercise engine dispatches
 `soundwise:demo_completed` or `soundwise:challenge_completed`. Visibility, scrolling, and elapsed time
@@ -354,6 +355,23 @@ exercise_complete
 
 Guardrails are `exercise_complete / exercise_start`, duplicate `app_store_click` rate, and the event
 integrity of existing CTA positions.
+
+#### Controlled SERP and Conversion CTA Experiment
+
+The `conversion_serp_cta_v1` treatment is limited to English `/bit-vs-beat/`
+and `/fill-vs-feel/`. Its hero App Store CTA uses `cta_position = hero`. After
+the first submitted exercise answer, a contextual CTA appears with
+`cta_position = post-interaction`. A click before verified completion reports
+`exercise_completed = false`; a later click reports the current verified
+lifecycle state. At completion, the contextual CTA yields to the existing
+capability-specific `exercise-summary` CTA when one is available. Otherwise,
+the generic contextual CTA remains as the non-gated continuation path. Stable
+link IDs include the pair slug and placement so the two treatment pages and
+CTA moments can be compared without adding another conversion event.
+
+Control pages omit this content variant and post-interaction placement. In
+particular, `/live-vs-leave/` and `/sit-vs-seat/` remain unassigned, while
+`/ship-vs-sheep/` retains its separate `contrast_journey_v1` assignment.
 
 GA4 administrators should register `page_slug`, `learner_language`, `locale`, `cta_position`, and
 `content_variant` as event-scoped custom dimensions. Register

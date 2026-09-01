@@ -1,5 +1,6 @@
 export const CONTENT_VARIANTS = Object.freeze({
   CONTRAST_JOURNEY_V1: 'contrast_journey_v1',
+  CONVERSION_SERP_CTA_V1: 'conversion_serp_cta_v1',
 });
 
 // This registry is the canonical assignment of experiment variants to pages.
@@ -9,6 +10,16 @@ const CONTENT_VARIANT_ASSIGNMENTS = Object.freeze([
     contentVariant: CONTENT_VARIANTS.CONTRAST_JOURNEY_V1,
     publicPath: '/ship-vs-sheep/',
     sourcePath: '/content/pairs/ship-vs-sheep/index.html',
+  }),
+  Object.freeze({
+    contentVariant: CONTENT_VARIANTS.CONVERSION_SERP_CTA_V1,
+    publicPath: '/bit-vs-beat/',
+    sourcePath: '/content/pairs/bit-vs-beat/index.html',
+  }),
+  Object.freeze({
+    contentVariant: CONTENT_VARIANTS.CONVERSION_SERP_CTA_V1,
+    publicPath: '/fill-vs-feel/',
+    sourcePath: '/content/pairs/fill-vs-feel/index.html',
   }),
 ]);
 

@@ -338,6 +338,24 @@ test('HTML alignment enforces each state without editing page templates', () => 
   assert.match(unsupported, /<footer><a[^>]*>App Store<\/a><\/footer>/);
 });
 
+test('capability alignment preserves explicitly generic conversion copy', () => {
+  const source = [
+    '<html lang="en"><body>',
+    '<a href="https://apps.apple.com/app/id1" data-capability-copy="generic">Practice More in Soundwise</a>',
+    '</body></html>',
+  ].join('');
+
+  const transformed = alignSeoPageCtaHtml({
+    html: source,
+    pathname: '/bit-vs-beat/',
+    documentLanguage: 'en',
+  });
+
+  assert.match(transformed, />Practice More in Soundwise<\/a>/u);
+  assert.match(transformed, /data-app-capability-cta="true"/u);
+  assert.match(transformed, /data-app-capability-status="NO_APP_SUPPORT"/u);
+});
+
 test('every pair-page conversion path is wired through shared capability enforcement', () => {
   const pairFiles = ['content/pairs', 'content/locales']
     .flatMap((directory) => (
@@ -431,4 +449,28 @@ test('runtime CTA alignment preserves links while removing unsupported practice 
   assert.equal(links[0].textContent, 'Soundwise App');
   assert.equal(links[0].dataset.appCapabilityStatus, 'NO_APP_SUPPORT');
   assert.equal(links[1].textContent, 'App Store');
+});
+
+test('runtime capability alignment preserves explicitly generic conversion copy', () => {
+  const link = {
+    dataset: { capabilityCopy: 'generic' },
+    textContent: 'Practice More in Soundwise',
+    closest() {
+      return null;
+    },
+  };
+  const root = {
+    querySelectorAll() {
+      return [link];
+    },
+  };
+  const capability = resolveSeoPageCapability({
+    pathname: '/bit-vs-beat/',
+    documentLanguage: 'en',
+  });
+
+  applyCapabilityToSeoCtas({ root, capability, locale: 'en' });
+
+  assert.equal(link.textContent, 'Practice More in Soundwise');
+  assert.equal(link.dataset.appCapabilityStatus, 'NO_APP_SUPPORT');
 });
