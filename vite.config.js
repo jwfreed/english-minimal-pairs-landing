@@ -5,6 +5,7 @@ import { LOCALIZED_HOMEPAGE_ROUTES } from './src/localized-homepage-routes.js'
 import { applyContentVariantHtml } from './src/analytics-content-variants.js'
 import { alignSeoPageCtaHtml } from './src/seo-capability-cta.js'
 import { renderSeoContrastJourneyHtml } from './src/seo-contrast-journey.js'
+import { applyAppleCampaignLinksHtml } from './src/apple-campaign-links.js'
 
 const seoPageSlugs = [
   'ship-vs-sheep',
@@ -279,12 +280,25 @@ function renderSeoContrastJourneys() {
   }
 }
 
+function applyAppleCampaignLinks() {
+  return {
+    name: 'apply-apple-campaign-links',
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, context) {
+        return applyAppleCampaignLinksHtml({ html, pathname: context.path })
+      },
+    },
+  }
+}
+
 export default defineConfig({
   base: '/',
   plugins: [
     applyAnalyticsContentVariants(),
     renderSeoContrastJourneys(),
     alignSeoCapabilityCtas(),
+    applyAppleCampaignLinks(),
     preservePublicHtmlRoutes(),
   ],
   build: {

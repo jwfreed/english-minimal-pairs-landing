@@ -17,6 +17,7 @@ import {
   getSeoPageLocale,
   getSeoPageSlug,
 } from './app-store-attribution.js';
+import { buildAppleCampaignUrl } from './apple-campaign-links.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
@@ -33,18 +34,22 @@ function getSeoExerciseMountId(contrastId) {
 export function buildSeoExerciseInteractionCtaConfig({
   contentVariant,
   container,
-  contrastId,
+  contrast,
 }) {
   if (contentVariant !== CONTENT_VARIANTS.CONVERSION_SERP_CTA_V1) {
     return undefined;
   }
 
+  const pair = contrast.words.map((word) => word.text).join(' and ');
+
   return {
     container,
-    headline: 'You heard the contrast.',
-    body: 'Soundwise trains your ear with more pairs like this.',
-    linkId: `exercise-${contrastId}-post-interaction-app-store-cta`,
-    linkLabel: 'Practice More in Soundwise',
+    headline: 'Train your ear beyond this one pair',
+    body: `You just practiced the ${contrast.contrast} contrast in ${pair}. In Soundwise, continue with structured listening practice across more English sound contrasts and minimal pairs to get faster and more reliable at hearing differences in spoken English.`,
+    linkId: `exercise-${contrast.id}-post-interaction-app-store-cta`,
+    linkLabel: 'Continue Training in Soundwise',
+    purchaseNote: 'Paid iOS app — purchase on the App Store',
+    appStoreHref: buildAppleCampaignUrl(contrast.id),
   };
 }
 
@@ -385,7 +390,7 @@ function createSeoExercise(mount, contrast, capability) {
     interactionCta: buildSeoExerciseInteractionCtaConfig({
       contentVariant: document.documentElement.dataset.contentVariant,
       container: feedback,
-      contrastId: contrast.id,
+      contrast,
     }),
   });
 

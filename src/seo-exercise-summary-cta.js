@@ -49,10 +49,12 @@ export function createSeoExerciseSummaryCta({
     },
 
     showInteraction(snapshot) {
+      const interactionAppStoreHref = interactionCta?.appStoreHref || appStoreHref;
+
       if (
         snapshot?.stage !== 'feedback'
         || !interactionCta?.container
-        || !appStoreHref
+        || !interactionAppStoreHref
       ) {
         return null;
       }
@@ -72,14 +74,18 @@ export function createSeoExerciseSummaryCta({
 
         const link = document.createElement('a');
         link.className = 'seo-exercise-summary-cta-link';
-        link.href = appStoreHref;
+        link.href = interactionAppStoreHref;
         link.id = interactionCta.linkId;
         link.dataset.ctaPosition = SEO_EXERCISE_INTERACTION_CTA_POSITION;
         link.dataset.appCapabilityCta = 'true';
         link.dataset.appCapabilityStatus = capability?.status || 'UNRESOLVED';
         link.textContent = interactionCta.linkLabel;
 
-        interactionElement.append(headline, body, link);
+        const purchaseNote = document.createElement('p');
+        purchaseNote.className = 'seo-exercise-interaction-cta-purchase-note';
+        purchaseNote.textContent = interactionCta.purchaseNote;
+
+        interactionElement.append(headline, body, link, purchaseNote);
         interactionCta.container.append(interactionElement);
       }
 

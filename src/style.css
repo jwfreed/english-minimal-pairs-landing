@@ -2814,6 +2814,13 @@ html[dir="rtl"] .seo-content td {
   margin-top: 0.45rem;
 }
 
+.seo-exercise-interaction-cta-purchase-note {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0.65rem 0 0;
+}
+
 .seo-content a.seo-exercise-summary-cta-link {
   align-items: center;
   background: var(--primary);

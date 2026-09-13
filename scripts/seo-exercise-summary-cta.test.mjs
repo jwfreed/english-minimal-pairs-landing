@@ -110,10 +110,12 @@ test('treatment CTA appears after the first answer and yields to the completion 
     capability: exactCapability('ja', 'bit/beat', 'iVsI'),
     interactionCta: {
       container: interactionContainer,
-      headline: 'You heard the contrast.',
-      body: 'Soundwise trains your ear with more pairs like this.',
+      headline: 'Train your ear beyond this one pair',
+      body: 'You just practiced the /ɪ/ vs /iː/ contrast in bit and beat. In Soundwise, continue with structured listening practice across more English sound contrasts and minimal pairs to get faster and more reliable at hearing differences in spoken English.',
       linkId: 'exercise-bit-vs-beat-post-interaction-app-store-cta',
-      linkLabel: 'Practice More in Soundwise',
+      linkLabel: 'Continue Training in Soundwise',
+      purchaseNote: 'Paid iOS app — purchase on the App Store',
+      appStoreHref: 'https://apps.apple.com/app/apple-store/id6753882308?pt=128210308&ct=web-bitbeat&mt=8',
     },
   });
 
@@ -127,11 +129,23 @@ test('treatment CTA appears after the first answer and yields to the completion 
   assert.equal(firstRender, secondRender);
   assert.equal(interactionContainer.children.length, 1);
   assert.equal(link.id, 'exercise-bit-vs-beat-post-interaction-app-store-cta');
+  assert.equal(
+    link.href,
+    'https://apps.apple.com/app/apple-store/id6753882308?pt=128210308&ct=web-bitbeat&mt=8'
+  );
   assert.equal(link.dataset.ctaPosition, 'post-interaction');
-  assert.equal(link.textContent, 'Practice More in Soundwise');
+  assert.equal(link.textContent, 'Continue Training in Soundwise');
   assert.equal(
     firstRender.querySelector('.seo-exercise-summary-cta-headline').textContent,
-    'You heard the contrast.'
+    'Train your ear beyond this one pair'
+  );
+  assert.match(
+    firstRender.querySelector('.seo-exercise-summary-cta-body').textContent,
+    /\/ɪ\/ vs \/iː\/ contrast in bit and beat/u
+  );
+  assert.equal(
+    firstRender.querySelector('.seo-exercise-interaction-cta-purchase-note').textContent,
+    'Paid iOS app — purchase on the App Store'
   );
 
   controller.sync({ stage: 'summary', correct: 1, total: 2 });
@@ -172,10 +186,12 @@ test('generic treatment CTA remains available when learner-language capability i
     capability: unsupportedCapability,
     interactionCta: {
       container: interactionContainer,
-      headline: 'You heard the contrast.',
-      body: 'Soundwise trains your ear with more pairs like this.',
+      headline: 'Train your ear beyond this one pair',
+      body: 'You just practiced the /ɪ/ vs /iː/ contrast in bit and beat. In Soundwise, continue with structured listening practice across more English sound contrasts and minimal pairs to get faster and more reliable at hearing differences in spoken English.',
       linkId: 'exercise-bit-vs-beat-post-interaction-app-store-cta',
-      linkLabel: 'Practice More in Soundwise',
+      linkLabel: 'Continue Training in Soundwise',
+      purchaseNote: 'Paid iOS app — purchase on the App Store',
+      appStoreHref: 'https://apps.apple.com/app/apple-store/id6753882308?pt=128210308&ct=web-bitbeat&mt=8',
     },
   });
 
@@ -195,14 +211,20 @@ test('SEO exercise wiring configures the interaction CTA only for the conversion
     seoPage.buildSeoExerciseInteractionCtaConfig({
       contentVariant: 'conversion_serp_cta_v1',
       container,
-      contrastId: 'fill-vs-feel',
+      contrast: {
+        id: 'fill-vs-feel',
+        words: [{ text: 'fill' }, { text: 'feel' }],
+        contrast: '/ɪ/ vs /iː/',
+      },
     }),
     {
       container,
-      headline: 'You heard the contrast.',
-      body: 'Soundwise trains your ear with more pairs like this.',
+      headline: 'Train your ear beyond this one pair',
+      body: 'You just practiced the /ɪ/ vs /iː/ contrast in fill and feel. In Soundwise, continue with structured listening practice across more English sound contrasts and minimal pairs to get faster and more reliable at hearing differences in spoken English.',
       linkId: 'exercise-fill-vs-feel-post-interaction-app-store-cta',
-      linkLabel: 'Practice More in Soundwise',
+      linkLabel: 'Continue Training in Soundwise',
+      purchaseNote: 'Paid iOS app — purchase on the App Store',
+      appStoreHref: 'https://apps.apple.com/app/apple-store/id6753882308?pt=128210308&ct=web-fillfeel&mt=8',
     }
   );
 
@@ -210,7 +232,11 @@ test('SEO exercise wiring configures the interaction CTA only for the conversion
     seoPage.buildSeoExerciseInteractionCtaConfig({
       contentVariant: 'contrast_journey_v1',
       container,
-      contrastId: 'ship-vs-sheep',
+      contrast: {
+        id: 'ship-vs-sheep',
+        words: [{ text: 'ship' }, { text: 'sheep' }],
+        contrast: '/ɪ/ vs /iː/',
+      },
     }),
     undefined
   );
