@@ -47,3 +47,6 @@ output/playwright/
 *.njsproj
 *.sln
 *.sw?
+
+# SEO-GOD local state (secrets, run markers, compose file)
+.seo-god/
