@@ -1,0 +1,180 @@
+{
+  "date": "2026-09-21",
+  "source": "seo-god",
+  "site": "https://getsoundwise.co",
+  "crawl": {
+    "pages": 111,
+    "issues": [
+      {
+        "type": "heading-order-skip",
+        "severity": "info",
+        "urls": [
+          "https://getsoundwise.co/",
+          "https://getsoundwise.co/ar/",
+          "https://getsoundwise.co/ar/english-ear-training/",
+          "https://getsoundwise.co/ar/minimal-pairs-practice/",
+          "https://getsoundwise.co/ar/pat-vs-bat/",
+          "https://getsoundwise.co/bad-vs-bed/",
+          "https://getsoundwise.co/bet-vs-bat/",
+          "https://getsoundwise.co/bit-vs-beat/",
+          "https://getsoundwise.co/cap-vs-cup/",
+          "https://getsoundwise.co/cup-vs-cop/",
+          "https://getsoundwise.co/english-ear-training/",
+          "https://getsoundwise.co/es/",
+          "https://getsoundwise.co/es/english-ear-training/",
+          "https://getsoundwise.co/es/minimal-pairs-practice/",
+          "https://getsoundwise.co/es/ship-vs-sheep/",
+          "https://getsoundwise.co/fa/",
+          "https://getsoundwise.co/fa/english-ear-training/",
+          "https://getsoundwise.co/fa/minimal-pairs-practice/",
+          "https://getsoundwise.co/fa/vest-vs-west/",
+          "https://getsoundwise.co/fan-vs-van/",
+          "https://getsoundwise.co/fill-vs-feel/",
+          "https://getsoundwise.co/full-vs-fool/",
+          "https://getsoundwise.co/heart-vs-hurt/",
+          "https://getsoundwise.co/hi-ur/",
+          "https://getsoundwise.co/hi-ur/english-ear-training/",
+          "https://getsoundwise.co/hi-ur/minimal-pairs-practice/",
+          "https://getsoundwise.co/hi-ur/vest-vs-west/",
+          "https://getsoundwise.co/id/",
+          "https://getsoundwise.co/id/english-ear-training/",
+          "https://getsoundwise.co/id/minimal-pairs-practice/",
+          "https://getsoundwise.co/id/ship-vs-sheep/",
+          "https://getsoundwise.co/ja/",
+          "https://getsoundwise.co/ja/english-ear-training/",
+          "https://getsoundwise.co/ja/minimal-pairs-practice/",
+          "https://getsoundwise.co/ja/ship-vs-sheep/",
+          "https://getsoundwise.co/ko/",
+          "https://getsoundwise.co/ko/english-ear-training/",
+          "https://getsoundwise.co/ko/minimal-pairs-practice/",
+          "https://getsoundwise.co/ko/right-vs-light/",
+          "https://getsoundwise.co/law-vs-low/",
+          "https://getsoundwise.co/live-vs-leave/",
+          "https://getsoundwise.co/man-vs-men/",
+          "https://getsoundwise.co/minimal-pairs-practice/",
+          "https://getsoundwise.co/pat-vs-bat/",
+          "https://getsoundwise.co/pt/",
+          "https://getsoundwise.co/pt/english-ear-training/",
+          "https://getsoundwise.co/pt/minimal-pairs-practice/",
+          "https://getsoundwise.co/pt/ship-vs-sheep/",
+          "https://getsoundwise.co/pull-vs-pool/",
+          "https://getsoundwise.co/rice-vs-lice/"
+        ]
+      },
+      {
+        "type": "meta-description-too-short",
+        "severity": "info",
+        "urls": [
+          "https://getsoundwise.co/ja/",
+          "https://getsoundwise.co/ja/english-ear-training/",
+          "https://getsoundwise.co/yue/",
+          "https://getsoundwise.co/yue/english-ear-training/",
+          "https://getsoundwise.co/yue/right-vs-light/",
+          "https://getsoundwise.co/zh/",
+          "https://getsoundwise.co/zh/minimal-pairs-practice/",
+          "https://getsoundwise.co/zh/ship-vs-sheep/"
+        ]
+      },
+      {
+        "type": "missing-meta-description",
+        "severity": "warn",
+        "urls": [
+          "https://getsoundwise.co/privacy-ar.html",
+          "https://getsoundwise.co/privacy-es.html",
+          "https://getsoundwise.co/privacy-fa.html",
+          "https://getsoundwise.co/privacy-hi-ur.html",
+          "https://getsoundwise.co/privacy-id.html",
+          "https://getsoundwise.co/privacy-ja.html",
+          "https://getsoundwise.co/privacy-ko.html",
+          "https://getsoundwise.co/privacy-pt.html",
+          "https://getsoundwise.co/privacy-ru.html",
+          "https://getsoundwise.co/privacy-th.html",
+          "https://getsoundwise.co/privacy-tr.html",
+          "https://getsoundwise.co/privacy-vi.html",
+          "https://getsoundwise.co/privacy-yue.html",
+          "https://getsoundwise.co/privacy-zh.html",
+          "https://getsoundwise.co/terms-ar.html",
+          "https://getsoundwise.co/terms-es.html",
+          "https://getsoundwise.co/terms-fa.html",
+          "https://getsoundwise.co/terms-hi-ur.html",
+          "https://getsoundwise.co/terms-id.html",
+          "https://getsoundwise.co/terms-ja.html",
+          "https://getsoundwise.co/terms-ko.html",
+          "https://getsoundwise.co/terms-pt.html",
+          "https://getsoundwise.co/terms-ru.html",
+          "https://getsoundwise.co/terms-th.html",
+          "https://getsoundwise.co/terms-tr.html",
+          "https://getsoundwise.co/terms-vi.html",
+          "https://getsoundwise.co/terms-yue.html",
+          "https://getsoundwise.co/terms-zh.html"
+        ]
+      },
+      {
+        "type": "slow-response",
+        "severity": "info",
+        "urls": [
+          "https://getsoundwise.co/thin-vs-tin/"
+        ]
+      },
+      {
+        "type": "thin-content",
+        "severity": "warn",
+        "urls": [
+          "https://getsoundwise.co/privacy-ja.html",
+          "https://getsoundwise.co/privacy-th.html",
+          "https://getsoundwise.co/privacy-yue.html",
+          "https://getsoundwise.co/privacy-zh.html",
+          "https://getsoundwise.co/terms-ja.html",
+          "https://getsoundwise.co/terms-th.html",
+          "https://getsoundwise.co/terms-yue.html",
+          "https://getsoundwise.co/terms-zh.html"
+        ]
+      },
+      {
+        "type": "title-too-long",
+        "severity": "info",
+        "urls": [
+          "https://getsoundwise.co/",
+          "https://getsoundwise.co/english-ear-training/",
+          "https://getsoundwise.co/es/",
+          "https://getsoundwise.co/es/english-ear-training/",
+          "https://getsoundwise.co/fa/",
+          "https://getsoundwise.co/heart-vs-hurt/",
+          "https://getsoundwise.co/hi-ur/",
+          "https://getsoundwise.co/hi-ur/minimal-pairs-practice/",
+          "https://getsoundwise.co/id/",
+          "https://getsoundwise.co/live-vs-leave/",
+          "https://getsoundwise.co/man-vs-men/",
+          "https://getsoundwise.co/pt/",
+          "https://getsoundwise.co/pt/english-ear-training/",
+          "https://getsoundwise.co/pt/minimal-pairs-practice/",
+          "https://getsoundwise.co/pull-vs-pool/",
+          "https://getsoundwise.co/right-vs-light/",
+          "https://getsoundwise.co/ru/",
+          "https://getsoundwise.co/ru/english-ear-training/",
+          "https://getsoundwise.co/ship-vs-sheep/",
+          "https://getsoundwise.co/th/",
+          "https://getsoundwise.co/three-vs-tree/",
+          "https://getsoundwise.co/tr/",
+          "https://getsoundwise.co/tr/english-ear-training/",
+          "https://getsoundwise.co/tr/minimal-pairs-practice/",
+          "https://getsoundwise.co/vi/",
+          "https://getsoundwise.co/vi/english-ear-training/"
+        ]
+      }
+    ]
+  },
+  "ranks": [],
+  "gsc": {
+    "available": false,
+    "clicks28d": 0,
+    "impressions28d": 0,
+    "top_queries": []
+  },
+  "ai_visibility": {
+    "measured": false,
+    "prompts_ok": 0,
+    "cited": 0,
+    "competitors": {}
+  }
+}

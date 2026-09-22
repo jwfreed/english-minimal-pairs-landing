@@ -1,0 +1,377 @@
+{
+  "version": 1,
+  "site_url": "https://getsoundwise.co",
+  "openseo": {
+    "url": "http://127.0.0.1:3001",
+    "status": "running"
+  },
+  "gsc": {
+    "connected": true,
+    "property": "sc-domain:getsoundwise.co",
+    "type": "domain",
+    "account": "jon.freed@gmail.com",
+    "scopes": [
+      "webmasters.readonly"
+    ]
+  },
+  "phases": {
+    "setup": "done",
+    "audit": "done",
+    "measure": "done",
+    "ai_visibility": "pending",
+    "schedule": "pending"
+  },
+  "schedule": {
+    "mode": "none",
+    "time_local": "05:00",
+    "marker": ".seo-god/last-run.json"
+  },
+  "ai_prompts_locked": [],
+  "power_ups": {
+    "dataforseo": false,
+    "llm_keys": false,
+    "telegram": false
+  },
+  "build_cmd": "npm test && npm run build",
+  "keywords": [
+    {
+      "keyword": "fill vs feel",
+      "category": "class-1-conversion-cluster",
+      "target_page": "/fill-vs-feel/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 1,
+        "impressions": 103,
+        "ctr": 0.0097,
+        "position": 4.9
+      }
+    },
+    {
+      "keyword": "fill vs feel pronunciation",
+      "category": "class-1-conversion-cluster",
+      "target_page": "/fill-vs-feel/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 74,
+        "ctr": 0.0,
+        "position": 6.8
+      }
+    },
+    {
+      "keyword": "live vs leave",
+      "category": "class-1-conversion-cluster",
+      "target_page": "/live-vs-leave/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 249,
+        "ctr": 0.0,
+        "position": 7.6
+      }
+    },
+    {
+      "keyword": "beat or bit",
+      "category": "class-1-conversion-cluster",
+      "target_page": "/bit-vs-beat/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 103,
+        "ctr": 0.0,
+        "position": 4.3
+      }
+    },
+    {
+      "keyword": "ship sheep",
+      "category": "class-1-conversion-cluster",
+      "target_page": "/ship-vs-sheep/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": 0.0,
+        "position": 13.9
+      }
+    },
+    {
+      "keyword": "man vs men",
+      "category": "opportunity-high-impression",
+      "target_page": "/man-vs-men/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 1517,
+        "ctr": 0.0,
+        "position": 9.8
+      }
+    },
+    {
+      "keyword": "bat vowel",
+      "category": "opportunity-high-impression",
+      "target_page": "/bet-vs-bat/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 352,
+        "ctr": 0.0,
+        "position": 11.3
+      }
+    },
+    {
+      "keyword": "bet bat",
+      "category": "opportunity-high-impression",
+      "target_page": "/bet-vs-bat/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 2,
+        "impressions": 633,
+        "ctr": 0.0032,
+        "position": 6.4
+      }
+    },
+    {
+      "keyword": "bad vs bed",
+      "category": "opportunity-high-impression",
+      "target_page": "/bad-vs-bed/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 159,
+        "ctr": 0.0,
+        "position": 5.5
+      }
+    },
+    {
+      "keyword": "three vs tree",
+      "category": "opportunity-high-impression",
+      "target_page": "/three-vs-tree/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 146,
+        "ctr": 0.0,
+        "position": 8.8
+      }
+    },
+    {
+      "keyword": "cap or cup",
+      "category": "opportunity-high-impression",
+      "target_page": "/cap-vs-cup/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 127,
+        "ctr": 0.0,
+        "position": 8.8
+      }
+    },
+    {
+      "keyword": "minimal pairs practice",
+      "category": "hub-category-converting",
+      "target_page": "/minimal-pairs-practice/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 1,
+        "impressions": 14,
+        "ctr": 0.0714,
+        "position": 13.1
+      }
+    },
+    {
+      "keyword": "minimal pairs listening exercises",
+      "category": "hub-category-converting",
+      "target_page": "/minimal-pairs-practice/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 1,
+        "impressions": 10,
+        "ctr": 0.1,
+        "position": 8.2
+      }
+    },
+    {
+      "keyword": "english ear training",
+      "category": "hub-category-converting",
+      "target_page": "/english-ear-training/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 1,
+        "impressions": 13,
+        "ctr": 0.0769,
+        "position": 3.8
+      }
+    },
+    {
+      "keyword": "the english ear method",
+      "category": "hub-category-converting",
+      "target_page": "/english-ear-training/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 1,
+        "impressions": 29,
+        "ctr": 0.0345,
+        "position": 5.7
+      }
+    },
+    {
+      "keyword": "minimal pairs 中文",
+      "category": "l1-route",
+      "target_page": "/yue/minimal-pairs-practice/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 14,
+        "ctr": 0.0,
+        "position": 7.9
+      }
+    },
+    {
+      "keyword": "ship sheep",
+      "category": "l1-route",
+      "target_page": "/ja/ship-vs-sheep/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 4,
+        "ctr": 0.0,
+        "position": 6.8
+      }
+    },
+    {
+      "keyword": "الفرق بين pat و bat",
+      "category": "l1-route",
+      "target_page": "/ar/pat-vs-bat/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0.0,
+        "position": 5.3
+      }
+    },
+    {
+      "keyword": "soundwise",
+      "category": "l1-route",
+      "target_page": "/ru/",
+      "origin": "evidence",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": 0,
+        "impressions": 21,
+        "ctr": 0.0,
+        "position": 6.5
+      }
+    },
+    {
+      "keyword": "minimal pairs app",
+      "category": "strategic-aspirational",
+      "target_page": "/minimal-pairs-practice/",
+      "origin": "strategic",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "keyword": "english listening practice app",
+      "category": "strategic-aspirational",
+      "target_page": "/minimal-pairs-practice/",
+      "origin": "strategic",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "keyword": "hear the difference english sounds",
+      "category": "strategic-aspirational",
+      "target_page": "/english-ear-training/",
+      "origin": "strategic",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "keyword": "english pronunciation practice app",
+      "category": "strategic-aspirational",
+      "target_page": "/english-ear-training/",
+      "origin": "strategic",
+      "baseline": {
+        "source": "gsc",
+        "window": "2026-08-22..2026-09-19",
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    }
+  ],
+  "keywords_meta": {
+    "approved": "2026-09-22",
+    "count": 23,
+    "purpose": "visibility/regression tripwire",
+    "caveat": "Rank is NOT the growth lever. Definitional queries (7767 impressions, 29% of site) are intercepted by AI Overviews in the observed SERP context (manual check 2026-09-22, Thailand-localized) and convert at 0.06% at position 8.4; practice/task queries carry no AI Overview and convert at 6.25% at position 14.9. Soundwise is cited inside at least one AI Overview, so citation does not imply clicks. This set detects visibility LOSS; it does not imply ranking gains drive growth.",
+    "null_baseline_means": "not measured (strategic keywords had negligible/zero GSC impressions), never zero",
+    "serp_evidence": {
+      "date": "2026-09-22",
+      "method": "manual incognito observation",
+      "scope": "Thailand-localized Thai-language Google, single observation",
+      "not_observed": [
+        "usa",
+        "ind"
+      ],
+      "finding": "AI Overview present on man vs men / bad or bed / live vs leave; absent on control 'minimal pairs practice'"
+    }
+  }
+}
