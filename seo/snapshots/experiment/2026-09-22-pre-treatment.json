@@ -2,7 +2,7 @@
   "experiment": "task-intent-framing-man-vs-men",
   "role": "PRE-TREATMENT BASELINE \u2014 separate from the historical MEASURE baseline; does not redefine it",
   "captured_utc": "2026-09-22T07:14:29.147520+00:00",
-  "treatment_deployed": false,
+  "treatment_deployed": true,
   "measure_baseline_refs": [
     "seo/snapshots/2026-09-22.json",
     "seo/snapshots/ga4/2026-09-20.json"
@@ -177,5 +177,38 @@
         "app_store_click": 0
       }
     }
+  },
+  "deployment_boundary": {
+    "commit_treatment": "c4d8baca08f3f689642b9f98ee1b152a7631a001",
+    "commit_pushed_head": "7b1bff5bc74af22371a1d482900b2f7f351e8266",
+    "workflow_run": "35699979240",
+    "deployed_utc": "2026-09-22T07:31:32Z",
+    "verified_utc": "2026-09-22T07:32:16.542379+00:00",
+    "production_verified": {
+      "title": true,
+      "meta_description": true,
+      "h1": true,
+      "canonical_intact": true,
+      "exercise_mount_intact": true,
+      "jsonld_blocks": 3,
+      "analytics_intact": true,
+      "og_twitter_deliberately_unchanged": true
+    },
+    "controls_unchanged_verified": [
+      "/bad-vs-bed/",
+      "/bet-vs-bat/"
+    ],
+    "class1_unchanged_verified": [
+      "/fill-vs-feel/",
+      "/ship-vs-sheep/"
+    ]
+  },
+  "experiment_day1": null,
+  "day1_rule": "Day 1 is NOT the deployment date. Day 1 is recorded only once Google has recrawled and the new search-facing metadata is confirmed reflected. Deployment success alone does not start the clock.",
+  "day1_status": {
+    "as_of": "2026-09-22",
+    "gsc_url_inspection": "PASS: Submitted and indexed; google-canonical https://getsoundwise.co/man-vs-men/",
+    "blocker": "URL inspection confirms the page is indexed, but does NOT confirm WHICH title/description Google currently holds. The index state predates this deployment by minutes; a PASS here is not evidence of recrawl since the change.",
+    "next_check": "Re-inspect and compare Google's rendered SERP title for 'man vs men' against the approved title before declaring Day 1."
   }
 }
