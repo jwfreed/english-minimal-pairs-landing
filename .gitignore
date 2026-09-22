@@ -50,3 +50,6 @@ output/playwright/
 
 # SEO-GOD local state (secrets, run markers, compose file)
 .seo-god/
+
+# CodeGraph local index (generated, machine-local SQLite database)
+.codegraph/
