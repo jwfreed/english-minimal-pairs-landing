@@ -1,0 +1,978 @@
+{
+  "generated_utc": "2026-09-22T07:14:07.809110+00:00",
+  "property": "536565930",
+  "window": {
+    "startDate": "2026-08-24",
+    "endDate": "2026-09-20"
+  },
+  "excludes_last_48h": true,
+  "warning": null,
+  "reports": {
+    "by_event": {
+      "query": {
+        "dateRanges": [
+          {
+            "startDate": "2026-08-24",
+            "endDate": "2026-09-20"
+          }
+        ],
+        "dimensions": [
+          {
+            "name": "eventName"
+          }
+        ],
+        "metrics": [
+          {
+            "name": "eventCount"
+          },
+          {
+            "name": "totalUsers"
+          },
+          {
+            "name": "sessions"
+          }
+        ],
+        "dimensionFilter": {
+          "andGroup": {
+            "expressions": [
+              {
+                "filter": {
+                  "fieldName": "eventName",
+                  "inListFilter": {
+                    "values": [
+                      "exercise_start",
+                      "exercise_complete",
+                      "app_store_click"
+                    ]
+                  }
+                }
+              },
+              {
+                "filter": {
+                  "fieldName": "sessionDefaultChannelGroup",
+                  "stringFilter": {
+                    "matchType": "EXACT",
+                    "value": "Organic Search"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "limit": 10000
+      },
+      "rows": [
+        {
+          "eventName": "app_store_click",
+          "eventCount": 26,
+          "totalUsers": 22,
+          "sessions": 22
+        },
+        {
+          "eventName": "exercise_start",
+          "eventCount": 16,
+          "totalUsers": 15,
+          "sessions": 15
+        },
+        {
+          "eventName": "exercise_complete",
+          "eventCount": 9,
+          "totalUsers": 8,
+          "sessions": 8
+        }
+      ],
+      "error": null
+    },
+    "by_event_all_channels": {
+      "query": {
+        "dateRanges": [
+          {
+            "startDate": "2026-08-24",
+            "endDate": "2026-09-20"
+          }
+        ],
+        "dimensions": [
+          {
+            "name": "eventName"
+          }
+        ],
+        "metrics": [
+          {
+            "name": "eventCount"
+          },
+          {
+            "name": "totalUsers"
+          },
+          {
+            "name": "sessions"
+          }
+        ],
+        "dimensionFilter": {
+          "filter": {
+            "fieldName": "eventName",
+            "inListFilter": {
+              "values": [
+                "exercise_start",
+                "exercise_complete",
+                "app_store_click"
+              ]
+            }
+          }
+        },
+        "limit": 10000
+      },
+      "rows": [
+        {
+          "eventName": "app_store_click",
+          "eventCount": 40,
+          "totalUsers": 33,
+          "sessions": 33
+        },
+        {
+          "eventName": "exercise_start",
+          "eventCount": 30,
+          "totalUsers": 26,
+          "sessions": 26
+        },
+        {
+          "eventName": "exercise_complete",
+          "eventCount": 21,
+          "totalUsers": 17,
+          "sessions": 17
+        }
+      ],
+      "error": null
+    },
+    "by_page_event": {
+      "query": {
+        "dateRanges": [
+          {
+            "startDate": "2026-08-24",
+            "endDate": "2026-09-20"
+          }
+        ],
+        "dimensions": [
+          {
+            "name": "pagePath"
+          },
+          {
+            "name": "eventName"
+          }
+        ],
+        "metrics": [
+          {
+            "name": "eventCount"
+          },
+          {
+            "name": "totalUsers"
+          },
+          {
+            "name": "sessions"
+          }
+        ],
+        "dimensionFilter": {
+          "andGroup": {
+            "expressions": [
+              {
+                "filter": {
+                  "fieldName": "eventName",
+                  "inListFilter": {
+                    "values": [
+                      "exercise_start",
+                      "exercise_complete",
+                      "app_store_click"
+                    ]
+                  }
+                }
+              },
+              {
+                "filter": {
+                  "fieldName": "sessionDefaultChannelGroup",
+                  "stringFilter": {
+                    "matchType": "EXACT",
+                    "value": "Organic Search"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "limit": 10000
+      },
+      "rows": [
+        {
+          "pagePath": "/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 6,
+          "totalUsers": 5,
+          "sessions": 5
+        },
+        {
+          "pagePath": "/bit-vs-beat/",
+          "eventName": "exercise_start",
+          "eventCount": 4,
+          "totalUsers": 4,
+          "sessions": 4
+        },
+        {
+          "pagePath": "/ko/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 4,
+          "totalUsers": 3,
+          "sessions": 3
+        },
+        {
+          "pagePath": "/fill-vs-feel/",
+          "eventName": "exercise_start",
+          "eventCount": 3,
+          "totalUsers": 3,
+          "sessions": 3
+        },
+        {
+          "pagePath": "/tr/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 3,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/bit-vs-beat/",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "pagePath": "/cap-vs-cup/",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "pagePath": "/fill-vs-feel/",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "pagePath": "/fill-vs-feel/",
+          "eventName": "exercise_complete",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "pagePath": "/live-vs-leave/",
+          "eventName": "exercise_complete",
+          "eventCount": 2,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/ship-vs-sheep/",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "pagePath": "/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/bad-vs-bed/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/bit-vs-beat/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/english-ear-training/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/ja/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/ja/ship-vs-sheep/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/live-vs-leave/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/man-vs-men/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/man-vs-men/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/man-vs-men/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/pt/english-ear-training/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/rice-vs-lice/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/rice-vs-lice/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/ru/ship-vs-sheep/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/vest-vs-west/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/vest-vs-west/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "pagePath": "/vi/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        }
+      ],
+      "error": null
+    },
+    "by_landing_event": {
+      "query": {
+        "dateRanges": [
+          {
+            "startDate": "2026-08-24",
+            "endDate": "2026-09-20"
+          }
+        ],
+        "dimensions": [
+          {
+            "name": "landingPagePlusQueryString"
+          },
+          {
+            "name": "eventName"
+          }
+        ],
+        "metrics": [
+          {
+            "name": "eventCount"
+          },
+          {
+            "name": "totalUsers"
+          },
+          {
+            "name": "sessions"
+          }
+        ],
+        "dimensionFilter": {
+          "andGroup": {
+            "expressions": [
+              {
+                "filter": {
+                  "fieldName": "eventName",
+                  "inListFilter": {
+                    "values": [
+                      "exercise_start",
+                      "exercise_complete",
+                      "app_store_click"
+                    ]
+                  }
+                }
+              },
+              {
+                "filter": {
+                  "fieldName": "sessionDefaultChannelGroup",
+                  "stringFilter": {
+                    "matchType": "EXACT",
+                    "value": "Organic Search"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "limit": 10000
+      },
+      "rows": [
+        {
+          "landingPagePlusQueryString": "/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 7,
+          "totalUsers": 6,
+          "sessions": 6
+        },
+        {
+          "landingPagePlusQueryString": "/minimal-pairs-practice/",
+          "eventName": "exercise_start",
+          "eventCount": 6,
+          "totalUsers": 5,
+          "sessions": 5
+        },
+        {
+          "landingPagePlusQueryString": "/ko/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 4,
+          "totalUsers": 3,
+          "sessions": 3
+        },
+        {
+          "landingPagePlusQueryString": "/minimal-pairs-practice/",
+          "eventName": "exercise_complete",
+          "eventCount": 3,
+          "totalUsers": 3,
+          "sessions": 3
+        },
+        {
+          "landingPagePlusQueryString": "/tr/english-ear-training/",
+          "eventName": "app_store_click",
+          "eventCount": 3,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/bit-vs-beat/",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "landingPagePlusQueryString": "/english-ear-training/",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "landingPagePlusQueryString": "/fill-vs-feel/",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "landingPagePlusQueryString": "/fill-vs-feel/",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "landingPagePlusQueryString": "/live-vs-leave/",
+          "eventName": "exercise_complete",
+          "eventCount": 2,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/ship-vs-sheep/",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "landingPagePlusQueryString": "/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/bit-vs-beat/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/cap-vs-cup/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/english-ear-training/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/english-ear-training/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/fill-vs-feel/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/ja/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/ja/ship-vs-sheep/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/live-vs-leave/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/man-vs-men/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/man-vs-men/",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/man-vs-men/",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/pt/english-ear-training/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/rice-vs-lice/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/ru/ship-vs-sheep/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "landingPagePlusQueryString": "/vi/minimal-pairs-practice/",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        }
+      ],
+      "error": null
+    },
+    "by_date_event": {
+      "query": {
+        "dateRanges": [
+          {
+            "startDate": "2026-08-24",
+            "endDate": "2026-09-20"
+          }
+        ],
+        "dimensions": [
+          {
+            "name": "date"
+          },
+          {
+            "name": "eventName"
+          }
+        ],
+        "metrics": [
+          {
+            "name": "eventCount"
+          },
+          {
+            "name": "totalUsers"
+          },
+          {
+            "name": "sessions"
+          }
+        ],
+        "dimensionFilter": {
+          "andGroup": {
+            "expressions": [
+              {
+                "filter": {
+                  "fieldName": "eventName",
+                  "inListFilter": {
+                    "values": [
+                      "exercise_start",
+                      "exercise_complete",
+                      "app_store_click"
+                    ]
+                  }
+                }
+              },
+              {
+                "filter": {
+                  "fieldName": "sessionDefaultChannelGroup",
+                  "stringFilter": {
+                    "matchType": "EXACT",
+                    "value": "Organic Search"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "limit": 10000
+      },
+      "rows": [
+        {
+          "date": "20260909",
+          "eventName": "app_store_click",
+          "eventCount": 4,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260913",
+          "eventName": "exercise_start",
+          "eventCount": 3,
+          "totalUsers": 3,
+          "sessions": 3
+        },
+        {
+          "date": "20260830",
+          "eventName": "exercise_complete",
+          "eventCount": 2,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260901",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260903",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260912",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260912",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260914",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260915",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260916",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260919",
+          "eventName": "exercise_start",
+          "eventCount": 2,
+          "totalUsers": 2,
+          "sessions": 2
+        },
+        {
+          "date": "20260920",
+          "eventName": "app_store_click",
+          "eventCount": 2,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260825",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260826",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260829",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260830",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260902",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260903",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260905",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260906",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260906",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260907",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260907",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260911",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260911",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260911",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260912",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260913",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260913",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260914",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260914",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260915",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260915",
+          "eventName": "exercise_start",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260917",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260918",
+          "eventName": "app_store_click",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        },
+        {
+          "date": "20260919",
+          "eventName": "exercise_complete",
+          "eventCount": 1,
+          "totalUsers": 1,
+          "sessions": 1
+        }
+      ],
+      "error": null
+    }
+  }
+}

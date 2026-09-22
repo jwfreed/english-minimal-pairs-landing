@@ -1,0 +1,418 @@
+{
+  "date": "2026-09-22",
+  "source": "seo-god",
+  "site": "https://getsoundwise.co",
+  "crawl": {
+    "pages": 111,
+    "issues": [
+      {
+        "type": "meta-description-too-short",
+        "severity": "info",
+        "urls": [
+          "https://getsoundwise.co/ja/",
+          "https://getsoundwise.co/ja/english-ear-training/",
+          "https://getsoundwise.co/yue/",
+          "https://getsoundwise.co/yue/english-ear-training/",
+          "https://getsoundwise.co/yue/right-vs-light/",
+          "https://getsoundwise.co/zh/",
+          "https://getsoundwise.co/zh/minimal-pairs-practice/",
+          "https://getsoundwise.co/zh/ship-vs-sheep/"
+        ]
+      },
+      {
+        "type": "missing-meta-description",
+        "severity": "warn",
+        "urls": [
+          "https://getsoundwise.co/privacy-ar.html",
+          "https://getsoundwise.co/privacy-es.html",
+          "https://getsoundwise.co/privacy-fa.html",
+          "https://getsoundwise.co/privacy-hi-ur.html",
+          "https://getsoundwise.co/privacy-id.html",
+          "https://getsoundwise.co/privacy-ja.html",
+          "https://getsoundwise.co/privacy-ko.html",
+          "https://getsoundwise.co/privacy-pt.html",
+          "https://getsoundwise.co/privacy-ru.html",
+          "https://getsoundwise.co/privacy-th.html",
+          "https://getsoundwise.co/privacy-tr.html",
+          "https://getsoundwise.co/privacy-vi.html",
+          "https://getsoundwise.co/privacy-yue.html",
+          "https://getsoundwise.co/privacy-zh.html",
+          "https://getsoundwise.co/terms-ar.html",
+          "https://getsoundwise.co/terms-es.html",
+          "https://getsoundwise.co/terms-fa.html",
+          "https://getsoundwise.co/terms-hi-ur.html",
+          "https://getsoundwise.co/terms-id.html",
+          "https://getsoundwise.co/terms-ja.html",
+          "https://getsoundwise.co/terms-ko.html",
+          "https://getsoundwise.co/terms-pt.html",
+          "https://getsoundwise.co/terms-ru.html",
+          "https://getsoundwise.co/terms-th.html",
+          "https://getsoundwise.co/terms-tr.html",
+          "https://getsoundwise.co/terms-vi.html",
+          "https://getsoundwise.co/terms-yue.html",
+          "https://getsoundwise.co/terms-zh.html"
+        ]
+      },
+      {
+        "type": "thin-content",
+        "severity": "warn",
+        "urls": [
+          "https://getsoundwise.co/privacy-ja.html",
+          "https://getsoundwise.co/privacy-th.html",
+          "https://getsoundwise.co/privacy-yue.html",
+          "https://getsoundwise.co/privacy-zh.html",
+          "https://getsoundwise.co/terms-ja.html",
+          "https://getsoundwise.co/terms-th.html",
+          "https://getsoundwise.co/terms-yue.html",
+          "https://getsoundwise.co/terms-zh.html"
+        ]
+      },
+      {
+        "type": "title-too-long",
+        "severity": "info",
+        "urls": [
+          "https://getsoundwise.co/",
+          "https://getsoundwise.co/english-ear-training/",
+          "https://getsoundwise.co/es/",
+          "https://getsoundwise.co/es/english-ear-training/",
+          "https://getsoundwise.co/fa/",
+          "https://getsoundwise.co/heart-vs-hurt/",
+          "https://getsoundwise.co/hi-ur/",
+          "https://getsoundwise.co/hi-ur/minimal-pairs-practice/",
+          "https://getsoundwise.co/id/",
+          "https://getsoundwise.co/live-vs-leave/",
+          "https://getsoundwise.co/man-vs-men/",
+          "https://getsoundwise.co/pt/",
+          "https://getsoundwise.co/pt/english-ear-training/",
+          "https://getsoundwise.co/pt/minimal-pairs-practice/",
+          "https://getsoundwise.co/pull-vs-pool/",
+          "https://getsoundwise.co/right-vs-light/",
+          "https://getsoundwise.co/ru/",
+          "https://getsoundwise.co/ru/english-ear-training/",
+          "https://getsoundwise.co/ship-vs-sheep/",
+          "https://getsoundwise.co/th/",
+          "https://getsoundwise.co/three-vs-tree/",
+          "https://getsoundwise.co/tr/",
+          "https://getsoundwise.co/tr/english-ear-training/",
+          "https://getsoundwise.co/tr/minimal-pairs-practice/",
+          "https://getsoundwise.co/vi/",
+          "https://getsoundwise.co/vi/english-ear-training/"
+        ]
+      }
+    ]
+  },
+  "ranks": [],
+  "gsc": {
+    "available": true,
+    "clicks28d": 141,
+    "impressions28d": 26802,
+    "top_queries": [
+      {
+        "query": "man vs men",
+        "clicks": 0,
+        "impressions": 1517,
+        "position": 9.8
+      },
+      {
+        "query": "bet bat",
+        "clicks": 2,
+        "impressions": 633,
+        "position": 6.4
+      },
+      {
+        "query": "men vs man",
+        "clicks": 0,
+        "impressions": 430,
+        "position": 9.9
+      },
+      {
+        "query": "bat vowel",
+        "clicks": 0,
+        "impressions": 352,
+        "position": 11.3
+      },
+      {
+        "query": "live vs leave",
+        "clicks": 0,
+        "impressions": 249,
+        "position": 7.6
+      },
+      {
+        "query": "bad or bed",
+        "clicks": 0,
+        "impressions": 162,
+        "position": 8.5
+      },
+      {
+        "query": "bad vs bed",
+        "clicks": 0,
+        "impressions": 159,
+        "position": 5.5
+      },
+      {
+        "query": "three vs tree",
+        "clicks": 0,
+        "impressions": 146,
+        "position": 8.8
+      },
+      {
+        "query": "cup or cap",
+        "clicks": 0,
+        "impressions": 130,
+        "position": 8.3
+      },
+      {
+        "query": "bed vs bad",
+        "clicks": 0,
+        "impressions": 127,
+        "position": 7.3
+      },
+      {
+        "query": "cap or cup",
+        "clicks": 0,
+        "impressions": 127,
+        "position": 8.8
+      },
+      {
+        "query": "leave vs live",
+        "clicks": 0,
+        "impressions": 121,
+        "position": 7.3
+      },
+      {
+        "query": "bat bet",
+        "clicks": 0,
+        "impressions": 117,
+        "position": 6.2
+      },
+      {
+        "query": "live and leave",
+        "clicks": 0,
+        "impressions": 112,
+        "position": 7.6
+      },
+      {
+        "query": "cap vs cup",
+        "clicks": 0,
+        "impressions": 109,
+        "position": 7.8
+      },
+      {
+        "query": "right and light",
+        "clicks": 0,
+        "impressions": 107,
+        "position": 9.2
+      },
+      {
+        "query": "bed or bad",
+        "clicks": 0,
+        "impressions": 104,
+        "position": 7.4
+      },
+      {
+        "query": "fill vs feel",
+        "clicks": 1,
+        "impressions": 103,
+        "position": 4.9
+      },
+      {
+        "query": "beat or bit",
+        "clicks": 0,
+        "impressions": 103,
+        "position": 4.3
+      },
+      {
+        "query": "live or leave",
+        "clicks": 0,
+        "impressions": 100,
+        "position": 8.8
+      },
+      {
+        "query": "three or tree",
+        "clicks": 0,
+        "impressions": 97,
+        "position": 9.6
+      },
+      {
+        "query": "man and men",
+        "clicks": 0,
+        "impressions": 96,
+        "position": 10.4
+      },
+      {
+        "query": "bit or beat",
+        "clicks": 0,
+        "impressions": 86,
+        "position": 4.2
+      },
+      {
+        "query": "live vs leave pronunciation",
+        "clicks": 0,
+        "impressions": 83,
+        "position": 7.7
+      },
+      {
+        "query": "three and tree",
+        "clicks": 0,
+        "impressions": 83,
+        "position": 9.0
+      },
+      {
+        "query": "bit vs beat",
+        "clicks": 0,
+        "impressions": 82,
+        "position": 4.7
+      },
+      {
+        "query": "sit vs seat",
+        "clicks": 0,
+        "impressions": 80,
+        "position": 10.4
+      },
+      {
+        "query": "beat vs bit",
+        "clicks": 0,
+        "impressions": 74,
+        "position": 3.6
+      },
+      {
+        "query": "fill vs feel pronunciation",
+        "clicks": 0,
+        "impressions": 74,
+        "position": 6.8
+      },
+      {
+        "query": "live leave",
+        "clicks": 0,
+        "impressions": 74,
+        "position": 8.4
+      },
+      {
+        "query": "tree vs three",
+        "clicks": 0,
+        "impressions": 74,
+        "position": 8.6
+      },
+      {
+        "query": "soundwise",
+        "clicks": 0,
+        "impressions": 69,
+        "position": 11.6
+      },
+      {
+        "query": "feel vs fill",
+        "clicks": 0,
+        "impressions": 67,
+        "position": 5.7
+      },
+      {
+        "query": "cup vs cap",
+        "clicks": 0,
+        "impressions": 66,
+        "position": 7.4
+      },
+      {
+        "query": "bit and beat",
+        "clicks": 0,
+        "impressions": 63,
+        "position": 5.0
+      },
+      {
+        "query": "fill feel",
+        "clicks": 0,
+        "impressions": 63,
+        "position": 6.1
+      },
+      {
+        "query": "bit or beat meaning",
+        "clicks": 0,
+        "impressions": 61,
+        "position": 7.7
+      },
+      {
+        "query": "cup cop",
+        "clicks": 0,
+        "impressions": 61,
+        "position": 7.3
+      },
+      {
+        "query": "difference between live and leave",
+        "clicks": 0,
+        "impressions": 61,
+        "position": 9.5
+      },
+      {
+        "query": "bad and bed meaning",
+        "clicks": 0,
+        "impressions": 58,
+        "position": 6.3
+      },
+      {
+        "query": "bed or bad difference",
+        "clicks": 0,
+        "impressions": 58,
+        "position": 5.6
+      },
+      {
+        "query": "fill or feel",
+        "clicks": 0,
+        "impressions": 58,
+        "position": 5.6
+      },
+      {
+        "query": "live vs leave meaning",
+        "clicks": 0,
+        "impressions": 57,
+        "position": 7.8
+      },
+      {
+        "query": "bad and bed",
+        "clicks": 0,
+        "impressions": 56,
+        "position": 8.5
+      },
+      {
+        "query": "light and right",
+        "clicks": 0,
+        "impressions": 54,
+        "position": 6.3
+      },
+      {
+        "query": "beat and bit",
+        "clicks": 0,
+        "impressions": 52,
+        "position": 4.3
+      },
+      {
+        "query": "tr tree",
+        "clicks": 0,
+        "impressions": 51,
+        "position": 7.6
+      },
+      {
+        "query": "fill and feel",
+        "clicks": 0,
+        "impressions": 50,
+        "position": 5.9
+      },
+      {
+        "query": "bed and bad",
+        "clicks": 0,
+        "impressions": 49,
+        "position": 8.5
+      },
+      {
+        "query": "cap and cup",
+        "clicks": 0,
+        "impressions": 48,
+        "position": 8.7
+      }
+    ]
+  },
+  "ai_visibility": {
+    "measured": false,
+    "prompts_ok": 0,
+    "cited": 0,
+    "competitors": {}
+  }
+}

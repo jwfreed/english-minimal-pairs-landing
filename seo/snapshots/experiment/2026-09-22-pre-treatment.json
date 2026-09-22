@@ -1,0 +1,181 @@
+{
+  "experiment": "task-intent-framing-man-vs-men",
+  "role": "PRE-TREATMENT BASELINE \u2014 separate from the historical MEASURE baseline; does not redefine it",
+  "captured_utc": "2026-09-22T07:14:29.147520+00:00",
+  "treatment_deployed": false,
+  "measure_baseline_refs": [
+    "seo/snapshots/2026-09-22.json",
+    "seo/snapshots/ga4/2026-09-20.json"
+  ],
+  "gsc": {
+    "property": "sc-domain:getsoundwise.co",
+    "window": {
+      "startDate": "2026-08-23",
+      "endDate": "2026-09-19"
+    },
+    "note": "GSC lags ~3d; 2026-09-19 is the latest complete day available at capture"
+  },
+  "ga4": {
+    "property": "536565930",
+    "window": {
+      "startDate": "2026-08-24",
+      "endDate": "2026-09-20"
+    },
+    "note": "latest final data under the 48h-finalization rule (cutoff 2026-09-20)",
+    "channel": "Organic Search"
+  },
+  "pages": {
+    "/man-vs-men/": {
+      "role": "treatment",
+      "gsc": {
+        "clicks": 6,
+        "impressions": 2677,
+        "position": 10.0,
+        "ctr": 0.002241
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 1,
+        "exercise_complete": 1,
+        "app_store_click": 1
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 1,
+        "exercise_complete": 1,
+        "app_store_click": 1
+      }
+    },
+    "/bad-vs-bed/": {
+      "role": "control-a",
+      "gsc": {
+        "clicks": 1,
+        "impressions": 1856,
+        "position": 6.9,
+        "ctr": 0.000539
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 0,
+        "exercise_complete": 0,
+        "app_store_click": 1
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 0,
+        "exercise_complete": 0,
+        "app_store_click": 0
+      }
+    },
+    "/bet-vs-bat/": {
+      "role": "control-b",
+      "gsc": {
+        "clicks": 4,
+        "impressions": 1779,
+        "position": 7.8,
+        "ctr": 0.002248
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 0,
+        "exercise_complete": 0,
+        "app_store_click": 0
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 0,
+        "exercise_complete": 0,
+        "app_store_click": 0
+      }
+    },
+    "/minimal-pairs-practice/": {
+      "role": "positive-reference",
+      "gsc": {
+        "clicks": 18,
+        "impressions": 439,
+        "position": 14.5,
+        "ctr": 0.041002
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 0,
+        "exercise_complete": 0,
+        "app_store_click": 6
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 6,
+        "exercise_complete": 3,
+        "app_store_click": 7
+      }
+    },
+    "/fill-vs-feel/": {
+      "role": "class1-excluded",
+      "gsc": {
+        "clicks": 5,
+        "impressions": 2422,
+        "position": 6.4,
+        "ctr": 0.002064
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 3,
+        "exercise_complete": 2,
+        "app_store_click": 2
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 2,
+        "exercise_complete": 1,
+        "app_store_click": 2
+      }
+    },
+    "/live-vs-leave/": {
+      "role": "class1-excluded",
+      "gsc": {
+        "clicks": 8,
+        "impressions": 2295,
+        "position": 8.0,
+        "ctr": 0.003486
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 1,
+        "exercise_complete": 2,
+        "app_store_click": 0
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 1,
+        "exercise_complete": 2,
+        "app_store_click": 0
+      }
+    },
+    "/ship-vs-sheep/": {
+      "role": "class1-excluded",
+      "gsc": {
+        "clicks": 4,
+        "impressions": 453,
+        "position": 8.6,
+        "ctr": 0.00883
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 2,
+        "exercise_complete": 0,
+        "app_store_click": 0
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 2,
+        "exercise_complete": 0,
+        "app_store_click": 0
+      }
+    },
+    "/bit-vs-beat/": {
+      "role": "class1-excluded",
+      "gsc": {
+        "clicks": 11,
+        "impressions": 2597,
+        "position": 6.2,
+        "ctr": 0.004236
+      },
+      "ga4_by_pagePath": {
+        "exercise_start": 4,
+        "exercise_complete": 1,
+        "app_store_click": 2
+      },
+      "ga4_by_landingPage": {
+        "exercise_start": 2,
+        "exercise_complete": 1,
+        "app_store_click": 0
+      }
+    }
+  }
+}
