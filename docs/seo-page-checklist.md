@@ -28,6 +28,36 @@ The adapter adds the `seo-exercise` class and the default ID `<contrast-id>-list
 
 The exercise validator derives eligibility from the route slug, an exact `CONTRAST_CATALOG` entry, and an explicit exercise UI translation for the page's `html[lang]`. Unsupported locales must not rely on the English fallback to imply localized exercise coverage.
 
+## Required Hero Practice CTA
+
+Every pair page's hero (inside `<header class="seo-hero">`, immediately after the last `.seo-lede` paragraph) must include a `.seo-hero-actions` block, so the exercise is reachable from the first viewport, not only from the sidebar table of contents. The exact shape depends on the page's current capability, mirroring `content/pairs/bit-vs-beat/index.html`:
+
+**Exercise-eligible pages** (the exercise validator's `shouldMountExercise` is true) get two buttons:
+
+```html
+<div class="seo-hero-actions">
+  <a href="#<contrast-id>-listening-exercise" class="btn btn-primary">Listen &amp; Test Yourself</a>
+  <a href="<page's App Store URL>" id="hero-<route-slug>-app-store-cta" data-cta-position="hero" data-capability-copy="generic" class="btn seo-hero-app-cta">Practice More in Soundwise</a>
+</div>
+```
+
+The primary CTA's `href` must resolve to a real `id` on that page's own exercise mount (`<div id="<contrast-id>-listening-exercise" data-exercise data-contrast="<contrast-id>"></div>`) -- do not link to an anchor the page does not have. The secondary App Store CTA reuses the page's existing App Store URL/campaign attribution and always carries `data-capability-copy="generic"`, so the resolver-driven capability system (`src/seo-capability-cta.js`) leaves its deliberately fixed copy alone.
+
+**Localized pair pages that are not yet exercise-eligible** (app capability exists for that L1, but the exercise UI is not yet translated) get one button only -- never a practice link pointing at an exercise the page does not mount:
+
+```html
+<div class="seo-hero-actions">
+  <a href="<page's App Store URL>" id="hero-<route-slug>-app-store-cta" data-cta-position="hero" class="btn btn-primary"><resolver-driven capability copy></a>
+</div>
+```
+
+This single button intentionally omits `data-capability-copy="generic"`, so it stays resolver-driven and always reflects the page's real, current capability status instead of a hand-authored claim.
+
+**Known exceptions -- do not add `.seo-hero-actions` to these without resolving the underlying constraint first:**
+
+- `ship-vs-sheep`, `live-vs-leave`, `sit-vs-seat`: the control cohort for the active `conversion_serp_cta_v1` experiment (`src/analytics-content-variants.js`; `bit-vs-beat`/`fill-vs-feel` are the treatment). `scripts/conversion-serp-cta.test.mjs` asserts these three pages stay free of `.seo-hero-actions` while the experiment is live.
+- `heart-vs-hurt`, `law-vs-low`: `NO_APP_SUPPORT` for every currently supported L1 (`docs/app-website-contrast-alignment.md`). Their `.seo-cta` section deliberately carries exactly two resolver-driven, generic-label ("Soundwise App") App Store links and no fixed/`generic`-copy CTA anywhere on the page; `scripts/trust-alignment.test.mjs` pins that exact shape. These two need a bespoke capability-safe hero CTA (designed and tested on its own) rather than the standard pattern above.
+
 ## Preferred Learning Journey Structure
 
 For high-intent minimal-pair SEO pages, the page should teach the sound contrast before it sells the app. The preferred order is:

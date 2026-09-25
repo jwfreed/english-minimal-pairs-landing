@@ -6,6 +6,15 @@ import { SEO_EXERCISE_TRANSLATIONS } from '../src/seo-exercise-translations.js';
 
 const HUB_SLUGS = new Set(['english-ear-training', 'minimal-pairs-practice']);
 const SEO_PAGE_SCRIPT = '<script type="module" src="/src/seo-page.js"></script>';
+// Pages the canonical .seo-hero-actions invariant does not (yet) apply to.
+// See the comment above its enforcement below for why each one is excluded.
+const HERO_ACTIONS_EXCEPTIONS = new Set([
+  'ship-vs-sheep',
+  'live-vs-leave',
+  'sit-vs-seat',
+  'heart-vs-hurt',
+  'law-vs-low',
+]);
 const PRACTICE_PROMISE_PATTERNS = [
   {
     id: 'try-listening-exercise',
@@ -259,6 +268,10 @@ for (const { filePath, contrastId, route } of pairPages) {
     fail(`${filePath} does not resolve through vite.config.js route ${route}`);
   }
 
+  if (!targetSource.includes('class="seo-kicker"')) {
+    fail(`${filePath} is missing the canonical .seo-kicker eyebrow label`);
+  }
+
   if (!shouldMountExercise) {
     if (exerciseMountCount !== 0) {
       const blocker = hasCatalogCapability
@@ -272,6 +285,26 @@ for (const { filePath, contrastId, route } of pairPages) {
     } else {
       coverage.missingLocalizedUi.push(route);
     }
+
+    // Localized pair pages that are not yet exercise-eligible still belong to
+    // the canonical page system: they get a hero-position App Store CTA, but
+    // never a fake practice link pointing at an exercise that does not exist.
+    if (route.includes('/')) {
+      const headerEnd = targetSource.indexOf('</header>');
+      const heroSource = headerEnd >= 0 ? targetSource.slice(0, headerEnd) : targetSource;
+
+      if (!heroSource.includes('class="seo-hero-actions"')) {
+        fail(`${filePath} is missing the canonical .seo-hero-actions block for its current (no-exercise) capability`);
+      } else {
+        if (!heroSource.includes('data-cta-position="hero"')) {
+          fail(`${filePath} .seo-hero-actions App Store CTA must carry a valid data-cta-position="hero" contract`);
+        }
+        if (/href="#[^"]*listening-exercise"/.test(heroSource)) {
+          fail(`${filePath} must not link its hero actions to a listening exercise it does not mount`);
+        }
+      }
+    }
+
     continue;
   }
 
@@ -312,6 +345,49 @@ for (const { filePath, contrastId, route } of pairPages) {
     || !targetSource.slice(primaryCtaIndex, primaryCtaEnd).includes('apps.apple.com')
   ) {
     fail(`${filePath} should provide an App Store next action after the exercise`);
+  }
+
+  // Every exercise-eligible page must give the visitor an obvious, first-viewport
+  // route into the exercise: a .seo-hero-actions block whose primary CTA targets
+  // this page's own real exercise anchor, plus a hero App Store CTA on a valid
+  // analytics contract. This is the canonical hero invariant (see
+  // docs/seo-page-checklist.md, "Exercise Placement Guidance").
+  //
+  // Known, evidence-backed exceptions (not drift -- do not "fix" by adding
+  // .seo-hero-actions without first resolving the underlying constraint):
+  //   - ship-vs-sheep, live-vs-leave, sit-vs-seat: the control cohort for the
+  //     active conversion_serp_cta_v1 experiment (bit-vs-beat/fill-vs-feel are
+  //     the treatment). scripts/conversion-serp-cta.test.mjs asserts these
+  //     three pages must NOT contain .seo-hero-actions while the experiment is
+  //     live. See src/analytics-content-variants.js.
+  //   - heart-vs-hurt, law-vs-low: NO_APP_SUPPORT for every supported L1 (see
+  //     docs/app-website-contrast-alignment.md). Their .seo-cta section
+  //     deliberately carries exactly two resolver-driven ("Soundwise App")
+  //     App Store links and no fixed/generic-copy CTA anywhere on the page --
+  //     scripts/trust-alignment.test.mjs pins that exact, capability-safe
+  //     shape. Adding a third, generic-copy hero App Store CTA would violate
+  //     it. These two need a bespoke capability-safe hero pattern (primary
+  //     practice CTA only, or a resolver-driven secondary) designed and
+  //     tested as its own follow-up, not a copy of the bit-vs-beat pattern.
+  if (!HERO_ACTIONS_EXCEPTIONS.has(route)) {
+    const headerEndIndex = targetSource.indexOf('</header>');
+    const heroSource = headerEndIndex >= 0 ? targetSource.slice(0, headerEndIndex) : targetSource;
+    // Mirrors src/seo-page.js's getSeoExerciseMountId() convention.
+    const exerciseAnchorId = `${contrastId}-listening-exercise`;
+
+    if (!heroSource.includes('class="seo-hero-actions"')) {
+      fail(`${filePath} is missing the canonical .seo-hero-actions hero CTA block`);
+    } else {
+      if (!heroSource.includes(`href="#${exerciseAnchorId}"`)) {
+        fail(`${filePath} hero practice CTA does not target this page's own exercise anchor (#${exerciseAnchorId})`);
+      }
+      if (!targetSource.includes(`id="${exerciseAnchorId}"`)) {
+        fail(`${filePath} exercise mount does not expose the id="${exerciseAnchorId}" its hero CTA links to`);
+      }
+      if (!heroSource.includes('data-cta-position="hero"')) {
+        fail(`${filePath} .seo-hero-actions App Store CTA must carry a valid data-cta-position="hero" contract`);
+      }
+    }
   }
 }
 

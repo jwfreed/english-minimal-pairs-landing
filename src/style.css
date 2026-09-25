@@ -2310,8 +2310,23 @@ body.seo-body .seo-content {
   text-decoration: underline;
 }
 
+.seo-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.seo-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.seo-breadcrumb a:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .seo-kicker {
-  color: var(--primary-dark);
+  color: #c24d00;
   font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -2877,6 +2892,10 @@ html[dir="rtl"] .seo-content td {
   gap: 0.65rem;
   padding: 0.8rem;
   text-align: left;
+}
+
+html[dir="rtl"] .seo-exercise-word {
+  text-align: right;
 }
 
 .seo-exercise-word:hover,
