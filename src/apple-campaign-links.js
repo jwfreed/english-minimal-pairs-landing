@@ -26,7 +26,7 @@ function getPageSlugForPathname(pathname) {
   }
 
   if (sourceIndex >= 0 && segments[sourceIndex + 1] === 'locales') {
-    return segments[sourceIndex + 3] || 'homepage';
+    return null;
   }
 
   return segments.at(-1) || 'homepage';

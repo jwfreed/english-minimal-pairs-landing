@@ -44,13 +44,30 @@ test('rewrites every static App Store CTA on a configured page to one page campa
   assert.match(transformed, /id="hero-bit-vs-beat-app-store-cta" data-cta-position="hero"/u);
 });
 
-test('maps localized source routes to their canonical page campaign', () => {
+test('rewrites the English ship-vs-sheep source route to its verified Apple campaign', () => {
   const transformed = applyAppleCampaignLinksHtml({
     html: '<a href="https://apps.apple.com/us/app/soundwise-english/id6753882308">App Store</a>',
-    pathname: '/content/locales/ja/ship-vs-sheep/index.html',
+    pathname: '/content/pairs/ship-vs-sheep/index.html',
   });
 
-  assert.match(transformed, new RegExp(`ct=${getAppleCampaignToken('ship-vs-sheep')}`, 'u'));
+  assert.match(
+    transformed,
+    new RegExp(`pt=${APPLE_PROVIDER_TOKEN}&ct=${getAppleCampaignToken('ship-vs-sheep')}&mt=8`, 'u')
+  );
+});
+
+test('preserves localized App Store attribution instead of inheriting an English campaign by slug', () => {
+  const localizedRoutes = [
+    ['/content/locales/ja/ship-vs-sheep/index.html', 'ja-ship-vs-sheep'],
+    ['/content/locales/yue/right-vs-light/index.html', 'yue-right-vs-light'],
+  ];
+
+  for (const [pathname, utmContent] of localizedRoutes) {
+    const href = `https://apps.apple.com/us/app/soundwise-english/id${APPLE_APP_ID}?utm_source=website&utm_medium=seo-page&utm_campaign=minimal-pair-pages&utm_content=${utmContent}`;
+    const html = `<a href="${href}">App Store</a>`;
+
+    assert.equal(applyAppleCampaignLinksHtml({ html, pathname }), html);
+  }
 });
 
 test('leaves unmapped pages unchanged instead of assigning incorrect Apple attribution', () => {
