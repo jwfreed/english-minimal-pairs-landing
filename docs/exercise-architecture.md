@@ -142,6 +142,11 @@ Coverage terminology is intentionally precise:
 - An **eligible exercise page** has an exact contrast in `CONTRAST_CATALOG`, a registered route that can mount the shared adapter, and explicit exercise UI translation for the page locale.
 - An **exercise mount** is an actual `data-exercise` instance in source HTML and generated output. One eligible page produces one rendered mount.
 
+Localized translation eligibility is fail-closed. The complete key contract,
+approved reuse provenance, readiness matrix, and native-review punch list are
+recorded in `docs/localized-seo-exercise-translation-readiness.md`. Partial
+locale candidates never inherit English strings and do not make a page eligible.
+
 | Category | Count |
 |---|---:|
 | English eligible exercise pages | 21 |

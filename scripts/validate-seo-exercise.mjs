@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { CONTRAST_CATALOG } from '../src/contrast-catalog.js';
-import { SEO_EXERCISE_TRANSLATIONS } from '../src/seo-exercise-translations.js';
+import { hasCompleteSeoExerciseTranslation } from '../src/seo-exercise-translations.js';
 
 const HUB_SLUGS = new Set(['english-ear-training', 'minimal-pairs-practice']);
 const SEO_PAGE_SCRIPT = '<script type="module" src="/src/seo-page.js"></script>';
@@ -138,13 +138,7 @@ function hasExactCatalogContrast(contrastId) {
 }
 
 function hasExplicitExerciseTranslation(locale) {
-  const normalizedLocale = (locale || '').trim().toLowerCase();
-  const baseLocale = normalizedLocale.split('-')[0];
-
-  return Boolean(
-    SEO_EXERCISE_TRANSLATIONS[normalizedLocale]
-    || SEO_EXERCISE_TRANSLATIONS[baseLocale]
-  );
+  return hasCompleteSeoExerciseTranslation(locale);
 }
 
 function getDocumentLocale(source, filePath) {

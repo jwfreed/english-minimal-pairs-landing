@@ -1,4 +1,53 @@
+import { SEO_EXERCISE_HERO_REUSE_BY_LOCALE } from './seo-exercise-translation-reuse.js';
+
 const DEFAULT_SEO_EXERCISE_LOCALE = 'en';
+
+export const SEO_EXERCISE_REQUIRED_KEYS = Object.freeze([
+  'label',
+  'previewChoicesAriaLabel',
+  'guessChoicesAriaLabel',
+  'replayChoicesAriaLabel',
+  'liveInitial',
+  'previewPrompt',
+  'startButton',
+  'playButton',
+  'testPrompt',
+  'feedbackReplayPrompt',
+  'nextButton',
+  'speakerLabel',
+  'audioUnavailable',
+  'listenPrompt',
+  'feedbackContrast',
+  'generalizationHeading',
+  'generalizationBody',
+  'chooseWordLabel',
+  'playWordLabel',
+  'roundLabel',
+  'scoreLabel',
+  'feedback',
+  'summary',
+  'summaryCta',
+]);
+
+const SEO_EXERCISE_FUNCTION_KEYS = new Set([
+  'feedbackContrast',
+  'generalizationHeading',
+  'chooseWordLabel',
+  'playWordLabel',
+  'roundLabel',
+  'scoreLabel',
+  'feedback',
+  'summary',
+  'summaryCta',
+]);
+
+const SEO_EXERCISE_LOCALE_ALIASES = Object.freeze({
+  hi: 'hi-ur',
+  ur: 'hi-ur',
+  'zh-hant-hk': 'yue',
+  'zh-hk': 'yue',
+  yue: 'yue',
+});
 
 const englishSeoExerciseCopy = {
   label: 'Try this contrast',
@@ -122,36 +171,154 @@ const thaiSeoExerciseCopy = {
   },
 };
 
-export const SEO_EXERCISE_TRANSLATIONS = {
+export const SEO_EXERCISE_TRANSLATION_CANDIDATES = Object.freeze({
+  ...SEO_EXERCISE_HERO_REUSE_BY_LOCALE,
   en: englishSeoExerciseCopy,
   th: thaiSeoExerciseCopy,
-};
+});
 
 function normalizeLocale(locale) {
   return (locale || '').trim().toLowerCase();
 }
 
-export function resolveSeoExerciseLocale(locale) {
+function resolveCandidateLocale(locale) {
   const normalizedLocale = normalizeLocale(locale);
 
-  if (SEO_EXERCISE_TRANSLATIONS[normalizedLocale]) {
+  if (!normalizedLocale) {
+    return DEFAULT_SEO_EXERCISE_LOCALE;
+  }
+
+  const aliasedLocale = SEO_EXERCISE_LOCALE_ALIASES[normalizedLocale];
+  if (aliasedLocale) {
+    return aliasedLocale;
+  }
+
+  if (SEO_EXERCISE_TRANSLATION_CANDIDATES[normalizedLocale]) {
     return normalizedLocale;
   }
 
   const baseLocale = normalizedLocale.split('-')[0];
+  return SEO_EXERCISE_LOCALE_ALIASES[baseLocale] || baseLocale;
+}
 
-  return SEO_EXERCISE_TRANSLATIONS[baseLocale]
-    ? baseLocale
-    : DEFAULT_SEO_EXERCISE_LOCALE;
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
+function callSafely(formatter, ...args) {
+  try {
+    return formatter(...args);
+  } catch {
+    return null;
+  }
+}
+
+function includesValues(value, expectedValues) {
+  return isNonEmptyString(value)
+    && expectedValues.every((expected) => value.includes(String(expected)));
+}
+
+function hasMessagePair(value, firstKey, secondKey) {
+  return Boolean(
+    value
+    && isNonEmptyString(value[firstKey])
+    && isNonEmptyString(value[secondKey])
+  );
+}
+
+function hasRequiredFunctionOutput(copy, key) {
+  const formatter = copy?.[key];
+  if (typeof formatter !== 'function') {
+    return false;
+  }
+
+  if (key === 'feedbackContrast' || key === 'generalizationHeading') {
+    return includesValues(callSafely(formatter, '/ɪ/ vs /iː/'), ['/ɪ/ vs /iː/']);
+  }
+
+  if (key === 'chooseWordLabel' || key === 'playWordLabel') {
+    return includesValues(callSafely(formatter, 'SHEEP'), ['SHEEP']);
+  }
+
+  if (key === 'roundLabel' || key === 'scoreLabel') {
+    return includesValues(callSafely(formatter, 1, 2), [1, 2]);
+  }
+
+  if (key === 'feedback') {
+    return [true, false].every((correct) => includesValues(callSafely(formatter, {
+      selectedWord: 'SHIP',
+      correctWord: 'SHEEP',
+      correct,
+    }), ['SHIP', 'SHEEP']));
+  }
+
+  if (key === 'summary') {
+    return [
+      { correct: 2, total: 2 },
+      { correct: 1, total: 2 },
+      { correct: 0, total: 2 },
+    ].every((snapshot) => hasMessagePair(callSafely(formatter, snapshot), 'lead', 'body'));
+  }
+
+  if (key === 'summaryCta') {
+    return [
+      { correct: 2, total: 2 },
+      { correct: 1, total: 2 },
+    ].every((snapshot) => hasMessagePair(callSafely(formatter, snapshot), 'headline', 'body'));
+  }
+
+  return false;
+}
+
+function hasRequiredValue(copy, key) {
+  return SEO_EXERCISE_FUNCTION_KEYS.has(key)
+    ? hasRequiredFunctionOutput(copy, key)
+    : isNonEmptyString(copy?.[key]);
+}
+
+export function getMissingSeoExerciseKeys(copy) {
+  return SEO_EXERCISE_REQUIRED_KEYS
+    .filter((key) => !hasRequiredValue(copy, key))
+    .sort();
+}
+
+export function getSeoExerciseTranslationStatus(locale) {
+  const candidateLocale = resolveCandidateLocale(locale);
+  const copy = SEO_EXERCISE_TRANSLATION_CANDIDATES[candidateLocale];
+  const missingKeys = getMissingSeoExerciseKeys(copy);
+
+  return {
+    locale: candidateLocale,
+    complete: Boolean(copy) && missingKeys.length === 0,
+    missingKeys,
+  };
+}
+
+export function hasCompleteSeoExerciseTranslation(locale) {
+  return getSeoExerciseTranslationStatus(locale).complete;
+}
+
+export const SEO_EXERCISE_TRANSLATIONS = Object.freeze(
+  Object.fromEntries(
+    Object.entries(SEO_EXERCISE_TRANSLATION_CANDIDATES)
+      .filter(([locale]) => hasCompleteSeoExerciseTranslation(locale))
+  )
+);
+
+export function resolveSeoExerciseLocale(locale) {
+  const status = getSeoExerciseTranslationStatus(locale);
+  return status.complete ? status.locale : null;
 }
 
 export function getSeoExerciseCopy(locale) {
   const resolvedLocale = resolveSeoExerciseLocale(locale);
-  const localizedCopy = SEO_EXERCISE_TRANSLATIONS[resolvedLocale] || {};
 
-  return {
-    ...englishSeoExerciseCopy,
-    ...localizedCopy,
+  if (!resolvedLocale) {
+    return null;
+  }
+
+  return Object.freeze({
+    ...SEO_EXERCISE_TRANSLATIONS[resolvedLocale],
     locale: resolvedLocale,
-  };
+  });
 }

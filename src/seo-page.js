@@ -274,8 +274,7 @@ function renderGeneralizationCopy(element, relatedContrasts, contrast, uiCopy) {
   element.hidden = false;
 }
 
-function createSeoExercise(mount, contrast, capability) {
-  const uiCopy = getSeoExerciseCopy(document.documentElement.lang || 'en');
+function createSeoExercise(mount, contrast, capability, uiCopy) {
   const titleId = `${mount.id || contrast.id}-title`;
   const liveRegion = createElement('p', {
     className: 'seo-exercise-live',
@@ -533,6 +532,8 @@ function createSeoExercise(mount, contrast, capability) {
 function setupSeoExercises(capability) {
   document.querySelectorAll(SEO_EXERCISE_MOUNT_SELECTOR).forEach((mount) => {
     const contrast = getContrastById(mount.dataset.contrast);
+    const documentLocale = document.documentElement.lang || 'en';
+    const uiCopy = getSeoExerciseCopy(documentLocale);
 
     if (!contrast) {
       console.warn(`No exercise contrast found for "${mount.dataset.contrast}".`);
@@ -540,8 +541,14 @@ function setupSeoExercises(capability) {
       return;
     }
 
+    if (!uiCopy) {
+      console.warn(`No complete SEO exercise translation found for "${documentLocale}".`);
+      mount.hidden = true;
+      return;
+    }
+
     prepareSeoExerciseMount(mount, contrast);
-    createSeoExercise(mount, contrast, capability);
+    createSeoExercise(mount, contrast, capability, uiCopy);
   });
 }
 
