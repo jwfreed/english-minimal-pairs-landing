@@ -88,16 +88,57 @@ test('capability-copy guard covers unsupported promises and future support', () 
   );
 });
 
+test('heart/hurt and law/low expose a capability-safe practice-only hero', () => {
+  for (const { slug, pair } of UNSUPPORTED_PAGE_CASES) {
+    const file = `content/pairs/${slug}/index.html`;
+    const source = fs.readFileSync(file, 'utf8');
+    const exerciseAnchorId = `${slug}-listening-exercise`;
+    const heroStart = source.indexOf('<header class="seo-hero">');
+    const heroEnd = source.indexOf('</header>');
+    const heroSource = source.slice(heroStart, heroEnd);
+
+    assert.ok(
+      heroSource.includes('class="seo-hero-actions"'),
+      `${slug}: hero exposes a .seo-hero-actions block`
+    );
+    assert.ok(
+      heroSource.includes(`href="#${exerciseAnchorId}"`),
+      `${slug}: hero practice CTA targets this page's own exercise anchor`
+    );
+    assert.match(
+      heroSource,
+      />Listen &amp; Test Yourself<\/a>/u,
+      `${slug}: hero practice CTA uses the standard practice-only label`
+    );
+    assert.ok(
+      !heroSource.includes('apps.apple.com'),
+      `${slug}: hero must not carry an App Store CTA (NO_APP_SUPPORT)`
+    );
+    assert.ok(
+      heroSource.includes('class="seo-hero-product-note"'),
+      `${slug}: hero carries a scope-honest product note`
+    );
+    assert.match(
+      heroSource,
+      /other sound contrasts across its supported first-language tracks/iu,
+      `${slug}: hero product note is capability-safe`
+    );
+  }
+});
+
 test('heart/hurt and law/low separate web practice from capability-safe app coverage', () => {
   for (const { slug, pair } of UNSUPPORTED_PAGE_CASES) {
     const file = `content/pairs/${slug}/index.html`;
     const source = fs.readFileSync(file, 'utf8');
-    const exerciseIndex = source.indexOf(`<div data-exercise data-contrast="${slug}"></div>`);
+    const exerciseAnchorId = `${slug}-listening-exercise`;
+    const exerciseIndex = source.indexOf(
+      `<div id="${exerciseAnchorId}" data-exercise data-contrast="${slug}"></div>`
+    );
     const ctaSection = source.match(
       /<section class="seo-cta"[\s\S]*?<\/section>/u
     )?.[0];
 
-    assert.ok(exerciseIndex >= 0, `${slug}: web exercise is preserved`);
+    assert.ok(exerciseIndex >= 0, `${slug}: web exercise exposes its static mount id`);
     assert.ok(ctaSection, `${slug}: CTA section is present`);
     assert.ok(
       exerciseIndex < source.indexOf(ctaSection),

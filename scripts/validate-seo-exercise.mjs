@@ -6,8 +6,11 @@ import { hasCompleteSeoExerciseTranslation } from '../src/seo-exercise-translati
 
 const HUB_SLUGS = new Set(['english-ear-training', 'minimal-pairs-practice']);
 const SEO_PAGE_SCRIPT = '<script type="module" src="/src/seo-page.js"></script>';
-// Pages the canonical .seo-hero-actions invariant does not (yet) apply to.
-// See the comment above its enforcement below for why each one is excluded.
+// Pages the canonical two-button .seo-hero-actions invariant does not apply
+// to. See the comment above its enforcement below for why each one is
+// excluded. These pages are not left unchecked -- ship-vs-sheep/live-vs-leave/
+// sit-vs-seat get their own experiment-control assertion, and heart-vs-hurt/
+// law-vs-low get the bespoke practice-only hero assertion below.
 const HERO_ACTIONS_EXCEPTIONS = new Set([
   'ship-vs-sheep',
   'live-vs-leave',
@@ -15,6 +18,12 @@ const HERO_ACTIONS_EXCEPTIONS = new Set([
   'heart-vs-hurt',
   'law-vs-low',
 ]);
+// NO_APP_SUPPORT pages that expose the bespoke practice-only hero: a single
+// "Listen & Test Yourself" CTA to the page's own exercise anchor, a
+// scope-honest product note, and no hero App Store CTA. See the comment
+// above the canonical two-button enforcement below for why these two cannot
+// use that shape.
+const HERO_PRACTICE_ONLY_ROUTES = new Set(['heart-vs-hurt', 'law-vs-low']);
 const PRACTICE_PROMISE_PATTERNS = [
   {
     id: 'try-listening-exercise',
@@ -359,11 +368,33 @@ for (const { filePath, contrastId, route } of pairPages) {
   //     deliberately carries exactly two resolver-driven ("Soundwise App")
   //     App Store links and no fixed/generic-copy CTA anywhere on the page --
   //     scripts/trust-alignment.test.mjs pins that exact, capability-safe
-  //     shape. Adding a third, generic-copy hero App Store CTA would violate
-  //     it. These two need a bespoke capability-safe hero pattern (primary
-  //     practice CTA only, or a resolver-driven secondary) designed and
-  //     tested as its own follow-up, not a copy of the bit-vs-beat pattern.
-  if (!HERO_ACTIONS_EXCEPTIONS.has(route)) {
+  //     shape. A third, generic-copy hero App Store CTA would violate it, so
+  //     these two use the bespoke practice-only hero pattern enforced below
+  //     instead of the canonical two-button shape.
+  if (HERO_PRACTICE_ONLY_ROUTES.has(route)) {
+    const heroStartIndex = targetSource.indexOf('<header class="seo-hero">');
+    const heroEndIndex = targetSource.indexOf('</header>');
+    const heroSource = targetSource.slice(heroStartIndex, heroEndIndex);
+    // Mirrors src/seo-page.js's getSeoExerciseMountId() convention.
+    const exerciseAnchorId = `${contrastId}-listening-exercise`;
+
+    if (!heroSource.includes('class="seo-hero-actions"')) {
+      fail(`${filePath} is missing the bespoke practice-only .seo-hero-actions block`);
+    } else {
+      if (!heroSource.includes(`href="#${exerciseAnchorId}"`)) {
+        fail(`${filePath} hero practice CTA does not target this page's own exercise anchor (#${exerciseAnchorId})`);
+      }
+      if (!targetSource.includes(`id="${exerciseAnchorId}"`)) {
+        fail(`${filePath} exercise mount does not expose the id="${exerciseAnchorId}" its hero CTA links to`);
+      }
+      if (heroSource.includes('apps.apple.com')) {
+        fail(`${filePath} is NO_APP_SUPPORT and must not carry a hero App Store CTA`);
+      }
+      if (!heroSource.includes('class="seo-hero-product-note"')) {
+        fail(`${filePath} is missing the scope-honest .seo-hero-product-note`);
+      }
+    }
+  } else if (!HERO_ACTIONS_EXCEPTIONS.has(route)) {
     const headerEndIndex = targetSource.indexOf('</header>');
     const heroSource = headerEndIndex >= 0 ? targetSource.slice(0, headerEndIndex) : targetSource;
     // Mirrors src/seo-page.js's getSeoExerciseMountId() convention.

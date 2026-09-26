@@ -56,7 +56,16 @@ This single button intentionally omits `data-capability-copy="generic"`, so it s
 **Known exceptions -- do not add `.seo-hero-actions` to these without resolving the underlying constraint first:**
 
 - `ship-vs-sheep`, `live-vs-leave`, `sit-vs-seat`: the control cohort for the active `conversion_serp_cta_v1` experiment (`src/analytics-content-variants.js`; `bit-vs-beat`/`fill-vs-feel` are the treatment). `scripts/conversion-serp-cta.test.mjs` asserts these three pages stay free of `.seo-hero-actions` while the experiment is live.
-- `heart-vs-hurt`, `law-vs-low`: `NO_APP_SUPPORT` for every currently supported L1 (`docs/app-website-contrast-alignment.md`). Their `.seo-cta` section deliberately carries exactly two resolver-driven, generic-label ("Soundwise App") App Store links and no fixed/`generic`-copy CTA anywhere on the page; `scripts/trust-alignment.test.mjs` pins that exact shape. These two need a bespoke capability-safe hero CTA (designed and tested on its own) rather than the standard pattern above.
+- `heart-vs-hurt`, `law-vs-low`: `NO_APP_SUPPORT` for every currently supported L1 (`docs/app-website-contrast-alignment.md`). Their `.seo-cta` section deliberately carries exactly two resolver-driven, generic-label ("Soundwise App") App Store links and no fixed/`generic`-copy CTA anywhere on the page; `scripts/trust-alignment.test.mjs` pins that exact shape. Rather than the standard two-button pattern above, these two use a bespoke **practice-only hero**: a single primary CTA to the page's own exercise anchor, no hero App Store CTA, and a scope-honest product note:
+
+  ```html
+  <div class="seo-hero-actions">
+    <a href="#<contrast-id>-listening-exercise" class="btn btn-primary">Listen &amp; Test Yourself</a>
+  </div>
+  <p class="seo-hero-product-note"><capability-safe note: web exercise covers this pair; Soundwise covers other contrasts></p>
+  ```
+
+  The exercise mount also carries a static `id="<contrast-id>-listening-exercise"` (rather than relying on the adapter's runtime default) so the hero anchor resolves. `scripts/validate-seo-exercise.mjs` and `scripts/trust-alignment.test.mjs` both enforce this exact shape for these two routes.
 
 ## Preferred Learning Journey Structure
 
