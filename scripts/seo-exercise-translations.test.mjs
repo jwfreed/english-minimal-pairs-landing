@@ -43,6 +43,22 @@ const HERO_RUNTIME_LOCALE_BY_SEO_LOCALE = {
   vi: 'Tiếng Việt',
 };
 
+const HERO_RUNTIME_LOCALE_BY_PROMPT_LOCALE = {
+  ja: '日本語',
+  zh: '中文',
+  yue: '廣東話',
+  ko: '한국어',
+  es: 'idioma español',
+  pt: 'Português',
+  ar: 'اللغة العربية',
+  'hi-ur': 'हिंदी/اردو',
+  id: 'bahasa Indo',
+  fa: 'زبان فارسی',
+  ru: 'русский язык',
+  tr: 'Türkçe',
+  vi: 'Tiếng Việt',
+};
+
 const ZERO_SCORE_SUMMARY_BY_LOCALE = {
   yue: {
     lead: '呢組對比仲需要多啲辨音練習。',
@@ -67,6 +83,61 @@ const ZERO_SCORE_SUMMARY_BY_LOCALE = {
   vi: {
     lead: 'Cặp âm này cần luyện tai thêm.',
     body: 'Điều đó là bình thường. Luyện nghe có tập trung giúp não bạn tách được những âm trước đây nghe như nhau.',
+  },
+};
+
+const REVIEWED_PROMPT_OVERRIDES = {
+  ja: {
+    previewPrompt: 'まず2つの単語を聞いてみましょう。',
+    testPrompt: 'どちらの単語が聞こえましたか？',
+  },
+  zh: {
+    previewPrompt: '先听这两个单词。',
+    testPrompt: '你听到的是哪个单词？',
+  },
+  yue: {
+    previewPrompt: '先聽吓呢兩個字。',
+    testPrompt: '你聽到邊個字？',
+  },
+  ko: {
+    previewPrompt: '먼저 두 단어를 들어 보세요.',
+    testPrompt: '어떤 단어가 들렸나요?',
+  },
+  es: {
+    previewPrompt: 'Escucha primero las dos palabras.',
+    testPrompt: '¿Qué palabra oíste?',
+  },
+  pt: {
+    previewPrompt: 'Ouça primeiro as duas palavras.',
+    testPrompt: 'Qual palavra você ouviu?',
+  },
+  ar: {
+    previewPrompt: 'استمع إلى الكلمتين أولاً.',
+    testPrompt: 'أي كلمة سمعت؟',
+  },
+  'hi-ur': {
+    previewPrompt: 'पहले दोनों शब्द सुनिए।',
+    testPrompt: 'आपने कौन-सा शब्द सुना?',
+  },
+  id: {
+    previewPrompt: 'Dengarkan kedua kata dulu.',
+    testPrompt: 'Kata mana yang kamu dengar?',
+  },
+  fa: {
+    previewPrompt: 'ابتدا هر دو کلمه را بشنوید.',
+    testPrompt: 'کدام کلمه را شنیدید؟',
+  },
+  ru: {
+    previewPrompt: 'Сначала послушайте оба слова.',
+    testPrompt: 'Какое слово прозвучало?',
+  },
+  tr: {
+    previewPrompt: 'Önce iki kelimeyi de dinle.',
+    testPrompt: 'Hangi kelimeyi duydun?',
+  },
+  vi: {
+    previewPrompt: 'Nghe cả hai từ trước.',
+    testPrompt: 'Bạn nghe thấy từ nào?',
   },
 };
 
@@ -204,32 +275,23 @@ test('the completeness gate rejects malformed dynamic output instead of trusting
   ]);
 });
 
-test('safe reuse preserves approved hero-demo strings and their existing UI composition', () => {
-  const japanese = SEO_EXERCISE_TRANSLATION_CANDIDATES.ja;
-  const hero = heroDemoTranslations['日本語'];
+test('all 26 reviewed localized prompt values override reuse while preserving live announcements', () => {
+  assert.deepEqual(Object.keys(REVIEWED_PROMPT_OVERRIDES).sort(), [
+    'ar', 'es', 'fa', 'hi-ur', 'id', 'ja', 'ko', 'pt', 'ru', 'tr', 'vi', 'yue', 'zh',
+  ]);
 
-  assert.equal(japanese.previewPrompt, hero.demoHearDifference);
-  assert.equal(japanese.startButton, hero.demoStartTest);
-  assert.equal(japanese.playButton, hero.demoPlaySample);
-  assert.equal(japanese.testPrompt, hero.demoListenPrompt);
-  assert.equal(japanese.feedbackReplayPrompt, hero.demoReplayPrompt);
-  assert.equal(japanese.nextButton, hero.demoNextRound);
-  assert.equal(japanese.chooseWordLabel('SHIP'), 'SHIP を選ぶ');
-  assert.equal(japanese.playWordLabel('SHEEP'), 'SHEEP の発音を再生');
-  assert.equal(japanese.roundLabel(1, 2), '2回中 1回目');
-  assert.equal(japanese.scoreLabel(1, 2), '2問中1問正解です。');
-  assert.equal(
-    japanese.feedback({ selectedWord: 'SHIP', correctWord: 'SHEEP', correct: false }),
-    '惜しいです。 あなたの選択: SHIP. 正解: SHEEP.'
-  );
-  assert.deepEqual(japanese.summary({ correct: 2, total: 2 }), {
-    lead: hero.demoSummaryAllCorrectLead,
-    body: hero.demoSummaryAllCorrectBody,
-  });
-  assert.deepEqual(japanese.summaryCta({ correct: 0, total: 2 }), {
-    headline: hero.demoReadyPrompt,
-    body: hero.demoValueSignal,
-  });
+  for (const [locale, expected] of Object.entries(REVIEWED_PROMPT_OVERRIDES)) {
+    const copy = SEO_EXERCISE_TRANSLATION_CANDIDATES[locale];
+    const hero = heroDemoTranslations[HERO_RUNTIME_LOCALE_BY_PROMPT_LOCALE[locale]];
+
+    assert.equal(copy.previewPrompt, expected.previewPrompt, `${locale} preview prompt`);
+    assert.equal(copy.testPrompt, expected.testPrompt, `${locale} test prompt`);
+    assert.equal(copy.listenPrompt, hero.demoListenPrompt, `${locale} live announcement`);
+    assert.notEqual(copy.testPrompt, copy.listenPrompt, `${locale} distinct test and live prompts`);
+    assert.deepEqual(getMissingSeoExerciseKeys(copy), [], `${locale} complete contract`);
+    assert.equal(copy.previewPrompt.includes('Listen to both words first.'), false, `${locale} preview fallback`);
+    assert.equal(copy.testPrompt.includes('Which word did you hear?'), false, `${locale} test fallback`);
+  }
 });
 
 test('consonant flagship routes use complete contrast-neutral summaries', () => {

@@ -19,10 +19,10 @@ A localized exercise is READY only when every required field is present and vali
 | `guessChoicesAriaLabel` | Accessible name for the answer group | Choose the word you heard | `เลือกคำที่คุณได้ยิน` | `demoListenPrompt` is related visible/live copy, not a reviewed group label | `IMPLEMENTED_PAYLOAD` |
 | `replayChoicesAriaLabel` | Accessible name for the feedback replay group | Replay the contrast | `ฟังคู่เสียงนี้อีกครั้ง` | `demoReplayPrompt` is related visible copy, not a reviewed group label | `IMPLEMENTED_PAYLOAD` |
 | `liveInitial` | Initial polite live-region message | Hear the contrast, then test your ear | `ฟังคู่เสียงนี้ แล้วทดสอบการฟังของคุณ` | `demoHearDifference` and `demoListenPrompt` each cover only part of the sequence | `IMPLEMENTED_PAYLOAD` |
-| `previewPrompt` | Visible pre-start instruction | Listen to both words first | `ฟังทั้งสองคำก่อน` | `demoHearDifference` | `SAFE_REUSE` |
+| `previewPrompt` | Visible pre-start instruction and polite live-region message on return to preview | Listen to both words first | `ฟังทั้งสองคำก่อน` | `demoHearDifference` omits “both words” and “first” | `IMPLEMENTED_PAYLOAD` |
 | `startButton` | Starts round one | Start the listening test | `เริ่มแบบทดสอบการฟัง` | `demoStartTest` | `SAFE_REUSE` |
 | `playButton` | Replays the hidden sample during a round | Play the sample | `เล่นเสียงตัวอย่าง` | `demoPlaySample` | `SAFE_REUSE` |
-| `testPrompt` | Visible answer prompt | Which word did you hear? | `คุณได้ยินคำไหน` | `demoListenPrompt` | `SAFE_REUSE` |
+| `testPrompt` | Visible answer prompt | Which word did you hear? | `คุณได้ยินคำไหน` | `demoListenPrompt` includes the longer live-announcement cue | `IMPLEMENTED_PAYLOAD` |
 | `feedbackReplayPrompt` | Visible replay instruction after an answer | Listen again | `ฟังอีกครั้ง:` | `demoReplayPrompt` | `SAFE_REUSE` |
 | `nextButton` | Advances to round two | Try one more round | `ลองอีกหนึ่งรอบ` | `demoNextRound` | `SAFE_REUSE` |
 | `speakerLabel` | Short visible, aria-hidden label inside word playback buttons | Listen | `ฟัง` | `demoPlaySample` and `demoPlayWord` are longer action labels with different placements | `IMPLEMENTED_PAYLOAD` |
@@ -73,13 +73,15 @@ The completed linguistic-review payload resolves every blocker. All 14 localized
 | `guessChoicesAriaLabel` | `IMPLEMENTED_PAYLOAD` | “Choose the word you heard”; accessible answer-group name | `demoListenPrompt` | The existing sentence is visible/live prompt copy, not a reviewed accessible group label. |
 | `replayChoicesAriaLabel` | `IMPLEMENTED_PAYLOAD` | “Replay the contrast”; accessible replay-group name | `demoReplayPrompt` | The existing short visible instruction may need grammatical adaptation as a group label. |
 | `liveInitial` | `IMPLEMENTED_PAYLOAD` | “Hear the contrast, then test your ear”; initial polite announcement | `demoHearDifference`, `demoListenPrompt` | Neither existing string expresses the full two-step pre-start sequence. |
+| `previewPrompt` | `IMPLEMENTED_PAYLOAD` | “Listen to both words first”; visible preview prompt and polite live-region message when returning to preview | `demoHearDifference` | It omits “both words” and “first.” |
+| `testPrompt` | `IMPLEMENTED_PAYLOAD` | “Which word did you hear?”; short visible answer prompt | `demoListenPrompt` | It includes the longer live-announcement cue. |
 | `speakerLabel` | `IMPLEMENTED_PAYLOAD` | “Listen”; short visible label inside each word playback control | `demoPlaySample`, `demoPlayWord` | Existing strings are a full sample button or word-specific accessible template, not this compact visible label. |
 | `audioUnavailable` | `IMPLEMENTED_PAYLOAD` | Playback failed; enable sound or use a speech-capable browser before answering | None | The completed payload supplies the localized error/recovery message. |
 | `feedbackContrast` | `IMPLEMENTED_PAYLOAD` | “The contrast is `{contrast}`”; appended to answer feedback and announced live | Related contrast language exists in `demoSummary*`, without a placeholder | A new grammatical template is required around arbitrary IPA text. |
 | `generalizationHeading` | `IMPLEMENTED_PAYLOAD` | “You practiced `{contrast}`. Try another example”; completion heading | Related repetition language exists in `demoSummaryAllCorrectBody` | No reviewed dynamic heading exists, and arbitrary IPA must remain readable. |
 | `generalizationBody` | `IMPLEMENTED_PAYLOAD` | “These pairs use the same sound contrast”; explains the catalog-derived pair list | `demoSummaryAllCorrectBody` | Existing copy recommends practice across words and voices; it does not label the relationship of the displayed list. |
 
-These ten keys were supplied and implemented for each of: Japanese (`ja`), Mandarin (`zh`), Cantonese (`yue`), Korean (`ko`), Spanish (`es`), Portuguese (`pt`), Arabic (`ar`), Hindi/Urdu (`hi-ur`), Indonesian (`id`), Persian (`fa`), Russian (`ru`), Turkish (`tr`), and Vietnamese (`vi`). Dynamic `{contrast}` transfer tokens are runtime functions and never render literally.
+These twelve keys were supplied and implemented for each of: Japanese (`ja`), Mandarin (`zh`), Cantonese (`yue`), Korean (`ko`), Spanish (`es`), Portuguese (`pt`), Arabic (`ar`), Hindi/Urdu (`hi-ur`), Indonesian (`id`), Persian (`fa`), Russian (`ru`), Turkish (`tr`), and Vietnamese (`vi`). Dynamic `{contrast}` transfer tokens are runtime functions and never render literally.
 
 ### Consonant summaries implemented
 
@@ -96,4 +98,4 @@ These ten keys were supplied and implemented for each of: Japanese (`ja`), Manda
 
 `src/seo-exercise-translation-reuse.js` owns the explicit reuse mapping. It imports the approved strings from `src/hero-demo-translations.js`, preserves them verbatim, and performs only the placeholder substitution and feedback composition already used by `src/main.js`. It intentionally does not provide any of the punch-list fields.
 
-The reusable fields are `previewPrompt`, `startButton`, `playButton`, `testPrompt`, `feedbackReplayPrompt`, `nextButton`, `listenPrompt`, `chooseWordLabel`, `playWordLabel`, `roundLabel`, `scoreLabel`, `feedback`, and `summaryCta`. `summary` remains safely reused for the seven vowel flagship locales (`ja`, `zh`, `es`, `pt`, `id`, `ru`, and `tr`). The six consonant locales use the supplied complete perfect/partial/zero summary branches instead of the vowel-specific zero-score reuse.
+The reusable fields are `startButton`, `playButton`, `feedbackReplayPrompt`, `nextButton`, `listenPrompt`, `chooseWordLabel`, `playWordLabel`, `roundLabel`, `scoreLabel`, `feedback`, and `summaryCta`. The locale supplements explicitly override `previewPrompt` and `testPrompt` with reviewed values; `listenPrompt` remains approved `demoListenPrompt` reuse. `summary` remains safely reused for the seven vowel flagship locales (`ja`, `zh`, `es`, `pt`, `id`, `ru`, and `tr`). The six consonant locales use the supplied complete perfect/partial/zero summary branches instead of the vowel-specific zero-score reuse.
