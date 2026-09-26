@@ -19,6 +19,13 @@ import {
 } from './app-store-attribution.js';
 import { buildAppleCampaignUrl } from './apple-campaign-links.js';
 import { getSeoExerciseTrainingPairs } from './seo-exercise-training-rollout.js';
+import { createSeoExerciseInputGate } from './seo-exercise-input-gate.js';
+import { isSeoExercisePresentationFrozen } from './seo-exercise-presentation-freeze.js';
+import {
+  getReplayFeedbackStates,
+  shouldShowWordIpa,
+} from './seo-exercise-presentation.js';
+import { getPublishedSeoPairRoute } from './seo-page-routes.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
@@ -153,23 +160,38 @@ function getEnglishVoice() {
   );
 }
 
-function setButtonBusy(button, isBusy) {
+let activeSpeechPlayback = null;
+let speechPlaybackSequence = 0;
+
+function setButtonBusy(button, isBusy, { automaticReplay = false } = {}) {
   if (!button) {
     return;
   }
 
   button.classList.toggle('is-playing', isBusy);
+  button.classList.toggle('is-auto-playing', isBusy && automaticReplay);
   button.setAttribute('aria-busy', String(isBusy));
 }
 
-function speakWord(text, activeButton) {
+export function cancelSpeechPlayback({ didPlay = false } = {}) {
+  const playback = activeSpeechPlayback;
+
+  if (playback) {
+    playback.complete(didPlay);
+  }
+
+  window.speechSynthesis?.cancel?.();
+}
+
+export function speakWord(text, activeButton, { automaticReplay = false } = {}) {
   const synthesis = window.speechSynthesis;
 
   if (!synthesis) {
     return Promise.resolve(false);
   }
 
-  synthesis.cancel();
+  cancelSpeechPlayback();
+  const playbackId = ++speechPlaybackSequence;
 
   return new Promise((resolve) => {
     const utterance = new SpeechSynthesisUtterance(text);
@@ -183,20 +205,46 @@ function speakWord(text, activeButton) {
       utterance.voice = englishVoice;
     }
 
+    let settled = false;
     const complete = (didPlay) => {
-      setButtonBusy(activeButton, false);
+      if (settled) {
+        return;
+      }
+
+      settled = true;
+      if (activeSpeechPlayback?.id === playbackId) {
+        setButtonBusy(activeButton, false, { automaticReplay });
+        activeSpeechPlayback = null;
+      }
       resolve(didPlay);
+    };
+
+    activeSpeechPlayback = {
+      id: playbackId,
+      button: activeButton,
+      automaticReplay,
+      complete,
     };
 
     utterance.onend = () => complete(true);
     utterance.onerror = () => complete(false);
 
-    setButtonBusy(activeButton, true);
+    setButtonBusy(activeButton, true, { automaticReplay });
     synthesis.speak(utterance);
   });
 }
 
-function buildWordButton(contrast, index, action, uiCopy) {
+function focusWithoutScroll(element) {
+  element?.focus?.({ preventScroll: true });
+}
+
+function setGuessAvailability(container, isAvailable) {
+  container.querySelectorAll('button[data-action="guess"]').forEach((button) => {
+    button.setAttribute('aria-disabled', String(!isAvailable));
+  });
+}
+
+function buildWordButton(contrast, index, action, uiCopy, enhancedPresentation) {
   const word = contrast.words[index];
   const wordLabel = word.text.toUpperCase();
   const button = createElement('button', {
@@ -208,6 +256,7 @@ function buildWordButton(contrast, index, action, uiCopy) {
       'aria-label': action === 'guess'
         ? uiCopy.chooseWordLabel(wordLabel)
         : uiCopy.playWordLabel(wordLabel),
+      ...(action === 'guess' ? { 'aria-disabled': 'true' } : {}),
     },
   });
 
@@ -222,6 +271,7 @@ function buildWordButton(contrast, index, action, uiCopy) {
   const wordIpa = createElement('span', {
     className: 'seo-exercise-word-ipa',
     textContent: word.ipa,
+    attributes: { dir: 'ltr' },
   });
 
   if (action !== 'guess') {
@@ -233,7 +283,7 @@ function buildWordButton(contrast, index, action, uiCopy) {
     const body = createElement('span', { className: 'seo-exercise-word-body' });
     body.append(wordText);
 
-    if (action === 'replay') {
+    if (shouldShowWordIpa({ action, enhancedPresentation })) {
       body.append(wordIpa);
     }
 
@@ -245,10 +295,36 @@ function buildWordButton(contrast, index, action, uiCopy) {
   return button;
 }
 
-function renderWordButtons(container, contrast, action, uiCopy) {
+function renderWordButtons(container, contrast, action, uiCopy, enhancedPresentation) {
   container.replaceChildren(
-    ...contrast.words.map((word, index) => buildWordButton(contrast, index, action, uiCopy))
+    ...contrast.words.map((word, index) => (
+      buildWordButton(contrast, index, action, uiCopy, enhancedPresentation)
+    ))
   );
+}
+
+function renderReplayFeedbackStates(container, feedback) {
+  const buttons = [...container.querySelectorAll('button[data-action="replay"]')];
+  const states = getReplayFeedbackStates(feedback, buttons.length);
+
+  buttons.forEach((button, index) => {
+    button.classList.remove('is-correct', 'is-selected-incorrect');
+    button.removeAttribute('data-feedback-state');
+    button.querySelector('.seo-exercise-word-feedback-marker')?.remove();
+
+    const state = states[index];
+    if (!state) {
+      return;
+    }
+
+    button.classList.add(state === 'correct' ? 'is-correct' : 'is-selected-incorrect');
+    button.dataset.feedbackState = state;
+    button.append(createElement('span', {
+      className: 'seo-exercise-word-feedback-marker',
+      textContent: state === 'correct' ? '✓' : '✗',
+      attributes: { 'aria-hidden': 'true' },
+    }));
+  });
 }
 
 function renderFeedbackCopy(element, feedback, uiCopy) {
@@ -276,7 +352,13 @@ function renderSummaryCopy(elements, snapshot, uiCopy) {
   summaryBody.textContent = summary.body;
 }
 
-function renderGeneralizationCopy(element, relatedContrasts, contrast, uiCopy) {
+function renderGeneralizationCopy(
+  element,
+  relatedContrasts,
+  contrast,
+  uiCopy,
+  { enhancedPresentation, locale }
+) {
   if (!relatedContrasts.length) {
     element.hidden = true;
     return;
@@ -285,16 +367,42 @@ function renderGeneralizationCopy(element, relatedContrasts, contrast, uiCopy) {
   const [heading, body, list] = element.children;
   heading.textContent = uiCopy.generalizationHeading(contrast.contrast);
   body.textContent = uiCopy.generalizationBody;
-  list.replaceChildren(
-    ...relatedContrasts.map((relatedContrast) => createElement('li', {
-      className: 'seo-exercise-generalization-pair',
+  list.replaceChildren(...relatedContrasts.map((relatedContrast) => {
+    if (!enhancedPresentation) {
+      return createElement('li', {
+        className: 'seo-exercise-generalization-pair',
+        textContent: formatPairName(relatedContrast),
+      });
+    }
+
+    const item = createElement('li', { className: 'seo-exercise-generalization-item' });
+    const href = getPublishedSeoPairRoute({ pairId: relatedContrast.id, locale });
+    const content = createElement(href ? 'a' : 'span', {
+      className: href
+        ? 'seo-exercise-generalization-link'
+        : 'seo-exercise-generalization-text',
       textContent: formatPairName(relatedContrast),
-    }))
-  );
+      attributes: {
+        ...(href ? { href } : {}),
+        lang: 'en',
+        dir: 'ltr',
+      },
+    });
+    item.append(content);
+    return item;
+  }));
   element.hidden = false;
 }
 
-function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = null) {
+export function createSeoExercise(
+  mount,
+  contrast,
+  capability,
+  uiCopy,
+  trainingPairs = null,
+  routeLocale = 'en'
+) {
+  const enhancedPresentation = !isSeoExercisePresentationFrozen(window.location.pathname);
   const titleId = `${mount.id || contrast.id}-title`;
   const liveRegion = createElement('p', {
     className: 'seo-exercise-live',
@@ -303,19 +411,27 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
   });
 
   const header = createElement('div', { className: 'seo-exercise-header' });
+  const title = createElement('h2', {
+    className: 'seo-exercise-title',
+    textContent: formatPairName(contrast),
+    attributes: { id: titleId, tabindex: '-1' },
+  });
   header.append(
     createElement('p', { className: 'seo-exercise-label', textContent: uiCopy.label }),
-    createElement('h2', {
-      className: 'seo-exercise-title',
-      textContent: formatPairName(contrast),
-      attributes: { id: titleId },
-    })
+    title
   );
+
+  if (enhancedPresentation) {
+    header.append(createElement('span', {
+      className: 'seo-exercise-contrast-chip',
+      textContent: contrast.contrast,
+      attributes: { dir: 'ltr' },
+    }));
+  }
 
   const round = createElement('p', { className: 'seo-exercise-round' });
   const audioStatus = createElement('p', {
     className: 'seo-exercise-audio-status',
-    attributes: { role: 'status' },
   });
   const preview = createElement('div', { className: 'seo-exercise-stage' });
   const previewWords = createElement('div', {
@@ -370,16 +486,21 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
     textContent: uiCopy.nextButton,
     attributes: { type: 'button' },
   });
+  feedback.append(feedbackCopy);
+  if (!enhancedPresentation) {
+    feedback.append(feedbackContrast);
+  }
   feedback.append(
-    feedbackCopy,
-    feedbackContrast,
     createElement('p', { className: 'seo-exercise-prompt', textContent: uiCopy.feedbackReplayPrompt }),
     replayWords,
     nextButton
   );
 
   const summary = createElement('div', { className: 'seo-exercise-stage seo-exercise-summary' });
-  const summaryLead = createElement('p', { className: 'seo-exercise-summary-lead' });
+  const summaryLead = createElement('p', {
+    className: 'seo-exercise-summary-lead',
+    attributes: { tabindex: '-1' },
+  });
   const score = createElement('p', { className: 'seo-exercise-score' });
   const summaryBody = createElement('p', { className: 'seo-exercise-summary-body' });
   const generalization = createElement('section', {
@@ -422,9 +543,9 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
       return;
     }
 
-    renderWordButtons(previewWords, pair, 'preview', uiCopy);
-    renderWordButtons(guessWords, pair, 'guess', uiCopy);
-    renderWordButtons(replayWords, pair, 'replay', uiCopy);
+    renderWordButtons(previewWords, pair, 'preview', uiCopy, enhancedPresentation);
+    renderWordButtons(guessWords, pair, 'guess', uiCopy, enhancedPresentation);
+    renderWordButtons(replayWords, pair, 'replay', uiCopy, enhancedPresentation);
     renderedPair = pair;
   };
 
@@ -456,10 +577,17 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
         generalization,
         getRelatedContrasts(contrast.id, { excludeIds: snapshot.pairsSeen }),
         contrast,
-        uiCopy
+        uiCopy,
+        { enhancedPresentation, locale: routeLocale }
       );
     }
   };
+
+  const inputGate = createSeoExerciseInputGate({
+    onGuessAvailabilityChange: (isAvailable) => {
+      setGuessAvailability(guessWords, isAvailable);
+    },
+  });
 
   exercise = createExercise({
     mount: {
@@ -477,7 +605,12 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
         }
       },
       getTargetIndex: () => Math.round(Math.random()),
-      onFeedback: (payload) => renderFeedbackCopy(feedbackCopy, payload, uiCopy),
+      onFeedback: (payload) => {
+        renderFeedbackCopy(feedbackCopy, payload, uiCopy);
+        if (enhancedPresentation) {
+          renderReplayFeedbackStates(replayWords, payload);
+        }
+      },
       onAudioUnavailable: () => {
         audioStatus.textContent = uiCopy.audioUnavailable;
         liveRegion.textContent = uiCopy.audioUnavailable;
@@ -489,9 +622,13 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
       onListenPrompt: () => {
         liveRegion.textContent = uiCopy.listenPrompt;
       },
-      onFeedbackReady: () => {
-        feedbackContrast.textContent = uiCopy.feedbackContrast(contrast.contrast);
-        liveRegion.textContent = `${feedbackCopy.textContent} ${feedbackContrast.textContent}`;
+      onFeedbackReady: (payload, snapshot) => {
+        const accessibleContrast = uiCopy.feedbackContrast(contrast.contrast);
+        if (!enhancedPresentation) {
+          feedbackContrast.textContent = accessibleContrast;
+        }
+        liveRegion.textContent = `${feedbackCopy.textContent} ${accessibleContrast}`;
+        focusWithoutScroll(snapshot.stage === 'summary' ? summaryLead : nextButton);
       },
       onPreviewPrompt: (snapshot) => {
         // A multi-pair round can change the lexical targets; name them so the
@@ -499,8 +636,19 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
         liveRegion.textContent = trainingPairs
           ? `${uiCopy.previewPrompt} ${formatPairName(snapshot.currentPair)}`
           : uiCopy.previewPrompt;
+        focusWithoutScroll(previewWords.querySelector('button[data-action="preview"]'));
       },
-      playWord: (word, activeButton) => speakWord(word.text, activeButton),
+      playWord: (word, activeButton) => {
+        const automaticReplayButton = enhancedPresentation && !activeButton
+          ? replayWords.querySelector(
+            `button[data-word-index="${renderedPair.words.indexOf(word)}"]`
+          )
+          : null;
+
+        return speakWord(word.text, activeButton || automaticReplayButton, {
+          automaticReplay: Boolean(automaticReplayButton),
+        });
+      },
       wait: (ms) => new Promise((resolve) => window.setTimeout(resolve, ms)),
     },
     contrast,
@@ -515,9 +663,15 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
     exercise.unlockAudio();
   };
 
-  startButton.addEventListener('click', () => {
+  startButton.addEventListener('click', async () => {
     markInteraction();
-    exercise.startRound(playButton);
+    const snapshot = await inputGate.start(() => exercise.startRound(playButton));
+
+    if (snapshot?.stage === 'test') {
+      focusWithoutScroll(guessWords.querySelector('button[data-action="guess"]'));
+    } else if (snapshot?.stage === 'preview') {
+      focusWithoutScroll(previewWords.querySelector('button[data-action="preview"]'));
+    }
   });
 
   playButton.addEventListener('click', () => {
@@ -551,19 +705,25 @@ function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = 
     exercise.playWord(Number(button.dataset.wordIndex), button);
   });
 
-  guessWords.addEventListener('click', (event) => {
+  guessWords.addEventListener('click', async (event) => {
     const button = event.target.closest('button[data-action="guess"]');
 
     if (!button) {
       return;
     }
 
+    if (!inputGate.areGuessesAvailable()) {
+      return;
+    }
+
     markInteraction();
-    exercise.answer(Number(button.dataset.wordIndex));
+    await inputGate.answer(() => exercise.answer(Number(button.dataset.wordIndex)));
   });
 
   nextButton.addEventListener('click', () => {
     markInteraction();
+    cancelSpeechPlayback({ didPlay: true });
+    inputGate.reset();
     exercise.nextRound();
   });
 
@@ -588,13 +748,14 @@ function setupSeoExercises(capability) {
       return;
     }
 
+    const routeLocale = getSeoPageLocale(window.location.pathname, documentLocale);
     const trainingPairs = getSeoExerciseTrainingPairs({
       pairId: contrast.id,
-      locale: getSeoPageLocale(window.location.pathname, documentLocale),
+      locale: routeLocale,
     });
 
     prepareSeoExerciseMount(mount, contrast);
-    createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs);
+    createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs, routeLocale);
   });
 }
 
@@ -612,6 +773,12 @@ function setupFaqAccordion() {
       question.setAttribute('aria-expanded', String(isExpanded));
     });
   });
+}
+
+export function focusSeoExerciseTarget(target) {
+  if (target.matches?.(SEO_EXERCISE_MOUNT_SELECTOR)) {
+    focusWithoutScroll(target.querySelector('.seo-exercise-title') || target);
+  }
 }
 
 function setupSmoothScroll() {
@@ -635,6 +802,8 @@ function setupSmoothScroll() {
         top: target.offsetTop - navHeight - 20,
         behavior: 'smooth',
       });
+
+      focusSeoExerciseTarget(target);
     });
   });
 }

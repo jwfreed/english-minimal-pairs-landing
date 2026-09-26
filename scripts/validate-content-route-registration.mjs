@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
-const viteConfigPath = path.join(root, 'vite.config.js');
+const routeRegistryPath = path.join(root, 'src', 'seo-page-routes.js');
 const contentPairsDir = path.join(root, 'content', 'pairs');
 const contentLocalesDir = path.join(root, 'content', 'locales');
 
@@ -14,13 +15,15 @@ function readRequired(filePath) {
   return fs.readFileSync(filePath, 'utf8');
 }
 
-function parseSeoPageSlugs(source) {
-  const match = source.match(/const\s+seoPageSlugs\s*=\s*\[([\s\S]*?)\]\s*(?:;|\n)/);
-  if (!match) {
-    throw new Error('Could not find seoPageSlugs in vite.config.js');
+async function readSeoPageSlugs() {
+  readRequired(routeRegistryPath);
+  const { SEO_PAGE_SLUGS } = await import(pathToFileURL(routeRegistryPath).href);
+
+  if (!Array.isArray(SEO_PAGE_SLUGS)) {
+    throw new Error('src/seo-page-routes.js must export SEO_PAGE_SLUGS as an array');
   }
 
-  return [...match[1].matchAll(/'([^']+)'/g)].map((slugMatch) => slugMatch[1]);
+  return SEO_PAGE_SLUGS;
 }
 
 function collectIndexRoutes(directory, prefix = '') {
@@ -53,7 +56,7 @@ function uniqueSorted(values) {
   return [...new Set(values)].sort();
 }
 
-const registeredRoutes = uniqueSorted(parseSeoPageSlugs(readRequired(viteConfigPath)));
+const registeredRoutes = uniqueSorted(await readSeoPageSlugs());
 const contentRoutes = uniqueSorted([
   ...collectIndexRoutes(contentPairsDir),
   ...collectIndexRoutes(contentLocalesDir).filter((route) => route.includes('/')),
@@ -63,10 +66,10 @@ const unregisteredContent = contentRoutes.filter((route) => !registeredRoutes.in
 const missingContentSource = registeredRoutes.filter((route) => !contentRoutes.includes(route));
 const issues = [
   ...unregisteredContent.map((route) => (
-    `content route is not registered in seoPageSlugs: ${route}`
+    `content route is not registered in SEO_PAGE_SLUGS: ${route}`
   )),
   ...missingContentSource.map((route) => (
-    `seoPageSlugs entry has no content source: ${route}`
+    `SEO_PAGE_SLUGS entry has no content source: ${route}`
   )),
 ];
 

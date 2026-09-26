@@ -402,6 +402,100 @@ test('multi-pair playback by index resolves words from the current round pair', 
   assert.deepEqual(playedWords, ['fool', 'full', 'full', 'fool', 'pull', 'pool']);
 });
 
+test('advancing during automatic replay speech prevents playback from leaking into the next pair', async () => {
+  const contrast = getContrastById('full-vs-fool');
+  const trainingPairs = [contrast, getContrastById('pull-vs-pool')];
+  const playedWords = [];
+  let replayStarted;
+  let finishReplayWord;
+  const replayWordStarted = new Promise((resolve) => {
+    replayStarted = resolve;
+  });
+  const replayWordPlayback = new Promise((resolve) => {
+    finishReplayWord = resolve;
+  });
+  let playbackCount = 0;
+  const exercise = createExercise({
+    mount: {
+      dispatchEvent() {},
+      getTargetIndex: () => 1,
+      async playWord(word) {
+        playedWords.push(word.text);
+        playbackCount += 1;
+
+        if (playbackCount === 2) {
+          replayStarted();
+          return replayWordPlayback;
+        }
+
+        return true;
+      },
+      async wait() {},
+    },
+    contrast,
+    trainingPairs,
+  });
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  const answerPromise = exercise.answer(0);
+  await replayWordStarted;
+
+  exercise.nextRound();
+  finishReplayWord(true);
+  await answerPromise;
+
+  assert.equal(exercise.getSnapshot().currentPair.id, 'pull-vs-pool');
+  assert.deepEqual(playedWords, ['fool', 'full']);
+});
+
+test('advancing during the automatic replay gap prevents the next pair from being spoken', async () => {
+  const contrast = getContrastById('full-vs-fool');
+  const trainingPairs = [contrast, getContrastById('pull-vs-pool')];
+  const playedWords = [];
+  let replayGapStarted;
+  let finishReplayGap;
+  const gapStarted = new Promise((resolve) => {
+    replayGapStarted = resolve;
+  });
+  const replayGap = new Promise((resolve) => {
+    finishReplayGap = resolve;
+  });
+  let waitCount = 0;
+  const exercise = createExercise({
+    mount: {
+      dispatchEvent() {},
+      getTargetIndex: () => 1,
+      async playWord(word) {
+        playedWords.push(word.text);
+        return true;
+      },
+      async wait() {
+        waitCount += 1;
+
+        if (waitCount === 1) {
+          replayGapStarted();
+          return replayGap;
+        }
+      },
+    },
+    contrast,
+    trainingPairs,
+  });
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  const answerPromise = exercise.answer(0);
+  await gapStarted;
+
+  exercise.nextRound();
+  finishReplayGap();
+  await answerPromise;
+
+  assert.equal(exercise.getSnapshot().currentPair.id, 'pull-vs-pool');
+  assert.deepEqual(playedWords, ['fool', 'full']);
+});
+
 test('multi-pair sessions never mutate or alias the entry pair record', async () => {
   const entry = getContrastById('full-vs-fool');
   const entryBefore = structuredClone(entry);

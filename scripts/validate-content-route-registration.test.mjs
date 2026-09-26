@@ -17,17 +17,17 @@ function writeFile(root, relativePath, source = '<!doctype html><html></html>') 
   fs.writeFileSync(filePath, source);
 }
 
-function writeViteConfig(root, slugs) {
+function writeRouteRegistry(root, slugs) {
   writeFile(
     root,
-    'vite.config.js',
-    `const seoPageSlugs = [\n${slugs.map((slug) => `  '${slug}',`).join('\n')}\n]\n\nexport default {}\n`,
+    'src/seo-page-routes.js',
+    `export const SEO_PAGE_SLUGS = [\n${slugs.map((slug) => `  '${slug}',`).join('\n')}\n]\n`,
   );
 }
 
 function createFixture(slugs = ['ship-vs-sheep', 'ja/ship-vs-sheep']) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'content-route-validator-'));
-  writeViteConfig(root, slugs);
+  writeRouteRegistry(root, slugs);
   writeFile(root, 'content/pairs/ship-vs-sheep/index.html');
   writeFile(root, 'content/locales/ja/index.html');
   writeFile(root, 'content/locales/ja/ship-vs-sheep/index.html');
@@ -47,7 +47,7 @@ async function runValidator(root) {
   }
 }
 
-test('passes when content route files and seoPageSlugs match', async () => {
+test('passes when content route files and the shared SEO route registry match', async () => {
   const root = createFixture();
 
   const result = await runValidator(root);
@@ -65,7 +65,7 @@ test('fails when a content pair page is not registered for build output', async 
   const output = `${result.stdout}\n${result.stderr}`;
 
   assert.notEqual(result.code, 0);
-  assert.match(output, /content route is not registered in seoPageSlugs: unregistered-pair/);
+  assert.match(output, /content route is not registered in SEO_PAGE_SLUGS: unregistered-pair/);
 });
 
 test('fails when a localized content page is not registered for build output', async () => {
@@ -76,7 +76,7 @@ test('fails when a localized content page is not registered for build output', a
   const output = `${result.stdout}\n${result.stderr}`;
 
   assert.notEqual(result.code, 0);
-  assert.match(output, /content route is not registered in seoPageSlugs: ko\/right-vs-light/);
+  assert.match(output, /content route is not registered in SEO_PAGE_SLUGS: ko\/right-vs-light/);
 });
 
 test('fails when a registered slug has no content source file', async () => {
@@ -86,5 +86,5 @@ test('fails when a registered slug has no content source file', async () => {
   const output = `${result.stdout}\n${result.stderr}`;
 
   assert.notEqual(result.code, 0);
-  assert.match(output, /seoPageSlugs entry has no content source: missing-page/);
+  assert.match(output, /SEO_PAGE_SLUGS entry has no content source: missing-page/);
 });

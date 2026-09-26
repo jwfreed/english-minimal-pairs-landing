@@ -156,7 +156,7 @@ src/style.css
 
 `vite.config.js` controls which HTML files are included in the production build. Entries are grouped by page type:
 
-- `seoPageSlugs` for clean-URL minimal-pair pages.
+- `SEO_PAGE_SLUGS` in `src/seo-page-routes.js` for clean-URL SEO pages; Vite imports this shared registry.
 - `legalLocales` for translated privacy and terms pages.
 - `HREFLANG_BY_LOCALE` in `src/localized-homepage-routes.js` for the supported search
   language tag associated with each locale route slug.
@@ -165,7 +165,7 @@ src/style.css
 - Root utility pages such as `index.html` and `support.html` remain explicit in the input map.
 
 ```js
-const seoPageSlugs = [
+export const SEO_PAGE_SLUGS = [
   'ship-vs-sheep',
   // ... 19 more slugs through 'heart-vs-hurt'
 ]
@@ -249,7 +249,7 @@ For a new clean-URL SEO page:
 1. Create `content/pairs/[word-a]-vs-[word-b]/index.html`.
 2. Follow the content and metadata guidance in `docs/seo-page-creation-guide.md`.
 3. Use lowercase ASCII slugs with hyphens.
-4. Add the slug, without leading or trailing slashes, to `seoPageSlugs` in `vite.config.js`.
+4. Add the slug, without leading or trailing slashes, to `SEO_PAGE_SLUGS` in `src/seo-page-routes.js`.
 5. Add the production URL to `public/sitemap.xml` if the page should be indexed.
 6. Keep App Store CTA links consistent with the UTM conventions in `docs/analytics-and-attribution.md`.
 7. Run `npm run build`.

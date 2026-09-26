@@ -324,6 +324,7 @@ export function createExercise({
         return getSnapshot();
       }
 
+      state.playbackToken += 1;
       state.round += 1;
       state.targetIndex = null;
       state.stage = 'preview';

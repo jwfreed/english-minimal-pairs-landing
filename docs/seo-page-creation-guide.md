@@ -38,7 +38,7 @@ Use lowercase ASCII words, hyphens between words, and the order that matches the
 
 ## Page Creation Workflow
 
-This repository is a Vite static site with vanilla JavaScript. Root utility pages are HTML files in the repo root, clean-URL SEO source pages live under `content/pairs/` or `content/locales/`, and `vite.config.js` lists each HTML entry under `build.rollupOptions.input`. GitHub Pages deploys the built `dist/` folder through `.github/workflows/deploy.yml`.
+This repository is a Vite static site with vanilla JavaScript. Root utility pages are HTML files in the repo root, clean-URL SEO source pages live under `content/pairs/` or `content/locales/`, and `vite.config.js` derives their HTML entries from `SEO_PAGE_SLUGS` in `src/seo-page-routes.js`. GitHub Pages deploys the built `dist/` folder through `.github/workflows/deploy.yml`.
 
 For an English clean URL such as `https://getsoundwise.co/ship-vs-sheep/`, create a source directory with an `index.html` file:
 
@@ -46,10 +46,10 @@ For an English clean URL such as `https://getsoundwise.co/ship-vs-sheep/`, creat
 content/pairs/ship-vs-sheep/index.html
 ```
 
-Then add that slug to `seoPageSlugs` in `vite.config.js`:
+Then add that slug to `SEO_PAGE_SLUGS` in `src/seo-page-routes.js`:
 
 ```js
-const seoPageSlugs = [
+export const SEO_PAGE_SLUGS = [
   'ship-vs-sheep',
 ]
 ```
@@ -66,7 +66,7 @@ Recommended workflow:
 6. Add a UTM-tagged App Store link or another configured landing-page CTA link.
 7. Add structured data that matches visible page content.
 8. If the page should be indexed, add it to `public/sitemap.xml` with an HTTPS URL.
-9. Add the new slug to `seoPageSlugs` in `vite.config.js`.
+9. Add the new slug to `SEO_PAGE_SLUGS` in `src/seo-page-routes.js`.
 10. Run local checks: `npm run build`.
 11. Preview if needed: `npm run preview`.
 12. Deploy by pushing to `main`, which triggers the GitHub Pages workflow.

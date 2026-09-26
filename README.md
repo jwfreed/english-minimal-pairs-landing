@@ -108,7 +108,7 @@ For a clean URL SEO page such as `https://getsoundwise.co/example-page/`:
 
 1. Create `content/pairs/example-page/index.html` for an English source page, or `content/locales/<locale>/example-page/index.html` for a localized source page.
 2. Reuse existing shared assets where appropriate, usually `/src/style.css` and the existing navigation/CTA patterns.
-3. Register the public route slug in `vite.config.js`; for minimal-pair SEO pages, add the slug to `seoPageSlugs`.
+3. Register minimal-pair and SEO-hub routes in `SEO_PAGE_SLUGS` in `src/seo-page-routes.js`; register other page types in `vite.config.js`.
 4. If the page should be indexed, add its production URL to `public/sitemap.xml`.
 5. Run `npm run build`.
 6. Preview with `npm run preview` if needed.

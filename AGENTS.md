@@ -45,7 +45,7 @@ Avoid broadening pages into generic English-learning content that does not match
 
 Rules that must always hold. Violating these breaks production, or breaks it silently after `npm run dev` looks fine.
 
-- **`vite.config.js` is the authoritative registry of what ships.** A page is only in production if its source path appears in `build.rollupOptions.input` — directly, via `seoPageSlugs`, or via `legalLocales`. Local file browsing and `npm run dev` will happily serve an unregistered page; the production build will not.
+- **`vite.config.js` is authoritative for what ships and consumes the shared SEO route registry.** A page is only in production if its source path appears in `build.rollupOptions.input` — directly, via `SEO_PAGE_SLUGS` from `src/seo-page-routes.js`, or via `legalLocales`. Local file browsing and `npm run dev` will happily serve an unregistered page; the production build will not.
 
 - **Generated locale files are not sources of truth.** `content/locales/<locale>/index.html` (exactly that path — the localized homepage) is rebuilt by `npm run generate:localized-homepages` from `index.html` and supplemental translation files. Edits made directly to these files are lost the next time the generator runs.
 
@@ -156,7 +156,7 @@ Do not introduce:
 | i18n / locale strings | `src/i18n.js`, `src/landing-supplement-translations.js`, `src/seo-exercise-translations.js` | — |
 | Per-page SEO metadata | that page's own `<head>` | — |
 | hreflang mapping | `HREFLANG_BY_LOCALE` in `src/localized-homepage-routes.js` | individual invented tags |
-| Build registration | `vite.config.js` | — |
+| Build registration | `src/seo-page-routes.js` for SEO routes; `vite.config.js` for other entries | — |
 | Indexed URLs | `public/sitemap.xml` | — |
 | Validation rules | `scripts/validate-*.mjs` | — |
 | Built output | regenerate only | `dist/` |

@@ -373,6 +373,12 @@ Control pages omit this content variant and post-interaction placement. In
 particular, `/live-vs-leave/` and `/sit-vs-seat/` remain unassigned, while
 `/ship-vs-sheep/` retains its separate `contrast_journey_v1` assignment.
 
+#### SEO exercise UX analysis boundary — 2026-09-26
+
+The release containing the SEO exercise focus and playback-safety changes applies those invisible correctness/accessibility fixes to both treatment and control routes. Visible exercise changes are intentionally withheld from the five `conversion_serp_cta_v1` treatment/control routes (`bit-vs-beat`, `fill-vs-feel`, `ship-vs-sheep`, `live-vs-leave`, and `sit-vs-seat`) through the temporary presentation freeze in `src/seo-exercise-presentation-freeze.js`.
+
+When analyzing the experiment, treat this release as a measurement boundary for interaction mechanics, not a visible treatment change. Reassess and remove the freeze only after `conversion_serp_cta_v1` closes. Record the actual production commit and deployment timestamp here when this uncommitted change is deployed; this note does not itself claim production deployment.
+
 GA4 administrators should register `page_slug`, `learner_language`, `locale`, `cta_position`, and
 `content_variant` as event-scoped custom dimensions. Register
 `exercise_completed` as an event-scoped custom dimension if the property does

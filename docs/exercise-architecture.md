@@ -76,6 +76,18 @@ Homepage behavior must stay user-visible compatible with the pre-extraction impl
 
 Owns SEO page behavior. SEO pages can mount exercises by declaring `data-exercise` and `data-contrast` in HTML, then letting this adapter resolve the catalog contrast and pass SEO-specific callbacks into `createExercise`.
 
+The canonical SEO exercise hierarchy is:
+
+1. the entry pair, which remains the stable page and session identity;
+2. the phonemic contrast, which remains the stable learning target;
+3. the current lexical example, which may change between rounds in a multi-pair session.
+
+The adapter also owns focus transitions and input safety. An in-page hero jump focuses the exercise title without adding it to the normal Tab order. Target playback keeps guess controls focusable but `aria-disabled` and non-actionable until playback succeeds. Feedback focuses the next action, the next preview focuses its first pronunciation control, and completion focuses the summary lead. Audio failure stays fail-closed, shows one visible non-live message, and is announced once through the continuously registered visually hidden live region.
+
+### `src/seo-page-routes.js`
+
+Owns `SEO_PAGE_SLUGS`, the shared registry of published SEO routes. Vite consumes this registry to build the pages, and the SEO exercise consumes it to link a generalization pair only when the same-locale route is actually published. Catalog membership alone never creates a route or a localized-to-English fallback.
+
 ## Ownership Boundaries
 
 - The engine owns lifecycle, not presentation.
@@ -224,6 +236,20 @@ Pair selection is deterministic: round 1 is the entry pair; each later round tak
 Journey membership never enables multi-pair training by itself. The rollout policy is deliberately narrower so active experiments and staged releases stay isolated. The initial pilot is English `/full-vs-fool/` only (round 1 full/fool, round 2 pull/pool). `/pull-vs-pool/`, every `conversion_serp_cta_v1` and `contrast_journey_v1` route, and all localized exercises stay single-pair. `scripts/validate-seo-exercise.mjs` rejects any enabled route that is localized, in an active experiment, not mounted, or without a valid reviewed journey.
 
 Multi-pair sessions add `pairs_trained` (distinct pairs presented) and `entry_pair_id` to `exercise_complete` only. Single-pair payloads and `exercise_start` are unchanged.
+
+## SEO Exercise Presentation Freeze
+
+`src/seo-exercise-presentation-freeze.js` temporarily withholds the visible canonical exercise enhancements from these English routes:
+
+- `/bit-vs-beat/`
+- `/fill-vs-feel/`
+- `/ship-vs-sheep/`
+- `/live-vs-leave/`
+- `/sit-vs-seat/`
+
+This prevents the persistent contrast chip, preview IPA, feedback markers, automatic-replay highlight, and linked generalization treatment from contaminating `conversion_serp_cta_v1`. Reassess and remove the freeze when `conversion_serp_cta_v1` closes. The freeze does not apply to localized routes with the same terminal slug.
+
+Invisible correctness and accessibility behavior is not frozen: title/stage focus management, answer guarding during target playback, fail-closed audio, and the single audio-error announcement apply to every SEO exercise route. Experiment assignments, CTA copy and placement, analytics parameters, and the multi-pair rollout remain independently owned and unchanged.
 
 ## Adding A New Pronunciation Page
 

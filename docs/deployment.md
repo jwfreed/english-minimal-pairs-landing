@@ -161,7 +161,7 @@ For clean SEO URLs, use a content source path:
 content/pairs/example-page/index.html
 ```
 
-and add a `seoPageSlugs` entry for the public route slug. `vite.config.js` maps content source paths back to the existing clean public URL layout during build.
+and add an `SEO_PAGE_SLUGS` entry in `src/seo-page-routes.js` for the public route slug. `vite.config.js` imports that registry and maps content source paths back to the existing clean public URL layout during build.
 
 ### Page is live but not in the sitemap
 

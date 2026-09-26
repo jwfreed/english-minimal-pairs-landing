@@ -14,6 +14,7 @@ import {
   MULTI_PAIR_TRAINING_ROLLOUT,
   getSeoExerciseTrainingPairs,
 } from '../src/seo-exercise-training-rollout.js';
+import { SEO_PAGE_SLUGS } from '../src/seo-page-routes.js';
 
 const HUB_SLUGS = new Set(['english-ear-training', 'minimal-pairs-practice']);
 const SEO_PAGE_SCRIPT = '<script type="module" src="/src/seo-page.js"></script>';
@@ -62,7 +63,6 @@ const seoSource = fs.readFileSync('src/seo-page.js', 'utf8');
 const docSource = fs.readFileSync('docs/exercise-architecture.md', 'utf8');
 const rolloutChecklistSource = fs.readFileSync('docs/seo-page-checklist.md', 'utf8');
 const styleSource = fs.readFileSync('src/style.css', 'utf8');
-const viteSource = fs.readFileSync('vite.config.js', 'utf8');
 
 let hasFailure = false;
 
@@ -143,17 +143,6 @@ function getJourneyCoverageRows(source) {
   }
 
   return rows;
-}
-
-function parseRegisteredRoutes(source) {
-  const match = source.match(/const\s+seoPageSlugs\s*=\s*\[([\s\S]*?)\]\s*(?:;|\n)/);
-
-  if (!match) {
-    fail('Could not find seoPageSlugs in vite.config.js');
-    return new Set();
-  }
-
-  return new Set([...match[1].matchAll(/'([^']+)'/g)].map((routeMatch) => routeMatch[1]));
 }
 
 function hasExactCatalogContrast(contrastId) {
@@ -247,7 +236,7 @@ function collectHtmlFiles(root = '.') {
   return files;
 }
 
-const registeredRoutes = parseRegisteredRoutes(viteSource);
+const registeredRoutes = new Set(SEO_PAGE_SLUGS);
 const pairPages = collectPairPages();
 const exercisePagePaths = new Set();
 const pageFacts = new Map();

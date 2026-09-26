@@ -1,0 +1,80 @@
+// Shared public-route registry. Vite consumes this list to decide what ships;
+// runtime exercise UI consumes the same list before linking related pairs.
+export const SEO_PAGE_SLUGS = Object.freeze([
+  'ship-vs-sheep',
+  'ja/ship-vs-sheep',
+  'zh/ship-vs-sheep',
+  'es/ship-vs-sheep',
+  'pt/ship-vs-sheep',
+  'id/ship-vs-sheep',
+  'ru/ship-vs-sheep',
+  'tr/ship-vs-sheep',
+  'pat-vs-bat',
+  'ar/pat-vs-bat',
+  'bit-vs-beat',
+  'sit-vs-seat',
+  'live-vs-leave',
+  'fill-vs-feel',
+  'full-vs-fool',
+  'pull-vs-pool',
+  'bad-vs-bed',
+  'man-vs-men',
+  'cap-vs-cup',
+  'cup-vs-cop',
+  'rice-vs-lice',
+  'right-vs-light',
+  'yue/right-vs-light',
+  'ko/right-vs-light',
+  'vi/right-vs-light',
+  'hi-ur/vest-vs-west',
+  'fa/vest-vs-west',
+  'three-vs-tree',
+  'thin-vs-tin',
+  'th/thin-vs-tin',
+  'fan-vs-van',
+  'vest-vs-west',
+  'bet-vs-bat',
+  'law-vs-low',
+  'heart-vs-hurt',
+  'minimal-pairs-practice',
+  'english-ear-training',
+  'ja/minimal-pairs-practice',
+  'ja/english-ear-training',
+  'zh/english-ear-training',
+  'zh/minimal-pairs-practice',
+  'yue/english-ear-training',
+  'yue/minimal-pairs-practice',
+  'ko/english-ear-training',
+  'ko/minimal-pairs-practice',
+  'es/english-ear-training',
+  'es/minimal-pairs-practice',
+  'pt/english-ear-training',
+  'pt/minimal-pairs-practice',
+  'ar/english-ear-training',
+  'ar/minimal-pairs-practice',
+  'hi-ur/english-ear-training',
+  'hi-ur/minimal-pairs-practice',
+  'fa/english-ear-training',
+  'fa/minimal-pairs-practice',
+  'id/english-ear-training',
+  'id/minimal-pairs-practice',
+  'ru/english-ear-training',
+  'ru/minimal-pairs-practice',
+  'th/english-ear-training',
+  'th/minimal-pairs-practice',
+  'tr/english-ear-training',
+  'tr/minimal-pairs-practice',
+  'vi/english-ear-training',
+  'vi/minimal-pairs-practice',
+]);
+
+const SEO_PAGE_SLUG_SET = new Set(SEO_PAGE_SLUGS);
+
+export function getPublishedSeoPairRoute({ pairId, locale = 'en' } = {}) {
+  if (!pairId || !locale) {
+    return null;
+  }
+
+  const routeSlug = locale === 'en' ? pairId : `${locale}/${pairId}`;
+  return SEO_PAGE_SLUG_SET.has(routeSlug) ? `/${routeSlug}/` : null;
+}

@@ -2707,6 +2707,19 @@ html[dir="rtl"] .seo-content td {
   text-transform: none;
 }
 
+.seo-exercise-contrast-chip {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 0.35rem 0.65rem;
+  unicode-bidi: isolate;
+}
+
 .seo-exercise-round {
   margin-bottom: 1rem;
 }
@@ -2804,6 +2817,32 @@ html[dir="rtl"] .seo-content td {
   font-size: 0.9rem;
   font-weight: 800;
   padding: 0.5rem 0.65rem;
+}
+
+.seo-exercise-generalization-item {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.seo-content a.seo-exercise-generalization-link {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+.seo-content a.seo-exercise-generalization-link:hover,
+.seo-content a.seo-exercise-generalization-link:focus-visible {
+  color: var(--primary);
+}
+
+.seo-content a.seo-exercise-generalization-link:focus-visible {
+  outline: 3px solid var(--primary-dark);
+  outline-offset: 3px;
+}
+
+.seo-exercise-generalization-text {
+  color: var(--text-secondary);
 }
 
 .seo-exercise-summary-cta {
@@ -2912,6 +2951,20 @@ html[dir="rtl"] .seo-exercise-word {
   opacity: 0.78;
 }
 
+.seo-exercise-word.is-auto-playing {
+  background: #fff7ed;
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18);
+  opacity: 1;
+}
+
+.seo-exercise-word[aria-disabled="true"] {
+  box-shadow: none;
+  cursor: wait;
+  opacity: 0.55;
+  transform: none;
+}
+
 .seo-exercise-word-body {
   display: flex;
   flex-direction: column;
@@ -2934,6 +2987,32 @@ html[dir="rtl"] .seo-exercise-word {
 .seo-exercise-word-ipa {
   color: var(--text-secondary);
   font-size: 0.9rem;
+  unicode-bidi: isolate;
+}
+
+.seo-exercise-word-feedback-marker {
+  flex: 0 0 auto;
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-inline-start: auto;
+}
+
+.seo-exercise-word.is-correct {
+  border-color: #15803d;
+  box-shadow: inset 0 0 0 1px #15803d;
+}
+
+.seo-exercise-word.is-correct .seo-exercise-word-feedback-marker {
+  color: #15803d;
+}
+
+.seo-exercise-word.is-selected-incorrect {
+  border-color: #b91c1c;
+  box-shadow: inset 0 0 0 1px #b91c1c;
+}
+
+.seo-exercise-word.is-selected-incorrect .seo-exercise-word-feedback-marker {
+  color: #b91c1c;
 }
 
 .seo-exercise-action {
