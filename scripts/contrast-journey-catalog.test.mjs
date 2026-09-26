@@ -5,13 +5,27 @@ import {
   APP_CAPABILITY_STATUS,
   resolveAppCapability,
 } from '../src/app-capability-resolver.js';
+import fs from 'node:fs';
+
 import {
   CONTRAST_JOURNEY_CATALOG,
+  assertValidContrastJourney,
   getContrastJourneyForPair,
   getLearningContrastForPair,
   getPracticePairsForContrast,
+  getTrainingPairsForExercise,
 } from '../src/contrast-journey-catalog.js';
 import { getContrastById } from '../src/contrast-catalog.js';
+
+function journeyFixture(overrides = {}) {
+  return {
+    id: 'fixture-journey',
+    label: '/ʊ/ vs /uː/',
+    flagshipPairId: 'full-vs-fool',
+    practicePairIds: ['full-vs-fool', 'pull-vs-pool'],
+    ...overrides,
+  };
+}
 
 test('ship-vs-sheep maps to the explicit /ɪ/ vs /iː/ learning contrast', () => {
   const contrast = getLearningContrastForPair('ship-vs-sheep');
@@ -125,4 +139,124 @@ test('a reviewed journey is not evidence of app capability', () => {
   assert.ok(journey);
   assert.equal(capability.status, APP_CAPABILITY_STATUS.NO_APP_SUPPORT);
   assert.equal(capability.recommendedCTA, null);
+});
+
+test('every reviewed journey satisfies the training-membership invariants', () => {
+  for (const journey of Object.values(CONTRAST_JOURNEY_CATALOG)) {
+    assert.doesNotThrow(() => assertValidContrastJourney(journey), journey.id);
+    assert.equal(
+      journey.practicePairIds[0],
+      journey.flagshipPairId,
+      `${journey.id} must lead its reviewed sequence with the flagship entry pair`
+    );
+    assert.equal(
+      new Set(journey.practicePairIds.map((pairId) => getContrastById(pairId).contrast)).size,
+      1,
+      `${journey.id} pairs must share one canonical phonemic contrast`
+    );
+  }
+});
+
+test('journey validation fails loudly on a missing or unresolvable flagship', () => {
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({ flagshipPairId: undefined })),
+    /flagship/u
+  );
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      flagshipPairId: 'fuel-vs-fool',
+      practicePairIds: ['fuel-vs-fool', 'full-vs-fool'],
+    })),
+    /unknown pair "fuel-vs-fool"/u
+  );
+});
+
+test('journey validation fails loudly on unresolved practice pair IDs', () => {
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      practicePairIds: ['full-vs-fool', 'pool-vs-pull'],
+    })),
+    /unknown pair "pool-vs-pull"/u
+  );
+});
+
+test('journey validation fails loudly on duplicate practice pair IDs', () => {
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      practicePairIds: ['full-vs-fool', 'pull-vs-pool', 'pull-vs-pool'],
+    })),
+    /duplicate pair "pull-vs-pool"/u
+  );
+});
+
+test('journey validation requires the flagship to lead its practice sequence', () => {
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      practicePairIds: ['pull-vs-pool'],
+    })),
+    /flagship "full-vs-fool" must lead/u
+  );
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      practicePairIds: ['pull-vs-pool', 'full-vs-fool'],
+    })),
+    /flagship "full-vs-fool" must lead/u
+  );
+});
+
+test('journey validation rejects mixed phonemic contrasts, including shared capability groups', () => {
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      practicePairIds: ['full-vs-fool', 'ship-vs-sheep'],
+    })),
+    /mixes phonemic contrasts/u
+  );
+
+  // three-vs-tree and thin-vs-tin share capabilityGroup "thetaT" but are not
+  // the same phonemic contrast; capability grouping must never admit them.
+  assert.equal(
+    getContrastById('three-vs-tree').capabilityGroup,
+    getContrastById('thin-vs-tin').capabilityGroup
+  );
+  assert.throws(
+    () => assertValidContrastJourney(journeyFixture({
+      label: '/θ/ vs /t/',
+      flagshipPairId: 'thin-vs-tin',
+      practicePairIds: ['thin-vs-tin', 'three-vs-tree'],
+    })),
+    /mixes phonemic contrasts/u
+  );
+});
+
+test('/ʊ/ vs /uː/ resolves reviewed training pairs in entry-first journey order', () => {
+  const trainingPairs = getTrainingPairsForExercise('full-vs-fool');
+
+  assert.deepEqual(trainingPairs.map((pair) => pair.id), ['full-vs-fool', 'pull-vs-pool']);
+  assert.equal(trainingPairs[0], getContrastById('full-vs-fool'));
+  assert.equal(trainingPairs[1], getContrastById('pull-vs-pool'));
+});
+
+test('training pairs always lead with the requested entry pair, then reviewed order', () => {
+  for (const journey of Object.values(CONTRAST_JOURNEY_CATALOG)) {
+    for (const entryPairId of journey.practicePairIds) {
+      assert.deepEqual(
+        getTrainingPairsForExercise(entryPairId).map((pair) => pair.id),
+        [entryPairId, ...journey.practicePairIds.filter((pairId) => pairId !== entryPairId)],
+        entryPairId
+      );
+    }
+  }
+});
+
+test('training membership is never inferred for pairs outside a reviewed journey', () => {
+  // thin-vs-tin has a capabilityGroup sibling and three-vs-tree has none with
+  // its exact contrast; neither has reviewed journey membership.
+  assert.throws(() => getTrainingPairsForExercise('thin-vs-tin'), /No reviewed Contrast Journey/u);
+  assert.throws(() => getTrainingPairsForExercise('three-vs-tree'), /No reviewed Contrast Journey/u);
+  // bad-vs-bed shares its exact phoneme string with man-vs-men, yet has no journey.
+  assert.throws(() => getTrainingPairsForExercise('bad-vs-bed'), /No reviewed Contrast Journey/u);
+  assert.throws(() => getTrainingPairsForExercise('unknown-vs-pair'), /No reviewed Contrast Journey/u);
+
+  const journeySource = fs.readFileSync('src/contrast-journey-catalog.js', 'utf8');
+  assert.equal(journeySource.includes('capabilityGroup'), false);
 });

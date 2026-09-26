@@ -18,6 +18,7 @@ import {
   getSeoPageSlug,
 } from './app-store-attribution.js';
 import { buildAppleCampaignUrl } from './apple-campaign-links.js';
+import { getSeoExerciseTrainingPairs } from './seo-exercise-training-rollout.js';
 
 const SEO_EXERCISE_SURFACE = 'seo_contrast_page';
 const SEO_EXERCISE_MOUNT_SELECTOR = '[data-exercise][data-contrast]';
@@ -57,7 +58,20 @@ function formatPairName(contrast) {
   return contrast.words.map((word) => word.text.toUpperCase()).join(' / ');
 }
 
-function buildExerciseParams(contrast, eventName) {
+// Multi-pair sessions add pairs actually trained and the stable entry pair to
+// exercise_complete only; single-pair payloads stay unchanged.
+function buildMultiPairCompletionParams(eventName, multiPairSnapshot) {
+  if (!multiPairSnapshot || !EXERCISE_COMPLETION_EVENTS.has(eventName)) {
+    return {};
+  }
+
+  return {
+    pairs_trained: multiPairSnapshot.pairsSeen.length,
+    entry_pair_id: multiPairSnapshot.contrast.id,
+  };
+}
+
+function buildExerciseParams(contrast, eventName, multiPairSnapshot) {
   return {
     exercise_id: contrast.id,
     pair_name: formatPairName(contrast),
@@ -70,6 +84,7 @@ function buildExerciseParams(contrast, eventName) {
       locale: getSeoPageLocale(window.location.pathname, document.documentElement.lang),
       contentVariant: document.documentElement.dataset.contentVariant,
     }),
+    ...buildMultiPairCompletionParams(eventName, multiPairSnapshot),
   };
 }
 
@@ -77,11 +92,16 @@ function dispatchSoundwiseEvent(name, detail = {}) {
   window.dispatchEvent(new CustomEvent(`soundwise:${name}`, { detail }));
 }
 
-function buildSeoExerciseEventDetail(contrast, eventName, detail = {}) {
+export function buildSeoExerciseEventDetail(
+  contrast,
+  eventName,
+  detail = {},
+  multiPairSnapshot = null
+) {
   return {
     ...detail,
     contrast_id: contrast.id,
-    exerciseParams: buildExerciseParams(contrast, eventName),
+    exerciseParams: buildExerciseParams(contrast, eventName, multiPairSnapshot),
   };
 }
 
@@ -274,7 +294,7 @@ function renderGeneralizationCopy(element, relatedContrasts, contrast, uiCopy) {
   element.hidden = false;
 }
 
-function createSeoExercise(mount, contrast, capability, uiCopy) {
+function createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs = null) {
   const titleId = `${mount.id || contrast.id}-title`;
   const liveRegion = createElement('p', {
     className: 'seo-exercise-live',
@@ -396,9 +416,19 @@ function createSeoExercise(mount, contrast, capability, uiCopy) {
   mount.setAttribute('role', 'region');
   mount.setAttribute('aria-labelledby', titleId);
   mount.replaceChildren(header, round, audioStatus, preview, test, feedback, summary, liveRegion);
-  renderWordButtons(previewWords, contrast, 'preview', uiCopy);
-  renderWordButtons(guessWords, contrast, 'guess', uiCopy);
-  renderWordButtons(replayWords, contrast, 'replay', uiCopy);
+  let renderedPair = null;
+  const renderRoundWordButtons = (pair) => {
+    if (pair === renderedPair) {
+      return;
+    }
+
+    renderWordButtons(previewWords, pair, 'preview', uiCopy);
+    renderWordButtons(guessWords, pair, 'guess', uiCopy);
+    renderWordButtons(replayWords, pair, 'replay', uiCopy);
+    renderedPair = pair;
+  };
+
+  renderRoundWordButtons(contrast);
 
   let exercise = null;
 
@@ -407,6 +437,7 @@ function createSeoExercise(mount, contrast, capability, uiCopy) {
       return;
     }
 
+    renderRoundWordButtons(snapshot.currentPair);
     round.textContent = uiCopy.roundLabel(Math.min(snapshot.round, snapshot.total), snapshot.total);
     showStage(preview, snapshot.stage === 'preview');
     showStage(test, snapshot.stage === 'test');
@@ -423,7 +454,7 @@ function createSeoExercise(mount, contrast, capability, uiCopy) {
       renderSummaryCopy({ score, summaryLead, summaryBody }, snapshot, uiCopy);
       renderGeneralizationCopy(
         generalization,
-        getRelatedContrasts(contrast.id),
+        getRelatedContrasts(contrast.id, { excludeIds: snapshot.pairsSeen }),
         contrast,
         uiCopy
       );
@@ -432,7 +463,12 @@ function createSeoExercise(mount, contrast, capability, uiCopy) {
 
   exercise = createExercise({
     mount: {
-      buildEventDetail: (eventName, detail) => buildSeoExerciseEventDetail(contrast, eventName, detail),
+      buildEventDetail: (eventName, detail, snapshot) => buildSeoExerciseEventDetail(
+        contrast,
+        eventName,
+        detail,
+        trainingPairs ? snapshot : null
+      ),
       dispatchEvent: (eventName, detail, snapshot) => {
         dispatchSoundwiseEvent(eventName, detail);
 
@@ -457,13 +493,18 @@ function createSeoExercise(mount, contrast, capability, uiCopy) {
         feedbackContrast.textContent = uiCopy.feedbackContrast(contrast.contrast);
         liveRegion.textContent = `${feedbackCopy.textContent} ${feedbackContrast.textContent}`;
       },
-      onPreviewPrompt: () => {
-        liveRegion.textContent = uiCopy.previewPrompt;
+      onPreviewPrompt: (snapshot) => {
+        // A multi-pair round can change the lexical targets; name them so the
+        // switch is not silent for screen-reader users.
+        liveRegion.textContent = trainingPairs
+          ? `${uiCopy.previewPrompt} ${formatPairName(snapshot.currentPair)}`
+          : uiCopy.previewPrompt;
       },
       playWord: (word, activeButton) => speakWord(word.text, activeButton),
       wait: (ms) => new Promise((resolve) => window.setTimeout(resolve, ms)),
     },
     contrast,
+    trainingPairs,
     uiLocale: uiCopy.locale,
     options: {
       experienceSurface: SEO_EXERCISE_SURFACE,
@@ -547,8 +588,13 @@ function setupSeoExercises(capability) {
       return;
     }
 
+    const trainingPairs = getSeoExerciseTrainingPairs({
+      pairId: contrast.id,
+      locale: getSeoPageLocale(window.location.pathname, documentLocale),
+    });
+
     prepareSeoExerciseMount(mount, contrast);
-    createSeoExercise(mount, contrast, capability, uiCopy);
+    createSeoExercise(mount, contrast, capability, uiCopy, trainingPairs);
   });
 }
 

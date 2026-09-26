@@ -217,7 +217,7 @@ function getSoundContrastKey(contrast) {
     .join(' vs ');
 }
 
-export function getRelatedContrasts(contrastId, { limit = 3 } = {}) {
+export function getRelatedContrasts(contrastId, { limit = 3, excludeIds = [] } = {}) {
   const contrast = getContrastById(contrastId);
 
   if (!contrast) {
@@ -229,6 +229,7 @@ export function getRelatedContrasts(contrastId, { limit = 3 } = {}) {
   return Object.values(CONTRAST_CATALOG)
     .filter((candidate) => (
       candidate.id !== contrast.id
+      && !excludeIds.includes(candidate.id)
       && getSoundContrastKey(candidate.contrast) === soundContrastKey
     ))
     .sort((first, second) => first.id.localeCompare(second.id))

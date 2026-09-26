@@ -207,6 +207,24 @@ The following remain approved explanatory language and are not treated as an on-
 
 Promotion from reporting to build-blocking validation requires a separate vocabulary review and a clean false-positive audit. The current report must not silently become enforcement.
 
+## Multi-Pair Training Sessions
+
+`createExercise` accepts optional `trainingPairs`: reviewed pair records, entry pair first, for one phonemic contrast. Omitting it (or passing only the entry pair) keeps the single-pair behavior.
+
+| Concept | Meaning | Owner |
+| --- | --- | --- |
+| `contrast` | Stable entry/session pair for the whole session: exercise title, `exercise_id`, `pair_name`, page identity. Never reassigned per round. | Page mount (`data-contrast`) |
+| `currentPair` | Pair whose words are active in the current round: preview, playback, answer choices, scoring, feedback, replay. | Engine snapshot |
+| `pairsSeen` | Distinct pair IDs presented so far (serializable array). Used to exclude trained pairs from summary generalization. | Engine snapshot |
+| Reviewed membership and order | Which pairs may train together. | `getTrainingPairsForExercise` in `src/contrast-journey-catalog.js` (only source) |
+| Production activation | Whether a page actually runs a multi-pair session. | `MULTI_PAIR_TRAINING_ROLLOUT` in `src/seo-exercise-training-rollout.js` |
+
+Pair selection is deterministic: round 1 is the entry pair; each later round takes the first reviewed pair not yet seen, then rotates in reviewed order. Target-word choice within a pair is unchanged, and `maxRounds` is unchanged. This adds lexical exemplar variability only; playback still uses the single deterministically selected English voice.
+
+Journey membership never enables multi-pair training by itself. The rollout policy is deliberately narrower so active experiments and staged releases stay isolated. The initial pilot is English `/full-vs-fool/` only (round 1 full/fool, round 2 pull/pool). `/pull-vs-pool/`, every `conversion_serp_cta_v1` and `contrast_journey_v1` route, and all localized exercises stay single-pair. `scripts/validate-seo-exercise.mjs` rejects any enabled route that is localized, in an active experiment, not mounted, or without a valid reviewed journey.
+
+Multi-pair sessions add `pairs_trained` (distinct pairs presented) and `entry_pair_id` to `exercise_complete` only. Single-pair payloads and `exercise_start` are unchanged.
+
 ## Adding A New Pronunciation Page
 
 A new SEO pronunciation page should be mostly content plus one declarative exercise mount.
@@ -290,5 +308,5 @@ Homepage behavior changes require explicit regression verification. At minimum, 
 - GA4 forwarding must remain centralized in `src/funnel-tracking.js`.
 - The website must not track fake native app training starts.
 - The SEO exercise validator requires a mount only when an existing pair page has both an exact catalog contrast and explicit UI translation for its document locale. It rejects mounts that would imply unsupported catalog or localization coverage.
-- A single exercise session trains exactly one fixed `CONTRAST_CATALOG` word pair; `maxRounds` repeats randomized trials of that same pair, it does not rotate between different word pairs that share a contrast. Cycling through multiple pairs for one contrast within a session is a future engine capability, not current behavior, and would require extending the engine's state model, not just page content.
+- By default an exercise session trains exactly one fixed `CONTRAST_CATALOG` word pair; `maxRounds` repeats randomized trials of that same pair. Multi-pair sessions are opt-in per page through an explicit rollout policy — see "Multi-Pair Training Sessions" below.
 - Every exercise-eligible pair page must expose a first-viewport `.seo-hero-actions` hero CTA into the exercise (see `docs/seo-page-checklist.md`, "Required Hero Practice CTA"), enforced by `scripts/validate-seo-exercise.mjs`. A small set of pages are known, evidence-backed exceptions to that check (an active A/B experiment control cohort, and two `NO_APP_SUPPORT` pages with their own tested capability-safe CTA shape) -- see the checklist for the current list and reasons before changing any of them.

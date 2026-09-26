@@ -130,6 +130,20 @@ analytics adapter. `contrast_journey_view` and `contrast_journey_click` measure
 destination exposure and navigation; practice progression continues through
 the existing `app_store_click` attribution contract.
 
+## Exercise Training Membership
+
+`getTrainingPairsForExercise(pairId)` exposes a journey as ordered exercise
+training candidates: the entry pair first, then the remaining reviewed pairs
+in journey order. `assertValidContrastJourney` fails loudly unless the flagship
+resolves and leads `practicePairIds`, every pair resolves, no pair repeats, and
+all pairs share one exact `CONTRAST_CATALOG` `contrast` string. `capabilityGroup`
+is never consulted: shared app grouping (for example `thetaT` spanning
+`three-vs-tree` and `thin-vs-tin`) is not a shared phonemic contrast.
+
+Membership is not activation. Which pages run multi-pair sessions is decided
+separately by `src/seo-exercise-training-rollout.js`; see
+`docs/exercise-architecture.md`, "Multi-Pair Training Sessions".
+
 ## Extension Rules
 
 Future contributors may:
@@ -142,7 +156,7 @@ Future contributors may:
 Future contributors must:
 
 - reference existing `CONTRAST_CATALOG` pair IDs;
-- include the flagship pair in the reviewed practice sequence;
+- include the flagship pair first in the reviewed practice sequence;
 - keep each pair in at most one learning contrast;
 - keep the journey's display label consistent with its referenced pair records;
 - treat sequence changes as educational decisions requiring review.

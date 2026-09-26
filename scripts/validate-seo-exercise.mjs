@@ -1,8 +1,19 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { getContentVariantForPathname } from '../src/analytics-content-variants.js';
+import { getSeoPageLocale } from '../src/app-store-attribution.js';
 import { CONTRAST_CATALOG } from '../src/contrast-catalog.js';
+import {
+  CONTRAST_JOURNEY_CATALOG,
+  assertValidContrastJourney,
+  getLearningContrastForPair,
+} from '../src/contrast-journey-catalog.js';
 import { hasCompleteSeoExerciseTranslation } from '../src/seo-exercise-translations.js';
+import {
+  MULTI_PAIR_TRAINING_ROLLOUT,
+  getSeoExerciseTrainingPairs,
+} from '../src/seo-exercise-training-rollout.js';
 
 const HUB_SLUGS = new Set(['english-ear-training', 'minimal-pairs-practice']);
 const SEO_PAGE_SCRIPT = '<script type="module" src="/src/seo-page.js"></script>';
@@ -24,6 +35,19 @@ const HERO_ACTIONS_EXCEPTIONS = new Set([
 // above the canonical two-button enforcement below for why these two cannot
 // use that shape.
 const HERO_PRACTICE_ONLY_ROUTES = new Set(['heart-vs-hurt', 'law-vs-low']);
+// Every route in an active experiment cohort must keep the single-pair
+// exercise it was measured with: conversion_serp_cta_v1 treatment
+// (bit-vs-beat, fill-vs-feel) and control (ship-vs-sheep, live-vs-leave,
+// sit-vs-seat), plus the contrast_journey_v1 subject (ship-vs-sheep). Routes
+// assigned a content variant in src/analytics-content-variants.js are also
+// rejected below, so a future assignment is caught without editing this list.
+const ACTIVE_EXPERIMENT_ROUTES = new Set([
+  'bit-vs-beat',
+  'fill-vs-feel',
+  'ship-vs-sheep',
+  'live-vs-leave',
+  'sit-vs-seat',
+]);
 const PRACTICE_PROMISE_PATTERNS = [
   {
     id: 'try-listening-exercise',
@@ -232,6 +256,7 @@ const coverage = {
   missingCatalogCapability: [],
   missingLocalizedUi: [],
 };
+const multiPairTrainingRoutes = [];
 const practicePromiseReport = {
   mode: 'report-only',
   coveredPages: [],
@@ -313,6 +338,37 @@ for (const { filePath, contrastId, route } of pairPages) {
 
   exercisePagePaths.add(filePath);
   coverage.eligible.push(route);
+
+  // Effective configuration, resolved exactly as src/seo-page.js does at mount.
+  let trainingPairs = null;
+  try {
+    trainingPairs = getSeoExerciseTrainingPairs({
+      pairId: contrastId,
+      locale: getSeoPageLocale(routePath, documentLocale),
+    });
+  } catch (error) {
+    fail(`${filePath} multi-pair training configuration is invalid: ${error.message}`);
+  }
+
+  if (trainingPairs) {
+    multiPairTrainingRoutes.push(route);
+
+    if (route.includes('/')) {
+      fail(`${filePath} is localized and must not enable multi-pair training`);
+    }
+
+    if (ACTIVE_EXPERIMENT_ROUTES.has(route) || getContentVariantForPathname(routePath)) {
+      fail(`${filePath} is an active experiment route and must keep single-pair training`);
+    }
+
+    if (trainingPairs.length < 2 || trainingPairs[0]?.id !== contrastId) {
+      fail(`${filePath} multi-pair training must start with its entry pair and add a reviewed pair`);
+    }
+
+    if (trainingPairs.some((pair) => !pair || pair.contrast !== trainingPairs[0].contrast)) {
+      fail(`${filePath} multi-pair training pairs must resolve and share one phonemic contrast`);
+    }
+  }
 
   const requiredTargetSnippets = [
     'data-exercise',
@@ -412,6 +468,32 @@ for (const { filePath, contrastId, route } of pairPages) {
       if (!heroSource.includes('data-cta-position="hero"')) {
         fail(`${filePath} .seo-hero-actions App Store CTA must carry a valid data-cta-position="hero" contract`);
       }
+    }
+  }
+}
+
+for (const journey of Object.values(CONTRAST_JOURNEY_CATALOG)) {
+  try {
+    assertValidContrastJourney(journey);
+  } catch (error) {
+    fail(`src/contrast-journey-catalog.js: ${error.message}`);
+  }
+}
+
+for (const [locale, pairIds] of Object.entries(MULTI_PAIR_TRAINING_ROLLOUT)) {
+  for (const pairId of pairIds) {
+    const route = locale === 'en' ? pairId : `${locale}/${pairId}`;
+
+    if (locale !== 'en') {
+      fail(`Multi-pair training rollout must stay English-only; found ${route}`);
+    }
+
+    if (!getLearningContrastForPair(pairId)) {
+      fail(`Multi-pair training rollout enables ${route} without a reviewed Contrast Journey`);
+    }
+
+    if (!multiPairTrainingRoutes.includes(route)) {
+      fail(`Multi-pair training rollout enables ${route}, which is not a mounted exercise page`);
     }
   }
 }
@@ -516,6 +598,10 @@ const requiredSeoSourcePatterns = [
     description: 'generates predictable mount IDs from contrast IDs',
     pattern: /getSeoExerciseMountId\([^)]*\)/,
   },
+  {
+    description: 'resolves multi-pair training only through the rollout policy',
+    pattern: /getSeoExerciseTrainingPairs\(/,
+  },
 ];
 
 for (const { description, pattern } of requiredSeoSourcePatterns) {
@@ -531,6 +617,8 @@ const forbiddenSeoSourceSnippets = [
   "window.gtag('event', 'exercise_complete'",
   'training_start',
   'training_cta_click',
+  // Journey membership must not bypass the rollout policy.
+  'getTrainingPairsForExercise',
 ];
 
 for (const snippet of forbiddenSeoSourceSnippets) {
@@ -589,6 +677,7 @@ console.log(JSON.stringify({
     totalRenderedExerciseMounts: exercisePagePaths.size,
   },
   eligibleExercisePages: coverage.eligible.sort(),
+  multiPairTrainingRoutes: multiPairTrainingRoutes.sort(),
   blockedByCatalogCapability: coverage.missingCatalogCapability.sort(),
   blockedByLocalizedExerciseUi: coverage.missingLocalizedUi.sort(),
   practicePromiseReport: {

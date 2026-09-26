@@ -7,7 +7,7 @@ import {
   getContrastById,
   getRelatedContrasts,
 } from '../src/contrast-catalog.js';
-import { createExercise } from '../src/exercise-engine.js';
+import { createExercise, selectRoundPair } from '../src/exercise-engine.js';
 
 function createHarness({ challengeMode = false, targetIndexes = [1, 0], shouldPlay = true } = {}) {
   const events = [];
@@ -234,6 +234,274 @@ test('reset restores the initial exercise state after completion', async () => {
   assert.equal(resetSnapshot.hasCompletedDemo, false);
   assert.equal(feedback.at(-1), null);
   assert.equal(snapshots.at(-1).stage, 'preview');
+});
+
+function createMultiPairHarness({ targetIndexes = [1, 0], trainingPairIds } = {}) {
+  const events = [];
+  const playedWords = [];
+  const feedback = [];
+  const targetPairs = [];
+  let targetIndexCursor = 0;
+
+  const contrast = getContrastById('full-vs-fool');
+  const trainingPairs = (trainingPairIds || ['full-vs-fool', 'pull-vs-pool'])
+    .map((pairId) => getContrastById(pairId));
+  const exercise = createExercise({
+    mount: {
+      buildEventDetail(eventName, detail, snapshot) {
+        return { ...detail, snapshot };
+      },
+      dispatchEvent(name, detail) {
+        events.push({ name, detail });
+      },
+      getTargetIndex(pair) {
+        targetPairs.push(pair.id);
+        const targetIndex = targetIndexes[targetIndexCursor] ?? 0;
+        targetIndexCursor += 1;
+        return targetIndex;
+      },
+      onFeedback(payload) {
+        feedback.push(payload);
+      },
+      async playWord(word) {
+        playedWords.push(word.text);
+        return true;
+      },
+      async wait() {},
+    },
+    contrast,
+    trainingPairs,
+    uiLocale: 'en',
+  });
+
+  return {
+    contrast,
+    events,
+    exercise,
+    feedback,
+    playedWords,
+    targetPairs,
+  };
+}
+
+test('single-pair sessions expose the entry pair as the current pair in every round', async () => {
+  const { contrast, exercise } = createHarness({ targetIndexes: [0, 0] });
+
+  assert.equal(exercise.getSnapshot().currentPair, contrast);
+  assert.deepEqual(exercise.getSnapshot().pairsSeen, ['ship-vs-sheep']);
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  await exercise.answer(0);
+  exercise.nextRound();
+
+  assert.equal(exercise.getSnapshot().contrast, contrast);
+  assert.equal(exercise.getSnapshot().currentPair, contrast);
+  assert.deepEqual(exercise.getSnapshot().pairsSeen, ['ship-vs-sheep']);
+});
+
+test('a one-pair training list behaves exactly like an omitted training list', async () => {
+  const contrast = getContrastById('ship-vs-sheep');
+  const run = async (extraConfig) => {
+    const playedWords = [];
+    const exercise = createExercise({
+      mount: {
+        dispatchEvent() {},
+        getTargetIndex: () => 1,
+        async playWord(word) {
+          playedWords.push(word.text);
+          return true;
+        },
+        async wait() {},
+      },
+      contrast,
+      ...extraConfig,
+    });
+
+    exercise.unlockAudio();
+    await exercise.startRound();
+    await exercise.answer(1);
+    exercise.nextRound();
+    await exercise.startRound();
+    await exercise.answer(0);
+
+    return { playedWords, snapshot: exercise.getSnapshot() };
+  };
+
+  const legacy = await run({});
+  const explicit = await run({ trainingPairs: [contrast] });
+
+  assert.deepEqual(explicit.playedWords, legacy.playedWords);
+  assert.deepEqual(explicit.snapshot, legacy.snapshot);
+});
+
+test('multi-pair sessions train the entry pair first and the next reviewed pair second', async () => {
+  const {
+    contrast,
+    events,
+    exercise,
+    feedback,
+    playedWords,
+    targetPairs,
+  } = createMultiPairHarness({ targetIndexes: [1, 0] });
+
+  assert.equal(exercise.getSnapshot().currentPair.id, 'full-vs-fool');
+  assert.deepEqual(exercise.getSnapshot().pairsSeen, ['full-vs-fool']);
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  assert.deepEqual(playedWords, ['fool']);
+  await exercise.answer(0);
+
+  assert.equal(feedback.at(-1).selectedWord.text, 'full');
+  assert.equal(feedback.at(-1).correctWord.text, 'fool');
+  assert.deepEqual(playedWords.slice(1), ['full', 'fool']);
+
+  exercise.nextRound();
+  const roundTwo = exercise.getSnapshot();
+
+  assert.equal(roundTwo.round, 2);
+  assert.equal(roundTwo.contrast, contrast);
+  assert.equal(roundTwo.contrast.id, 'full-vs-fool');
+  assert.equal(roundTwo.currentPair.id, 'pull-vs-pool');
+  assert.deepEqual(roundTwo.pairsSeen, ['full-vs-fool', 'pull-vs-pool']);
+
+  await exercise.startRound();
+  assert.equal(playedWords.at(-1), 'pull');
+  await exercise.answer(1);
+
+  assert.equal(feedback.at(-1).selectedWord.text, 'pool');
+  assert.equal(feedback.at(-1).correctWord.text, 'pull');
+  assert.deepEqual(playedWords.slice(-2), ['pull', 'pool']);
+  assert.deepEqual(targetPairs, ['full-vs-fool', 'pull-vs-pool']);
+
+  const summary = exercise.getSnapshot();
+  assert.equal(summary.stage, 'summary');
+  assert.equal(summary.total, 2);
+  assert.equal(summary.correct, 0);
+  assert.equal(summary.contrast.id, 'full-vs-fool');
+  assert.deepEqual(
+    events.map((event) => event.name),
+    ['demo_started', 'demo_round_completed', 'demo_started', 'demo_round_completed', 'demo_completed']
+  );
+  assert.deepEqual(events.at(-1).detail.snapshot.pairsSeen, ['full-vs-fool', 'pull-vs-pool']);
+  assert.equal(events.at(-1).detail.snapshot.contrast.id, 'full-vs-fool');
+});
+
+test('multi-pair playback by index resolves words from the current round pair', async () => {
+  const { exercise, playedWords } = createMultiPairHarness({ targetIndexes: [0, 0] });
+
+  exercise.unlockAudio();
+  await exercise.playWord(1);
+  await exercise.startRound();
+  await exercise.answer(0);
+  exercise.nextRound();
+  await exercise.playWord(0);
+  await exercise.playWord(1);
+
+  assert.deepEqual(playedWords, ['fool', 'full', 'full', 'fool', 'pull', 'pool']);
+});
+
+test('multi-pair sessions never mutate or alias the entry pair record', async () => {
+  const entry = getContrastById('full-vs-fool');
+  const entryBefore = structuredClone(entry);
+  const { exercise } = createMultiPairHarness();
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  await exercise.answer(0);
+  exercise.nextRound();
+  await exercise.startRound();
+  await exercise.answer(0);
+
+  assert.deepEqual(entry, entryBefore);
+  assert.notEqual(exercise.getSnapshot().currentPair, exercise.getSnapshot().contrast);
+});
+
+test('snapshot pairsSeen is a detached copy of engine state', () => {
+  const { exercise } = createMultiPairHarness();
+  const snapshot = exercise.getSnapshot();
+
+  snapshot.pairsSeen.push('ship-vs-sheep');
+
+  assert.deepEqual(exercise.getSnapshot().pairsSeen, ['full-vs-fool']);
+});
+
+test('reset returns a multi-pair session to its entry pair', async () => {
+  const { exercise } = createMultiPairHarness({ targetIndexes: [0, 0] });
+
+  exercise.unlockAudio();
+  await exercise.startRound();
+  await exercise.answer(0);
+  exercise.nextRound();
+
+  const resetSnapshot = exercise.reset();
+
+  assert.equal(resetSnapshot.currentPair.id, 'full-vs-fool');
+  assert.deepEqual(resetSnapshot.pairsSeen, ['full-vs-fool']);
+});
+
+test('trainingPairs must lead with the entry pair and contain playable pairs', () => {
+  const entry = getContrastById('full-vs-fool');
+  const sibling = getContrastById('pull-vs-pool');
+
+  assert.throws(
+    () => createExercise({ contrast: entry, trainingPairs: [sibling, entry] }),
+    /entry pair/u
+  );
+  assert.throws(
+    () => createExercise({ contrast: entry, trainingPairs: [] }),
+    /entry pair/u
+  );
+  assert.throws(
+    () => createExercise({ contrast: entry, trainingPairs: [entry, { id: 'broken', words: [] }] }),
+    /at least two words/u
+  );
+});
+
+test('updating the single-pair session contrast moves the current pair with it', () => {
+  const { exercise } = createHarness();
+  const nextContrast = getContrastById('right-vs-light');
+
+  const snapshot = exercise.updateContext({ nextContrast });
+
+  assert.equal(snapshot.contrast, nextContrast);
+  assert.equal(snapshot.currentPair, nextContrast);
+  assert.deepEqual(snapshot.pairsSeen, ['right-vs-light']);
+});
+
+test('round pair selection is deterministic: entry first, then first unseen reviewed pair', () => {
+  const full = getContrastById('full-vs-fool');
+  const pull = getContrastById('pull-vs-pool');
+  const trainingPairs = [full, pull];
+
+  assert.equal(selectRoundPair({ trainingPairs, round: 1, pairsSeen: [] }), full);
+  assert.equal(selectRoundPair({ trainingPairs, round: 2, pairsSeen: ['full-vs-fool'] }), pull);
+  assert.equal(
+    selectRoundPair({ trainingPairs, round: 3, pairsSeen: ['full-vs-fool', 'pull-vs-pool'] }),
+    full
+  );
+  assert.equal(
+    selectRoundPair({ trainingPairs, round: 4, pairsSeen: ['full-vs-fool', 'pull-vs-pool'] }),
+    pull
+  );
+  assert.equal(selectRoundPair({ trainingPairs: [full], round: 2, pairsSeen: ['full-vs-fool'] }), full);
+});
+
+test('generalization examples can exclude pairs already trained in the session', () => {
+  assert.deepEqual(
+    getRelatedContrasts('full-vs-fool').map((contrast) => contrast.id),
+    ['pull-vs-pool']
+  );
+  assert.deepEqual(
+    getRelatedContrasts('full-vs-fool', { excludeIds: ['full-vs-fool', 'pull-vs-pool'] }),
+    []
+  );
+  assert.deepEqual(
+    getRelatedContrasts('ship-vs-sheep', { excludeIds: ['ship-vs-sheep', 'bit-vs-beat'] })
+      .map((contrast) => contrast.id),
+    ['fill-vs-feel', 'live-vs-leave', 'sit-vs-seat']
+  );
 });
 
 test('exercise engine remains surface agnostic and analytics-neutral', () => {

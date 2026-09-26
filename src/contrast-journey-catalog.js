@@ -55,6 +55,67 @@ export function getPracticePairsForContrast(contrastIdOrLabel) {
     .filter(Boolean);
 }
 
+// Reviewed membership is only trustworthy as training input if every pair
+// resolves, appears once, and shares one exact phonemic contrast. Similar
+// sounding records (for example three-vs-tree and thin-vs-tin) are never
+// admitted by association.
+export function assertValidContrastJourney(journey) {
+  const { id, flagshipPairId, practicePairIds } = journey || {};
+
+  if (!flagshipPairId || !getContrastById(flagshipPairId)) {
+    throw new Error(
+      `Contrast Journey "${id}" references unknown pair "${flagshipPairId}" as its flagship.`
+    );
+  }
+
+  if (!Array.isArray(practicePairIds) || practicePairIds[0] !== flagshipPairId) {
+    throw new Error(
+      `Contrast Journey "${id}" flagship "${flagshipPairId}" must lead its practice sequence.`
+    );
+  }
+
+  const seenPairIds = new Set();
+  const flagshipContrast = getContrastById(flagshipPairId).contrast;
+
+  for (const pairId of practicePairIds) {
+    const pair = getContrastById(pairId);
+
+    if (!pair) {
+      throw new Error(`Contrast Journey "${id}" references unknown pair "${pairId}".`);
+    }
+
+    if (seenPairIds.has(pairId)) {
+      throw new Error(`Contrast Journey "${id}" lists duplicate pair "${pairId}".`);
+    }
+
+    if (pair.contrast !== flagshipContrast) {
+      throw new Error(
+        `Contrast Journey "${id}" mixes phonemic contrasts: "${pairId}" is ${pair.contrast}, not ${flagshipContrast}.`
+      );
+    }
+
+    seenPairIds.add(pairId);
+  }
+}
+
+// Ordered training candidates for one exercise session: the entry pair first,
+// then the remaining reviewed pairs in journey order. Reviewed membership only;
+// whether a page actually trains multiple pairs is a separate rollout decision.
+export function getTrainingPairsForExercise(pairId) {
+  const journey = getLearningContrastForPair(pairId);
+
+  if (!journey) {
+    throw new Error(`No reviewed Contrast Journey includes "${pairId}".`);
+  }
+
+  assertValidContrastJourney(journey);
+
+  return Object.freeze([
+    pairId,
+    ...journey.practicePairIds.filter((practicePairId) => practicePairId !== pairId),
+  ].map((practicePairId) => getContrastById(practicePairId)));
+}
+
 export function getContrastJourneyForPair(pairId) {
   const contrast = getLearningContrastForPair(pairId);
   const pair = getContrastById(pairId);
