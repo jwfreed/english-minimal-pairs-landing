@@ -150,8 +150,8 @@ locale candidates never inherit English strings and do not make a page eligible.
 | Category | Count |
 |---|---:|
 | English eligible exercise pages | 21 |
-| Localized eligible exercise pages | 1 |
-| Total rendered exercise mounts | 22 |
+| Localized eligible exercise pages | 14 |
+| Total rendered exercise mounts | 35 |
 
 The matrix below is the checked-in journey inventory. A warning in the CTA column means the App Store action exists, but the page cannot yet bridge to it through an on-page exercise completion. It does not mean the link or its tracking is broken.
 
@@ -179,20 +179,20 @@ The matrix below is the checked-in journey inventory. A warning in the CTA colum
 | `/thin-vs-tin/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/three-vs-tree/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/vest-vs-west/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/ar/pat-vs-bat/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/es/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/fa/vest-vs-west/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/hi-ur/vest-vs-west/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/id/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/ja/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/ko/right-vs-light/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/pt/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/ru/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/ar/pat-vs-bat/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/es/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/fa/vest-vs-west/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/hi-ur/vest-vs-west/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/id/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/ja/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/ko/right-vs-light/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/pt/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/ru/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 | `/th/thin-vs-tin/` | ✅ | ✅ | ✅ | ✅ | ✅ |
-| `/tr/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/vi/right-vs-light/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/yue/right-vs-light/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
-| `/zh/ship-vs-sheep/` | ✅ | ✅ | ❌ | ❌ | ⚠️ |
+| `/tr/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/vi/right-vs-light/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/yue/right-vs-light/` | ✅ | ✅ | ✅ | ✅ | ✅ |
+| `/zh/ship-vs-sheep/` | ✅ | ✅ | ✅ | ✅ | ✅ |
 <!-- journey-coverage:end -->
 
 ### Practice-Promise Reporting Policy

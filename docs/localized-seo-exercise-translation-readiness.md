@@ -2,35 +2,35 @@
 
 This document records the translation audit for the 14 localized flagship pair pages. It is subordinate to the exercise boundaries in `docs/exercise-architecture.md`; the executable completeness contract lives in `src/seo-exercise-translations.js`.
 
-Audit date: 2026-09-25.
+Initial audit date: 2026-09-25. Completed payload implemented: 2026-09-26.
 
 ## Readiness Rule
 
 A localized exercise is READY only when every required field is present and valid. Static fields must be non-empty strings. Dynamic fields must return non-empty output for every lifecycle branch and retain their supplied word, contrast, round, or score values. An incomplete localized candidate is never merged with English and is not mountable.
 
-`EXACT_EXISTING` means the field already exists in the locale's explicit SEO exercise bundle. `SAFE_REUSE` means the value is reused verbatim, or composed through the same placeholder/feedback pattern already used by the localized homepage hero exercise. `NEEDS_NATIVE_REVIEW` and `MISSING` both keep the locale gated.
+`EXACT_EXISTING` means the field already exists in the locale's explicit SEO exercise bundle. `SAFE_REUSE` means the value is reused verbatim, or composed through the same placeholder/feedback pattern already used by the localized homepage hero exercise. `IMPLEMENTED_PAYLOAD` means the completed linguistic-review value is now present. `NEEDS_NATIVE_REVIEW` and `MISSING` remain fail-closed states for future locales.
 
 ## Translation Contract
 
 | SEO key | UI role / lifecycle | English source meaning | Thai control | Existing hero-demo source | Decision for the other locales |
 |---|---|---|---|---|---|
-| `label` | Exercise eyebrow, pre-start | Try this contrast | `ลองฝึกคู่เสียงนี้` | `demoHearDifference` is related, but is a prompt rather than an eyebrow | `NEEDS_NATIVE_REVIEW` |
-| `previewChoicesAriaLabel` | Accessible name for the two preview buttons | Preview the two words | `ฟังตัวอย่างสองคำ` | `demoHearDifference` is related, but does not name the control group | `NEEDS_NATIVE_REVIEW` |
-| `guessChoicesAriaLabel` | Accessible name for the answer group | Choose the word you heard | `เลือกคำที่คุณได้ยิน` | `demoListenPrompt` is related visible/live copy, not a reviewed group label | `NEEDS_NATIVE_REVIEW` |
-| `replayChoicesAriaLabel` | Accessible name for the feedback replay group | Replay the contrast | `ฟังคู่เสียงนี้อีกครั้ง` | `demoReplayPrompt` is related visible copy, not a reviewed group label | `NEEDS_NATIVE_REVIEW` |
-| `liveInitial` | Initial polite live-region message | Hear the contrast, then test your ear | `ฟังคู่เสียงนี้ แล้วทดสอบการฟังของคุณ` | `demoHearDifference` and `demoListenPrompt` each cover only part of the sequence | `NEEDS_NATIVE_REVIEW` |
+| `label` | Exercise eyebrow, pre-start | Try this contrast | `ลองฝึกคู่เสียงนี้` | `demoHearDifference` is related, but is a prompt rather than an eyebrow | `IMPLEMENTED_PAYLOAD` |
+| `previewChoicesAriaLabel` | Accessible name for the two preview buttons | Preview the two words | `ฟังตัวอย่างสองคำ` | `demoHearDifference` is related, but does not name the control group | `IMPLEMENTED_PAYLOAD` |
+| `guessChoicesAriaLabel` | Accessible name for the answer group | Choose the word you heard | `เลือกคำที่คุณได้ยิน` | `demoListenPrompt` is related visible/live copy, not a reviewed group label | `IMPLEMENTED_PAYLOAD` |
+| `replayChoicesAriaLabel` | Accessible name for the feedback replay group | Replay the contrast | `ฟังคู่เสียงนี้อีกครั้ง` | `demoReplayPrompt` is related visible copy, not a reviewed group label | `IMPLEMENTED_PAYLOAD` |
+| `liveInitial` | Initial polite live-region message | Hear the contrast, then test your ear | `ฟังคู่เสียงนี้ แล้วทดสอบการฟังของคุณ` | `demoHearDifference` and `demoListenPrompt` each cover only part of the sequence | `IMPLEMENTED_PAYLOAD` |
 | `previewPrompt` | Visible pre-start instruction | Listen to both words first | `ฟังทั้งสองคำก่อน` | `demoHearDifference` | `SAFE_REUSE` |
 | `startButton` | Starts round one | Start the listening test | `เริ่มแบบทดสอบการฟัง` | `demoStartTest` | `SAFE_REUSE` |
 | `playButton` | Replays the hidden sample during a round | Play the sample | `เล่นเสียงตัวอย่าง` | `demoPlaySample` | `SAFE_REUSE` |
 | `testPrompt` | Visible answer prompt | Which word did you hear? | `คุณได้ยินคำไหน` | `demoListenPrompt` | `SAFE_REUSE` |
 | `feedbackReplayPrompt` | Visible replay instruction after an answer | Listen again | `ฟังอีกครั้ง:` | `demoReplayPrompt` | `SAFE_REUSE` |
 | `nextButton` | Advances to round two | Try one more round | `ลองอีกหนึ่งรอบ` | `demoNextRound` | `SAFE_REUSE` |
-| `speakerLabel` | Short visible, aria-hidden label inside word playback buttons | Listen | `ฟัง` | `demoPlaySample` and `demoPlayWord` are longer action labels with different placements | `NEEDS_NATIVE_REVIEW` |
-| `audioUnavailable` | Playback failure/status message | Audio is unavailable; enable sound or use a speech-capable browser before answering | `ไม่สามารถเล่นเสียงได้ โปรดเปิดเสียงหรือลองใช้เบราว์เซอร์ที่รองรับการเล่นเสียงก่อนตอบ` | None | `MISSING` |
+| `speakerLabel` | Short visible, aria-hidden label inside word playback buttons | Listen | `ฟัง` | `demoPlaySample` and `demoPlayWord` are longer action labels with different placements | `IMPLEMENTED_PAYLOAD` |
+| `audioUnavailable` | Playback failure/status message | Audio is unavailable; enable sound or use a speech-capable browser before answering | `ไม่สามารถเล่นเสียงได้ โปรดเปิดเสียงหรือลองใช้เบราว์เซอร์ที่รองรับการเล่นเสียงก่อนตอบ` | None | `IMPLEMENTED_PAYLOAD` |
 | `listenPrompt` | Live-region instruction as a round starts | Listen carefully. Which word did you hear? | `ตั้งใจฟัง คุณได้ยินคำไหน` | `demoListenPrompt` | `SAFE_REUSE` |
-| `feedbackContrast` | Dynamic feedback suffix naming the phonetic contrast | The contrast is `{contrast}` | `คู่เสียงนี้คือ {contrast}` | Summary copy refers to a contrast but no reviewed dynamic template exists | `NEEDS_NATIVE_REVIEW` |
-| `generalizationHeading` | Completion heading above related catalog pairs | You practiced `{contrast}`. Try another example | `คุณฝึกคู่เสียง {contrast} แล้ว ลองตัวอย่างอื่น` | Summary copy discusses repetition, but no reviewed dynamic heading exists | `NEEDS_NATIVE_REVIEW` |
-| `generalizationBody` | Explains why the listed pairs are related | These pairs use the same sound contrast | `คู่คำเหล่านี้ใช้ความต่างของเสียงเดียวกัน` | `demoSummaryAllCorrectBody` discusses practice across words and voices, not the semantic relationship of the rendered list | `NEEDS_NATIVE_REVIEW` |
+| `feedbackContrast` | Dynamic feedback suffix naming the phonetic contrast | The contrast is `{contrast}` | `คู่เสียงนี้คือ {contrast}` | Summary copy refers to a contrast but no reviewed dynamic template exists | `IMPLEMENTED_PAYLOAD` |
+| `generalizationHeading` | Completion heading above related catalog pairs | You practiced `{contrast}`. Try another example | `คุณฝึกคู่เสียง {contrast} แล้ว ลองตัวอย่างอื่น` | Summary copy discusses repetition, but no reviewed dynamic heading exists | `IMPLEMENTED_PAYLOAD` |
+| `generalizationBody` | Explains why the listed pairs are related | These pairs use the same sound contrast | `คู่คำเหล่านี้ใช้ความต่างของเสียงเดียวกัน` | `demoSummaryAllCorrectBody` discusses practice across words and voices, not the semantic relationship of the rendered list | `IMPLEMENTED_PAYLOAD` |
 | `chooseWordLabel` | Per-answer-button accessible label | Choose `{word}` | `เลือก {word}` | `demoChooseWord` | `SAFE_REUSE` |
 | `playWordLabel` | Per-playback-button accessible label | Play pronunciation for `{word}` | `ฟังการออกเสียงของ {word}` | `demoPlayWord` | `SAFE_REUSE` |
 | `roundLabel` | Progress indicator | Round `{current}` of `{total}` | `รอบที่ {current} จาก {total}` | `demoRoundLabel` | `SAFE_REUSE` |
@@ -45,55 +45,55 @@ The completion CTA's link label is not part of this translation bundle. `src/seo
 
 | Locale | Route | Fixed pair | Translation status | Exercise before | Exercise after | Blocker set |
 |---|---|---|---|---|---|---|
-| Japanese | `/ja/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
-| Mandarin | `/zh/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
-| Cantonese | `/yue/right-vs-light/` | right/light | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list plus consonant-safe `summary` review |
-| Korean | `/ko/right-vs-light/` | right/light | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list plus consonant-safe `summary` review |
-| Spanish | `/es/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
-| Portuguese | `/pt/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
-| Arabic | `/ar/pat-vs-bat/` | pat/bat | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list plus consonant-safe `summary` review |
-| Hindi/Urdu | `/hi-ur/vest-vs-west/` | vest/west | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list plus consonant-safe `summary` review |
-| Indonesian | `/id/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
-| Persian | `/fa/vest-vs-west/` | vest/west | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list plus consonant-safe `summary` review |
-| Russian | `/ru/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
+| Japanese | `/ja/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
+| Mandarin | `/zh/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
+| Cantonese | `/yue/right-vs-light/` | right/light | `READY` | Unmounted | Mounted | None |
+| Korean | `/ko/right-vs-light/` | right/light | `READY` | Unmounted | Mounted | None |
+| Spanish | `/es/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
+| Portuguese | `/pt/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
+| Arabic | `/ar/pat-vs-bat/` | pat/bat | `READY` | Unmounted | Mounted | None |
+| Hindi/Urdu | `/hi-ur/vest-vs-west/` | vest/west | `READY` | Unmounted | Mounted | None |
+| Indonesian | `/id/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
+| Persian | `/fa/vest-vs-west/` | vest/west | `READY` | Unmounted | Mounted | None |
+| Russian | `/ru/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
 | Thai | `/th/thin-vs-tin/` | thin/tin | `READY` (`EXACT_EXISTING`) | Mounted | Mounted | None |
-| Turkish | `/tr/ship-vs-sheep/` | ship/sheep | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list |
-| Vietnamese | `/vi/right-vs-light/` | right/light | `BLOCKED_TRANSLATION` | Unmounted | Unmounted | Common ten-key punch list plus consonant-safe `summary` review |
+| Turkish | `/tr/ship-vs-sheep/` | ship/sheep | `READY` | Unmounted | Mounted | None |
+| Vietnamese | `/vi/right-vs-light/` | right/light | `READY` | Unmounted | Mounted | None |
 
-No remaining localized flagship route became READY in this audit. No localized page source was therefore changed to add a mount or practice CTA.
+The completed linguistic-review payload resolves every blocker. All 14 localized flagship routes now satisfy the contract, mount one exercise, and expose a hero practice CTA to the mounted exercise.
 
-## Native-Review Punch List
+## Completed Linguistic Review
 
-### Common to all 13 blocked locales
+### Common payload implemented for all 13 locales
 
 | Key | Classification | English meaning / UI context | Related repository translation | Why it cannot be reused as-is |
 |---|---|---|---|---|
-| `label` | `NEEDS_NATIVE_REVIEW` | “Try this contrast”; pre-start exercise eyebrow | `demoHearDifference` | A prompt is not necessarily a natural eyebrow label. |
-| `previewChoicesAriaLabel` | `NEEDS_NATIVE_REVIEW` | “Preview the two words”; accessible name for a two-button group | `demoHearDifference` | The existing prompt does not explicitly name the control group. |
-| `guessChoicesAriaLabel` | `NEEDS_NATIVE_REVIEW` | “Choose the word you heard”; accessible answer-group name | `demoListenPrompt` | The existing sentence is visible/live prompt copy, not a reviewed accessible group label. |
-| `replayChoicesAriaLabel` | `NEEDS_NATIVE_REVIEW` | “Replay the contrast”; accessible replay-group name | `demoReplayPrompt` | The existing short visible instruction may need grammatical adaptation as a group label. |
-| `liveInitial` | `NEEDS_NATIVE_REVIEW` | “Hear the contrast, then test your ear”; initial polite announcement | `demoHearDifference`, `demoListenPrompt` | Neither existing string expresses the full two-step pre-start sequence. |
-| `speakerLabel` | `NEEDS_NATIVE_REVIEW` | “Listen”; short visible label inside each word playback control | `demoPlaySample`, `demoPlayWord` | Existing strings are a full sample button or word-specific accessible template, not this compact visible label. |
-| `audioUnavailable` | `MISSING` | Playback failed; enable sound or use a speech-capable browser before answering | None | No localized error/recovery message exists in the repository. |
-| `feedbackContrast` | `NEEDS_NATIVE_REVIEW` | “The contrast is `{contrast}`”; appended to answer feedback and announced live | Related contrast language exists in `demoSummary*`, without a placeholder | A new grammatical template is required around arbitrary IPA text. |
-| `generalizationHeading` | `NEEDS_NATIVE_REVIEW` | “You practiced `{contrast}`. Try another example”; completion heading | Related repetition language exists in `demoSummaryAllCorrectBody` | No reviewed dynamic heading exists, and arbitrary IPA must remain readable. |
-| `generalizationBody` | `NEEDS_NATIVE_REVIEW` | “These pairs use the same sound contrast”; explains the catalog-derived pair list | `demoSummaryAllCorrectBody` | Existing copy recommends practice across words and voices; it does not label the relationship of the displayed list. |
+| `label` | `IMPLEMENTED_PAYLOAD` | “Try this contrast”; pre-start exercise eyebrow | `demoHearDifference` | A prompt is not necessarily a natural eyebrow label. |
+| `previewChoicesAriaLabel` | `IMPLEMENTED_PAYLOAD` | “Preview the two words”; accessible name for a two-button group | `demoHearDifference` | The existing prompt does not explicitly name the control group. |
+| `guessChoicesAriaLabel` | `IMPLEMENTED_PAYLOAD` | “Choose the word you heard”; accessible answer-group name | `demoListenPrompt` | The existing sentence is visible/live prompt copy, not a reviewed accessible group label. |
+| `replayChoicesAriaLabel` | `IMPLEMENTED_PAYLOAD` | “Replay the contrast”; accessible replay-group name | `demoReplayPrompt` | The existing short visible instruction may need grammatical adaptation as a group label. |
+| `liveInitial` | `IMPLEMENTED_PAYLOAD` | “Hear the contrast, then test your ear”; initial polite announcement | `demoHearDifference`, `demoListenPrompt` | Neither existing string expresses the full two-step pre-start sequence. |
+| `speakerLabel` | `IMPLEMENTED_PAYLOAD` | “Listen”; short visible label inside each word playback control | `demoPlaySample`, `demoPlayWord` | Existing strings are a full sample button or word-specific accessible template, not this compact visible label. |
+| `audioUnavailable` | `IMPLEMENTED_PAYLOAD` | Playback failed; enable sound or use a speech-capable browser before answering | None | The completed payload supplies the localized error/recovery message. |
+| `feedbackContrast` | `IMPLEMENTED_PAYLOAD` | “The contrast is `{contrast}`”; appended to answer feedback and announced live | Related contrast language exists in `demoSummary*`, without a placeholder | A new grammatical template is required around arbitrary IPA text. |
+| `generalizationHeading` | `IMPLEMENTED_PAYLOAD` | “You practiced `{contrast}`. Try another example”; completion heading | Related repetition language exists in `demoSummaryAllCorrectBody` | No reviewed dynamic heading exists, and arbitrary IPA must remain readable. |
+| `generalizationBody` | `IMPLEMENTED_PAYLOAD` | “These pairs use the same sound contrast”; explains the catalog-derived pair list | `demoSummaryAllCorrectBody` | Existing copy recommends practice across words and voices; it does not label the relationship of the displayed list. |
 
-These ten keys are required for each of: Japanese (`ja`), Mandarin (`zh`), Cantonese (`yue`), Korean (`ko`), Spanish (`es`), Portuguese (`pt`), Arabic (`ar`), Hindi/Urdu (`hi-ur`), Indonesian (`id`), Persian (`fa`), Russian (`ru`), Turkish (`tr`), and Vietnamese (`vi`).
+These ten keys were supplied and implemented for each of: Japanese (`ja`), Mandarin (`zh`), Cantonese (`yue`), Korean (`ko`), Spanish (`es`), Portuguese (`pt`), Arabic (`ar`), Hindi/Urdu (`hi-ur`), Indonesian (`id`), Persian (`fa`), Russian (`ru`), Turkish (`tr`), and Vietnamese (`vi`). Dynamic `{contrast}` transfer tokens are runtime functions and never render literally.
 
-### Additional consonant-route review
+### Consonant summaries implemented
 
 | Locale | Key | Classification | English meaning / UI context | Related repository translation | Why it cannot be reused as-is |
 |---|---|---|---|---|---|
-| Cantonese (`yue`) | `summary` zero-score body | `NEEDS_NATIVE_REVIEW` | Completion guidance after 0/2 on right/light | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but right/light contrasts consonants. |
-| Korean (`ko`) | `summary` zero-score body | `NEEDS_NATIVE_REVIEW` | Completion guidance after 0/2 on right/light | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but right/light contrasts consonants. |
-| Arabic (`ar`) | `summary` zero-score body | `NEEDS_NATIVE_REVIEW` | Completion guidance after 0/2 on pat/bat | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but pat/bat contrasts consonants. |
-| Hindi/Urdu (`hi-ur`) | `summary` zero-score body | `NEEDS_NATIVE_REVIEW` | Completion guidance after 0/2 on vest/west | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but vest/west contrasts consonants. |
-| Persian (`fa`) | `summary` zero-score body | `NEEDS_NATIVE_REVIEW` | Completion guidance after 0/2 on vest/west | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but vest/west contrasts consonants. |
-| Vietnamese (`vi`) | `summary` zero-score body | `NEEDS_NATIVE_REVIEW` | Completion guidance after 0/2 on right/light | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but right/light contrasts consonants. |
+| Cantonese (`yue`) | `summary` zero-score body | `IMPLEMENTED_PAYLOAD` | Completion guidance after 0/2 on right/light | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but right/light contrasts consonants. |
+| Korean (`ko`) | `summary` zero-score body | `IMPLEMENTED_PAYLOAD` | Completion guidance after 0/2 on right/light | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but right/light contrasts consonants. |
+| Arabic (`ar`) | `summary` zero-score body | `IMPLEMENTED_PAYLOAD` | Completion guidance after 0/2 on pat/bat | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but pat/bat contrasts consonants. |
+| Hindi/Urdu (`hi-ur`) | `summary` zero-score body | `IMPLEMENTED_PAYLOAD` | Completion guidance after 0/2 on vest/west | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but vest/west contrasts consonants. |
+| Persian (`fa`) | `summary` zero-score body | `IMPLEMENTED_PAYLOAD` | Completion guidance after 0/2 on vest/west | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but vest/west contrasts consonants. |
+| Vietnamese (`vi`) | `summary` zero-score body | `IMPLEMENTED_PAYLOAD` | Completion guidance after 0/2 on right/light | `demoSummaryNoneCorrectBody` | It explicitly tells the learner to listen for a vowel difference, but right/light contrasts consonants. |
 
 ## Safe Reuse Provenance
 
 `src/seo-exercise-translation-reuse.js` owns the explicit reuse mapping. It imports the approved strings from `src/hero-demo-translations.js`, preserves them verbatim, and performs only the placeholder substitution and feedback composition already used by `src/main.js`. It intentionally does not provide any of the punch-list fields.
 
-The reusable fields are `previewPrompt`, `startButton`, `playButton`, `testPrompt`, `feedbackReplayPrompt`, `nextButton`, `listenPrompt`, `chooseWordLabel`, `playWordLabel`, `roundLabel`, `scoreLabel`, `feedback`, and `summaryCta`. `summary` is reusable only for the seven blocked vowel flagship locales (`ja`, `zh`, `es`, `pt`, `id`, `ru`, and `tr`).
+The reusable fields are `previewPrompt`, `startButton`, `playButton`, `testPrompt`, `feedbackReplayPrompt`, `nextButton`, `listenPrompt`, `chooseWordLabel`, `playWordLabel`, `roundLabel`, `scoreLabel`, `feedback`, and `summaryCta`. `summary` remains safely reused for the seven vowel flagship locales (`ja`, `zh`, `es`, `pt`, `id`, `ru`, and `tr`). The six consonant locales use the supplied complete perfect/partial/zero summary branches instead of the vowel-specific zero-score reuse.

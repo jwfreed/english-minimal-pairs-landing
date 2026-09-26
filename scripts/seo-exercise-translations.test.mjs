@@ -15,19 +15,6 @@ import {
   resolveSeoExerciseLocale,
 } from '../src/seo-exercise-translations.js';
 
-const COMMON_LOCALIZED_BLOCKERS = [
-  'audioUnavailable',
-  'feedbackContrast',
-  'generalizationBody',
-  'generalizationHeading',
-  'guessChoicesAriaLabel',
-  'label',
-  'liveInitial',
-  'previewChoicesAriaLabel',
-  'replayChoicesAriaLabel',
-  'speakerLabel',
-];
-
 const LOCALIZED_FLAGSHIP_ROUTES = [
   { locale: 'ja', documentLocale: 'ja', slug: 'ship-vs-sheep', pair: ['ship', 'sheep'] },
   { locale: 'zh', documentLocale: 'zh-Hans', slug: 'ship-vs-sheep', pair: ['ship', 'sheep'] },
@@ -45,12 +32,51 @@ const LOCALIZED_FLAGSHIP_ROUTES = [
   { locale: 'vi', documentLocale: 'vi', slug: 'right-vs-light', pair: ['right', 'light'] },
 ];
 
+const LOCALIZED_FLAGSHIP_LOCALES = LOCALIZED_FLAGSHIP_ROUTES.map(({ locale }) => locale);
+
+const HERO_RUNTIME_LOCALE_BY_SEO_LOCALE = {
+  yue: '廣東話',
+  ko: '한국어',
+  ar: 'اللغة العربية',
+  'hi-ur': 'हिंदी/اردو',
+  fa: 'زبان فارسی',
+  vi: 'Tiếng Việt',
+};
+
+const ZERO_SCORE_SUMMARY_BY_LOCALE = {
+  yue: {
+    lead: '呢組對比仲需要多啲辨音練習。',
+    body: '咁係好正常。專心練習聽力，可以幫你嘅腦分辨以前聽落一樣嘅聲音。',
+  },
+  ko: {
+    lead: '이 소리 차이는 귀 훈련이 더 필요합니다.',
+    body: '자연스러운 일입니다. 집중적인 듣기 연습은 예전에는 똑같이 들렸던 소리를 뇌가 구분하도록 도와줍니다.',
+  },
+  ar: {
+    lead: 'هذا الفرق الصوتي يحتاج إلى مزيد من تدريب الأذن.',
+    body: 'هذا أمر طبيعي. التدريب المركّز على الاستماع يساعد دماغك على الفصل بين أصوات كانت تبدو متطابقة.',
+  },
+  'hi-ur': {
+    lead: 'इस फ़र्क़ के लिए कान को और अभ्यास चाहिए।',
+    body: 'यह आम बात है। ध्यान लगाकर सुनने का अभ्यास दिमाग़ को उन आवाज़ों में फ़र्क़ करना सिखाता है जो पहले एक जैसी लगती थीं।',
+  },
+  fa: {
+    lead: 'این تقابل به تمرین شنیداری بیشتری نیاز دارد.',
+    body: 'این طبیعی است. تمرین شنیداری متمرکز به مغز شما کمک می‌کند صداهایی را که پیش‌تر یکسان به نظر می‌رسیدند از هم جدا کند.',
+  },
+  vi: {
+    lead: 'Cặp âm này cần luyện tai thêm.',
+    body: 'Điều đó là bình thường. Luyện nghe có tập trung giúp não bạn tách được những âm trước đây nghe như nhau.',
+  },
+};
+
 test('resolves exact, regional, and unsupported SEO exercise locales', () => {
   assert.equal(resolveSeoExerciseLocale('en'), 'en');
   assert.equal(resolveSeoExerciseLocale('th-TH'), 'th');
-  assert.equal(resolveSeoExerciseLocale('pt-BR'), null);
-  assert.equal(resolveSeoExerciseLocale('zh-Hant-HK'), null);
-  assert.equal(resolveSeoExerciseLocale('hi'), null);
+  assert.equal(resolveSeoExerciseLocale('pt-BR'), 'pt');
+  assert.equal(resolveSeoExerciseLocale('zh-Hant-HK'), 'yue');
+  assert.equal(resolveSeoExerciseLocale('hi'), 'hi-ur');
+  assert.equal(resolveSeoExerciseLocale('xx'), null);
   assert.equal(resolveSeoExerciseLocale(''), 'en');
 });
 
@@ -67,11 +93,12 @@ test('returns localized SEO exercise UI copy with formatted dynamic labels', () 
   assert.equal(copy.summaryCta({ correct: 1, total: 2 }).headline, 'ฝึกแยกคู่เสียงนี้ต่อ');
 });
 
-test('does not expose English fallback copy to unsupported localized exercises', () => {
-  assert.equal(getSeoExerciseCopy('ko'), null);
-  assert.equal(getSeoExerciseCopy('pt-BR'), null);
-  assert.equal(getSeoExerciseCopy('zh-Hant-HK'), null);
-  assert.equal(getSeoExerciseCopy('hi'), null);
+test('returns localized copy without exposing an English fallback', () => {
+  assert.equal(getSeoExerciseCopy('ko').locale, 'ko');
+  assert.equal(getSeoExerciseCopy('pt-BR').locale, 'pt');
+  assert.equal(getSeoExerciseCopy('zh-Hant-HK').locale, 'yue');
+  assert.equal(getSeoExerciseCopy('hi').locale, 'hi-ur');
+  assert.equal(getSeoExerciseCopy('xx'), null);
 });
 
 test('provides score-aware English CTA copy for incomplete and perfect results', () => {
@@ -87,15 +114,16 @@ test('provides score-aware English CTA copy for incomplete and perfect results',
   assert.equal('label' in perfect, false);
 });
 
-test('only complete localized exercise bundles are treated as supported', () => {
-  assert.deepEqual(Object.keys(SEO_EXERCISE_TRANSLATIONS).sort(), ['en', 'th']);
-  assert.equal(hasCompleteSeoExerciseTranslation('en'), true);
-  assert.equal(hasCompleteSeoExerciseTranslation('th-TH'), true);
-  assert.equal(hasCompleteSeoExerciseTranslation('ja'), false);
-  assert.equal(hasCompleteSeoExerciseTranslation('zh-Hant-HK'), false);
-  assert.equal(hasCompleteSeoExerciseTranslation('hi'), false);
-  assert.equal(resolveSeoExerciseLocale('th-TH'), 'th');
-  assert.equal(resolveSeoExerciseLocale('ja'), null);
+test('all localized flagship exercise bundles are treated as supported', () => {
+  assert.deepEqual(
+    Object.keys(SEO_EXERCISE_TRANSLATIONS).sort(),
+    ['en', ...LOCALIZED_FLAGSHIP_LOCALES].sort()
+  );
+
+  for (const { locale, documentLocale } of LOCALIZED_FLAGSHIP_ROUTES) {
+    assert.equal(hasCompleteSeoExerciseTranslation(documentLocale), true, locale);
+    assert.equal(resolveSeoExerciseLocale(documentLocale), locale, locale);
+  }
 });
 
 test('the required contract covers every field consumed by the SEO exercise lifecycle', () => {
@@ -126,12 +154,26 @@ test('the required contract covers every field consumed by the SEO exercise life
     'summaryCta',
   ]);
 
-  assert.deepEqual(getSeoExerciseTranslationStatus('th').missingKeys, []);
-  assert.deepEqual(getSeoExerciseTranslationStatus('ja').missingKeys, COMMON_LOCALIZED_BLOCKERS);
-  assert.deepEqual(
-    getSeoExerciseTranslationStatus('ar').missingKeys,
-    [...COMMON_LOCALIZED_BLOCKERS, 'summary'].sort()
-  );
+  for (const { locale, documentLocale } of LOCALIZED_FLAGSHIP_ROUTES) {
+    assert.deepEqual(getSeoExerciseTranslationStatus(documentLocale).missingKeys, [], locale);
+  }
+});
+
+test('localized contrast templates render the canonical catalog value without leaking placeholders', () => {
+  const cases = [
+    ['es', '/ɪ/ vs /iː/', 'El contraste es /ɪ/ vs /iː/.', 'Practicaste /ɪ/ vs /iː/. Prueba otro ejemplo.'],
+    ['ko', '/r/ vs /l/', '이 소리 차이는 /r/ vs /l/입니다.', '/r/ vs /l/ 소리 차이를 연습했습니다. 다른 예도 시도해 보세요.'],
+    ['ar', '/p/ vs /b/', 'الفرق الصوتي هو /p/ vs /b/.', 'لقد تدرّبت على /p/ vs /b/. جرّب مثالاً آخر.'],
+    ['fa', '/v/ vs /w/', 'این تقابل /v/ vs /w/ است.', 'شما /v/ vs /w/ را تمرین کردید. نمونه‌ای دیگر را امتحان کنید.'],
+  ];
+
+  for (const [locale, contrast, expectedFeedback, expectedHeading] of cases) {
+    const copy = getSeoExerciseCopy(locale);
+    assert.equal(copy.feedbackContrast(contrast), expectedFeedback, `${locale} feedback`);
+    assert.equal(copy.generalizationHeading(contrast), expectedHeading, `${locale} heading`);
+    assert.doesNotMatch(copy.feedbackContrast(contrast), /\{contrast\}/u, locale);
+    assert.doesNotMatch(copy.generalizationHeading(contrast), /\{contrast\}/u, locale);
+  }
 });
 
 test('the completeness gate rejects malformed dynamic output instead of trusting function presence', () => {
@@ -190,30 +232,36 @@ test('safe reuse preserves approved hero-demo strings and their existing UI comp
   });
 });
 
-test('non-vowel flagship routes do not reuse vowel-specific zero-score summary copy', () => {
-  for (const locale of ['ar', 'fa', 'hi-ur', 'ko', 'vi', 'yue']) {
-    assert.equal('summary' in SEO_EXERCISE_TRANSLATION_CANDIDATES[locale], false, locale);
-    assert.equal(getSeoExerciseTranslationStatus(locale).missingKeys.includes('summary'), true, locale);
+test('consonant flagship routes use complete contrast-neutral summaries', () => {
+  for (const [locale, runtimeLocale] of Object.entries(HERO_RUNTIME_LOCALE_BY_SEO_LOCALE)) {
+    const summary = SEO_EXERCISE_TRANSLATION_CANDIDATES[locale].summary;
+    const hero = heroDemoTranslations[runtimeLocale];
+
+    assert.deepEqual(summary({ correct: 2, total: 2 }), {
+      lead: hero.demoSummaryAllCorrectLead,
+      body: hero.demoSummaryAllCorrectBody,
+    }, `${locale} perfect`);
+    assert.deepEqual(summary({ correct: 1, total: 2 }), {
+      lead: hero.demoSummaryPartialCorrectLead,
+      body: hero.demoSummaryPartialCorrectBody,
+    }, `${locale} partial`);
+    assert.deepEqual(summary({ correct: 0, total: 2 }), ZERO_SCORE_SUMMARY_BY_LOCALE[locale], `${locale} zero`);
+    assert.notEqual(summary({ correct: 0, total: 2 }).body, hero.demoSummaryNoneCorrectBody, locale);
   }
 });
 
-test('all localized flagship pages keep exact pair mappings and mount only complete locale bundles', () => {
+test('all localized flagship pages keep exact pair mappings and mount one complete locale bundle', () => {
   for (const { locale, documentLocale, slug, pair } of LOCALIZED_FLAGSHIP_ROUTES) {
     const sourcePath = `content/locales/${locale}/${slug}/index.html`;
     const source = fs.readFileSync(sourcePath, 'utf8');
     const catalogPair = CONTRAST_CATALOG[slug].words.map((word) => word.text);
     const mountCount = source.split('data-exercise').length - 1;
-    const complete = hasCompleteSeoExerciseTranslation(documentLocale);
 
     assert.deepEqual(catalogPair, pair, `${locale} catalog pair`);
     assert.match(source, new RegExp(`<html[^>]+lang="${documentLocale}"`, 'u'), `${locale} lang`);
-    assert.equal(mountCount, complete ? 1 : 0, `${locale} mount gate`);
-
-    if (complete) {
-      assert.match(source, new RegExp(`data-contrast="${slug}"`, 'u'), `${locale} contrast`);
-    } else {
-      const hero = source.slice(0, source.indexOf('</header>'));
-      assert.doesNotMatch(hero, /href="#[^"]*listening-exercise"/u, `${locale} fake practice CTA`);
-    }
+    assert.equal(hasCompleteSeoExerciseTranslation(documentLocale), true, `${locale} complete`);
+    assert.equal(mountCount, 1, `${locale} mount`);
+    assert.match(source, new RegExp(`id="${slug}-listening-exercise"[^>]+data-exercise[^>]+data-contrast="${slug}"`, 'u'), `${locale} contrast`);
+    assert.match(source.slice(0, source.indexOf('</header>')), new RegExp(`href="#${slug}-listening-exercise"`, 'u'), `${locale} hero practice CTA`);
   }
 });
