@@ -53,3 +53,6 @@ output/playwright/
 
 # CodeGraph local index (generated, machine-local SQLite database)
 .codegraph/
+
+# Claude Code local tool config
+.claude/
