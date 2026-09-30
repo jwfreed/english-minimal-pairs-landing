@@ -8,16 +8,23 @@
 }
 
 :root {
-  /* Colors - Based on actual app */
-  --primary: #E67E22;
-  --primary-dark: #D35400;
-  --primary-light: #F39C12;
-  --secondary: #3498DB;
-  --accent: #E67E22;
-  --success: #27AE60;
-  --danger: #C0392B;
-  
-  --text-primary: #111827;
+  /* Colors - the app's Ember palette: graphite neutrals, orange as the only
+     warm hue. Orange text and white-on-orange labels meet WCAG AA. */
+  --primary: #A8470C;
+  --primary-dark: #8A3A08;
+  --primary-light: #C4580F;
+  --accent: #A8470C;
+  --success: #1B7F45;
+  --danger: #B93226;
+
+  /* Dark bands (hero, demo card, insight, final CTA) use the app icon's
+     graphite; buttons on them use the bright orange with a dark label. */
+  --graphite: #1F2329;
+  --graphite-deep: #16181C;
+  --ember-bright: #F08A3C;
+  --on-ember-bright: #1A0E05;
+
+  --text-primary: #1F2329;
   --text-body: #374151;
   --text-secondary: #6B7280;
   --text-light: #9CA3AF;
@@ -26,7 +33,7 @@
   --bg-secondary: #F9FAFB;
   --bg-soft: #F9FAFB;
   --bg-tertiary: #F3F4F6;
-  --bg-dark: #111827;
+  --bg-dark: #1F2329;
   
   --border: #E5E7EB;
   --border-light: #F3F4F6;
@@ -271,7 +278,7 @@ body {
    =========================== */
 .hero {
   padding: 8rem 0 3.5rem;
-  background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  background: var(--graphite);
   position: relative;
   overflow: hidden;
 }
@@ -327,7 +334,7 @@ body {
 }
 
 .highlight {
-  color: #FCD34D;
+  color: var(--ember-bright);
   position: relative;
   display: inline-block;
 }
@@ -731,7 +738,7 @@ body.challenge-mode .hero-primer {
 }
 
 .btn-primary:hover {
-  background: #D97706;
+  background: var(--primary-dark);
   transform: translateY(-1px);
   box-shadow: 0 14px 28px rgba(153, 52, 4, 0.24);
 }
@@ -746,6 +753,19 @@ body.challenge-mode .hero-primer {
   font-weight: 700;
   letter-spacing: 0.01em;
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hero .btn-primary,
+.final-cta .btn-primary,
+.demo-section .hero-demo-card .btn-primary {
+  background: var(--ember-bright);
+  color: var(--on-ember-bright);
+}
+
+.hero .btn-primary:hover,
+.final-cta .btn-primary:hover,
+.demo-section .hero-demo-card .btn-primary:hover {
+  background: #F6A866;
 }
 
 .btn-secondary {
@@ -962,9 +982,17 @@ body.challenge-mode .hero-primer {
 .demo-section .hero-demo-card {
   max-width: 780px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  background: var(--graphite);
   border: 1px solid rgba(255, 255, 255, 0.28);
-  box-shadow: var(--shadow-xl), 0 18px 42px rgba(180, 83, 9, 0.22);
+  box-shadow: var(--shadow-xl), 0 18px 42px rgba(31, 35, 41, 0.22);
+  color: #F3F4F6;
+}
+
+/* The demo card is graphite: its chips and secondary action use light tints. */
+.demo-section .hero-demo-contrast,
+.demo-section .hero-demo-action-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #F3F4F6;
 }
 
 .demo-section .hero-demo-title {
@@ -1106,7 +1134,7 @@ body.challenge-mode .hero-primer {
 
 /* Insight Box */
 .insight-box {
-  background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  background: var(--graphite);
   color: white;
   padding: 2rem;
   border-radius: var(--radius-xl);
@@ -2076,7 +2104,7 @@ body.challenge-mode .hero-primer {
    =========================== */
 .final-cta {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #E67E22 0%, #D35400 100%);
+  background: var(--graphite);
   color: white;
   text-align: center;
 }
@@ -2203,7 +2231,7 @@ body.challenge-mode .hero-primer {
    Footer
    =========================== */
 .footer {
-  background: var(--bg-dark);
+  background: var(--graphite-deep);
   color: white;
   padding: 3rem 0 2rem;
 }
