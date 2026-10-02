@@ -266,6 +266,36 @@ redirects, orphans, dead ends, sitemap reachability, reciprocal hreflang, contex
 pair/hub relationships, parent/child hub coverage, and avoidable cross-language links.
 It runs automatically after `npm run build`.
 
+### Site-wide contextual-link audit (2026-10-02)
+
+The [machine-readable audit](../seo/snapshots/internal-links/2026-10-02.json)
+records all 114 built HTML pages, including support and localized legal pages
+outside the sitemap. It evaluates all 81 instructional pages as sources and
+targets across English and all 14 localized sections. Legal content supplies no
+justified instructional links; noindex and redirect utilities are excluded.
+
+The rollout adds 218 contextual anchors across 64 source pages to 62 targets:
+78 links to all 30 hubs and 140 links to 32 pair pages. It preserves every
+existing internal anchor and adds 44 distinct source/target relationships,
+increasing the built graph from 2,041 to 2,085 edges. The report includes each
+anchor's source language/L1, section, semantic reason, prior destination
+coverage, and before/after inbound sources for every eligible target.
+
+Definitions now lead to actual exercises, listening-method explanations lead
+up to native hubs, and explicit practice steps lead to supported same-contrast
+examples. Existing L1 references lead to a relevant native pair or hub.
+Three/tree remains a related onset exercise rather than an exact equivalent
+of thin/tin. Repeated mentions beside working directories or reviewed practice
+journeys do not require duplicate links. Bare vocabulary matches, unpublished
+pairs, and examples explicitly excluded by a lesson do not justify links.
+
+The remaining 746 distinct localized-to-English fallback edges have no
+published same-language equivalents (745 before this audit; one added for a
+Japanese full/fool definition example). Replace those fallbacks when their
+localized equivalents ship. The audit date is not a deployment date: record
+the actual production exposure separately and use existing website analytics
+and Search Console for follow-up. No analytics events or tracking changed.
+
 ---
 
 ## 5. Hub and Page Responsibilities
