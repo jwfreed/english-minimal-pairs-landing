@@ -3,6 +3,11 @@
 
 export const supplementalTranslations = {
   "en": {
+    "seoPairsGuideLink": "Browse the complete minimal pairs guide",
+    "seoPairsEarTrainingLink": "Why ear training comes before pronunciation",
+    "selectLanguageLabel": "Select language",
+    "appHighlightsLabel": "App highlights",
+    "learningPrinciplesLabel": "Core Soundwise learning principles",
     "name": "English",
     "flag": "🇬🇧 🇺🇸",
     "navCta": "Download Soundwise",
@@ -142,6 +147,11 @@ export const supplementalTranslations = {
     "step4Text": "Build stronger sound recognition through focused practice."
   },
   "日本語": {
+    "seoPairsGuideLink": "ミニマルペアの総合ガイドを見る",
+    "seoPairsEarTrainingLink": "発音練習の前に耳を鍛える理由",
+    "selectLanguageLabel": "言語を選択",
+    "appHighlightsLabel": "アプリの特長",
+    "learningPrinciplesLabel": "Soundwiseの学習の基本方針",
     "name": "日本語",
     "flag": "🇯🇵",
     "navCta": "Soundwiseをダウンロード",
@@ -252,7 +262,7 @@ export const supplementalTranslations = {
     "footerPrivacy": "プライバシーポリシー",
     "footerTerms": "利用規約",
     "footerContact": "お問い合わせ",
-    "footerCopyright": "© 2025 Soundwise. All rights reserved.",
+    "footerCopyright": "© 2025 Soundwise. 無断転載を禁じます。",
     "trustSignalPrimary": "マイク不要 — ただ聴いて選ぶだけ。",
     "midPageCta": "耳のトレーニングを始めませんか？",
     "featureWhyTitle": "まず聞く理由",
@@ -281,6 +291,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "違いが聞こえますか？"
   },
   "中文": {
+    "seoPairsGuideLink": "查看完整的最小对立词练习指南",
+    "seoPairsEarTrainingLink": "为什么要先练听辨，再练发音",
+    "selectLanguageLabel": "选择语言",
+    "appHighlightsLabel": "应用亮点",
+    "learningPrinciplesLabel": "Soundwise 的核心学习原则",
     "name": "中文",
     "flag": "🇨🇳",
     "navCta": "下载 Soundwise",
@@ -420,6 +435,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "你能听出区别吗？"
   },
   "idioma español": {
+    "seoPairsGuideLink": "Explora la guía completa de pares mínimos",
+    "seoPairsEarTrainingLink": "Por qué entrenar el oído antes de practicar la pronunciación",
+    "selectLanguageLabel": "Seleccionar idioma",
+    "appHighlightsLabel": "Características destacadas de la app",
+    "learningPrinciplesLabel": "Principios básicos de aprendizaje de Soundwise",
     "name": "Español",
     "flag": "🇪🇸",
     "navCta": "Descarga Soundwise",
@@ -559,6 +579,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "¿Puedes escuchar la diferencia?"
   },
   "ภาษาไทย": {
+    "seoPairsGuideLink": "ดูคู่มือ minimal pair ฉบับเต็ม",
+    "seoPairsEarTrainingLink": "ทำไมควรฝึกฟังก่อนฝึกออกเสียง",
+    "selectLanguageLabel": "เลือกภาษา",
+    "appHighlightsLabel": "จุดเด่นของแอป",
+    "learningPrinciplesLabel": "หลักการเรียนรู้สำคัญของ Soundwise",
     "name": "ภาษาไทย",
     "flag": "🇹🇭",
     "navCta": "ดาวน์โหลด Soundwise",
@@ -698,6 +723,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "คุณได้ยินความแตกต่างไหม?"
   },
   "한국어": {
+    "seoPairsGuideLink": "최소 대립쌍 전체 가이드 보기",
+    "seoPairsEarTrainingLink": "발음 연습 전에 듣기 훈련을 해야 하는 이유",
+    "selectLanguageLabel": "언어 선택",
+    "appHighlightsLabel": "앱 주요 특징",
+    "learningPrinciplesLabel": "Soundwise의 핵심 학습 원칙",
     "name": "한국어",
     "flag": "🇰🇷",
     "navCta": "Soundwise 다운로드",
@@ -837,6 +867,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "차이를 들을 수 있나요?"
   },
   "Português": {
+    "seoPairsGuideLink": "Veja o guia completo de pares mínimos",
+    "seoPairsEarTrainingLink": "Por que treinar o ouvido antes de praticar a pronúncia",
+    "selectLanguageLabel": "Selecionar idioma",
+    "appHighlightsLabel": "Destaques do app",
+    "learningPrinciplesLabel": "Princípios básicos de aprendizagem do Soundwise",
     "name": "Português",
     "flag": "🇧🇷",
     "navCta": "Baixar Soundwise",
@@ -976,6 +1011,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Você consegue ouvir a diferença?"
   },
   "русский язык": {
+    "seoPairsGuideLink": "Полное руководство по минимальным парам",
+    "seoPairsEarTrainingLink": "Почему тренировку слуха стоит начинать до практики произношения",
+    "selectLanguageLabel": "Выбрать язык",
+    "appHighlightsLabel": "Особенности приложения",
+    "learningPrinciplesLabel": "Основные принципы обучения в Soundwise",
     "name": "Русский",
     "flag": "🇷🇺",
     "navCta": "Скачать Soundwise",
@@ -1115,6 +1155,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Слышите ли вы разницу?"
   },
   "اللغة العربية": {
+    "seoPairsGuideLink": "تصفّح الدليل الكامل للأزواج الدنيا",
+    "seoPairsEarTrainingLink": "لماذا يأتي تدريب الأذن قبل ممارسة النطق",
+    "selectLanguageLabel": "اختر اللغة",
+    "appHighlightsLabel": "مزايا التطبيق",
+    "learningPrinciplesLabel": "مبادئ التعلّم الأساسية في Soundwise",
     "name": "العربية",
     "flag": "🇸🇦",
     "navCta": "حمّل Soundwise",
@@ -1254,6 +1299,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "هل تسمع الفرق؟"
   },
   "Tiếng Việt": {
+    "seoPairsGuideLink": "Xem hướng dẫn đầy đủ về các cặp từ tối thiểu",
+    "seoPairsEarTrainingLink": "Vì sao nên luyện nghe trước khi luyện phát âm",
+    "selectLanguageLabel": "Chọn ngôn ngữ",
+    "appHighlightsLabel": "Điểm nổi bật của ứng dụng",
+    "learningPrinciplesLabel": "Các nguyên tắc học cốt lõi của Soundwise",
     "name": "Tiếng Việt",
     "flag": "🇻🇳",
     "navCta": "Tải Soundwise",
@@ -1397,6 +1447,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Bạn có nghe thấy sự khác biệt không?"
   },
   "हिंदी/اردو": {
+    "seoPairsGuideLink": "minimal pairs की पूरी गाइड देखें",
+    "seoPairsEarTrainingLink": "उच्चारण के अभ्यास से पहले सुनने का अभ्यास क्यों ज़रूरी है",
+    "selectLanguageLabel": "भाषा चुनें",
+    "appHighlightsLabel": "ऐप की खास बातें",
+    "learningPrinciplesLabel": "Soundwise के मुख्य सीखने के सिद्धांत",
     "name": "हिंदी",
     "flag": "🇮🇳",
     "navCta": "Soundwise डाउनलोड करें",
@@ -1540,6 +1595,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "क्या आप फ़र्क़ सुन सकते हैं?"
   },
   "Türkçe": {
+    "seoPairsGuideLink": "Minimal çiftler rehberinin tamamını incele",
+    "seoPairsEarTrainingLink": "Telaffuz çalışmasından önce neden kulak eğitimi yapılmalı?",
+    "selectLanguageLabel": "Dil seç",
+    "appHighlightsLabel": "Uygulamanın öne çıkan özellikleri",
+    "learningPrinciplesLabel": "Soundwise temel öğrenme ilkeleri",
     "name": "Türkçe",
     "flag": "🇹🇷",
     "navCta": "Soundwise indir",
@@ -1683,6 +1743,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Farkı duyabilir misin?"
   },
   "زبان فارسی": {
+    "seoPairsGuideLink": "راهنمای کامل جفت‌های کمینه را ببینید",
+    "seoPairsEarTrainingLink": "چرا تمرین شنیداری پیش از تمرین تلفظ می‌آید",
+    "selectLanguageLabel": "انتخاب زبان",
+    "appHighlightsLabel": "ویژگی‌های برجستهٔ اپ",
+    "learningPrinciplesLabel": "اصول اصلی یادگیری در Soundwise",
     "name": "فارسی",
     "flag": "🇮🇷",
     "navCta": "دانلود Soundwise",
@@ -1826,6 +1891,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "آیا تفاوت را می‌شنوید؟"
   },
   "廣東話": {
+    "seoPairsGuideLink": "睇完整嘅最小對立詞練習指南",
+    "seoPairsEarTrainingLink": "點解要先練聽辨，再練發音",
+    "selectLanguageLabel": "揀語言",
+    "appHighlightsLabel": "App 特色",
+    "learningPrinciplesLabel": "Soundwise 嘅核心學習原則",
     "name": "廣東話",
     "flag": "🇭🇰",
     "navCta": "下載 Soundwise",
@@ -1965,6 +2035,11 @@ export const supplementalTranslations = {
     "demoSectionHeading": "你聽到分別嗎？"
   },
   "bahasa Indo": {
+    "seoPairsGuideLink": "Lihat panduan lengkap pasangan minimal",
+    "seoPairsEarTrainingLink": "Mengapa latihan pendengaran perlu dilakukan sebelum latihan pelafalan",
+    "selectLanguageLabel": "Pilih bahasa",
+    "appHighlightsLabel": "Keunggulan aplikasi",
+    "learningPrinciplesLabel": "Prinsip utama pembelajaran Soundwise",
     "name": "Bahasa Indonesia",
     "flag": "🇮🇩",
     "navCta": "Unduh Soundwise",

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { HERO_DEMO_CONTRASTS, RUNTIME_LOCALE_TO_DEMO_LOCALE } from '../src/hero-demo-config.js';
 
 const root = process.cwd();
 const sourcePath = path.join(root, 'index.html');
@@ -110,6 +111,23 @@ function localizeVisibleContent(source, runtimeLocale) {
   }
 
   const languageLabel = escapeHtml(`${t.flag} ${t.name}`);
+  html = html.replace(
+    /(<[a-z][^>]*\baria-label=")[^"]*("[^>]*\bdata-i18n-aria-label="([^"]+)"[^>]*>)/gi,
+    (match, before, after, key) => {
+      if (t[key] === undefined) throw new Error(`Missing ${runtimeLocale} homepage translation for ${key}`);
+      return `${before}${escapeAttribute(t[key])}${after}`;
+    }
+  );
+  const demo = HERO_DEMO_CONTRASTS[RUNTIME_LOCALE_TO_DEMO_LOCALE[runtimeLocale]];
+  const initialDemoContent = {
+    'hero-demo-round': t.demoRoundLabel.replaceAll('{current}', '1').replaceAll('{total}', '2'),
+    'hero-demo-title': demo.words.map(word => word.text.toUpperCase()).join(' / '),
+    'hero-demo-contrast': demo.contrast,
+  };
+  for (const [id, text] of Object.entries(initialDemoContent)) {
+    html = replaceRequired(html, new RegExp(`(<[^>]+id="${id}"[^>]*>)[\\s\\S]*?(</[^>]+>)`),
+      `$1${escapeHtml(text)}$2`, id);
+  }
   html = replaceRequired(
     html,
     /(<button id="language-selector"[^>]*>)[\s\S]*?(<\/button>)/,
@@ -120,7 +138,7 @@ function localizeVisibleContent(source, runtimeLocale) {
   return html;
 }
 
-function buildLocalizedHtml(template, route) {
+export function buildLocalizedHtml(template, route) {
   const { htmlLang } = getRuntimeLocaleMeta(route.runtimeLocale);
   const canonicalUrl = getHomepageUrl(route.slug);
   const seo = getLocalizedSeoMetadata(route.runtimeLocale);
@@ -154,6 +172,12 @@ function buildLocalizedHtml(template, route) {
   html = replaceRequired(html, /<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${escapeAttribute(seo.title)}" />`, 'twitter:title');
   html = replaceRequired(html, /<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`, 'twitter:description');
   html = replaceRequired(html, /<title>.*?<\/title>/, `<title>${title}</title>`, 'title');
+  html = html.replace(/(<script type="application\/ld\+json">)([\s\S]*?)(<\/script>)/g,
+    (match, opening, content, closing) => {
+      const data = JSON.parse(content);
+      if (!data.description) return match;
+      return `${opening}${content.replace(JSON.stringify(data.description), () => JSON.stringify(seo.description))}${closing}`;
+    });
 
   return html;
 }
@@ -172,4 +196,6 @@ function main() {
   }, null, 2));
 }
 
-main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main();
+}

@@ -202,6 +202,13 @@ export function applyTranslations(lang) {
     }
   });
 
+  document.querySelectorAll('[data-i18n-aria-label]').forEach((element) => {
+    const key = element.getAttribute('data-i18n-aria-label');
+    if (t[key] !== undefined) {
+      element.setAttribute('aria-label', t[key]);
+    }
+  });
+
   const langSelector = document.getElementById('language-selector');
   if (langSelector && translations[runtimeLocale]) {
     langSelector.textContent = `${translations[runtimeLocale].flag} ${translations[runtimeLocale].name}`;
