@@ -250,6 +250,52 @@ datasets can later be compared or blended by canonical landing URL and date;
 Search Console query rows cannot be joined to an individual GA4 visitor or
 conversion.
 
+### Session-Based Reporting Definitions
+
+Reports must state which of these definitions each number uses.
+
+- **Primary funnel metrics are distinct sessions** (GA4 `sessions` with an
+  `eventName` filter = sessions in which the event fired at least once):
+  `exercise_start`, `exercise_complete`, `app_store_click`. A learner who
+  browses several pair pages in one session (for example via Contrast Journey
+  links) counts once.
+- **Event counts are secondary.** The once-per-page-load guards in
+  `src/funnel-tracking.js` reset on every page load, reload, and new page, so
+  one session can emit many `exercise_start`/`exercise_complete` events, and
+  `app_store_click` is unguarded. In 2026-09-16 to 2026-10-13 organic traffic:
+  36 starts in 23 sessions, 17 completes in 8 sessions, 22 clicks in 16
+  sessions. One session on 2026-10-07 alone sent 7 starts and 5
+  completes. Never divide event counts by sessions.
+- **Completion** is reached after the learner answers the final round
+  (`maxRounds = 2`) and the automatic word replay for that answer finishes
+  (`src/exercise-engine.js`, `answer()`). A learner who leaves during that
+  replay, or whose browser never settles speech playback, produces a summary
+  screen with no `exercise_complete`. Treat completion as a slight undercount.
+- **Landing-page attribution:** use the built-in session dimension
+  `landingPage` (no trailing slash, query stripped; `(not set)` for a few
+  sessions) to attribute a whole session to its entry page. `pagePath` and the
+  `page_path` event parameter describe where an event fired, which differs from
+  the landing page when the learner navigates. Normalize `/x` and `/x/` before
+  joining with Search Console URLs. Do not report per-page rates from
+  `pagePath` as landing-page conversion.
+- **Ordered funnel:** GA4 Data API `runFunnelReport` (v1alpha, same
+  `analytics.readonly` token) supports closed funnels. Filter steps with
+  `funnelEventFilter` and `funnelFieldFilter` (for
+  `sessionDefaultChannelGroup`). Its metric is `activeUsers`, and steps are
+  evaluated per user across the date range, not per session. Use it for
+  start, complete, and later `app_store_click` ordering. For same-session
+  App Store intent after completion, count `app_store_click` sessions where
+  `exercise_completed = true` (event-scoped custom dimension). Neither method
+  isolates a single session when one user has several sessions; at current
+  volume, users and sessions are equal for these events.
+- Registered event-scoped custom dimensions at last check (2026-10-16):
+  `sound_contrast`, `pair_name`, `link_id`, `exercise_id`, `cta_position`,
+  `locale`, `exercise_completed`, `page_slug`, `content_variant`,
+  `destination_pair`, `source_pair`, `learner_language`, `entry_pair_id`.
+  `pairs_trained`, `button_text`, and `link_url` are not registered.
+- No instrumentation changed in this review, so these definitions apply to
+  the whole 2026-07-14 baseline onward without a discontinuity.
+
 ### Exercise Event Contract
 
 `page_slug` and `locale` identify the page and canonical route locale that produced the exercise
