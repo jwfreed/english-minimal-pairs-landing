@@ -225,6 +225,40 @@ function applyAppleCampaignLinks() {
   }
 }
 
+function addPreferredSourceButton() {
+  return {
+    name: 'add-preferred-source-button',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, context) {
+        const sourcePath = context.filename
+          ? path.relative(process.cwd(), context.filename).split(path.sep).join('/')
+          : ''
+        const route = sourcePath.startsWith('content/pairs/')
+          ? sourcePath.slice('content/pairs/'.length).replace(/\/index\.html$/u, '')
+          : sourcePath.startsWith('content/locales/')
+            ? sourcePath.slice('content/locales/'.length).replace(/\/index\.html$/u, '')
+            : ''
+        if (!SEO_PAGE_SLUGS.includes(route) || html.includes('google-add-preferred-source-btn')) {
+          return html
+        }
+
+        const script = '<script async src="https://news.google.com/swg/js/v1/publisher.js"></script>'
+        const button = [
+          '<aside class="preferred-source-note" aria-label="Google Search source preferences">',
+          '<p>Follow Soundwise in Google Search.</p>',
+          '<div google-add-preferred-source-btn></div>',
+          '</aside>',
+        ].join('')
+
+        return html
+          .replace('</head>', `${script}</head>`)
+          .replace('</article>', `${button}</article>`)
+      },
+    },
+  }
+}
+
 export default defineConfig({
   base: '/',
   plugins: [
@@ -232,6 +266,7 @@ export default defineConfig({
     renderSeoContrastJourneys(),
     alignSeoCapabilityCtas(),
     applyAppleCampaignLinks(),
+    addPreferredSourceButton(),
     preservePublicHtmlRoutes(),
   ],
   build: {

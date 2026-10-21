@@ -2700,6 +2700,23 @@ html[dir="rtl"] .seo-content td {
   white-space: normal;
 }
 
+.preferred-source-note {
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: space-between;
+  margin: 2rem 0 0;
+  padding: 1.25rem 0 0;
+}
+
+.preferred-source-note p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
 .seo-exercise {
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
