@@ -118,6 +118,132 @@ Known limitations:
 | Deprioritize if | <8 impressions/day or <8 clicks per 28 days |
 | Outcome | Pending (first readout after 2026-11-10 plus ~3 days GSC lag) |
 
+### EXP-HUB-2 and EXP-LIVE-1: GSC-driven content edits
+
+**Release authorization — 2026-10-23 (Asia/Bangkok):** the owner explicitly
+requested committing and pushing all worktree changes. This supersedes the
+earlier deployment deferral for this release and includes both copy changes
+below plus the already-committed Google preferred-source button. The pending
+states and checklists below describe the earlier hold; this authorization does
+not imply that any experiment has closed or met its success criteria.
+
+Use the successful GitHub Pages deployment's UTC timestamp as the new exposure
+boundary, not the commit or authorization time. From that boundary, EXP-HUB-1
+includes the later hub copy and preferred-source button; live/leave is a changed
+SERP/CTA control. Preserve the original metrics, November 13 checkpoint and
+December 11 endpoint, but report mixed exposure rather than attributing later
+changes to the original treatments alone.
+
+Release verification: 200 tests and the production build passed, along with
+landing-copy, funnel-tracking, App Store tracking, SEO conversion matrix and all
+14 localized exercise-page validations. Playwright verified the new FAQs,
+390/1280 px layouts without horizontal overflow, the hub's ship/sheep link, and
+live/leave exercise start, first-answer feedback and round continuation control.
+Analytics collection was blocked during interactions; audio quality was not
+independently assessed. Screenshots are in ignored `output/playwright/`.
+
+Prepared 2026-10-21 on request, accepted, and held uncommitted in the working
+tree. Deployment is deferred to protect the open experiments below. Each is an independent on-page
+content experiment; neither changes titles, descriptions, canonicals, hreflang,
+JS, CSS, or analytics events.
+
+| Field | EXP-HUB-2 `/minimal-pairs-practice/` | EXP-LIVE-1 `/live-vs-leave/` |
+| --- | --- | --- |
+| Change | H2 `#start-here-title` reworded to name listening exercises; one intro paragraph (replaces the redundant "Choose a sound contrast…" line); FAQ "What is a minimal pairs listening test?" (visible + JSON-LD) | Meaning sentence in Quick Answer; note on adjective "live" /laɪv/ at the end of `#difference`; FAQ "What is the difference in meaning between live and leave?" (visible + JSON-LD) |
+| GSC baseline (Jul 1–Sep 30) | 1,149 impr, 39 clicks, 3.4% CTR, pos 15.0. Practice/exercise cluster: "minimal pairs practice", "minimal pair practice", "minimal pairs listening exercises", "minimal pairs listening practice" | 12,932 impr, 23 clicks, ~0.2% CTR, pos 8.5. Meaning cluster ~1,614 impr / 1 click; difference cluster ~1,452 impr / 0 clicks |
+| Primary metric | Organic clicks and position for the practice/exercise cluster; hub-landing organic session → `exercise_start` | Clicks and position for the meaning/difference cluster. Guardrail: pronunciation-query position and clicks |
+| Deployment | Pending. Record commit and UTC time here; capture a fresh 28-day GSC baseline ending the day before deploy | Same |
+| Confounders | Overlaps the EXP-HUB-1 observation window (checkpoint 2026-11-13, readout after 2026-12-11). The new intro text may itself raise clicks to pair pages, so a rise in hub-landing `exercise_start` can no longer be credited to EXP-HUB-1's three links alone. Read EXP-HUB-1 as "links plus later content edits" from the deploy date. | `/live-vs-leave/` is a control route for `conversion_serp_cta_v1` (CTA and exercise unchanged, copy only). Added copy and any ranking or traffic-mix shift contaminate that control from the deploy date. |
+
+**Deployment dependencies**
+
+- `/live-vs-leave/` must stay unchanged in production while it is a control for
+  `conversion_serp_cta_v1` (with `/ship-vs-sheep/` and `/sit-vs-seat/`; treatment
+  is `/bit-vs-beat/` and `/fill-vs-feel/`). EXP-LIVE-1 cannot deploy until that
+  experiment is closed and recorded here.
+- `/minimal-pairs-practice/` must stay unchanged in production until the
+  EXP-HUB-1 readout (after 2026-12-11; extends to at most 2027-01-08 if n is
+  too small). EXP-HUB-2 cannot deploy before then.
+- The two are independent: neither depends on the other. Each can deploy as soon
+  as its own gate clears.
+
+**Commit `fe16804` (Google preferred-source button; local, unpushed)**
+
+Reviewed read-only 2026-10-21; not reverted or modified. A Vite
+`transformIndexHtml` plugin (`addPreferredSourceButton`, `vite.config.js`) adds
+`news.google.com/swg/js/v1/publisher.js` (async) to `<head>` and a "Follow
+Soundwise in Google Search" `<aside>` before `</article>` on every built page
+whose route is in `SEO_PAGE_SLUGS`: 65 of 114 built HTML files, including all
+five `conversion_serp_cta_v1` routes, `/ship-vs-sheep/`, the hub and many
+localized routes. The homepage, legal and support pages are excluded. Plus 17
+lines of CSS.
+
+- Analytics: no GA4 event, parameter or `content_variant` change. The
+  `app_store_click` listener only matches `a[href*="apps.apple.com"]` inside the
+  exercise root, so the new block cannot fire it. No new tracked links.
+  Validators and `npm test` pass with it in the build.
+- SEO: no title, description, canonical, hreflang, sitemap or structured-data
+  change. A direct ranking effect is not expected; this is unverified.
+- Measurement: it is a site-wide, simultaneous change to treatment and control
+  pages. It does not bias the `conversion_serp_cta_v1` treatment-vs-control
+  comparison, but it is a new boundary for any before/after baseline, including
+  EXP-HUB-1 (hub-landing sessions). Not live yet, so nothing is contaminated so
+  far. Possible side effects that no existing metric isolates: a third-party
+  script (page weight, load, layout shift at the foot of the article) and
+  clicks on Google's button.
+- Gap: `legal/privacy/` lists only App Store and analytics services. It does not
+  name this Google script. Owner decision.
+- Risk: any push of `main` ships it. Record its deploy date in this file as a
+  measurement boundary for EXP-HUB-1 and `conversion_serp_cta_v1`.
+
+**Verification limitations (2026-10-21)**
+
+- Mobile (390 px) visual check incomplete: headless Chrome screenshots were
+  clipped by its minimum window width, so they are not evidence. No horizontal
+  overflow or tap-target check was done.
+- Desktop (1280 px) was inspected on the hub only, not on `/live-vs-leave/`.
+- No browser automation (no Playwright): the FAQ accordion toggle and exercise
+  playback were not exercised by click. The live-vs-leave exercise mount was
+  confirmed only in a headless DOM dump; the hub has no exercise mount.
+- Audio playback was not tested.
+- `validate:localized` was not run; localized pages were not changed.
+- Passed: `npm test` (200), `npm run build`, `validate:landing-copy`,
+  `validate:funnel-tracking`, `validate:app-store-tracking`,
+  `validate:seo-conversion-matrix`, `validate:faq-parity`,
+  `validate:seo-exercise`, plus a diff check of head metadata, non-FAQ JSON-LD,
+  gtag, App Store links, exercise mounts and hrefs against `HEAD`.
+
+**Release-readiness checklist**
+
+EXP-HUB-2 (`/minimal-pairs-practice/`) deploys only when all are true:
+
+- [ ] EXP-HUB-1 readout is recorded here (after 2026-12-11, or the 2027-01-08
+      extension), with Outcome and Decision filled in.
+- [ ] The 2026-11-13 checkpoint is recorded; no change shipped to the hub before it.
+- [ ] `fe16804` is either already deployed and logged as a boundary, or the owner
+      accepts it shipping in the same push; its deploy date is recorded.
+- [ ] A fresh 28-day GSC baseline for the hub and the four-query cluster is saved
+      here, ending the day before deploy.
+- [ ] Mobile 390 px and desktop 1280 px browser checks done, including the new
+      FAQ toggle and one pair-page link.
+- [ ] `npm test`, `npm run build` and the validators above pass on the final tree.
+- [ ] Owner approves the push to `main`; commit hash and UTC time recorded.
+
+EXP-LIVE-1 (`/live-vs-leave/`) deploys only when all are true:
+
+- [ ] `conversion_serp_cta_v1` is closed, with Outcome and Decision recorded in
+      this file and `docs/analytics-and-attribution.md`.
+- [ ] The control-cohort notes (`docs/seo-page-checklist.md`,
+      `scripts/validate-seo-exercise.mjs`) are reassessed per their own rules;
+      the presentation freeze is not changed by this edit.
+- [ ] A fresh 28-day GSC baseline for the page, the meaning/difference clusters
+      and the pronunciation-query guardrail is saved here, ending the day before deploy.
+- [ ] Mobile and desktop browser checks done, including the FAQ toggle, the
+      exercise start and one answer.
+- [ ] `fe16804` status is logged as above.
+- [ ] Gates pass on the final tree; owner approves the push; commit hash and UTC
+      time recorded.
+
 ## Current blockers
 
 | Blocker | Next action |
