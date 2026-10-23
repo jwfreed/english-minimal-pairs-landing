@@ -32,6 +32,71 @@ The architecture is intentionally simple:
 | `vite.config.js` | Vite configuration and multi-page build entries. |
 | `dist/` | Generated build output. Do not edit by hand. |
 
+## Localized homepage video
+
+The “How Soundwise works” section uses a native, user-initiated video player.
+`public/videos/soundwise-<language>.mp4` and matching `.jpg` posters and `.txt`
+transcripts are static assets. `src/homepage-video.js` derives their language
+from the existing `getRuntimeLocaleMeta` mapping. The homepage generator sets
+matching assets in each localized page's HTML; runtime language changes update
+the player through `applyRuntimeLanguage`.
+
+The `hi-ur` homepage uses Hindi, matching its existing `htmlLang: hi` and
+Devanagari page copy. Cantonese uses `yue`, separately from Simplified Chinese
+(`zh`). `preload="none"` avoids eager video downloads. Changing language stops
+playback and resets the player without auto-playing it.
+
+The transcript is also embedded in the page as a native `<details>` disclosure,
+using `videoTranscriptContent` in the existing supplemental translations. It
+works without JavaScript and survives a failed transcript-file request. Tests
+require this text to match the shipped `.txt` asset. On video failure the player
+is hidden, a localized status appears and the transcript opens; keyboard focus
+moves to its summary only if the failed player had focus. An unavailable poster
+leaves the native controls and transcript available. The film has music and
+interface effects but no speech; the transcript describes these and the visual
+demonstration as well as reproducing the on-screen copy.
+
+`video_play` and `video_complete` use the existing `window.gtag` integration.
+They fire on actual `playing` and `ended` events, at most once per video language
+per page load. Pause/resume, replay and revisiting a language do not duplicate
+events. Completion requires observed playback. Video events do not configure
+GA4 or dispatch exercise lifecycle events.
+
+The English source is the approved 20-second launch composition in the app
+repository's `brag-output/composition/`. Localized copy is in
+`brag-output/localized-copy/video-copy.json`; the renderer is
+`brag-output/localized-videos/render.py`. Renders use script-appropriate fonts,
+RTL prose where needed, unchanged English examples/IPA, and the same mastered
+music/effects. The poster is the settled feedback frame at 13 seconds and is
+also embedded in frame 0. The website ships only MP4s, posters and transcripts;
+it needs no Hyperframes runtime, new dependencies or external video host.
+
+### Video headline review inventory
+
+English wording was accepted by the project owner. All 14 non-English variants
+remain translation drafts: automated/source comparison and visual checks are
+not native-speaker approval. No distinct Urdu video is published because the
+existing combined route is Hindi. Keep the English examples `ship` and `sheep`,
+and `/ʃɪp/`, `/ʃiːp/`, `/ɪ/`, `/iː/` intact in every variant.
+
+| Homepage | Video | Hook | Native review |
+| --- | --- | --- | --- |
+| `/` | en | Can you hear the difference? | English accepted |
+| `/ja/` | ja | 違いが聞き取れますか？ | Pending |
+| `/zh/` | zh | 你能听出区别吗？ | Pending |
+| `/th/` | th | ได้ยินความต่างไหม? | Pending |
+| `/es/` | es | ¿Puedes oír la diferencia? | Pending |
+| `/ar/` | ar | هل تسمع الفرق؟ | Pending |
+| `/ru/` | ru | Слышите разницу? | Pending |
+| `/ko/` | ko | 차이가 들리나요? | Pending |
+| `/hi-ur/` | hi | क्या आपको फ़र्क सुनाई देता है? | Pending |
+| `/pt/` | pt | Consegue ouvir a diferença? | Pending |
+| `/vi/` | vi | Bạn có nghe ra sự khác biệt không? | Pending |
+| `/tr/` | tr | Farkı duyabiliyor musunuz? | Pending |
+| `/fa/` | fa | تفاوت را می‌شنوید؟ | Pending |
+| `/yue/` | yue | 你聽唔聽得出分別？ | Pending |
+| `/id/` | id | Bisa dengar bedanya? | Pending |
+
 ## Page Organization
 
 The site uses Vite's multi-page build support. Each production HTML page must be listed in `vite.config.js` under `build.rollupOptions.input`.

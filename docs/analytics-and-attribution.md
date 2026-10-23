@@ -432,6 +432,22 @@ not already expose boolean event parameters in the intended reporting workflow.
 
 ## Deployment Milestones
 
+### Homepage video events
+
+The localized homepage promo emits `video_play` when the native player starts
+playing and `video_complete` when it reaches its end. Each event is deduplicated
+per video language per page load; pause/resume and replay do not count again.
+Completion requires prior observed playback. These events are independent of
+the listening exercise and App Store attribution.
+
+Parameters: `video_title` (fixed promo title), `video_language` (active video
+language code), `video_duration` (seconds), `page_slug = homepage`, `locale`
+(existing page-locale convention), and `experience_surface = homepage`.
+No input, query strings or visitor identifiers are added. Changing the video's
+language does not emit a page view. Register `video_language` as an event-scoped
+custom dimension if per-video-language reporting is needed. Client dispatch
+verification alone does not establish receipt in GA4 reports.
+
 ### SEO Attribution Contract Live
 
 **Date:** 2026-07-15

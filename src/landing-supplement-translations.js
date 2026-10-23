@@ -3,6 +3,9 @@
 
 export const supplementalTranslations = {
   "en": {
+    "videoUnavailable": "The video is unavailable. Read the transcript below.",
+    "videoTranscriptContent": "Music and interface sound effects; no speech. The demonstration selects sheep and shows feedback for /iː/.\n\nSoundwise English\n\nCan you hear the difference?\nship /ʃɪp/ · sheep /ʃiːp/\n\nListen. Choose.\nTrain your ear.\n\nPractice\nTrain /iː/ vs /ɪ/\nListen for the sound difference.\nPlay Word\nListening…\nWhich word did you hear?\nsheep /ʃiːp/ · ship /ʃɪp/\n\nHear the difference.\nCorrect — you heard /iː/ in sheep.\nCompare the two words.\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\nTrain your ear.\nNo microphone needed.\n",
+    "videoTranscript": "Read the video transcript",
     "seoPairsGuideLink": "Browse the complete minimal pairs guide",
     "seoPairsEarTrainingLink": "Why ear training comes before pronunciation",
     "selectLanguageLabel": "Select language",
@@ -147,6 +150,9 @@ export const supplementalTranslations = {
     "step4Text": "Build stronger sound recognition through focused practice."
   },
   "日本語": {
+    "videoUnavailable": "動画を再生できません。以下のテキストをご覧ください。",
+    "videoTranscriptContent": "音楽と操作音のみで、話し声はありません。デモでは sheep を選び、/iː/ のフィードバックを表示します。\n\nSoundwise English\n\n違いが聞き取れますか？\n\nship /ʃɪp/ · sheep /ʃiːp/\n\n聞く。 選ぶ。\n\n耳を鍛えよう。\n\n練習\n\n練習： /iː/ vs /ɪ/\n\n音の違いに集中して聞いてください。\n\n音声を再生\n\n再生中…\n\nどの単語が聞こえましたか？\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\n違いを聞き分けよう。\n\n正解。sheep の /iː/ を聞き取りました。\n\n2つの単語を比べる\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\n耳を鍛えよう。\n\nマイク不要。\n",
+    "videoTranscript": "動画の内容をテキストで読む",
     "seoPairsGuideLink": "ミニマルペアの総合ガイドを見る",
     "seoPairsEarTrainingLink": "発音練習の前に耳を鍛える理由",
     "selectLanguageLabel": "言語を選択",
@@ -291,6 +297,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "違いが聞こえますか？"
   },
   "中文": {
+    "videoUnavailable": "视频暂时无法播放。请阅读下方文字稿。",
+    "videoTranscriptContent": "只有音乐和界面音效，没有语音。演示中选择 sheep，并显示 /iː/ 的反馈。\n\nSoundwise English\n\n你能听出区别吗？\n\nship /ʃɪp/ · sheep /ʃiːp/\n\n听一听。 选一选。\n\n训练你的听力。\n\n练习\n\n练习 /iː/ vs /ɪ/\n\n专心听声音的区别。\n\n播放音频\n\n正在播放…\n\n你听到了哪个词？\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\n听出区别。\n\n正确。你听到了 sheep 中的 /iː/。\n\n对比两个单词\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\n训练你的听力。\n\n无需麦克风。\n",
+    "videoTranscript": "阅读视频文字稿",
     "seoPairsGuideLink": "查看完整的最小对立词练习指南",
     "seoPairsEarTrainingLink": "为什么要先练听辨，再练发音",
     "selectLanguageLabel": "选择语言",
@@ -435,6 +444,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "你能听出区别吗？"
   },
   "idioma español": {
+    "videoUnavailable": "El video no está disponible. Lee la transcripción a continuación.",
+    "videoTranscriptContent": "Música y efectos de interfaz, sin voz. La demostración selecciona sheep y muestra información sobre /iː/.\n\nSoundwise English\n\n¿Puedes oír la diferencia?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nEscucha. Elige.\n\nEntrena tu oído.\n\nPracticar\n\nPracticar /iː/ vs /ɪ/\n\nEscucha la diferencia de sonido.\n\nReproducir Audio\n\nEscuchando…\n\n¿Qué palabra escuchaste?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nEscucha la diferencia.\n\nCorrecto: escuchaste /iː/ en sheep.\n\nCompara las dos palabras\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nEntrena tu oído.\n\nNo necesitas micrófono.\n",
+    "videoTranscript": "Leer la transcripción del video",
     "seoPairsGuideLink": "Explora la guía completa de pares mínimos",
     "seoPairsEarTrainingLink": "Por qué entrenar el oído antes de practicar la pronunciación",
     "selectLanguageLabel": "Seleccionar idioma",
@@ -579,6 +591,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "¿Puedes escuchar la diferencia?"
   },
   "ภาษาไทย": {
+    "videoUnavailable": "ไม่สามารถเล่นวิดีโอได้ อ่านข้อความในวิดีโอด้านล่าง",
+    "videoTranscriptContent": "มีเพลงและเสียงเอฟเฟกต์ของปุ่ม ไม่มีเสียงพูด ตัวอย่างสาธิตเลือก sheep และแสดงผลตอบกลับสำหรับ /iː/\n\nSoundwise English\n\nได้ยินความต่างไหม?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nฟัง เลือก\n\nฝึกทักษะการฟัง\n\nฝึก\n\nฝึก /iː/ vs /ɪ/\n\nฟังความแตกต่างของเสียง\n\nเล่นเสียง\n\nกำลังเล่นเสียง…\n\nคุณได้ยินคำไหน\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nฟังความแตกต่างให้ออก\n\nถูกต้อง — คุณได้ยิน /iː/ ในคำว่า sheep\n\nเปรียบเทียบสองคำ\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nฝึกทักษะการฟัง\n\nไม่ต้องใช้ไมโครโฟน\n",
+    "videoTranscript": "อ่านข้อความในวิดีโอ",
     "seoPairsGuideLink": "ดูคู่มือ minimal pair ฉบับเต็ม",
     "seoPairsEarTrainingLink": "ทำไมควรฝึกฟังก่อนฝึกออกเสียง",
     "selectLanguageLabel": "เลือกภาษา",
@@ -723,6 +738,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "คุณได้ยินความแตกต่างไหม?"
   },
   "한국어": {
+    "videoUnavailable": "영상을 재생할 수 없습니다. 아래 내용을 텍스트로 읽어 보세요.",
+    "videoTranscriptContent": "음악과 조작 효과음만 있으며 음성은 없습니다. 시연에서는 sheep을 선택하고 /iː/에 대한 피드백을 보여 줍니다.\n\nSoundwise English\n\n차이가 들리나요?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\n들어보세요. 골라보세요.\n\n귀를 훈련하세요.\n\n연습\n\n훈련: /iː/ vs /ɪ/\n\n소리 차이를 들어보세요.\n\n오디오 재생\n\n듣는 중…\n\n어떤 단어를 들었나요?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\n소리의 차이를 들어보세요.\n\n정답 — sheep에서 /iː/를 들었습니다.\n\n두 단어 비교하기\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\n귀를 훈련하세요.\n\n마이크가 필요 없습니다.\n",
+    "videoTranscript": "영상 내용 텍스트로 읽기",
     "seoPairsGuideLink": "최소 대립쌍 전체 가이드 보기",
     "seoPairsEarTrainingLink": "발음 연습 전에 듣기 훈련을 해야 하는 이유",
     "selectLanguageLabel": "언어 선택",
@@ -867,6 +885,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "차이를 들을 수 있나요?"
   },
   "Português": {
+    "videoUnavailable": "O vídeo não está disponível. Leia a transcrição abaixo.",
+    "videoTranscriptContent": "Música e efeitos de interface, sem fala. A demonstração seleciona sheep e mostra o feedback de /iː/.\n\nSoundwise English\n\nConsegue ouvir a diferença?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nOuça. Escolha.\n\nTreine seu ouvido.\n\nPraticar\n\nPraticar /iː/ vs /ɪ/\n\nOuça a diferença no som.\n\nReproduzir áudio\n\nOuvindo…\n\nQual palavra você ouviu?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nOuça a diferença.\n\nCorreto — você ouviu /iː/ em sheep.\n\nComparar as duas palavras\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nTreine seu ouvido.\n\nNão precisa de microfone.\n",
+    "videoTranscript": "Ler a transcrição do vídeo",
     "seoPairsGuideLink": "Veja o guia completo de pares mínimos",
     "seoPairsEarTrainingLink": "Por que treinar o ouvido antes de praticar a pronúncia",
     "selectLanguageLabel": "Selecionar idioma",
@@ -1011,6 +1032,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Você consegue ouvir a diferença?"
   },
   "русский язык": {
+    "videoUnavailable": "Видео недоступно. Прочитайте текст ниже.",
+    "videoTranscriptContent": "Музыка и звуковые эффекты интерфейса, без речи. В демонстрации выбирается sheep и показывается обратная связь для /iː/.\n\nSoundwise English\n\nСлышите разницу?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nСлушайте. Выбирайте.\n\nТренируйте слух.\n\nПрактика\n\nТренировать /iː/ vs /ɪ/\n\nСлушайте, улавливая разницу в звуках.\n\nВоспроизвести аудио\n\nПрослушивание…\n\nКакое слово вы услышали?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nУслышьте разницу.\n\nВерно — вы услышали /iː/ в слове sheep.\n\nСравните два слова\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nТренируйте слух.\n\nМикрофон не нужен.\n",
+    "videoTranscript": "Прочитать текст видео",
     "seoPairsGuideLink": "Полное руководство по минимальным парам",
     "seoPairsEarTrainingLink": "Почему тренировку слуха стоит начинать до практики произношения",
     "selectLanguageLabel": "Выбрать язык",
@@ -1155,6 +1179,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Слышите ли вы разницу?"
   },
   "اللغة العربية": {
+    "videoUnavailable": "الفيديو غير متاح. اقرأ النص أدناه.",
+    "videoTranscriptContent": "موسيقى ومؤثرات صوتية للواجهة، دون كلام. يختار العرض التوضيحي sheep ويعرض ملاحظات حول /iː/.\n\nSoundwise English\n\nهل تسمع الفرق؟\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nاستمع. اختر.\n\nدرّب أذنيك.\n\nتدرّب\n\nتدرّب على /iː/ vs /ɪ/\n\nاستمع إلى الفرق في الصوت.\n\nتشغيل الصوت\n\nجارٍ الاستماع…\n\nأي كلمة سمعت؟\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nميّز الفرق.\n\nصحيح — سمعت /iː/ في sheep.\n\nقارن بين الكلمتين\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nدرّب أذنيك.\n\nلا حاجة لميكروفون.\n",
+    "videoTranscript": "اقرأ نص الفيديو",
     "seoPairsGuideLink": "تصفّح الدليل الكامل للأزواج الدنيا",
     "seoPairsEarTrainingLink": "لماذا يأتي تدريب الأذن قبل ممارسة النطق",
     "selectLanguageLabel": "اختر اللغة",
@@ -1299,6 +1326,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "هل تسمع الفرق؟"
   },
   "Tiếng Việt": {
+    "videoUnavailable": "Video không khả dụng. Hãy đọc nội dung bên dưới.",
+    "videoTranscriptContent": "Có nhạc và hiệu ứng âm thanh giao diện, không có lời nói. Phần minh họa chọn sheep và hiển thị phản hồi về /iː/.\n\nSoundwise English\n\nBạn có nghe ra sự khác biệt không?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nNghe. Chọn.\n\nLuyện tai nghe của bạn.\n\nLuyện tập\n\nLuyện /iː/ vs /ɪ/\n\nLắng nghe sự khác biệt về âm thanh.\n\nPhát âm thanh\n\nĐang nghe…\n\nBạn nghe thấy từ nào?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nNghe ra sự khác biệt.\n\nĐúng — bạn đã nghe /iː/ trong từ sheep.\n\nSo sánh hai từ\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nLuyện tai nghe của bạn.\n\nKhông cần dùng micro.\n",
+    "videoTranscript": "Đọc nội dung video",
     "seoPairsGuideLink": "Xem hướng dẫn đầy đủ về các cặp từ tối thiểu",
     "seoPairsEarTrainingLink": "Vì sao nên luyện nghe trước khi luyện phát âm",
     "selectLanguageLabel": "Chọn ngôn ngữ",
@@ -1447,6 +1477,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Bạn có nghe thấy sự khác biệt không?"
   },
   "हिंदी/اردو": {
+    "videoUnavailable": "वीडियो उपलब्ध नहीं है। नीचे उसका पाठ पढ़ें।",
+    "videoTranscriptContent": "संगीत और इंटरफ़ेस के ध्वनि प्रभाव हैं, बोली गई आवाज़ नहीं है। उदाहरण में sheep चुना जाता है और /iː/ के लिए प्रतिक्रिया दिखाई जाती है।\n\nSoundwise English\n\nक्या आपको फ़र्क सुनाई देता है?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nसुनें। चुनें।\n\nअपने कान को प्रशिक्षित करें।\n\nअभ्यास\n\nसीखें /iː/ vs /ɪ/\n\nध्वनि का अंतर सुनें।\n\nऑडियो चलाएँ\n\nसुन रहे हैं…\n\nआपने कौन सा शब्द सुना?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nआवाज़ों का फ़र्क सुनें।\n\nसही — आपने sheep में /iː/ सुना।\n\nदो शब्दों की तुलना करें\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nअपने कान को प्रशिक्षित करें।\n\nमाइक की ज़रूरत नहीं।\n",
+    "videoTranscript": "वीडियो का पाठ पढ़ें",
     "seoPairsGuideLink": "minimal pairs की पूरी गाइड देखें",
     "seoPairsEarTrainingLink": "उच्चारण के अभ्यास से पहले सुनने का अभ्यास क्यों ज़रूरी है",
     "selectLanguageLabel": "भाषा चुनें",
@@ -1595,6 +1628,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "क्या आप फ़र्क़ सुन सकते हैं?"
   },
   "Türkçe": {
+    "videoUnavailable": "Video kullanılamıyor. Aşağıdaki metni okuyun.",
+    "videoTranscriptContent": "Müzik ve arayüz ses efektleri vardır; konuşma yoktur. Gösterimde sheep seçilir ve /iː/ için geri bildirim gösterilir.\n\nSoundwise English\n\nFarkı duyabiliyor musunuz?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nDinleyin. Seçin.\n\nKulağınızı eğitin.\n\nÇalış\n\nÇalış /iː/ vs /ɪ/\n\nSes farkını dinleyin.\n\nSes çal\n\nÇalınıyor…\n\nHangi kelimeyi duydunuz?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nFarkı duyun.\n\nDoğru — sheep içindeki /iː/ sesini duydunuz.\n\nİki kelimeyi karşılaştır\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nKulağınızı eğitin.\n\nMikrofon gerekmez.\n",
+    "videoTranscript": "Videonun metnini okuyun",
     "seoPairsGuideLink": "Minimal çiftler rehberinin tamamını incele",
     "seoPairsEarTrainingLink": "Telaffuz çalışmasından önce neden kulak eğitimi yapılmalı?",
     "selectLanguageLabel": "Dil seç",
@@ -1743,6 +1779,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "Farkı duyabilir misin?"
   },
   "زبان فارسی": {
+    "videoUnavailable": "ویدیو در دسترس نیست. متن زیر را بخوانید.",
+    "videoTranscriptContent": "موسیقی و جلوه‌های صوتی رابط کاربری، بدون گفتار. در نمایش، sheep انتخاب می‌شود و بازخورد /iː/ نشان داده می‌شود.\n\nSoundwise English\n\nتفاوت را می‌شنوید؟\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nگوش دهید. انتخاب کنید.\n\nگوش خود را تمرین دهید.\n\nتمرین\n\nتمرین /iː/ vs /ɪ/\n\nتفاوت صدا را بشنوید.\n\nپخش صدا\n\nدر حال شنیدن…\n\nکدام کلمه را شنیدید؟\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nتفاوت را بشنوید.\n\nدرست — /iː/ را در sheep شنیدید.\n\nدو کلمه را مقایسه کنید\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nگوش خود را تمرین دهید.\n\nنیازی به میکروفون نیست.\n",
+    "videoTranscript": "متن ویدیو را بخوانید",
     "seoPairsGuideLink": "راهنمای کامل جفت‌های کمینه را ببینید",
     "seoPairsEarTrainingLink": "چرا تمرین شنیداری پیش از تمرین تلفظ می‌آید",
     "selectLanguageLabel": "انتخاب زبان",
@@ -1891,6 +1930,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "آیا تفاوت را می‌شنوید؟"
   },
   "廣東話": {
+    "videoUnavailable": "影片暫時播唔到。請睇下面嘅文字稿。",
+    "videoTranscriptContent": "只有音樂同介面音效，冇人聲。示範會揀 sheep，再顯示 /iː/ 嘅回饋。\n\nSoundwise English\n\n你聽唔聽得出分別？\n\nship /ʃɪp/ · sheep /ʃiːp/\n\n聽一聽。 揀一揀。\n\n訓練你嘅耳朵。\n\n練習\n\n練習 /iː/ vs /ɪ/\n\n聽聲音嘅分別。\n\n播放音頻\n\n播放緊…\n\n你聽到係哪個字？\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\n聽出分別。\n\n啱，你聽到 sheep 入面嘅 /iː/。\n\n對比兩個字\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\n訓練你嘅耳朵。\n\n唔需要麥克風。\n",
+    "videoTranscript": "睇影片文字稿",
     "seoPairsGuideLink": "睇完整嘅最小對立詞練習指南",
     "seoPairsEarTrainingLink": "點解要先練聽辨，再練發音",
     "selectLanguageLabel": "揀語言",
@@ -2035,6 +2077,9 @@ export const supplementalTranslations = {
     "demoSectionHeading": "你聽到分別嗎？"
   },
   "bahasa Indo": {
+    "videoUnavailable": "Video tidak tersedia. Baca transkrip di bawah ini.",
+    "videoTranscriptContent": "Musik dan efek suara antarmuka, tanpa ucapan. Demonstrasi memilih sheep dan menampilkan umpan balik untuk /iː/.\n\nSoundwise English\n\nBisa dengar bedanya?\n\nship /ʃɪp/ · sheep /ʃiːp/\n\nDengarkan. Pilih.\n\nLatih pendengaranmu.\n\nLatihan\n\nLatih /iː/ vs /ɪ/\n\nDengarkan perbedaan bunyinya.\n\nPutar Audio\n\nSedang mendengarkan…\n\nKata mana yang kamu dengar?\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nDengarkan bedanya.\n\nBenar — kamu mendengar /iː/ dalam sheep.\n\nBandingkan kedua kata\n\nsheep /ʃiːp/ · ship /ʃɪp/\n\nSoundwise English\n\nLatih pendengaranmu.\n\nTidak perlu mikrofon.\n",
+    "videoTranscript": "Baca transkrip video",
     "seoPairsGuideLink": "Lihat panduan lengkap pasangan minimal",
     "seoPairsEarTrainingLink": "Mengapa latihan pendengaran perlu dilakukan sebelum latihan pelafalan",
     "selectLanguageLabel": "Pilih bahasa",

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { HERO_DEMO_CONTRASTS, RUNTIME_LOCALE_TO_DEMO_LOCALE } from '../src/hero-demo-config.js';
+import { getHomepageVideoAssets } from '../src/homepage-video.js';
 
 const root = process.cwd();
 const sourcePath = path.join(root, 'index.html');
@@ -84,6 +85,11 @@ function addStaticDirectionAttributes(attributes, isRtl) {
 function localizeVisibleContent(source, runtimeLocale) {
   const t = translations[runtimeLocale] || translations.en;
   const { isRtl } = getRuntimeLocaleMeta(runtimeLocale);
+  const video = getHomepageVideoAssets(runtimeLocale);
+  source = source
+    .replace('src="/videos/soundwise-en.mp4"', `src="${video.src}"`)
+    .replace('poster="/videos/soundwise-en.jpg"', `poster="${video.poster}"`)
+    .replace('height="1080" lang="en"', `height="1080" lang="${video.language}"`);
   const expectedElementCount = [...source.matchAll(/\bdata-i18n="[^"]+"/g)].length;
   let localizedElementCount = 0;
 

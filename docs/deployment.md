@@ -139,6 +139,65 @@ After deploying:
 3. Check any changed or newly added page URL directly.
 4. For SEO pages, confirm the URL matches `public/sitemap.xml`.
 
+## Localized homepage video release audit — 2026-10-23
+
+The project owner authorized deployment after the supplied readiness gates pass.
+The release adds 15 static video/poster/transcript sets to the existing homepage
+locale architecture. See `docs/site-structure.md` for the locale/headline inventory
+and explicit native-review status. All 14 translated variants remain drafts;
+available semantic, claim-boundary and visual checks found no release blocker.
+
+Bounded audit fixes: add `video_play` / `video_complete` with per-language,
+per-page deduplication; embed localized transcripts independently of external
+text assets; show a localized fallback on media failure; preserve visible
+keyboard focus below the fixed navigation. No dependency, workflow, app logic,
+GA4 configuration, exercise lifecycle or App Store attribution changes.
+
+Pre-deployment evidence:
+
+- 221 tests pass; production build and all postbuild validators pass.
+- Landing-copy, funnel-tracking, App Store tracking, SEO conversion matrix and
+  representative localized SEO validators pass. The existing internal-link
+  warning remains 746 localized-to-English fallback edges in both baseline and
+  candidate builds, with zero errors.
+- All 15 built routes select their own video/poster and have their localized
+  inline transcript; all 45 media/text files return HTTP 200. Hindi is used for
+  `hi-ur`. No MP4 resource request occurs before first play in these initial-load
+  checks. Browsers can fetch media after a prior explicit play/language change;
+  `preload="none"` remains a browser hint.
+- Chromium verifies English, Japanese, Hindi, Arabic, Persian and Spanish
+  playback, native keyboard controls, user-initiated unmuted audio, 390px mobile
+  sizing and no horizontal overflow. Arabic/Persian transcripts render RTL.
+  Desktop player measures 960×540. Injected video/text failures leave the inline
+  transcript usable with visible keyboard focus; a missing poster does not
+  prevent playback. Changing to an available video restores the paused player.
+- An actual full 20-second playback emits one `video_play` and one
+  `video_complete`; pause/resume and replay add no duplicate. The same journey
+  emits one `exercise_start`, one attributed `app_store_click`, one GA4 config
+  and one outgoing `page_view`. The App Store link reaches Soundwise's listing
+  (`id6753882308`, `pt=128210308`, `ct=web-home`). Local collection requests were
+  intercepted during verification; this confirms payloads, not GA4 receipt.
+- Three alternating initial-load lab runs against commit `7013956` and the
+  candidate at 390×844, 4× CPU, 150ms latency and 1.6Mbps download show median LCP
+  568ms → 612ms and CLS 0 → 0. Both suppress the Google tag script and disable
+  cache. Added poster transfer is 86,083 bytes. The main JS gzip increase is
+  approximately 3.8KB. This is lab evidence, not field CWV or an INP assessment.
+- All 15 files decode as 20-second H.264/yuv420p + AAC, 1920×1080, 600 frames,
+  fast-start MP4s. Decoded audio is identical across variants. Text/scene checks
+  preserve `ship`, `sheep` and IPA; source scene sheets for all 14 translations
+  were visually inspected. Audio was decoded/measured rather than auditioned.
+
+Remaining human checks: native-speaker review, real-device/assistive-technology
+spot checks, GA4 receipt/reporting and post-release field performance. These
+are recorded limits, not claims of validation. Local screenshots and numerical
+evidence are retained under ignored `output/playwright/audit-video-*` and
+`output/playwright/video-release-audit.json`.
+
+Deploy through the unchanged push-to-main GitHub Pages workflow, observe the
+exact commit's successful build/deploy jobs, then verify the live homepages and
+media. Record its commit/run URL in the release handoff. If rollback is needed,
+revert the video release commit and deploy that revert through the same workflow.
+
 ## Common Issues
 
 ### Custom domain disappears in GitHub Pages

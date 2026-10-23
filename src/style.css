@@ -1561,6 +1561,49 @@ body.challenge-mode .hero-primer {
   background: white;
 }
 
+.homepage-video-wrap {
+  max-width: 960px;
+  margin: 0 auto 3rem;
+}
+
+.homepage-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #eceef1;
+  border: 1px solid var(--border-color, #e6e9ed);
+  border-radius: 16px;
+}
+
+.homepage-video-wrap figcaption {
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.homepage-video-wrap summary {
+  cursor: pointer;
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.homepage-video-wrap :focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.homepage-video[hidden] {
+  display: none;
+}
+
+.homepage-video-transcript-text {
+  margin-top: 1rem;
+  white-space: pre-line;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
 /* Prominent loop anchor line */
 .how-it-works-anchor {
   font-size: 1.25rem;

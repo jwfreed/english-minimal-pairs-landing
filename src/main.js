@@ -3,6 +3,7 @@ import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
 import { applyTranslations, getCurrentLanguage, resolveRuntimeLocale, setLanguage, translations } from './i18n.js';
 import { getRuntimeLocaleMeta } from './landing-copy-runtime.js';
+import { setupHomepageVideo, syncHomepageVideo } from './homepage-video.js';
 import {
   HERO_DEMO_CONTRASTS,
   HERO_DEMO_LOCALE_ORDER,
@@ -660,6 +661,7 @@ function applyRuntimeLanguage(runtimeLocale, { persist = false, translateDocumen
   }
 
   syncLanguageMenu(heroDemoState.runtimeLocale);
+  syncHomepageVideo(heroDemoState.runtimeLocale);
   renderDemo();
 }
 
@@ -1089,6 +1091,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // the language menu so the correct option shows as active.
     syncLanguageMenu('en');
   }
+
+  setupHomepageVideo();
 
   // Critical above-fold setup — run synchronously.
   setupHeroDemo();
