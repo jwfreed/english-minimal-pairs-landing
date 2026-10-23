@@ -1,0 +1,52 @@
+# Portuguese (pt)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+Consegue ouvir a diferença?
+
+listen
+Ouça.
+
+choose
+Escolha.
+
+hearDifference
+Ouça a diferença.
+
+trainEar
+Treine seu ouvido.
+
+noMicrophone
+Não precisa de microfone.
+
+practiceLabel
+Praticar
+
+contrastTitle
+Praticar /iː/ vs /ɪ/
+
+listenInstruction
+Ouça a diferença no som.
+
+playWord
+Reproduzir áudio
+
+listening
+Ouvindo…
+
+answerQuestion
+Qual palavra você ouviu?
+
+correctFeedback
+Correto — você ouviu /iː/ em sheep.
+
+compareWords
+Comparar as duas palavras
+
+shareCaption
+Soundwise English ajuda você a distinguir pelo som palavras em inglês como ship e sheep. Ouça, escolha e receba feedback na hora, sem precisar de microfone.

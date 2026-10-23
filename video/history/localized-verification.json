@@ -1,0 +1,125 @@
+{
+  "videos": {
+    "en": {
+      "bytes": 1039590,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "ja": {
+      "bytes": 1045877,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "zh": {
+      "bytes": 1008786,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "th": {
+      "bytes": 976395,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "es": {
+      "bytes": 1037179,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "ar": {
+      "bytes": 940876,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "ru": {
+      "bytes": 1037988,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "ko": {
+      "bytes": 976649,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "hi": {
+      "bytes": 1006001,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "pt": {
+      "bytes": 1027553,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "vi": {
+      "bytes": 1058332,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "tr": {
+      "bytes": 1003232,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "fa": {
+      "bytes": 980132,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "yue": {
+      "bytes": 1019068,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    },
+    "id": {
+      "bytes": 1050633,
+      "width": 1920,
+      "height": 1080,
+      "duration": 20,
+      "frames": 600
+    }
+  },
+  "native_speaker_review": "not performed; new marketing translations remain drafts",
+  "audio": "Mastered music/effects copied from approved English export",
+  "siteChecks": {
+    "tests": 220,
+    "productionBuild": "passed, including all postbuild gates",
+    "landingCopy": "passed",
+    "localizedSeoSample": "ja/ship-vs-sheep, ko/right-vs-light, ar/pat-vs-bat, hi-ur/vest-vs-west passed",
+    "funnelTracking": "passed",
+    "appStoreTracking": "passed",
+    "appNpmCheck": "passed",
+    "desktopPlayback": "Native play control starts 20-second video; switching to Japanese pauses and resets playback with matching assets",
+    "mobile": "Arabic video, transcript and inline controls fit a 390px viewport without horizontal overflow",
+    "audioReview": "Audio measured in approved English export; copied unchanged into localized renders; not auditioned",
+    "nativeSpeakerReview": "not performed",
+    "productionBrowserRoutes": "All 15 homepage routes served matching video, poster, language and transcript, paused, with zero MP4 requests before play."
+  }
+}

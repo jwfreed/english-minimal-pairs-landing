@@ -1,0 +1,363 @@
+{
+  "sourceRepository": "english-minimal-pairs",
+  "sourceRoot": "brag-output",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 76,
+      "kind": "production source or review record",
+      "sha256": "53992cb3b002e2abed9ad9be0855960914519296c4e7c5cc7cd7a1ea2fbd26d4"
+    },
+    {
+      "path": "brag-plan.md",
+      "bytes": 5806,
+      "kind": "production source or review record",
+      "sha256": "9993a68e5c129677571bab7a5899152502b771923650a54cb5452806353bfe0f"
+    },
+    {
+      "path": "composition/AGENTS.md",
+      "bytes": 6985,
+      "kind": "production source or review record",
+      "sha256": "fd0ea55029dfc62c31614321d782f47476d3d5daaaa4116b56318ed501911f1b"
+    },
+    {
+      "path": "composition/CLAUDE.md",
+      "bytes": 6985,
+      "kind": "production source or review record",
+      "sha256": "fd0ea55029dfc62c31614321d782f47476d3d5daaaa4116b56318ed501911f1b"
+    },
+    {
+      "path": "composition/README.md",
+      "bytes": 1223,
+      "kind": "production source or review record",
+      "sha256": "ea0d57228ad85022466f2ce9fd1ff2f0b12b7d30eab2b77766439d6723833b79"
+    },
+    {
+      "path": "composition/REVIEW.md",
+      "bytes": 2777,
+      "kind": "production source or review record",
+      "sha256": "85b2ec8d7af5df5e23eaf3fc2d55270e318410581884898f8ad618518c202e75"
+    },
+    {
+      "path": "composition/SPEC.md",
+      "bytes": 2384,
+      "kind": "production source or review record",
+      "sha256": "8a55d945b906ea9b29d09a0732d79f73aa2f3ad3ae9aebf17b1a202da36e345e"
+    },
+    {
+      "path": "composition/assets/fonts/PublicSans_400Regular.ttf",
+      "bytes": 60816,
+      "kind": "production source or review record",
+      "sha256": "c90eb75f0501c311d8ca73725c741bf1262bd99d3fcef444f49aa98bb4118674"
+    },
+    {
+      "path": "composition/assets/fonts/PublicSans_700Bold.ttf",
+      "bytes": 61016,
+      "kind": "production source or review record",
+      "sha256": "16541f5191b26f43df1a70780bd3c624c77cd1d5297604b405c7a8c56f208241"
+    },
+    {
+      "path": "composition/assets/fonts/PublicSans_800ExtraBold.ttf",
+      "bytes": 61164,
+      "kind": "production source or review record",
+      "sha256": "39e113aedcd7c972f426f1785577eda1a17f30b810cccb0cdb4b820085de6966"
+    },
+    {
+      "path": "composition/assets/icon.png",
+      "bytes": 48826,
+      "kind": "production source or review record",
+      "sha256": "f00e0d088b565181e2e6ed7ef6b5fcd265382d2df8da6f72aaec2f1c3238cb66"
+    },
+    {
+      "path": "composition/assets/music/bed.mp3",
+      "bytes": 2817792,
+      "kind": "production source or review record",
+      "sha256": "5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1"
+    },
+    {
+      "path": "composition/assets/music/energy.json",
+      "bytes": 265478,
+      "kind": "production source or review record",
+      "sha256": "c269c39402475da5926e967c5c7ef698b88cc93470b0a2effadb66a452f688ae"
+    },
+    {
+      "path": "composition/assets/sfx/brand.ogg",
+      "bytes": 4848,
+      "kind": "production source or review record",
+      "sha256": "d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710"
+    },
+    {
+      "path": "composition/assets/sfx/reveal.ogg",
+      "bytes": 5506,
+      "kind": "production source or review record",
+      "sha256": "7642a4fd43e547afe4f7adfadb3dabb681c0ff512f52c1674bae30a726841faf"
+    },
+    {
+      "path": "composition/assets/sfx/select.ogg",
+      "bytes": 4656,
+      "kind": "production source or review record",
+      "sha256": "c394b46bc6737f7f7edfbfa3031ce621b7a43d498d456d6198364eee9cd3e306"
+    },
+    {
+      "path": "composition/assets/style.css",
+      "bytes": 3066,
+      "kind": "production source or review record",
+      "sha256": "c6c3785e15c858d044ec8cf2dee04931699a199c8606af5a4e8132cf5b6c6a05"
+    },
+    {
+      "path": "composition/assets/vendor/gsap.min.js",
+      "bytes": 72927,
+      "kind": "production source or review record",
+      "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    {
+      "path": "composition/compositions/feedback.html",
+      "bytes": 2823,
+      "kind": "production source or review record",
+      "sha256": "f635c6ea5ea53002bf072a6614ca2c37b079302342ec8ac8e33571ecb0b58139"
+    },
+    {
+      "path": "composition/compositions/hook.html",
+      "bytes": 1739,
+      "kind": "production source or review record",
+      "sha256": "66069e366186592361c8547bbb23b7af611e7364fe8a2711d253f8f750418c01"
+    },
+    {
+      "path": "composition/compositions/outro.html",
+      "bytes": 1554,
+      "kind": "production source or review record",
+      "sha256": "a8bf406d8a981078a8da7685719a172beee120ae406f9fd18cf0332e11335689"
+    },
+    {
+      "path": "composition/compositions/practice.html",
+      "bytes": 5503,
+      "kind": "production source or review record",
+      "sha256": "b25c6b2856045f538a800f5f9ef525652da1ae44e3f1c1098cc0f79e914f143a"
+    },
+    {
+      "path": "composition/hyperframes.json",
+      "bytes": 491,
+      "kind": "production source or review record",
+      "sha256": "4705719f4e5388763ec106b4c5b6e8b54a9e3cc8e38c2e383818dd2080d1438e"
+    },
+    {
+      "path": "composition/hyperframes.lock.json",
+      "bytes": 121,
+      "kind": "production source or review record",
+      "sha256": "aca643c80ea109279e716a82438be2170f46109080a7827929043c8392b29811"
+    },
+    {
+      "path": "composition/index.html",
+      "bytes": 2830,
+      "kind": "production source or review record",
+      "sha256": "e4e2c903e042e540ab0d24deb9814afec1a8b6bfcf5b70ea6ceff6180f909fea"
+    },
+    {
+      "path": "composition/meta.json",
+      "bytes": 93,
+      "kind": "production source or review record",
+      "sha256": "472d3b2a3db941b13b4581f92321e05dbbac01f349f357bfa1b4a92d83a6ca63"
+    },
+    {
+      "path": "composition/package.json",
+      "bytes": 300,
+      "kind": "production source or review record",
+      "sha256": "93e0a0f0aa43e181a4d5f81405d1aeeae0d69edf28b45e50a299b26b2fc6fd1b"
+    },
+    {
+      "path": "composition-brief.md",
+      "bytes": 2418,
+      "kind": "production source or review record",
+      "sha256": "6e16c335e10d728845776c2fa6faeb9e5a91b16ebeffc1f8223b15b07d35d50f"
+    },
+    {
+      "path": "localized-copy/README.md",
+      "bytes": 1635,
+      "kind": "production source or review record",
+      "sha256": "4fb89f9cee7d61a76075d1dbf94f526eca17f5110ddcd18d48d1e649c375efa6"
+    },
+    {
+      "path": "localized-copy/languages/ar.txt",
+      "bytes": 1095,
+      "kind": "production source or review record",
+      "sha256": "267f4f15eb069d4d6dc75e6969d192d9f1989e2dd1cdc32784950d753bf74fbe"
+    },
+    {
+      "path": "localized-copy/languages/es.txt",
+      "bytes": 949,
+      "kind": "production source or review record",
+      "sha256": "c134815bb1bd38485a09b3578551b5c9f123e179c6934cf94ab16c8de91399a3"
+    },
+    {
+      "path": "localized-copy/languages/fa.txt",
+      "bytes": 1198,
+      "kind": "production source or review record",
+      "sha256": "d753def2654ec1fcd40dd9a088076b1e74448efa35a56282f9dd923b9fc48060"
+    },
+    {
+      "path": "localized-copy/languages/hi.txt",
+      "bytes": 1535,
+      "kind": "production source or review record",
+      "sha256": "1296b95c56b0ee9c8db69cb429ce868ead891959dad3a7c24d819d4950cf0857"
+    },
+    {
+      "path": "localized-copy/languages/id.txt",
+      "bytes": 944,
+      "kind": "production source or review record",
+      "sha256": "6587b7860b815d7665f864d60ab93d0bae0256b45fbd9fef3fc8f450a6ffef8e"
+    },
+    {
+      "path": "localized-copy/languages/ja.txt",
+      "bytes": 1045,
+      "kind": "production source or review record",
+      "sha256": "1400201558859516dc9b7bfd308f0640b6cb718e13ba56c9c7faf77e10c0575d"
+    },
+    {
+      "path": "localized-copy/languages/ko.txt",
+      "bytes": 1144,
+      "kind": "production source or review record",
+      "sha256": "c2a27c9d09094e3f99fcfdf08093b9d60ccb8e37e3cdd0dcdb95ec8a69fd8e6b"
+    },
+    {
+      "path": "localized-copy/languages/pt.txt",
+      "bytes": 938,
+      "kind": "production source or review record",
+      "sha256": "c12162bfa6a39e7b56bbe4e13ad1ff68d4779f5c5bc02c828cb86a244dede68c"
+    },
+    {
+      "path": "localized-copy/languages/ru.txt",
+      "bytes": 1362,
+      "kind": "production source or review record",
+      "sha256": "3e354bbaf8e2fd4de6b0069bcbb0de7e212a2eab2885243fbf4001be32f370a6"
+    },
+    {
+      "path": "localized-copy/languages/th.txt",
+      "bytes": 1595,
+      "kind": "production source or review record",
+      "sha256": "82056ccc14154fb740e5cdbb40a080e12b21e7aedc1763e7b6f134497f506b42"
+    },
+    {
+      "path": "localized-copy/languages/tr.txt",
+      "bytes": 1062,
+      "kind": "production source or review record",
+      "sha256": "5fe12e5fb6666aaf7f6df050116209461586795b6c683f887315c4f1a9ac14f7"
+    },
+    {
+      "path": "localized-copy/languages/ur.txt",
+      "bytes": 1182,
+      "kind": "production source or review record",
+      "sha256": "46c8234680048e7a0ddf542c9f361b3175f739e77a7c67982277905c7a3ab4e5"
+    },
+    {
+      "path": "localized-copy/languages/vi.txt",
+      "bytes": 1019,
+      "kind": "production source or review record",
+      "sha256": "5b05caf1a2ff9b5844322c11a5f09d6ba08279938614199e1c2850cefc7f473e"
+    },
+    {
+      "path": "localized-copy/languages/yue.txt",
+      "bytes": 924,
+      "kind": "production source or review record",
+      "sha256": "fa693f1fe1292b77912a10189dfa9e1db2f002d1690920fe874801f46ffcd632"
+    },
+    {
+      "path": "localized-copy/languages/zh.txt",
+      "bytes": 926,
+      "kind": "production source or review record",
+      "sha256": "1178de157f4a6d306978777ade5d3acc2add33cb2dca1fd32e39b3c8618b00b7"
+    },
+    {
+      "path": "localized-copy/validation.json",
+      "bytes": 391,
+      "kind": "production source or review record",
+      "sha256": "e7a535050609855303275690383c7cec5962e46265565e5825e7a65dd00df924"
+    },
+    {
+      "path": "localized-copy/video-copy.json",
+      "bytes": 40596,
+      "kind": "production source or review record",
+      "sha256": "3098722571c7ae4f5214cf736bbbde58948f071234c7e02d9ae8fda78383e751"
+    },
+    {
+      "path": "localized-copy/video-copy.md",
+      "bytes": 20087,
+      "kind": "production source or review record",
+      "sha256": "58bbeba70e67b54d97a007bb6882fb231c0fa7c34e70e28316f1dbcd6d4c8a54"
+    },
+    {
+      "path": "localized-videos/.gitignore",
+      "bytes": 16,
+      "kind": "production source or review record",
+      "sha256": "c748d1c615d79a83d82b89a0faacd081c4a1a07d47c2b2f7512137a04fc87841"
+    },
+    {
+      "path": "localized-videos/REVIEW.md",
+      "bytes": 2025,
+      "kind": "production source or review record",
+      "sha256": "ee360b4e3831d83fb46ba1eed8c1128dada865dc0340755b832ea2e68e2d0426"
+    },
+    {
+      "path": "localized-videos/render.py",
+      "bytes": 9109,
+      "kind": "production source or review record",
+      "sha256": "300bf81ccc591c498cdb4c3267dae9bc4e312f15867797d80ef14ce19ff43d96"
+    },
+    {
+      "path": "localized-videos/verification.json",
+      "bytes": 3005,
+      "kind": "production source or review record",
+      "sha256": "c8f875befce056760fd547c9529eab261f801be2e73b89ea3eb393bf12d2972d"
+    },
+    {
+      "path": "share-copy.txt",
+      "bytes": 165,
+      "kind": "production source or review record",
+      "sha256": "7e16713f4ce107d23c5c1ba4e5c52168edea9f2bbcbdccd064e116a53c04837b"
+    },
+    {
+      "path": "verification-updated.json",
+      "bytes": 652,
+      "kind": "production source or review record",
+      "sha256": "f6e3ccdad65f531c811947f21e26e55f4e644c29b0c8b2aeaf4703846acc06df"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 1093,
+      "kind": "production source or review record",
+      "sha256": "f7b7c7485626962c7263f9915b101afa685a2aa6e3d78f91a72f5365ab64ecf2"
+    }
+  ],
+  "excludedGenerated": {
+    "files": 3136,
+    "bytes": 1004429602,
+    "categories": [
+      "node_modules and downloaded executables/venv",
+      "Hyperframes history, previews, locks, proxies and analysis caches",
+      "localized work projects, logs, snapshots and raw encodes",
+      "old English exports/poster; deployed approved assets already belong to public/videos"
+    ],
+    "policy": "Not committed. Remove only after independent render verification; historical review summaries retained."
+  },
+  "externalSourcesMigrated": {
+    "publicSansLicense": "app node_modules/@expo-google-fonts/public-sans/LICENSE_FONT",
+    "bragSoftwareNotice": "brag 0.4.0 plugin LICENSE",
+    "musicCues": "brag 0.4.0 selected volume-12 JSON and Markdown presets",
+    "sfxProvenance": {
+      "brand.ogg": [
+        "assets/sfx/interface/bong_001.ogg"
+      ],
+      "select.ogg": [
+        "assets/sfx/ui/click2.ogg"
+      ],
+      "reveal.ogg": [
+        "assets/sfx/impact/impactSoft_medium_001.ogg"
+      ]
+    },
+    "approvedAudio": "Lossless AAC extraction from this website public/videos/soundwise-en.mp4, deployed commit 03cde4dbc12f9db394046e29f934ecc0efcca7f5"
+  },
+  "retainedExternalRequirements": [
+    "Node 22.12+ and Python 3.9+",
+    "macOS fonts recorded in fonts.json",
+    "Pinned npm authoring tools and provisioned Chrome; no app repository paths"
+  ]
+}

@@ -1,0 +1,19 @@
+<template>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+#outro-icon{position:absolute;left:190px;top:315px;width:380px;height:380px;border-radius:80px}
+#outro-type{position:absolute;left:670px;top:278px;width:1080px}
+#outro-brand{font-size:96px;line-height:1.16;letter-spacing:-4px;font-weight:800}
+#outro-tagline{font-size:62px;line-height:1.3;font-weight:700;letter-spacing:-1.5px;margin-top:28px}
+#outro-note{font-size:36px;line-height:1.5;color:#565D67;margin-top:40px}
+</style>
+<div data-hf-id="hf-x7nm" id="root" data-composition-id="outro" data-width="1920" data-height="1080"><div data-hf-id="hf-ygft" class="ground"></div><img data-hf-id="hf-2s3s" id="outro-icon" src="assets/icon.png" alt="Soundwise app icon"><div data-hf-id="hf-oo9z" id="outro-type"><h1 data-hf-id="hf-m5ez" id="outro-brand" data-var-text="brand">Soundwise English</h1><p data-hf-id="hf-0i9a" id="outro-tagline" class="orange">Train your ear.</p><p data-hf-id="hf-0y2m" id="outro-note">No microphone needed.</p></div></div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#outro-icon',{scale:0.88,opacity:0},{scale:1,opacity:1,duration:0.5,ease:'power4.out'},0);
+tl.fromTo('#outro-brand',{opacity:0},{opacity:1,duration:0.32},0.18);
+tl.fromTo('#outro-tagline',{y:18,opacity:0},{y:0,opacity:1,duration:0.42,ease:'expo.out'},0.55);
+// beat-locked: global 17.47s, the final no-microphone payoff.
+tl.fromTo('#outro-note',{opacity:0},{opacity:1,duration:0.2},1.47);
+window.__timelines=window.__timelines||{};window.__timelines.outro=tl;
+</script></template>

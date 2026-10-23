@@ -1,0 +1,1327 @@
+{
+  "status": "passed",
+  "results": [
+    {
+      "language": "en",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "ff8ef144793e38ea1369a4014cd48060343cc1210d22cf81b9ce8f80cdfc9fe3",
+        "jpg": "578f042da174346441619d5e6212d92dd2af40e78588884065143a2ddb826748",
+        "txt": "05ffed090c96d8c7059246dfdcc2a76379c18377e4087cbc884bfa72888353f1"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": false,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 0.999744,
+        "meanSsim": 0.9999712222222222
+      }
+    },
+    {
+      "language": "ja",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "3df2f513a66a71a77f0e8e70a0122ebd773fd8665ebfc206c1f3cb32a764eccf",
+        "jpg": "4a5a01f7fc0d638ded3a1594d0860132e9966d28a630f2f16561aeeb23c9bbe8",
+        "txt": "97d191d39f3c029e30b716edcec1065ca7a32b9bbdbe6a58b315708dc1cd9a3e"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "zh",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "9e911f4ed1b1299017cee4f50abb96c4741527410473053331f95391af622d85",
+        "jpg": "2fe7e5ce47750205e86bbe10744f7a8a32f51236e9299ddd8ada4bc31c607b2b",
+        "txt": "8c5db4066c87ec34a6f5c2c593b1349da198765d5e24342b8504fad2aa6892a1"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": false,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 0.999769,
+        "meanSsim": 0.9999603888888888
+      }
+    },
+    {
+      "language": "th",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "11935bb11065291d7d7565ca70de12d446254bb8ed1cae464e7be7b01f549067",
+        "jpg": "f0460c3332df000ffa424df78cda29c28de83c36f4c9e7b34f7400e6144cfcb3",
+        "txt": "a70033e9519d8d883f6090d52f5faa44b49263bf15419ededdd8de7893664cdb"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "es",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "13a6433a2fb616cef48ed39f7e6bc3a7d61f664f9343dca330a4924b679d74e7",
+        "jpg": "98e6725c56afcb664e4b91a65cbb7edb102dccde3e6a2eb9596ec003d5ca41c3",
+        "txt": "b9ae838b3f9d1400964872640aa68a179e1902c89e4192d4a2b943c43c0f7135"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": false,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 0.999858,
+        "meanSsim": 0.9999842222222222
+      }
+    },
+    {
+      "language": "ar",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "c9843c57a6f1d300a355551735e779e33a1a3ea3ac0b4419404c41018eabb92a",
+        "jpg": "1a7d9fd2f4dbc32bf6d5ab71aca2727ee7db46498db84d8df54f3ab8d69d6e91",
+        "txt": "9ce3bb21221184ca4054295cffb295433980f48cdc2578f5ce9aaf97af6dfbc9"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "ru",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "3c2588a67eb6f05412b982145ccaa877f86dd191ebba3f99e192574fd8283d81",
+        "jpg": "759dcd42859035daa266d50c281f9cb3862c1c32a7098437665238e24b4bde0e",
+        "txt": "3d1b796aba4e60c6f39e4f80acc88865f50fdf434cf99a72966ceb17ad6c6011"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": false,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 0.999841,
+        "meanSsim": 0.9999809444444444
+      }
+    },
+    {
+      "language": "ko",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "582c31522d5eeb011f155843ae9692ecdd438cf9d133c689ebe3cac3b17d1dbe",
+        "jpg": "3322ae468bd22cd969b98b96f0e3323a3ec46fa048c907b487e316b0078ad858",
+        "txt": "f3e99d7222f4a930c42bbd2aea3a778ad84002e0a2894612e4a396c72fbb6d8b"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "hi",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "598722a670ba0336556793912d118887b002262e202c570a82241280451d24ef",
+        "jpg": "8f71363fbcdc38c62cef6d027cf8e28caae0aeff394c770f5b6a5f4e6efe5ae6",
+        "txt": "bd16e090c9effce3aba3889ad52ddf83a788e66396bec3141a48642a3427865f"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "pt",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "de35cd5ef2472059a36d2c521d8a5b93e4895b19aac5ba4175581b7a97826b59",
+        "jpg": "ab3476e6bbb0dede1081106d00f9991e8cd034ddcb098e2dd2a137612a5534bf",
+        "txt": "45525ad016b6b10b92315adee0ec4ad3a4fb065471362f89300be8ae13fb6793"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "vi",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "398a972eaa04af5bcefd9f2568acecd6e40c6078084b9dfe9c94e28672021328",
+        "jpg": "ce16c64b7221bc2c3b1b8a75a2b333c9445f08412d80e3c7dac6273abb48c01c",
+        "txt": "4deb25178cfe33e870449fe451de64e334777dd1ed45cdd341de67f2b5c4b3ae"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "tr",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "657a617e88fa6226721108d940ebbda10acec02ef653ac08a6b0bf41a5fbc0ef",
+        "jpg": "fa88a16f02448a18722b92e30c04a21dd17785646121715cf8830a52669940c0",
+        "txt": "4d4e9c12d4722fb694973b92757c4ab73c9a38b6f1cb1dc5b10a09ebeae06518"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": false,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 0.999858,
+        "meanSsim": 0.9999842777777778
+      }
+    },
+    {
+      "language": "fa",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "5c0308489b741773b9438fbd832b0a11ded5633ec4e682e9b0e888474af1f155",
+        "jpg": "2611b58b76392ad4f769cc732239de1cbfab83898dfdb1a9e94ccf2fa9310abd",
+        "txt": "d0eac510a31b9064a5ad1f5de142fa95c69d024b4c5c67cef5ecb495f1ff0161"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "yue",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "0034e769ab63b4b25ed1a3c02ab8e4fa3f6a24218ce9f8d6f6f7b03ba5350c22",
+        "jpg": "4e5669799a17c97a1099ddd33bc5c726dd73cdc6a5c03c76a7b8df83212e6fbb",
+        "txt": "d2d00188e961b9db923b20111413f99c6eb4bd4a90757493fb9dc4ece6805e80"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": false,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 0.999823,
+        "meanSsim": 0.9999800555555556
+      }
+    },
+    {
+      "language": "id",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "3f9b1151969a65648b8ebce930486657a3cb70f6c0f169eec820c75f3e64f7a6",
+        "jpg": "e7ae6548c34a6bac1a45596b0d7de7e3e97639163e1bea962f89a195253cbc5a",
+        "txt": "845d970eea9dab6cc8e04eb8ab2bc50046a11eda3ea4d09f83d59082912becbd"
+      },
+      "approvedAudioMatches": true,
+      "publishedHashesMatch": {
+        "mp4": true,
+        "jpg": true,
+        "txt": true
+      },
+      "visualComparison": {
+        "frames": [
+          0,
+          1,
+          45,
+          89,
+          105,
+          156,
+          195,
+          263,
+          270,
+          299,
+          300,
+          315,
+          390,
+          479,
+          480,
+          495,
+          540,
+          599
+        ],
+        "minimumSsim": 1.0,
+        "meanSsim": 1.0
+      }
+    },
+    {
+      "language": "ur",
+      "properties": {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "600",
+        "pix_fmt": "yuv420p",
+        "seconds": 20,
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": "48000"
+      },
+      "sha256": {
+        "mp4": "8f0b0da6da367617731277d5d04761ea2aaf0c6ef362f360e1c3ca024b33c447",
+        "jpg": "d9603b99997f2c58285926588c72e9a4ed88a5ec6fe5ebc9024be81f1ac1e0c6",
+        "txt": "026a04625487ee897fcbf36875dbab9aa76aa6a2d668718c3e54672f15f6d089"
+      },
+      "approvedAudioMatches": true,
+      "publishedBaseline": "none (unpublished draft)"
+    }
+  ],
+  "migration": {
+    "baselineWebsiteCommit": "03cde4dbc12f9db394046e29f934ecc0efcca7f5",
+    "isolatedCheckout": true,
+    "newHomeDirectory": true,
+    "appAccessDeniedByOS": true,
+    "negativeControl": "Reading the app package.json produced PermissionError under the same sandbox profile.",
+    "installedTools": "Fresh npm ci under video/; Chrome provisioned in a fresh HOME.",
+    "renderedVersions": 16,
+    "publishedHomepageVersions": 15,
+    "unpublishedDraft": "ur",
+    "websiteDistByteIdenticalFiles": 184,
+    "publishedAssetsUnchanged": 45,
+    "creativeSourceAndTranslationRecordsUnchanged": true,
+    "nativeSpeakerReview": "Pending for all translated headlines/captions",
+    "audioAudition": "Not performed; decoded audio hashes match.",
+    "unrelatedAppWorkPreservedFiles": 21
+  },
+  "environment": {
+    "node": "22.21.0",
+    "python": "3.13.5",
+    "hyperframes": "0.8.186",
+    "ffmpeg": "6.1.1",
+    "ffprobe": "4.0.2",
+    "chromeHeadlessShell": "152.0.7977.30",
+    "fontFingerprints": "fonts.json"
+  },
+  "hyperframesChecks": [
+    {
+      "language": "ar",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "en",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "es",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "fa",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 1,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "hi",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 1,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "id",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "ja",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "ko",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "pt",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "ru",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "th",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 1,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "tr",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "ur",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 1,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "vi",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "yue",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    },
+    {
+      "language": "zh",
+      "ok": true,
+      "counts": {
+        "lint": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "runtime": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "layout": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "contrast": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        },
+        "craft": {
+          "errorCount": 0,
+          "warningCount": 0,
+          "infoCount": 0
+        }
+      }
+    }
+  ],
+  "comparisonNotes": "All 15 posters and transcripts reproduce byte-for-byte. Nine published MP4s also reproduce byte-for-byte. Six MP4s show small render/interpolation variation near the animated selection/feedback transition; the minimum of 270 compared full-resolution frames is SSIM 0.999744. English selection was inspected side by side. All codecs, timings, frame counts, dimensions and decoded audio match; published files were not replaced.",
+  "tests": {
+    "website": {
+      "passed": 221,
+      "failed": 0
+    },
+    "videoContracts": {
+      "passed": 2,
+      "failed": 0
+    },
+    "appCheckAfterCleanup": "passed",
+    "publicOutputWriteGuard": "attempt to render into public/videos rejected before rendering",
+    "cleanWebsiteCheckout": "Build generates the localized homepage fixtures before npm test; test-first initially exposed the pre-existing missing-generated-file prerequisite.",
+    "isolatedWebsite": {
+      "install": "passed",
+      "build": "passed",
+      "passed": 221,
+      "failed": 0,
+      "appAccess": "OS-denied",
+      "buildArtifactHashesIdentical": 184
+    }
+  },
+  "dependencyInstallNotes": {
+    "videoNpmCi": "95 packages installed; audit reported 0 vulnerabilities",
+    "websiteNpmCi": "14 packages installed; audit reported 6 high-severity advisories in the unchanged pre-existing website lockfile. No dependency upgrades were made in this migration."
+  }
+}

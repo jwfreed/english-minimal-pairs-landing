@@ -62,10 +62,11 @@ per page load. Pause/resume, replay and revisiting a language do not duplicate
 events. Completion requires observed playback. Video events do not configure
 GA4 or dispatch exercise lifecycle events.
 
-The English source is the approved 20-second launch composition in the app
-repository's `brag-output/composition/`. Localized copy is in
-`brag-output/localized-copy/video-copy.json`; the renderer is
-`brag-output/localized-videos/render.py`. Renders use script-appropriate fonts,
+The website owns the complete production pipeline under `video/`. The English
+source is `video/composition/`; localized copy is
+`video/copy/video-copy.json`; the renderer is `video/render.py`. See
+`video/README.md` for prerequisites, isolated reproduction, validation and
+publication. No rendering step reads the app repository. Renders use script-appropriate fonts,
 RTL prose where needed, unchanged English examples/IPA, and the same mastered
 music/effects. The poster is the settled feedback frame at 13 seconds and is
 also embedded in frame 0. The website ships only MP4s, posters and transcripts;

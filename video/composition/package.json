@@ -1,0 +1,10 @@
+{
+  "name": "composition",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node ../node_modules/hyperframes/bin/hyperframes.mjs preview",
+    "check": "node ../node_modules/hyperframes/bin/hyperframes.mjs check",
+    "render": "python3 ../render.py --locale en"
+  }
+}

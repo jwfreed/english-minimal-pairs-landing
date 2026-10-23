@@ -1,0 +1,27 @@
+@font-face{font-family:'Public Sans';src:url('fonts/PublicSans_400Regular.ttf');font-weight:400}
+@font-face{font-family:'Public Sans';src:url('fonts/PublicSans_700Bold.ttf');font-weight:700}
+@font-face{font-family:'Public Sans';src:url('fonts/PublicSans_800ExtraBold.ttf');font-weight:800}
+*{box-sizing:border-box;margin:0}
+#root{position:absolute;inset:0;font-family:'Public Sans';color:#1F2329}
+.ground{position:absolute;inset:0;background:#ECEEF1}.orange{color:var(--accent,#9C420B)}
+.copy{position:absolute;left:170px;top:235px;width:730px}
+.product-name{font-size:36px;line-height:1.4;font-weight:700;margin-bottom:44px}
+.headline{font-size:108px;line-height:1.05;letter-spacing:-5px;font-weight:800}
+.support{font-size:36px;line-height:1.5;color:#565D67;margin-top:38px}
+.product{position:absolute;left:990px;top:165px;width:760px;height:750px;background:#FFFFFF;border-radius:36px;padding:46px;box-shadow:0 24px 60px #1F23291A}
+.practice-heading{font-size:34px;line-height:1.3;font-weight:800;border-bottom:2px solid #E6E9ED;padding-bottom:25px;margin-bottom:30px}
+.contrast{font-size:42px;line-height:1.35;font-weight:800;text-align:center}
+.instruction{font-size:28px;line-height:1.5;color:#565D67;text-align:center;margin:12px 0 30px}
+.play-control{width:100%;height:100px;background:#A8470C;border-radius:22px;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:34px;line-height:1.2;font-weight:700;gap:20px;position:relative}
+.play-symbol{width:42px;height:42px;display:flex;align-items:center;justify-content:center}
+.prompt{font-size:28px;line-height:1.5;text-align:center;font-weight:700;margin:32px 0 18px}
+.answers{display:flex;gap:22px}
+.tile{width:323px;height:160px;border-radius:24px;background:#FBEDE2;display:flex;align-items:center;justify-content:center;flex-direction:column;border:3px solid transparent}
+.word{font-size:54px;line-height:1.2;font-weight:800;letter-spacing:-1px}.ipa{font-size:32px;line-height:1.3;color:#9C420B;margin-top:9px}
+.pointer{position:absolute;left:0;top:0;width:46px;height:58px;z-index:5;pointer-events:none}
+.phonemes{display:flex;align-items:center;gap:28px;margin-top:46px}.phoneme{font-size:96px;line-height:1.2;font-weight:700;letter-spacing:-4px}.versus{font-size:32px;color:#565D67}
+.feedback-panel{text-align:center}.success-mark{width:88px;height:88px;margin:0 auto 22px;border-radius:50%;background:#1B7F45;color:#FFFFFF;display:flex;align-items:center;justify-content:center}
+.feedback-title{font-size:32px;line-height:1.45;font-weight:700;max-width:620px;margin:auto}.compare-title{font-size:28px;line-height:1.4;font-weight:700;margin:28px 0 16px}
+.compare-row{display:flex;align-items:center;justify-content:space-between;background:#FBEDE2;border-radius:20px;padding:17px 24px;margin-top:12px}
+.compare-word{font-size:38px;line-height:1.4;font-weight:800}.compare-ipa{font-size:30px;color:#9C420B;font-weight:400;margin-left:18px}
+.replay{width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#A8470C;color:#FFFFFF}

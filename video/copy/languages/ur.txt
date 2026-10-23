@@ -1,0 +1,52 @@
+# Urdu (ur)
+
+Native-speaker review: pending.
+Direction: rtl
+
+brand
+Soundwise English
+
+hook
+کیا آپ کو فرق سنائی دیتا ہے؟
+
+listen
+سنیں۔
+
+choose
+چنیں۔
+
+hearDifference
+آوازوں کا فرق سنیں۔
+
+trainEar
+اپنے کانوں کو تربیت دیں۔
+
+noMicrophone
+مائیک کی ضرورت نہیں۔
+
+practiceLabel
+مشق
+
+contrastTitle
+سیکھیں /iː/ vs /ɪ/
+
+listenInstruction
+آواز کا فرق سنیں۔
+
+playWord
+آڈیو چلائیں
+
+listening
+سن رہے ہیں…
+
+answerQuestion
+آپ نے کون سا لفظ سنا؟
+
+correctFeedback
+صحیح — آپ نے sheep میں /iː/ سنا۔
+
+compareWords
+دو الفاظ کا موازنہ کریں
+
+shareCaption
+Soundwise English کے ساتھ ship اور sheep جیسے انگریزی الفاظ کی آوازوں میں فرق پہچاننے کی مشق کریں۔ سنیں، چنیں اور فوراً جواب کی درستی جانیں—مائیک کی ضرورت نہیں۔

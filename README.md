@@ -10,6 +10,10 @@ The site is a Vite-powered static site deployed to GitHub Pages. It uses plain H
 
 ## Local Development
 
+Promotional-video sources and authoring tools are owned here under [`video/`](video/README.md).
+That workflow renders into staging independently of the mobile app repository;
+it does not run during the website build or automatically replace published media.
+
 Install dependencies:
 
 ```bash

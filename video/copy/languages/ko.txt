@@ -1,0 +1,52 @@
+# Korean (ko)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+차이가 들리나요?
+
+listen
+들어보세요.
+
+choose
+골라보세요.
+
+hearDifference
+소리의 차이를 들어보세요.
+
+trainEar
+귀를 훈련하세요.
+
+noMicrophone
+마이크가 필요 없습니다.
+
+practiceLabel
+연습
+
+contrastTitle
+훈련: /iː/ vs /ɪ/
+
+listenInstruction
+소리 차이를 들어보세요.
+
+playWord
+오디오 재생
+
+listening
+듣는 중…
+
+answerQuestion
+어떤 단어를 들었나요?
+
+correctFeedback
+정답 — sheep에서 /iː/를 들었습니다.
+
+compareWords
+두 단어 비교하기
+
+shareCaption
+Soundwise English로 ship과 sheep 같은 영어 단어의 소리 차이를 구별하는 연습을 해보세요. 듣고, 선택하고, 바로 피드백을 받아보세요. 마이크는 필요 없습니다.

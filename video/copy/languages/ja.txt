@@ -1,0 +1,52 @@
+# Japanese (ja)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+違いが聞き取れますか？
+
+listen
+聞く。
+
+choose
+選ぶ。
+
+hearDifference
+違いを聞き分けよう。
+
+trainEar
+耳を鍛えよう。
+
+noMicrophone
+マイク不要。
+
+practiceLabel
+練習
+
+contrastTitle
+練習： /iː/ vs /ɪ/
+
+listenInstruction
+音の違いに集中して聞いてください。
+
+playWord
+音声を再生
+
+listening
+再生中…
+
+answerQuestion
+どの単語が聞こえましたか？
+
+correctFeedback
+正解。sheep の /iː/ を聞き取りました。
+
+compareWords
+2つの単語を比べる
+
+shareCaption
+Soundwise Englishは、ship と sheep のような英単語の音の違いを聞き分ける練習をサポートします。聞いて、選んで、すぐに答えを確認。マイクは不要です。

@@ -1,0 +1,52 @@
+# Thai (th)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+ได้ยินความต่างไหม?
+
+listen
+ฟัง
+
+choose
+เลือก
+
+hearDifference
+ฟังความแตกต่างให้ออก
+
+trainEar
+ฝึกทักษะการฟัง
+
+noMicrophone
+ไม่ต้องใช้ไมโครโฟน
+
+practiceLabel
+ฝึก
+
+contrastTitle
+ฝึก /iː/ vs /ɪ/
+
+listenInstruction
+ฟังความแตกต่างของเสียง
+
+playWord
+เล่นเสียง
+
+listening
+กำลังเล่นเสียง…
+
+answerQuestion
+คุณได้ยินคำไหน
+
+correctFeedback
+ถูกต้อง — คุณได้ยิน /iː/ ในคำว่า sheep
+
+compareWords
+เปรียบเทียบสองคำ
+
+shareCaption
+Soundwise English ช่วยให้ผู้เรียนภาษาอังกฤษฝึกแยกเสียงคำอย่าง ship และ sheep ฟัง เลือก แล้วรู้ผลทันที ไม่ต้องใช้ไมโครโฟน

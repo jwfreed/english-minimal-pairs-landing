@@ -1,0 +1,52 @@
+# Vietnamese (vi)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+Bạn có nghe ra sự khác biệt không?
+
+listen
+Nghe.
+
+choose
+Chọn.
+
+hearDifference
+Nghe ra sự khác biệt.
+
+trainEar
+Luyện tai nghe của bạn.
+
+noMicrophone
+Không cần dùng micro.
+
+practiceLabel
+Luyện tập
+
+contrastTitle
+Luyện /iː/ vs /ɪ/
+
+listenInstruction
+Lắng nghe sự khác biệt về âm thanh.
+
+playWord
+Phát âm thanh
+
+listening
+Đang nghe…
+
+answerQuestion
+Bạn nghe thấy từ nào?
+
+correctFeedback
+Đúng — bạn đã nghe /iː/ trong từ sheep.
+
+compareWords
+So sánh hai từ
+
+shareCaption
+Soundwise English giúp bạn luyện phân biệt âm thanh của những từ tiếng Anh như ship và sheep. Nghe, chọn và nhận phản hồi ngay—không cần micro.

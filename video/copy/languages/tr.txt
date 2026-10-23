@@ -1,0 +1,52 @@
+# Turkish (tr)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+Farkı duyabiliyor musunuz?
+
+listen
+Dinleyin.
+
+choose
+Seçin.
+
+hearDifference
+Farkı duyun.
+
+trainEar
+Kulağınızı eğitin.
+
+noMicrophone
+Mikrofon gerekmez.
+
+practiceLabel
+Çalış
+
+contrastTitle
+Çalış /iː/ vs /ɪ/
+
+listenInstruction
+Ses farkını dinleyin.
+
+playWord
+Ses çal
+
+listening
+Çalınıyor…
+
+answerQuestion
+Hangi kelimeyi duydunuz?
+
+correctFeedback
+Doğru — sheep içindeki /iː/ sesini duydunuz.
+
+compareWords
+İki kelimeyi karşılaştır
+
+shareCaption
+Soundwise English, ship ve sheep gibi İngilizce kelimelerin ses farkını ayırt etmenize yardımcı olur. Dinleyin, seçin ve anında geri bildirim alın; mikrofon gerekmez.

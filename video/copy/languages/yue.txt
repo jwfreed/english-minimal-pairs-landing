@@ -1,0 +1,52 @@
+# Cantonese (Traditional) (yue)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+你聽唔聽得出分別？
+
+listen
+聽一聽。
+
+choose
+揀一揀。
+
+hearDifference
+聽出分別。
+
+trainEar
+訓練你嘅耳朵。
+
+noMicrophone
+唔需要麥克風。
+
+practiceLabel
+練習
+
+contrastTitle
+練習 /iː/ vs /ɪ/
+
+listenInstruction
+聽聲音嘅分別。
+
+playWord
+播放音頻
+
+listening
+播放緊…
+
+answerQuestion
+你聽到係哪個字？
+
+correctFeedback
+啱，你聽到 sheep 入面嘅 /iː/。
+
+compareWords
+對比兩個字
+
+shareCaption
+Soundwise English 幫你練習分辨 ship 同 sheep 呢類英文字嘅發音。聽一聽、揀一揀，即刻知道答啱定答錯，唔使麥克風。

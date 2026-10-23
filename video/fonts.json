@@ -1,0 +1,61 @@
+{
+  "macOS": "26.7.1",
+  "root": "System font directory, or SOUNDWISE_FONT_DIR",
+  "fonts": {
+    "ja": {
+      "path": "ヒラギノ角ゴシック W3.ttc",
+      "bytes": 7863660,
+      "sha256": "833776a6fd68e2c71c0c52fd8041195bd3d0a336cdb278170b7ad71c7e1b3475"
+    },
+    "zh": {
+      "path": "Hiragino Sans GB.ttc",
+      "bytes": 23522052,
+      "sha256": "f887295caf2881cab9554b14c5ab4c9ee624c3895599da152ec37416b5aefae0"
+    },
+    "yue": {
+      "path": "Hiragino Sans GB.ttc",
+      "bytes": 23522052,
+      "sha256": "f887295caf2881cab9554b14c5ab4c9ee624c3895599da152ec37416b5aefae0"
+    },
+    "ko": {
+      "path": "AppleSDGothicNeo.ttc",
+      "bytes": 55373848,
+      "sha256": "e33989af92c53dd2b80efd88f50c404094a046658d0e7a7692619587570e616c"
+    },
+    "th": {
+      "path": "Supplemental/Thonburi.ttc",
+      "bytes": 1515388,
+      "sha256": "005370c5ec29075f193ba8b67db94b15a27739cd9b46bebace758fd8c01cabb1"
+    },
+    "hi": {
+      "path": "Kohinoor.ttc",
+      "bytes": 1400200,
+      "sha256": "464b1d1eb2bde3bdd68bed5a2e87af1c54c35712ba532d2c7ec9822be17a01d7"
+    },
+    "ar": {
+      "path": "GeezaPro.ttc",
+      "bytes": 979396,
+      "sha256": "5b4309f8d596abee520c0826885a39483a16fb244489d2c313322575df4b04a2"
+    },
+    "fa": {
+      "path": "GeezaPro.ttc",
+      "bytes": 979396,
+      "sha256": "5b4309f8d596abee520c0826885a39483a16fb244489d2c313322575df4b04a2"
+    },
+    "ur": {
+      "path": "GeezaPro.ttc",
+      "bytes": 979396,
+      "sha256": "5b4309f8d596abee520c0826885a39483a16fb244489d2c313322575df4b04a2"
+    },
+    "ru": {
+      "path": "Supplemental/Arial.ttf",
+      "bytes": 773236,
+      "sha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9"
+    },
+    "ipa": {
+      "path": "Supplemental/Arial Unicode.ttf",
+      "bytes": 23278008,
+      "sha256": "876af2cd4854644e7f3e7feb2f688997fdb3343c6df6693611209c9dfb47ccec"
+    }
+  }
+}

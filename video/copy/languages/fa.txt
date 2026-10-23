@@ -1,0 +1,52 @@
+# Persian (fa)
+
+Native-speaker review: pending.
+Direction: rtl
+
+brand
+Soundwise English
+
+hook
+تفاوت را می‌شنوید؟
+
+listen
+گوش دهید.
+
+choose
+انتخاب کنید.
+
+hearDifference
+تفاوت را بشنوید.
+
+trainEar
+گوش خود را تمرین دهید.
+
+noMicrophone
+نیازی به میکروفون نیست.
+
+practiceLabel
+تمرین
+
+contrastTitle
+تمرین /iː/ vs /ɪ/
+
+listenInstruction
+تفاوت صدا را بشنوید.
+
+playWord
+پخش صدا
+
+listening
+در حال شنیدن…
+
+answerQuestion
+کدام کلمه را شنیدید؟
+
+correctFeedback
+درست — /iː/ را در sheep شنیدید.
+
+compareWords
+دو کلمه را مقایسه کنید
+
+shareCaption
+Soundwise English به شما کمک می‌کند تفاوت صدای واژه‌های انگلیسی مثل ship و sheep را تشخیص دهید. گوش دهید، انتخاب کنید و بلافاصله بازخورد بگیرید؛ نیازی به میکروفون نیست.

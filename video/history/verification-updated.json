@@ -1,0 +1,29 @@
+{
+  "hook": "Can you hear the difference?",
+  "video": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "duration": "20.000000",
+        "nb_frames": "600"
+      },
+      {
+        "codec_name": "aac",
+        "r_frame_rate": "0/0",
+        "duration": "20.000000",
+        "nb_frames": "935"
+      }
+    ],
+    "format": {
+      "duration": "20.000000",
+      "size": "1039590"
+    }
+  },
+  "mastered_audio_matches_previous_export": true,
+  "poster": "brag.jpg, baked into frame 0",
+  "hyperframes_check": "passed with zero findings"
+}

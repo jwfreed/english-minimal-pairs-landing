@@ -1,0 +1,52 @@
+# Arabic (ar)
+
+Native-speaker review: pending.
+Direction: rtl
+
+brand
+Soundwise English
+
+hook
+هل تسمع الفرق؟
+
+listen
+استمع.
+
+choose
+اختر.
+
+hearDifference
+ميّز الفرق.
+
+trainEar
+درّب أذنيك.
+
+noMicrophone
+لا حاجة لميكروفون.
+
+practiceLabel
+تدرّب
+
+contrastTitle
+تدرّب على /iː/ vs /ɪ/
+
+listenInstruction
+استمع إلى الفرق في الصوت.
+
+playWord
+تشغيل الصوت
+
+listening
+جارٍ الاستماع…
+
+answerQuestion
+أي كلمة سمعت؟
+
+correctFeedback
+صحيح — سمعت /iː/ في sheep.
+
+compareWords
+قارن بين الكلمتين
+
+shareCaption
+يساعدك Soundwise English على تمييز الفرق في النطق بين كلمات إنجليزية مثل ship وsheep. استمع واختر واحصل على ملاحظات فورية، دون الحاجة إلى ميكروفون.

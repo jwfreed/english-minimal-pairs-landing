@@ -1,0 +1,22 @@
+<template>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+#hook-words{position:absolute;left:170px;top:325px;display:flex;gap:65px;align-items:center;font-size:220px;line-height:1.2;letter-spacing:-12px;font-weight:800}
+#hook-divider{font-size:130px;font-weight:400;letter-spacing:0;color:#565D67}
+#hook-line{position:absolute;left:180px;top:640px;font-size:56px;line-height:1.3;font-weight:700;letter-spacing:-1px}
+#hook-underline{position:absolute;left:180px;top:760px;width:190px;height:10px;background:#C4580F;border-radius:5px}
+</style>
+<div data-hf-id="hf-ktv8" id="root" data-composition-id="hook" data-width="1920" data-height="1080">
+<div data-hf-id="hf-ygft" class="ground"></div>
+<div data-hf-id="hf-mbnc" id="hook-words"><span data-hf-id="hf-mr93" id="hook-ship">sh<span data-hf-id="hf-wry2" class="orange">i</span>p</span><span data-hf-id="hf-v64c" id="hook-divider">/</span><span data-hf-id="hf-sidu" id="hook-sheep">sh<span data-hf-id="hf-edft" class="orange">ee</span>p</span></div>
+<p data-hf-id="hf-mvtf" id="hook-line">Can you hear the difference?</p><div data-hf-id="hf-wi1s" id="hook-underline" aria-hidden="true"></div>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#hook-ship',{x:-36,opacity:0.3},{x:0,opacity:1,duration:0.4,ease:'power4.out'},0);
+tl.fromTo('#hook-sheep',{x:36,opacity:0},{x:0,opacity:1,duration:0.4,ease:'power4.out'},0.12);
+tl.fromTo('#hook-divider',{opacity:0},{opacity:1,duration:0.2},0.2);
+tl.fromTo('#hook-line',{opacity:0},{opacity:1,duration:0.22},0.32);
+tl.fromTo('#hook-underline',{scaleX:0,transformOrigin:'left center'},{scaleX:1,duration:0.4,ease:'expo.out'},0.45);
+window.__timelines=window.__timelines||{};window.__timelines.hook=tl;
+</script></template>

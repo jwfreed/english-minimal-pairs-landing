@@ -1,0 +1,52 @@
+# Indonesian (id)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+Bisa dengar bedanya?
+
+listen
+Dengarkan.
+
+choose
+Pilih.
+
+hearDifference
+Dengarkan bedanya.
+
+trainEar
+Latih pendengaranmu.
+
+noMicrophone
+Tidak perlu mikrofon.
+
+practiceLabel
+Latihan
+
+contrastTitle
+Latih /iː/ vs /ɪ/
+
+listenInstruction
+Dengarkan perbedaan bunyinya.
+
+playWord
+Putar Audio
+
+listening
+Sedang mendengarkan…
+
+answerQuestion
+Kata mana yang kamu dengar?
+
+correctFeedback
+Benar — kamu mendengar /iː/ dalam sheep.
+
+compareWords
+Bandingkan kedua kata
+
+shareCaption
+Soundwise English membantu kamu membedakan bunyi kata bahasa Inggris seperti ship dan sheep. Dengarkan, pilih, dan langsung dapatkan umpan balik—tanpa mikrofon.

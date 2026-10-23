@@ -1,0 +1,52 @@
+# Chinese (Simplified) (zh)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+你能听出区别吗？
+
+listen
+听一听。
+
+choose
+选一选。
+
+hearDifference
+听出区别。
+
+trainEar
+训练你的听力。
+
+noMicrophone
+无需麦克风。
+
+practiceLabel
+练习
+
+contrastTitle
+练习 /iː/ vs /ɪ/
+
+listenInstruction
+专心听声音的区别。
+
+playWord
+播放音频
+
+listening
+正在播放…
+
+answerQuestion
+你听到了哪个词？
+
+correctFeedback
+正确。你听到了 sheep 中的 /iː/。
+
+compareWords
+对比两个单词
+
+shareCaption
+Soundwise English 帮助英语学习者听出 ship 和 sheep 等单词的发音区别。听一听，选一选，立即获得反馈，无需麦克风。

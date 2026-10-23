@@ -1,0 +1,52 @@
+# Russian (ru)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+Слышите разницу?
+
+listen
+Слушайте.
+
+choose
+Выбирайте.
+
+hearDifference
+Услышьте разницу.
+
+trainEar
+Тренируйте слух.
+
+noMicrophone
+Микрофон не нужен.
+
+practiceLabel
+Практика
+
+contrastTitle
+Тренировать /iː/ vs /ɪ/
+
+listenInstruction
+Слушайте, улавливая разницу в звуках.
+
+playWord
+Воспроизвести аудио
+
+listening
+Прослушивание…
+
+answerQuestion
+Какое слово вы услышали?
+
+correctFeedback
+Верно — вы услышали /iː/ в слове sheep.
+
+compareWords
+Сравните два слова
+
+shareCaption
+Soundwise English помогает различать на слух английские слова, например ship и sheep. Слушайте, выбирайте и сразу узнавайте результат — микрофон не нужен.

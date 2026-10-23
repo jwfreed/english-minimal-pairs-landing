@@ -1,0 +1,51 @@
+{
+  "video": {
+    "programs": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "duration": "20.000000",
+        "nb_frames": "600"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "r_frame_rate": "0/0",
+        "duration": "20.000000",
+        "nb_frames": "935"
+      }
+    ],
+    "format": {
+      "duration": "20.000000",
+      "size": "1037547"
+    }
+  },
+  "audio": {
+    "duration": 20,
+    "loudness": {
+      "lufsIntegrated": -16,
+      "lufsShortTermMax": -14.6,
+      "samplePeakDb": -1.1,
+      "truePeakDb": -1,
+      "clipping": {
+        "count": 0,
+        "firstAt": null
+      }
+    },
+    "warnings": []
+  },
+  "checks": {
+    "hyperframes": "passed, zero findings",
+    "repository_npm_run_check": "passed"
+  },
+  "poster": {
+    "source_timestamp_seconds": 13,
+    "baked_into_frame": 0,
+    "visually_verified": true
+  },
+  "review": "Beat/phone/seam sheets and decoded delivered frames inspected; audio measured, not heard."
+}

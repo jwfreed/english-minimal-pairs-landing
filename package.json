@@ -25,7 +25,11 @@
     "validate:localized-homepages": "node scripts/validate-localized-homepages.mjs",
     "validate:localized": "node scripts/validate-localized-seo-page.mjs",
     "test": "node --test scripts/*.test.mjs",
-    "deploy": "npm run build && touch dist/CNAME && echo 'getsoundwise.co' > dist/CNAME"
+    "deploy": "npm run build && touch dist/CNAME && echo 'getsoundwise.co' > dist/CNAME",
+    "video:render": "python3 video/render.py",
+    "video:validate": "python3 video/validate.py",
+    "video:test": "python3 -m unittest discover -s video -p \"test_*.py\"",
+    "video:install": "npm --prefix video ci"
   },
   "devDependencies": {
     "vite": "^7.1.7"

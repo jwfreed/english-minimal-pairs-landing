@@ -1,0 +1,52 @@
+# Hindi (hi)
+
+Native-speaker review: pending.
+Direction: ltr
+
+brand
+Soundwise English
+
+hook
+क्या आपको फ़र्क सुनाई देता है?
+
+listen
+सुनें।
+
+choose
+चुनें।
+
+hearDifference
+आवाज़ों का फ़र्क सुनें।
+
+trainEar
+अपने कान को प्रशिक्षित करें।
+
+noMicrophone
+माइक की ज़रूरत नहीं।
+
+practiceLabel
+अभ्यास
+
+contrastTitle
+सीखें /iː/ vs /ɪ/
+
+listenInstruction
+ध्वनि का अंतर सुनें।
+
+playWord
+ऑडियो चलाएँ
+
+listening
+सुन रहे हैं…
+
+answerQuestion
+आपने कौन सा शब्द सुना?
+
+correctFeedback
+सही — आपने sheep में /iː/ सुना।
+
+compareWords
+दो शब्दों की तुलना करें
+
+shareCaption
+Soundwise English से ship और sheep जैसे अंग्रेज़ी शब्दों की आवाज़ों का फ़र्क पहचानने का अभ्यास करें। सुनें, चुनें और तुरंत प्रतिक्रिया पाएँ—माइक की ज़रूरत नहीं।

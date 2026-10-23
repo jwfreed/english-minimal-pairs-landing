@@ -1,0 +1,9 @@
+node_modules/
+.working/
+.generated/
+logs/
+.hyperframes/
+.thumbnails/
+.waveform-cache/
+__pycache__/
+*.pyc
