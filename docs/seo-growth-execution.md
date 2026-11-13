@@ -261,6 +261,18 @@ EXP-LIVE-1 (`/live-vs-leave/`) deploys only when all are true:
 - The October 23 additional changes remain a separate confounder. GSC can describe search visibility but cannot isolate the Oct 16 link-only effect or verify exercise engagement. No production browser QA or code-instrumentation tests were performed in this API-only rerun.
 - **Outstanding:** retrieve GA4 distinct organic hub-landing sessions and ordered `exercise_start`, `exercise_complete`, and `app_store_click` session counts, split around the October 23 deployment boundary where feasible. **No experiment decision**; preserve December 11 readout as directional.
 
+
+### 2026-11-13 — Sanity-check rerun, GA4 and GSC both verified
+
+- Connected GA4 Data API **succeeded** for property `properties/536565930` (GA4 reporting time zone: America/New_York). The same connected GSC API also succeeded for `sc-domain:getsoundwise.co`. This supersedes the earlier November 13 GA4 `invalid_grant` blocker for these connected read paths; it does **not** establish whether OpenSEO's separate GA4 integration has recovered.
+- GA4, English hub `/minimal-pairs-practice`, `sessionDefaultChannelGroup = Organic Search`: **2026-10-17–2026-11-12 (27 days): 4 landing sessions, 2 sessions with `exercise_start` (50.0%), 2 with `exercise_complete`, 1 with `app_store_click`**. Event counts respectively 4 starts, 3 completions and 1 App Store click. `sessions` grouped by `eventName` counts sessions containing each event, not a verified *ordered* event funnel.
+- Immediate preceding comparison **2026-09-19–2026-10-16 (28 days)**: 15 hub landing sessions, 4 with `exercise_start` (26.7%), 2 with `exercise_complete`, 2 with `app_store_click`. Not equal-length windows; October 16 includes partial treatment exposure, so this is an operational reference **not** a clean causal control.
+- By GA4 date, earlier exposure **Oct 17–22**: 1 hub organic session, 1 session containing a start, 1 containing a completion, 0 App Store clicks. **Oct 23–Nov 12**: 3 hub organic sessions, 1 containing a start, 1 containing a completion, 1 App Store click. October 23 content/button deployment is an additional confounder; a date-level split does not prove the exact transition hour.
+- Site-wide `Organic Search` sessions: **150** in Oct 17–Nov 12 (27 days), versus **158** in Sep 19–Oct 16 (28 days); engaged organic sessions **96 vs 95**. The site's organic traffic is broadly flat, while the English hub's four observed sessions are too few to distinguish a regression or improvement. No absence of instrumentation events can be inferred from an empty row at this sample size.
+- GSC, as in the earlier successful rerun: matched 25-day periods Sep 22–Oct 16 versus Oct 17–Nov 10, English hub **8 clicks/204 impressions (3.92% CTR)** versus **5 clicks/161 impressions (3.11% CTR)**. Site-wide clicks **116 versus 115**. GSC clicks and GA4 landing sessions are different measures, with different freshness and attribution.
+- **Sanity verdict: no clear site-wide organic regression; hub activation is inconclusive. No expand/stop decision.** Preserve the December 11 readout as directional, given mixed October 16/23 exposure and low traffic. No production browser QA, repository instrumentation audit, or event-level sequencing analysis was performed in this API-only rerun.
+
+
 ## Current blockers
 
 | Blocker | Next action |
