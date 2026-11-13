@@ -244,6 +244,14 @@ EXP-LIVE-1 (`/live-vs-leave/`) deploys only when all are true:
 - [ ] Gates pass on the final tree; owner approves the push; commit hash and UTC
       time recorded.
 
+### 2026-11-13 — Four-week sanity check (incomplete; no experiment decision)
+
+- Attempted live GA4 Data API reads for organic landing sessions on `/minimal-pairs-practice/` for 2026-10-17–2026-11-12, plus GA4 metadata. Both returned `invalid_grant: Bad Request`. Thus the distinct organic landing-session denominator, ordered `exercise_start` rate, and secondary `exercise_complete` / `app_store_click` session counts **could not be verified**. Do not substitute event totals or infer zero traffic.
+- Attempted GSC page performance for 2026-10-17–2026-11-10 and comparison period; both also returned `invalid_grant`. This is an access blocker, not evidence of a traffic regression. The working Python GA4 route reported in October was not available in this run.
+- GitHub history confirms changes on 2026-10-23: `7013956` (hub copy and live/leave content) and `84909a3` (Google preferred-source button), followed by homepage video commits. These establish an additional exposure boundary after the original 2026-10-16 hub-link release. Exact production deployment time was not independently verified in this check. Consequently, the original link-only treatment is not isolated across the full observation window.
+- Instrumentation health and actual user abandonment cannot be reassessed without a successful analytics read; no new regression is demonstrated. No site code or experiment configuration changed during this check.
+- **Next:** reauthorize the GA4 and GSC connector tokens or use the previously working local Python GA4 route; retrieve distinct organic hub-landing sessions and ordered funnel counts for 2026-10-17–2026-11-12, splitting at the verified October 23 production deployment boundary. Check event volume and data freshness, then retain the December 11 readout as directional only. **No expand/stop decision today.**
+
 ## Current blockers
 
 | Blocker | Next action |
