@@ -252,6 +252,15 @@ EXP-LIVE-1 (`/live-vs-leave/`) deploys only when all are true:
 - Instrumentation health and actual user abandonment cannot be reassessed without a successful analytics read; no new regression is demonstrated. No site code or experiment configuration changed during this check.
 - **Next:** reauthorize the GA4 and GSC connector tokens or use the previously working local Python GA4 route; retrieve distinct organic hub-landing sessions and ordered funnel counts for 2026-10-17–2026-11-12, splitting at the verified October 23 production deployment boundary. Check event volume and data freshness, then retain the December 11 readout as directional only. **No expand/stop decision today.**
 
+
+### 2026-11-13 — Sanity-check rerun (GSC restored; GA4 still blocked)
+
+- Re-ran connected read-only APIs on November 13. **GSC succeeded** for `sc-domain:getsoundwise.co`; the connected GA4 Data API still returned `invalid_grant: Bad Request`. Do not treat missing GA4 measurements as zero. The separate local Python authorization was not tested in this rerun.
+- Latest available finalized GSC data ended **2026-11-10**. Matched 25-day windows: 2026-09-22–2026-10-16 (before) vs 2026-10-17–2026-11-10 (after). Property-wide: **116 clicks / 24,959 impressions (0.465% CTR)** vs **115 / 23,255 (0.495%)**. No meaningful sitewide click growth.
+- Exact English hub page `https://getsoundwise.co/minimal-pairs-practice/` (excluding all localized hubs): **8 clicks / 204 impressions (3.92% CTR)** before vs **5 / 161 (3.11%)** after. These counts are too small for a change verdict; GSC clicks do not measure organic GA4 landing sessions or exercise starts.
+- The October 23 additional changes remain a separate confounder. GSC can describe search visibility but cannot isolate the Oct 16 link-only effect or verify exercise engagement. No production browser QA or code-instrumentation tests were performed in this API-only rerun.
+- **Outstanding:** retrieve GA4 distinct organic hub-landing sessions and ordered `exercise_start`, `exercise_complete`, and `app_store_click` session counts, split around the October 23 deployment boundary where feasible. **No experiment decision**; preserve December 11 readout as directional.
+
 ## Current blockers
 
 | Blocker | Next action |
