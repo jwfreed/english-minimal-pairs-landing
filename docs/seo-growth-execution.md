@@ -344,6 +344,66 @@ branch; approval to push and deploy (and to record the commit and UTC time
 here); the `exercise_complete` timing note above; and a decision on a generic
 English in-exercise CTA. Merging ships only this branch's changes on top of `b8e31f3`.
 
+### D3. Release Check 1: exercise completion invariants (2026-11-14)
+
+**Result: PASS.** Verified at `b4b1dac` on branch
+`growth/hub-exercise-and-speech-reliability`. No defect found, so no
+production code changed. Checks 2 and 3 have not been started.
+
+Lifecycle as implemented: Start click unlocks audio, sets stage `test` and
+fires `demo_started` before any sound. Guesses open only when the first word's
+playback resolves true (input gate). An answer is accepted only in stage
+`test`; it scores, sets stage `feedback` or `summary`, then replays both words.
+`demo_completed` fires after that replay settles. The summary shows at answer
+time, before the replay. `exercise_start` and `exercise_complete` are each
+sent to GA4 once per page load (`src/funnel-tracking.js`).
+
+| Invariant | Result | Evidence |
+| --- | --- | --- |
+| A. No unheard stimulus scored | PASS | Hang and error both return to preview with no target, no score, no round; the gate and the engine reject answers; retry works |
+| B. No unanswered advancement | PASS | At 5,999 ms still waiting; at 6,000 ms preview, same round, `demo_round_completed` count 0 |
+| C. No duplicate transitions | PASS | Late and repeated `onend`/`onerror`, double guess, double Next: one score, one round, no extra events |
+| D. Completion after final-replay timeout | PASS | Summary and final score shown at answer time; `exercise_complete` 0 before and exactly 1 after the watchdog; late callbacks add none |
+| E. Recovery preserves later rounds | PASS | Retry stays in the same round; a stale callback cannot settle the new attempt; round 2 fail, retry, answer gives the right score and one completion |
+
+**Tests added:** `scripts/exercise-lifecycle-speech.test.mjs`, 21 tests, run
+for the hub subject (`ship-vs-sheep`) and a pair-page subject (`bad-vs-bed`).
+They use the real engine, input gate, `speakWord` and funnel tracking with a
+manual speech stub and mock timers, and cover normal completion, hang, error,
+late `onend` and `onerror`, retry, a stale callback during retry, final-replay
+hang, repeated terminal callbacks, Play-the-sample interruption, Next during a
+replay, Listen interrupting the final replay, and a stale watchdog from a
+finished playback. Mutation check: making a timeout report success, removing
+the watchdog, or leaving its timer uncleared each fail tests. Dropping the
+`settled` guard in `speakWord` does not, because a promise resolves only once
+and the playback id check already protects state; that guard is redundant.
+
+**Browser check (Playwright, 390 px, manual speech stub, real timers):** the
+same scenario on the hub and `/bad-vs-bed/` showed the same results in the DOM
+(guess buttons, notice, stage, summary score, `dataLayer` counts): stale
+callbacks changed nothing, retry worked, and `exercise_complete` appeared once,
+after the watchdog, with a 2 out of 2 summary. Not committed; Playwright is not
+a repository dependency.
+
+**Observations, not defects, no change made:**
+- Pressing "Play the sample" while the first word is still playing supersedes
+  it. The round returns to preview (nothing scored) and the "audio
+  unavailable" notice shows even though audio works. Start works again.
+- After a final-replay hang the summary shows the same notice beside the score.
+- A retry draws a new random target for the same round; the unheard word is
+  not repeated.
+
+**Limitations:** the unit harness mirrors the `seo-page.js` handlers rather
+than running them; DOM wiring is covered only by the uncommitted browser run.
+Real iOS Safari, in-app browsers and a real speech engine were not tested, so
+whether browsers fire a late `onend` after `cancel()` is assumed, not observed.
+A learner who leaves the page within 6 s of a hung final replay still produces
+no `exercise_complete`.
+
+**Results:** `npm test` 246 passed, 0 failed (225 before); the exercise-engine,
+seo-exercise, funnel-tracking, app-store-tracking and seo-conversion-matrix
+validators pass. No build was needed (no source change).
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:
