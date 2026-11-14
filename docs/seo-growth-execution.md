@@ -404,6 +404,105 @@ no `exercise_complete`.
 seo-exercise, funnel-tracking, app-store-tracking and seo-conversion-matrix
 validators pass. No build was needed (no source change).
 
+### D4. App Store destination investigation (2026-11-14)
+
+**Result: root cause UNRESOLVED; no Soundwise defect found; no code changed.**
+Investigated on branch `growth/hub-exercise-and-speech-reliability` at
+`941e851`. Release Check 1 (D3) is unaffected.
+
+**Observation.** A real learner completed the homepage exercise, clicked
+"Practice more sound contrasts with Soundwise" and saw Apple's "An Error
+Occurred" page in desktop Chrome on macOS. Destination:
+`https://apps.apple.com/app/apple-store/id6753882308?pt=128210308&ct=web-home&mt=8`.
+Their storefront, network, extensions and the time are unknown.
+
+**Reproduction attempt (all from Thailand, 2026-11-14, Chrome 157 via Playwright
+and curl).** The failure did not reproduce.
+
+| URL | curl | Chrome |
+| --- | --- | --- |
+| A. failing URL (`/app/apple-store/...?pt&ct=web-home&mt=8`) | 301 to `/us/app/soundwise-english/id6753882308?ct=web-home&pt=128210308`, then 200 | listing renders, title "Soundwise English App - App Store" |
+| B. `/us/app/soundwise-english/id6753882308` | 200 | listing renders |
+| C. B plus `?pt=128210308&ct=web-home` | 200 | listing renders |
+
+- 30 fresh-context Chrome loads (10 each of A, B, C): 30 rendered the listing,
+  0 showed an error page. Apple's client strips `pt`/`ct` from the address bar
+  after render; they were present on the request Apple received.
+- `/app/id6753882308` and `/app/apple-store/id6753882308` (no params) also end
+  on `/us/...`. `mt=8` is harmless: B with `mt=8` also loads, but Apple's page
+  does not say whether `mt` is required, so it was kept.
+- Varying `Accept-Language`, the `geo` cookie and browser locale/timezone
+  (DE, FR, ES, IT, GB) did not change the redirect; every case ended on `/us/`.
+  The 301 is edge-cached (`cache-control: public, max-age=900`, Akamai).
+- One unrelated Apple sub-request (`/api/apps/v1/editorial/...`) returned 429
+  once during a rapid sequence while the page still rendered. This shows Apple's
+  web app rate-limits and can fail, but it is not shown to cause the error page.
+- Format check: Apple's own
+  [Campaign links help](https://developer.apple.com/help/app-store-connect-analytics/acquisition/campaign-links/)
+  gives `https://apps.apple.com/app/apple-store/id123456789?pt=123456&ct=test1234&mt=8`.
+  The failing URL has exactly that structure, so it is **not** an obsolete or
+  invalid URL format.
+- iTunes Lookup API (`itunes.apple.com/lookup?id=6753882308&country=XX`) returns
+  the app for 26 of 30 storefronts tried and **no result for `de`, `fr`, `es`,
+  `it`**; `apps.apple.com/{de,fr,es,it,nl,pt}/app/soundwise-english/id6753882308`
+  return HTTP 404. The app ID is correct and the listing is live in the US.
+  Reaching an unavailable storefront could produce an error page for a visitor
+  whose Apple session maps there, but no tested input did that, so this is an
+  **unconfirmed hypothesis, not the cause**. Not investigated further: whether
+  the EU gap is intentional.
+
+**Link audit.**
+- Source HTML (all pages, `index.html`, `content/pairs/`, `content/locales/`)
+  contains the plain `https://apps.apple.com/us/app/soundwise-english/id6753882308`
+  form, with `utm_*` parameters on SEO pages.
+- `src/apple-campaign-links.js` is the single generator. The Vite plugin
+  `apply-apple-campaign-links` (`vite.config.js`) rewrites every Apple href at
+  build time to the campaign-link format, only for five English routes:
+  `homepage` `web-home`, `bit-vs-beat` `web-bitbeat`, `fill-vs-feel`
+  `web-fillfeel`, `ship-vs-sheep` `web-shipsheep`, `minimal-pairs-practice`
+  `web-mpphub`. Localized routes and unmapped pages keep their plain `/us/` URL
+  by design (tested in `scripts/apple-campaign-links.test.mjs`).
+- Production check (curl of `getsoundwise.co`): `/`, `/minimal-pairs-practice/`,
+  `/bit-vs-beat/`, `/ship-vs-sheep/`, `/fill-vs-feel/` serve the campaign-link
+  format with the matching `ct`; `/live-vs-leave/`, `/ja/`, `/es/`,
+  `/ja/ship-vs-sheep/` and `/ja/minimal-pairs-practice/` serve the plain `/us/`
+  URL. The app ID and provider token `128210308` match everywhere.
+- `ct=web-home` on the exercise-completion CTA is **intended**: the CTA lives on
+  the homepage, which maps to `web-home` (asserted by test). It is not a
+  labeling defect. The taxonomy was not changed.
+
+**Tracking verification (production homepage, real Chrome, GA collect requests
+aborted so real analytics were not polluted).** Start, guess, reach the summary,
+click `#demo-app-store-cta`: the link href was the failing URL; the click
+navigated to the Soundwise listing (final `https://apps.apple.com/us/app/soundwise-english/id6753882308`,
+no error page). Observed GA requests: `page_view`, `exercise_start`, **one**
+`app_store_click` (`cta_position=exercise-summary`, `exercise_completed=true`,
+`link_url` = the campaign URL), plus GA's own automatic outbound `click`. An
+`app_store_click` records an outbound click, not a successful App Store landing.
+The `exercise_complete` request was not in the captured set in this run; it was
+not the subject of the check and nothing in this investigation touched it.
+
+**Tests.** `npm test` 246 passed, 0 failed; `validate:app-store-tracking`,
+`validate:funnel-tracking`, `validate:seo-conversion-matrix`,
+`validate:landing-copy`, `validate:localized-homepages` pass. Not run:
+`npm run build` (no source change), `validate:localized` (needs `--page`
+arguments).
+
+**Conclusion and implications.**
+- Probable: a transient or visitor-specific Apple-side failure (Apple web app
+  data call failing or rate-limited, or a storefront/network condition on the
+  learner's side). Not confirmed; no Soundwise defect was demonstrated, so per
+  the task brief no speculative change was made.
+- The destination is safe to deploy as-is; the current pages already serve it in
+  production. This work adds no release risk.
+- Open for the owner, outside this task's scope: (1) whether the missing
+  `de`/`fr`/`es`/`it` storefront availability is intended, given Spanish and
+  Portuguese localized pages exist; (2) if more error reports arrive, collect the
+  learner's country, browser, extensions and timestamp; (3) outbound-click events
+  cannot detect landing failures, so a recurrence is only visible through user
+  reports or App Store Connect referrer counts.
+- Rollback: none needed; only this documentation section was added.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:
