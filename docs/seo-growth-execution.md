@@ -1,13 +1,300 @@
 # SEO Growth Execution Tracker
 
-Canonical state record for the October 2026 SEO growth cycle. One owner
-updates it: the orchestrating agent. Delegated agents report to it and do
-not edit this file.
+Canonical record of growth strategy, execution state, experiments and
+decisions. Current state is in the Growth Portfolio section; the October
+2026 SEO cycle follows it as history. One owner updates this file: the
+orchestrating agent. Delegated agents report to it and do not edit it.
 
 Audit evidence lives in `/tmp/soundwise-seo-audit-2026-10-16/` (`report.md`,
 `measurement-2026-10-16.md`, CSVs). This file does not duplicate it. `/tmp`
 is not durable, so the baseline figures this cycle depends on are copied
 below.
+
+## Growth Portfolio
+
+Adopted 2026-11-13 at the owner's direction. It replaces experiment
+preservation as the operating model. Everything from "Objective and scope"
+down is the historical record of the October 2026 cycle and stays as written.
+Long-form briefs, outreach drafts and the usability protocol are in
+[`growth-portfolio-materials.md`](growth-portfolio-materials.md); that file
+carries no status.
+
+Contents: [A. Strategy](#a-current-strategy) ·
+[B. Baseline](#b-current-baseline) · [C. Portfolio](#c-growth-portfolio) ·
+[D. Active initiatives](#d-active-initiatives) ·
+[E. Decisions and proposed transitions](#e-decision-log-and-proposed-transitions) ·
+[F. Scorecard](#f-weekly-operating-scorecard) · [G. Next actions](#g-next-actions)
+
+### A. Current strategy
+
+**Objective (proposed, owner to confirm).** Reach 225 qualified visits per
+28 days by the window ending 2027-02-09, with 300 as the stretch figure. The
+kickoff figure of 300 was set against "about 150 organic sessions"; measured
+as qualified visits the baseline is 112–124, so 300 is 2.5 times baseline,
+not double. Neither number is a forecast.
+
+**Qualified visit.** A GA4 session whose channel is not Direct and that GA4
+counts as engaged (10 seconds in the foreground, a second page view, or a key
+event). Direct is excluded because it is mostly automated traffic: 650
+sessions, 49 engaged, 346 from Singapore with none engaged. This undercounts
+real direct visits and is accepted.
+
+**Activated visit.** A qualified-channel session with at least one
+`exercise_start`.
+
+**Activation guardrail.** Activated visits ÷ non-Direct sessions stays at or
+above 15% (baseline 19–21%). Growth that drops it below 15% for two
+consecutive 28-day windows is not counted as progress.
+
+**Learner segments.**
+
+| Segment | Problem | Where they look now | Evidence here |
+| --- | --- | --- | --- |
+| L1-language learner searching in their own language | Cannot hear a contrast their language lacks | Search in L1 for "minimal pairs" and pair names | Localized hubs: 23% of organic sessions, half of organic App Store click sessions |
+| Self-directed learner searching "X vs Y pronunciation" or "minimal pairs practice" | Wants to hear two words and check themselves | Google, assistants (ChatGPT, Gemini), YouTube | Hub CTR 3.2% against 0.1–0.6% on pair pages |
+| Teacher or tutor assigning listening practice | Needs a no-login activity for a specific contrast | Resource lists, colleagues, Google Classroom | One unprompted Classroom assignment: 35 sessions since 2026-10-07 |
+| Searcher of a bare pair ("live vs leave") | Mostly wants the meaning | AI Overview answers it | About 24,000 impressions, 0.1–0.3% CTR. Not a target |
+
+**Positioning.** Soundwise lets a learner test whether they can hear a
+contrast, in one minute, in the browser, in their own language, then continue
+in the app. The exercise is the product on the web; explanation supports it.
+
+**Assumptions to test.**
+
+1. Task-intent and L1-language searchers are the qualified audience; bare-pair
+   impressions will not convert whatever the snippet says.
+2. One teacher placement is worth more than a month of search tuning. In
+   2026-09-16 → 2026-10-13, Referral gave 30 sessions, 15 starts and 11
+   completions; Organic Search gave 157, 23 and 8. This rests on one class.
+3. Most visitors who do not start have not seen the exercise; most who start
+   and stop met a sound or comprehension problem. Unverified.
+
+**Operating principles.**
+
+- Decide on direction and pre-set thresholds, not significance. A 10-point
+  lift needs about 250 sessions per arm; no page here has that in a year.
+- Read pooled 28-day windows. Every deployment is a dated boundary in section
+  E. No page is frozen for measurement unless section E says so.
+- Qualitative evidence from real learners outranks analytics-only inference
+  for exercise changes.
+- Claims stay within `AGENTS.md` and `docs/messaging-framework.md`. No new
+  pages or event changes without approval.
+- At most three active bets. A new bet enters only when one ends.
+
+**Resources.** One owner, agent time, no budget. Effort split recommended at
+distribution 40%, search 35%, activation 25% (the kickoff suggested
+50/30/20); assumption 2 is the reason. Owner to confirm.
+
+### B. Current baseline
+
+GA4 property `536565930` (time zone America/New_York) and GSC
+`sc-domain:getsoundwise.co`, pulled 2026-11-13. Current: 2026-10-14 →
+2026-11-10. Previous: 2026-09-16 → 2026-10-13. Counts are distinct sessions.
+
+| Measure | Previous | Current |
+| --- | --- | --- |
+| Non-Direct sessions | 200 | 178 |
+| **Qualified visits** (engaged, non-Direct) | 124 | 112 |
+| of which Organic Search / Referral / AI Assistant | 91 / 21 / 11 | 104 / 4 / 4 |
+| Organic Search sessions | 157 | 163 |
+| **Activated visits** (`exercise_start`, non-Direct) | 43 (21.5%) | 34 (19.1%) |
+| Sessions with `exercise_complete`, non-Direct | 23 | 22 |
+| Sessions with `app_store_click`, non-Direct | 33 | 23 |
+| Organic only: start / complete / store click | 23 / 8 / 16 | 28 / 17 / 20 |
+| GSC clicks / impressions / CTR | 135 / 28,136 / 0.48% | 129 / 26,055 / 0.50% |
+
+Current-window observations:
+
+- English pair pages hold about 24,000 impressions at positions 5–8 and
+  0.1–0.6% CTR. `/live-vs-leave/` alone has 4,333 impressions and 7 clicks.
+- The five routes under the `conversion_serp_cta_v1` presentation freeze hold
+  10,124 impressions, 39% of the site.
+- English hub organic landings fell from 15–18 per window to 5. GSC shows
+  12 → 6 clicks at an unchanged position (12.5 → 12.3), so this is demand or
+  click variance, not a ranking loss.
+- Organic App Store clicks: 15 of 26 events are the hero CTA before any
+  exercise; 5 follow a completion.
+- Russia is the largest country by organic sessions (29) and clicks (24),
+  then the United States (17 sessions) and Japan (15).
+- `classroom.google.com`: 35 sessions from 2026-10-07 to 2026-10-31, mostly
+  Peru on desktop, landing on `/cap-vs-cup/`, with exercise starts on
+  `/cap-vs-cup/`, `/bit-vs-beat/` and `/bad-vs-bed/`. One teacher, probably
+  one class.
+- AI assistants since 2026-07-14: ChatGPT 33 sessions to the homepage (27
+  engaged), Gemini 6 to the English hub.
+
+Limitations: query rows cover 38% of impressions; installs and in-app
+behaviour are not observable; one bot wave or one class moves any figure
+here; the Classroom teacher is unknown to us; weekly numbers are too small to
+read alone.
+
+### C. Growth portfolio
+
+Scores are 1–3 judgments (3 is best) for reach, learner fit, differentiation,
+evidence, low cost and speed of feedback, summed to 18. They order the list;
+they are not forecasts. Search briefs for S-01 to S-03 are in the materials
+file. Owner = the site owner; Lead = the orchestrating agent.
+
+| ID | Workstream | Hypothesis | Customer value | Evidence | Pri (score) | Effort | Status | Who | Depends on | Next action | Review |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| **S-01** | Search | An exercise at the top of the English hub turns it into the page task-intent searchers, assistants and teachers want | Test your hearing without reading first | Hub CTR 3.2% at position 12; no exercise on the hub; Gemini and ChatGPT already send visits there | 1 (14) | 0.5 day | BLOCKED | Lead builds, Owner approves | Hub freeze ended (E, T-1) | Owner decision on T-1 | 2026-12-11 |
+| S-02 | Search | L1-matched first links on localized hubs raise exercise starts from the highest-intent segment | Practice the contrast your language lacks | 37 sessions, 10 store-click sessions, 3 starts; `/ru/` hub leads with pairs the app does not support for Russian | 2 (14) | 1 day | READY | Lead | Deploy approval | Queue behind S-01 | 2026-12-11 |
+| S-03 | Search | A first-screen pronunciation answer lifts "X vs Y pronunciation" rankings on unfrozen pair pages | Hear both words at once | About 1,100 exported impressions at positions 5–8; `/three-vs-tree/` 3 clicks from 120 | 3 (13) | 1 day | READY | Lead | Deploy approval | Queue | 2026-12-11 |
+| S-04 | Search | Ending the presentation freeze lets the five highest-impression routes get the current exercise and S-03 | Same experience on the most-seen pages | 10,124 impressions (39%) are frozen for an unreadable test | 4 (13) | 1 day | BLOCKED | Lead | T-4 approved; code and validator change | Owner decision on T-4 | 2026-12-11 |
+| S-05 | Search | A baseline of how assistants describe and cite Soundwise shows what to fix | Assistants point learners to a working exercise | 33 ChatGPT homepage sessions, 82% engaged; `ai_visibility` phase never run | 5 (13) | 0.5 day | BACKLOG | Lead | — | Run after S-01 ships | 2027-01-12 |
+| S-06 | Search | Registering with Bing and Yandex webmaster tools widens indexing where Russia leads | Russian speakers find the Russian pages | Russia is the top country; 17 sessions from Bing and Yandex; registration status unknown | 6 (12) | 1 hour | BACKLOG | Owner | Owner accounts | Owner checks whether already registered | 2027-01-12 |
+| S-07 | Search | A second Russian pair page (vest/west or live/leave, both app-supported for Russian) extends the one L1 with proven clicks | More than one contrast in Russian | Russian routes: 22 clicks / 1,018 impressions; EXP-RU-WATCH window 1 missed its expand rule | 7 (11) | 2 days | BACKLOG | Lead | EXP-RU-WATCH window 2 (ends 2026-12-08); new-page approval | Read window 2 | 2026-12-11 |
+| S-08 | Search | Pair pages for the six cataloged contrasts without one (think/sink, pack/back, wine/vine, fan/pan, day/they, light/night) add impressions | Coverage of more contrasts | Catalog entries exist; existing pair pages average 0.3% CTR, so the gain is small | 8 (11) | 1 day each | BACKLOG | Lead | New-page approval; app capability check | None now | 2027-01-12 |
+| S-09 | Search | `/ja/right-vs-light/` serves the best-known Japanese difficulty | /r/–/l/ practice in Japanese | Japan third by sessions (15); app supports the pair; `ko`, `yue`, `vi` have the page; no query evidence | 9 (10) | 2 days | BACKLOG | Lead | New-page approval | None now | 2027-01-12 |
+| S-10 | Search | Rewriting titles on bare-pair pages lifts CTR | — | `/man-vs-men/` title test: impressions 1,633 → 598, clicks 2 → 2 | — | — | STOPPED | — | — | Do not repeat without new evidence | — |
+| **D-1** | Distribution | Curators of ESL resource lists and library guides will list a free, no-login listening check, and each listing keeps sending learners | Teachers and students find a tool on lists they already trust | Unprompted Classroom use; lists still cite Flash-era tools; no outreach has ever been done | 1 | 1 day to send 8, then 1 hour a week | ACTIVE (drafts ready, sending needs approval) | Owner sends, Lead drafts | Approval to send | Owner reviews drafts and target list | 2026-12-11 |
+| D-2 | Distribution | A short "use with a class" block on pair pages and the hub makes assignment repeatable | A teacher knows the page can be assigned | Classroom sessions; competitor pitches the same thing | 2 | 0.5 day | READY | Lead | Deploy approval; wording check against the exercise | Ship with S-01 if approved | 2026-12-11 |
+| D-3 | Distribution | A practitioner note in a pronunciation-teacher publication earns durable credibility | Teachers hear about it from peers | None beyond audience fit | 3 | 2 days | BACKLOG | Owner | D-1 replies | Revisit after D-1 | 2027-01-12 |
+| **A-1** | Activation | Watching 5–8 learners use a pair page will show why 83% never start and 40% of starters stop | Fix what actually blocks learners | 28 of 163 start, 17 complete; start-only sessions are seconds long | 1 | 6 sessions of 25 minutes plus recruiting | ACTIVE (protocol ready) | Owner runs, Lead synthesizes | Participants | Owner recruits first two | 2026-12-11 |
+| A-4 | Activation | Learners whose browser plays no sound, or never finishes the first word, are stuck: the start event fires, the answer buttons stay disabled, and the message offers no fix | The exercise does not look broken | Reproduced with stubbed speech synthesis; real frequency unknown. Audio is browser speech synthesis only | 2 | 0.5 day | BACKLOG | Lead | A-1 on real phones; deploy approval | Test in A-1 (silent switch, in-app browser) | 2026-12-11 |
+| A-2 | Activation | Bringing the exercise within reach raises starts: add the existing jump link to the 3 pages without one, then move the mount up where it is deepest | Less scrolling to practice | Measured 2026-11-13 at 390 px: mount below 4,000 px on 14 of 21 pair pages (`/sit-vs-seat/` 12,175 px); `/live-vs-leave/`, `/ship-vs-sheep/` and `/sit-vs-seat/` show no first-screen cue | 2 | 1 day | BACKLOG | Lead | A-1 findings; deploy approval | Confirm or drop after A-1 | 2026-12-11 |
+| A-3 | Activation | The completion event waits for a replay that may never settle, hiding real completions | Accurate picture of finishing | Engine code; see Current blockers | 3 | 0.5 day | BACKLOG | Lead | Owner approval as a measurement boundary | Decide after A-1 | 2027-01-12 |
+
+### D. Active initiatives
+
+#### S-01: Hub as a listening test (search bet)
+
+- **Audience and problem:** people searching for minimal pairs practice or a
+  listening test, who reach a page with no exercise on it.
+- **Intervention:** mount one existing exercise under the hub's definition;
+  keep the three contrast links as next steps; metadata unchanged.
+- **Why it should work:** the hub is the only English page whose queries
+  click; it is also the link assistants cite and the natural link for D-1.
+- **Success signals:** hub organic landings ≥15 per 28 days; at least half
+  of hub landers start an exercise.
+- **Measurement:** pooled 28-day windows from the deploy boundary; existing
+  events only. Hub-sourced exercise events are a new event source and are
+  recorded as a boundary.
+- **Budget:** half a day to build and check; two windows to read.
+- **Decision rule:** keep if either signal is met after two windows; if hub
+  landings stay under 8 for two windows, stop page work on the hub and treat
+  ranking as the constraint.
+- **Evidence so far:** baseline only (5 landings, 2 starts, 2026-10-14 →
+  2026-11-10).
+- **Next action:** owner decision on T-1.
+
+#### D-1: Curator and library-guide outreach (distribution bet)
+
+- **Audience and problem:** teachers and students who use curated lists of
+  pronunciation tools, several of which point at retired tools.
+- **Intervention:** eight individual messages from the owner, using drafts A
+  and B and the target list in the materials file, each with a tagged link to
+  the hub.
+- **Why it should work:** a listing persists and needs no community
+  standing. It may not work: no curator has a stated suggestion policy, and
+  the Classroom evidence is one teacher.
+- **Success signals:** at least 2 placements from 8 messages; referral
+  qualified visits ≥15 per 28 days by the second window.
+- **Measurement:** reply and placement per message; GA4 sessions, engaged
+  sessions and `exercise_start` sessions by source.
+- **Budget:** one day to send the first eight; no money.
+- **Decision rule:** 2 or more placements, send a second wave of 8 to
+  library guides. 0–1 placements, stop curator outreach and move the effort
+  to D-2 and D-3.
+- **Evidence so far:** channel research 2026-11-13: resource lists and
+  Classroom shareability rated highest; tutor marketplaces and launch sites
+  ruled out; Reddit teacher-community rules could not be verified.
+- **Next action:** owner reviews drafts and approves sending. S-01 should be
+  live first so the linked page has an exercise on it.
+
+#### A-1: Usability sessions (activation and customer-learning bet)
+
+- **Audience and problem:** learners who land on a pair page and leave
+  without starting, or start and stop.
+- **Intervention:** six moderated 25-minute sessions using the protocol in
+  the materials file.
+- **Why it should work:** two losses are measured but unexplained, and no
+  per-page test can explain them at this traffic.
+- **Success signals:** five or more sessions completed; a ranked list of
+  confirmed problems (two of five participants, or one blocker also explained
+  by the code).
+- **Measurement:** the protocol's record sheet. No analytics change.
+- **Budget:** about four hours of sessions plus recruiting; an optional
+  thank-you is the only possible cost.
+- **Decision rule:** confirmed blockers become READY items ahead of A-2 and
+  A-3. If no problem is confirmed, the loss is intent mismatch, and effort
+  moves from activation to acquisition quality.
+- **Evidence so far:** analytics (section B) plus a code and headless-browser
+  review on 2026-11-13. It found: the exercise below 4,000 px on 14 of 21
+  pair pages at phone width; no first-screen cue on the three control-cohort
+  pages; a dead end when speech synthesis fails or hangs; a second Start tap
+  required in round 2; no restart control; on `/full-vs-fool/` the header
+  still names full/fool while round 2 plays pull/pool. It also reported that
+  the summary App Store CTA does not render on any English pair page because
+  the capability resolver returns no CTA without an L1. That last point is
+  unconfirmed and should be checked against the intended design. Real-device
+  audio was not testable.
+- **Next action:** owner recruits the first two participants.
+
+### E. Decision log and proposed transitions
+
+Decisions made on 2026-11-13:
+
+| Decision | Why | Evidence |
+| --- | --- | --- |
+| Adopt the Growth Portfolio as the operating model | Owner direction in the kickoff brief | Organic sessions flat for three windows (153, 157, 163) |
+| Judge changes by pooled 28-day windows and pre-set directional rules | No page can reach a readable sample | Hub: 4 landings in 27 days |
+| Define qualified and activated visits as in section A (proposed) | "Organic sessions" mixes engaged and unengaged visits and ignores referral | Section B |
+| Do not rewrite bare-pair titles (S-10 STOPPED) | The one test lost impressions without gaining clicks | `/man-vs-men/`: 1,633 → 598 impressions, 2 → 2 clicks |
+| Select S-01, D-1 and A-1 as the three bets | Highest score in each workstream; S-01 also gives D-1 a page worth linking | Section C |
+| Local `main` fast-forwarded to `origin/main` (`b8e31f3`) before editing | Three checkpoint commits existed only on the remote | `git log` |
+
+**Proposed transitions. None is in force until the owner approves it.** All
+historical findings, dates and confounders below stay in the record. The
+2026-12-11 hub readout stays as a reporting checkpoint, read as directional.
+
+| ID | Item | Proposal | Evidence | What we give up | What it frees |
+| --- | --- | --- | --- | --- | --- |
+| T-1 | EXP-HUB-1 | DOWNGRADE TO OBSERVATIONAL; end the hub page freeze now | 4 hub landings in 27 days against 15–18 before; mixed exposure since 2026-10-23 | A link-only attribution that could not be obtained anyway | S-01, D-2 on the hub |
+| T-2 | EXP-HUB-2 | DOWNGRADE TO OBSERVATIONAL; one readout on 2026-12-11 with EXP-HUB-1 | Live since 2026-10-23T01:09Z; hub 5 clicks / 161 impressions after | Nothing; it has no control | No separate bookkeeping |
+| T-3 | EXP-LIVE-1 | DOWNGRADE TO OBSERVATIONAL; one readout on 2026-12-11 | Live since 2026-10-23T01:09Z; meaning and difference queries 1,251 impressions, 0 clicks; pronunciation queries 302 impressions, 2 clicks | Nothing | `/live-vs-leave/` copy can change again |
+| T-4 | `conversion_serp_cta_v1` | CLOSE AS INCONCLUSIVE; leave both treatment pages as they are; remove the registry entry and the presentation freeze in a separate approved change | 2026-09-02 → 2026-11-10 organic landings: treatment 36 sessions, 9 starts, 2 store clicks; control 39, 7, 1. Control copy changed 2026-10-23 | The only controlled test on the site; it would need years to read | S-04: five routes, 39% of impressions; ends the Class-1 snippet exclusion |
+| T-5 | `/man-vs-men/` title test | CLOSE AS INCONCLUSIVE; keep the current title | Impressions 1,633 → 598, clicks 2 → 2, position 8.8 → 7.1; 2–6 organic landings a month | Reverting would be one more unreadable change | Page leaves the exclusion list |
+| T-6 | 2026-10-22 and 2026-10-23 releases | Record as permanent boundaries, not experiments: `15e7a9c` 2026-10-22T02:23Z (cap/cup explanation), `7013956` and `84909a3` 2026-10-23T01:09Z (hub and live/leave copy, preferred-source button), `03cde4d` 05:23Z and `e37c072` 07:44Z (homepage video) | GitHub Actions run times | — | Before/after reads split at these times |
+| T-7 | EXP-RU-WATCH | CONTINUE; it costs nothing and restricts nothing | Window 1 (2026-10-14 → 2026-11-10): 12 clicks / 826 impressions, CTR 1.45%, 29.5 impressions a day. Misses expand (needs ≥20 clicks and CTR ≥2%); above deprioritize | — | S-07 waits for window 2, ending 2026-12-08 |
+| T-8 | Completion-event timing | CONTINUE unchanged until A-1 reports; any change is a dated boundary | See Current blockers | A possible undercount persists | — |
+
+T-4 changes a tracking parameter (`content_variant` stops being sent on two
+pages) and edits validators and tests. It needs explicit approval and its own
+entry in `docs/analytics-and-attribution.md`.
+
+### F. Weekly operating scorecard
+
+Source: GA4 Data API (`.seo-god/ga4-report.py` credentials), ISO weeks,
+`sessionDefaultChannelGroup != Direct`; GSC by date. Fill one row each Monday
+for the week just ended. Read trends over four rows, never one.
+
+| ISO week (Mon–Sun) | Non-Direct sessions | Qualified visits | Activated visits | Completions | App Store click sessions | Referral sessions | GSC clicks | Outreach sent / placements | Note |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 28-day baseline ÷ 4 | 45 | 28 | 8.5 | 5.5 | 5.8 | 2 | 32 | 0 / 0 | 2026-10-14 → 2026-11-10 |
+| W43 (Oct 19–25) | 41 | 28 | 10 | 4 | 6 | — | 32 | 0 / 0 | 10-23 releases |
+| W44 (Oct 26–Nov 1) | 56 | 30 | 10 | 8 | 5 | — | 37 | 0 / 0 | |
+| W45 (Nov 2–8) | 35 | 24 | 6 | 3 | 3 | — | 25 | 0 / 0 | |
+| W46 (Nov 9–15) | | | | | | | | | Kickoff 11-13 |
+
+Targets for the window ending 2027-02-09 (proposed): qualified visits 56 a
+week (225 per 28 days), activated visits 15 a week, activation share ≥15%,
+referral sessions ≥4 a week.
+
+### G. Next actions
+
+| # | Action | Who | Approval |
+| --- | --- | --- | --- |
+| 1 | Decide T-1 (end the hub freeze). On approval, Lead builds S-01 and D-2 on a branch, runs all gates and browser checks, and presents the diff | Owner decides; Lead builds | **Needed.** Deploy is a second approval |
+| 2 | Review outreach drafts A and B and the target list; send the first eight after S-01 is live | Owner | **Needed** to send |
+| 3 | Recruit two learners and run the first two A-1 sessions with the protocol | Owner | Not needed; only a public recruiting post or a paid thank-you would need one |
+
+Also awaiting the owner: T-2 to T-5, the objective and guardrail in section
+A, and the 40/35/25 effort split.
+
+---
+
+# Historical record: October 2026 SEO cycle
 
 ## Objective and scope
 
@@ -282,6 +569,9 @@ EXP-LIVE-1 (`/live-vs-leave/`) deploys only when all are true:
 | OpenSEO's GA4 link is broken (`ga4_reconnect_required`) | The owner reconnects Analytics in OpenSEO when needed. The Python GA4 path works meanwhile. |
 
 ## Next action
+
+*2026-11-13: current next actions are in Growth Portfolio section G. The
+restriction below stays in force until the owner approves transition T-1.*
 
 EXP-HUB-1 is live (`76e3de3`, 2026-10-16T12:53Z). Make no other page changes to
 `/minimal-pairs-practice/` or its metadata until the readout, so it stays
