@@ -165,6 +165,8 @@ locale candidates never inherit English strings and do not make a page eligible.
 | Localized eligible exercise pages | 14 |
 | Total rendered exercise mounts | 35 |
 
+These counts cover pair pages only. The English hub `/minimal-pairs-practice/` additionally mounts one `ship-vs-sheep` exercise (single-pair, no experiment variant); `scripts/validate-seo-exercise.mjs` checks it separately and rejects any other mount outside pair pages.
+
 The matrix below is the checked-in journey inventory. A warning in the CTA column means the App Store action exists, but the page cannot yet bridge to it through an on-page exercise completion. It does not mean the link or its tracking is broken.
 
 <!-- journey-coverage:start -->

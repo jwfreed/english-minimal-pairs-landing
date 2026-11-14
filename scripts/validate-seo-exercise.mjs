@@ -527,8 +527,38 @@ for (const row of requiredCoverageCountRows) {
   }
 }
 
+// Hubs are not pair pages, so they stay out of the pair coverage counts above.
+// The English hub is the one sanctioned hub mount: it must carry exactly one
+// exercise, for a cataloged contrast, with the shared exercise script.
+const HUB_EXERCISE_MOUNTS = new Map([
+  [path.join('content', 'pairs', 'minimal-pairs-practice', 'index.html'), 'ship-vs-sheep'],
+]);
+
+for (const [filePath, contrastId] of HUB_EXERCISE_MOUNTS) {
+  const hubSource = fs.readFileSync(filePath, 'utf8');
+  const mountTags = hubSource.match(/<div[^>]*\bdata-exercise\b[^>]*>/gu) || [];
+
+  if (countOccurrences(hubSource, 'data-exercise') !== 1 || mountTags.length !== 1) {
+    fail(`${filePath} must contain exactly one data-exercise mount`);
+  } else if (!mountTags[0].includes(`data-contrast="${contrastId}"`)) {
+    fail(`${filePath} must mount the ${contrastId} contrast`);
+  }
+
+  if (!hasExactCatalogContrast(contrastId)) {
+    fail(`${filePath} mounts ${contrastId}, which is not an exact catalog contrast`);
+  }
+
+  if (!hubSource.includes(SEO_PAGE_SCRIPT)) {
+    fail(`${filePath} mounts an exercise without ${SEO_PAGE_SCRIPT}`);
+  }
+
+  if (hubSource.includes('data-content-variant')) {
+    fail(`${filePath} must not declare data-content-variant; the registry owns experiment cohorts`);
+  }
+}
+
 for (const filePath of collectHtmlFiles()) {
-  if (exercisePagePaths.has(filePath)) {
+  if (exercisePagePaths.has(filePath) || HUB_EXERCISE_MOUNTS.has(filePath)) {
     continue;
   }
 

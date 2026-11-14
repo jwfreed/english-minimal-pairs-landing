@@ -160,6 +160,12 @@ function getEnglishVoice() {
   );
 }
 
+// A browser may accept speak() and then never report onend or onerror (silent
+// switch, in-app browsers, a stalled voice load). One word needs about a second,
+// so a playback that has not settled by this bound is treated as unavailable
+// instead of leaving the exercise waiting forever.
+export const SPEECH_PLAYBACK_TIMEOUT_MS = 6000;
+
 let activeSpeechPlayback = null;
 let speechPlaybackSequence = 0;
 
@@ -183,7 +189,10 @@ export function cancelSpeechPlayback({ didPlay = false } = {}) {
   window.speechSynthesis?.cancel?.();
 }
 
-export function speakWord(text, activeButton, { automaticReplay = false } = {}) {
+export function speakWord(text, activeButton, {
+  automaticReplay = false,
+  timeoutMs = SPEECH_PLAYBACK_TIMEOUT_MS,
+} = {}) {
   const synthesis = window.speechSynthesis;
 
   if (!synthesis) {
@@ -206,12 +215,14 @@ export function speakWord(text, activeButton, { automaticReplay = false } = {}) 
     }
 
     let settled = false;
+    let watchdog = null;
     const complete = (didPlay) => {
       if (settled) {
         return;
       }
 
       settled = true;
+      clearTimeout(watchdog);
       if (activeSpeechPlayback?.id === playbackId) {
         setButtonBusy(activeButton, false, { automaticReplay });
         activeSpeechPlayback = null;
@@ -231,6 +242,12 @@ export function speakWord(text, activeButton, { automaticReplay = false } = {}) 
 
     setButtonBusy(activeButton, true, { automaticReplay });
     synthesis.speak(utterance);
+    watchdog = setTimeout(() => {
+      // Settle first so a late onend cannot report success for a word the
+      // learner was told did not play, then stop the stalled utterance.
+      complete(false);
+      synthesis.cancel?.();
+    }, timeoutMs);
   });
 }
 

@@ -69,12 +69,14 @@ function getEffectiveTrainingPairIds(route) {
   return getSeoExerciseTrainingPairs(mount)?.map((pair) => pair.id) ?? null;
 }
 
-test('all 35 existing exercise mounts are covered by the effective rollout check', () => {
+test('all 36 existing exercise mounts are covered by the effective rollout check', () => {
   const mounts = collectExerciseMounts();
 
-  assert.equal(mounts.length, 35);
-  assert.equal(mounts.filter(({ locale }) => locale === 'en').length, 21);
+  // 21 English pair pages, the English hub's single-pair mount, 14 localized pages.
+  assert.equal(mounts.length, 36);
+  assert.equal(mounts.filter(({ locale }) => locale === 'en').length, 22);
   assert.equal(mounts.filter(({ locale }) => locale !== 'en').length, 14);
+  assert.equal(getEffectiveTrainingPairIds('/minimal-pairs-practice/'), null);
 });
 
 test('/full-vs-fool/ is the only production mount with multi-pair training', () => {

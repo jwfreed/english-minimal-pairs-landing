@@ -137,7 +137,7 @@ file. Owner = the site owner; Lead = the orchestrating agent.
 
 | ID | Workstream | Hypothesis | Customer value | Evidence | Pri (score) | Effort | Status | Who | Depends on | Next action | Review |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **S-01** | Search | An exercise at the top of the English hub turns it into the page task-intent searchers, assistants and teachers want | Test your hearing without reading first | Hub CTR 3.2% at position 12; no exercise on the hub; Gemini and ChatGPT already send visits there | 1 (14) | 0.5 day | BLOCKED | Lead builds, Owner approves | Hub freeze ended (E, T-1) | Owner decision on T-1 | 2026-12-11 |
+| **S-01** | Search | An exercise at the top of the English hub turns it into the page task-intent searchers, assistants and teachers want | Test your hearing without reading first | Hub CTR 3.2% at position 12; no exercise on the hub; Gemini and ChatGPT already send visits there | 1 (14) | 0.5 day | ACTIVE (built on branch; deploy review) | Lead builds, Owner approves | T-1 approved 2026-11-14; deploy approval | Owner reviews branch `growth/hub-exercise-and-speech-reliability` | 2026-12-11 |
 | S-02 | Search | L1-matched first links on localized hubs raise exercise starts from the highest-intent segment | Practice the contrast your language lacks | 37 sessions, 10 store-click sessions, 3 starts; `/ru/` hub leads with pairs the app does not support for Russian | 2 (14) | 1 day | READY | Lead | Deploy approval | Queue behind S-01 | 2026-12-11 |
 | S-03 | Search | A first-screen pronunciation answer lifts "X vs Y pronunciation" rankings on unfrozen pair pages | Hear both words at once | About 1,100 exported impressions at positions 5–8; `/three-vs-tree/` 3 clicks from 120 | 3 (13) | 1 day | READY | Lead | Deploy approval | Queue | 2026-12-11 |
 | S-04 | Search | Ending the presentation freeze lets the five highest-impression routes get the current exercise and S-03 | Same experience on the most-seen pages | 10,124 impressions (39%) are frozen for an unreadable test | 4 (13) | 1 day | BLOCKED | Lead | T-4 approved; code and validator change | Owner decision on T-4 | 2026-12-11 |
@@ -151,7 +151,7 @@ file. Owner = the site owner; Lead = the orchestrating agent.
 | D-2 | Distribution | A short "use with a class" block on pair pages and the hub makes assignment repeatable | A teacher knows the page can be assigned | Classroom sessions; competitor pitches the same thing | 2 | 0.5 day | READY | Lead | Deploy approval; wording check against the exercise | Ship with S-01 if approved | 2026-12-11 |
 | D-3 | Distribution | A practitioner note in a pronunciation-teacher publication earns durable credibility | Teachers hear about it from peers | None beyond audience fit | 3 | 2 days | BACKLOG | Owner | D-1 replies | Revisit after D-1 | 2027-01-12 |
 | **A-1** | Activation | Watching 5–8 learners use a pair page will show why 83% never start and 40% of starters stop | Fix what actually blocks learners | 28 of 163 start, 17 complete; start-only sessions are seconds long | 1 | 6 sessions of 25 minutes plus recruiting | ACTIVE (protocol ready) | Owner runs, Lead synthesizes | Participants | Owner recruits first two | 2026-12-11 |
-| A-4 | Activation | Learners whose browser plays no sound, or never finishes the first word, are stuck: the start event fires, the answer buttons stay disabled, and the message offers no fix | The exercise does not look broken | Reproduced with stubbed speech synthesis; real frequency unknown. Audio is browser speech synthesis only | 2 | 0.5 day | BACKLOG | Lead | A-1 on real phones; deploy approval | Test in A-1 (silent switch, in-app browser) | 2026-12-11 |
+| A-4 | Activation | Learners whose browser plays no sound, or never finishes the first word, are stuck: the start event fires, the answer buttons stay disabled, and the message offers no fix | The exercise does not look broken | Reproduced with stubbed speech synthesis; real frequency unknown. Audio is browser speech synthesis only | 2 | 0.5 day | ACTIVE (fix built on branch; real-device test pending) | Lead | Deploy approval; A-1 real-device sessions | Confirm on real iOS and in-app browsers during A-1 | 2026-12-11 |
 | A-2 | Activation | Bringing the exercise within reach raises starts: add the existing jump link to the 3 pages without one, then move the mount up where it is deepest | Less scrolling to practice | Measured 2026-11-13 at 390 px: mount below 4,000 px on 14 of 21 pair pages (`/sit-vs-seat/` 12,175 px); `/live-vs-leave/`, `/ship-vs-sheep/` and `/sit-vs-seat/` show no first-screen cue | 2 | 1 day | BACKLOG | Lead | A-1 findings; deploy approval | Confirm or drop after A-1 | 2026-12-11 |
 | A-3 | Activation | The completion event waits for a replay that may never settle, hiding real completions | Accurate picture of finishing | Engine code; see Current blockers | 3 | 0.5 day | BACKLOG | Lead | Owner approval as a measurement boundary | Decide after A-1 | 2027-01-12 |
 
@@ -176,7 +176,9 @@ file. Owner = the site owner; Lead = the orchestrating agent.
   ranking as the constraint.
 - **Evidence so far:** baseline only (5 landings, 2 starts, 2026-10-14 →
   2026-11-10).
-- **Next action:** owner decision on T-1.
+- **Implementation (2026-11-14):** built on branch
+  `growth/hub-exercise-and-speech-reliability`; see section D2.
+- **Next action:** owner reviews the branch and decides on deployment.
 
 #### D-1: Curator and library-guide outreach (distribution bet)
 
@@ -231,6 +233,117 @@ file. Owner = the site owner; Lead = the orchestrating agent.
   audio was not testable.
 - **Next action:** owner recruits the first two participants.
 
+### D2. Phase 1 implementation record (2026-11-14)
+
+Branch `growth/hub-exercise-and-speech-reliability`, from `main` at
+`b8e31f3`. Nothing is merged, pushed or deployed.
+
+**T-1 approved 2026-11-14** (owner instruction). EXP-HUB-1 is downgraded to
+observational and the hub page restriction is lifted. Unchanged: the original
+deployment (`76e3de3`, 2026-10-16T12:53Z), its baseline, the three-link
+treatment, the 2026-10-23 confounders (`7013956`, `84909a3`), and the
+2026-11-13 checkpoint results, none of which showed a result for the links.
+2026-12-11 stays a reporting checkpoint, not a restriction. Not touched:
+`conversion_serp_cta_v1`, its freeze, tracking definitions, T-2 to T-8.
+
+**S-01 built.** `content/pairs/minimal-pairs-practice/index.html`:
+
+- A "Start the Listening Test" button under the H1 (first viewport at 390 and
+  1280 px; 54 px tall) that jumps to the exercise and moves focus to it.
+- A new first section "Try a Minimal Pairs Listening Test" holding one
+  existing exercise, `data-contrast="ship-vs-sheep"`, plus a TOC entry.
+- Title, description, canonical, hreflang, JSON-LD, existing sections, the
+  three contrast links and all localized hubs are unchanged. No new CSS, JS,
+  events or content variant. No assignment affordance was added: the S-01
+  brief did not specify one (it belongs to D-2).
+- Mount sits at about 1,200 px at 390 px and 1,160 px at 1280 px, so the
+  button, not the mount, is what is in the first viewport.
+- `scripts/validate-seo-exercise.mjs` skipped hubs. It now checks the one
+  sanctioned hub mount (one mount, `ship-vs-sheep`, cataloged, shared script,
+  no hand-written `data-content-variant`) and still rejects any other
+  `data-exercise` outside pair pages. Proven by temporarily changing the
+  contrast and seeing the build gate fail.
+- `scripts/seo-exercise-training-rollout.test.mjs` mount count is now 36
+  (22 English including the hub, 14 localized); the hub stays single-pair.
+
+**Measurement boundary (hub).** From the deploy time, exercise events can
+carry `page_slug = minimal-pairs-practice` with `exercise_id = ship-vs-sheep`.
+Before then no exercise event could come from the hub page, so hub
+`exercise_start` rates before and after deploy are not comparable. Record the
+deploy commit and UTC time here. The earlier "hub-landing sessions with a later
+`exercise_start`" metric counted starts on other pages; after deploy it also
+counts the hub's own.
+
+**Reliability defect fixed.** `speakWord` in `src/seo-page.js` waited for
+`onend` or `onerror` with no bound. If a browser accepted `speak()` and never
+reported either, the first word hung: guesses stayed disabled, the input gate
+ignored every later Start (it reuses the pending promise), and no message
+appeared. A hung replay after the final answer kept `exercise_complete` and the
+summary App Store CTA from ever firing. Fix: a 6 s watchdog
+(`SPEECH_PLAYBACK_TIMEOUT_MS`, injectable for tests) that settles the playback
+as unavailable, ignores a late `onend`, and cancels the stalled utterance.
+The existing recovery path then returns the learner to preview with the
+existing localized "audio unavailable" message, and Start works again. An
+unheard word is never scoreable: no answer is accepted and no round is
+counted.
+
+- **Semantic note for approval:** in the final-replay hang case,
+  `exercise_complete` now fires about 6 s after the last answer, where before
+  it never fired. Normal playback, the firing point, and every event
+  definition are unchanged. This is the same result already produced when
+  playback errors out.
+- Same defect still exists in the homepage demo (`src/main.js` `speakWord`);
+  not changed, outside the scope.
+- Real frequency is unknown; no real iOS or in-app-browser test was possible.
+
+**CTA verdict (browser, speech stubbed, 390 px).** Both earlier reports were
+partly right.
+
+| Page type | Summary CTA | Evidence |
+| --- | --- | --- |
+| Localized exact-pair routes (`/ru/`, `/ja/`, `/es/ship-vs-sheep/`, `/ko/right-vs-light/`) | Renders (`exercise-summary`, 266×74 px), correct UTM (`utm_content=<locale>-<pair>`), `app_store_click` fires once with `exercise_completed=true` | Journey run on each |
+| English `bit-vs-beat`, `fill-vs-feel` | "Continue Training in Soundwise" (`post-interaction`) appears from round-1 feedback; click fires `app_store_click` with `exercise_completed=true`, `ct=web-bitbeat` | `bit-vs-beat` journey run |
+| English pair pages and the hub (`bad-vs-bed`, `full-vs-fool`, `live-vs-leave`, hub) | No CTA inside the exercise at summary | Journey run; page-level CTAs (hero, mid-content, footer) remain and are tracked |
+
+Root cause, by design: the summary CTA needs `capability.recommendedCTA`, which
+the capability resolver returns only for an exact-pair or contrast match for a
+known learner language (`src/app-capability-resolver.js`). English routes
+have no learner language, so the status is `NO_APP_SUPPORT` and no
+in-exercise CTA is shown, to avoid claiming app support that is unknown.
+The CTA does not depend on playback completing, except that a hung final
+replay delayed it before the fix. No change made. Whether English pages
+should show a generic in-exercise CTA is a product decision that needs
+separate approval; the 4–5 organic App Store clicks after completion per
+28 days are consistent with this gap.
+
+**Verification (local, 2026-11-14).** `npm test` 225 passed, 0 failed (221
+before; 4 new regression tests); `npm run build` passes with all validators;
+`validate:landing-copy`, `funnel-tracking`, `app-store-tracking`,
+`seo-conversion-matrix`, `exercise-engine`, `faq-parity` pass.
+`validate:localized` passes for `ru/ship-vs-sheep`; it fails on the five
+localized hubs it was tried on, and fails identically on the untouched
+baseline (it checks pair-page UTM and hub-link rules). Playwright (headless
+Chromium, stubbed `speechSynthesis`, GTM and App Store requests blocked) at
+390 and 1280 px: hub journey with a wrong then right answer, round progress,
+summary and related-pair links; hang recovery and retry on the hub and on
+`bad-vs-bed` and `bit-vs-beat`; error recovery on the hub and `/ru/`; hung
+final replay on `/ru/ship-vs-sheep/`, `bit-vs-beat` and the hub; keyboard-only
+path (focus lands on the exercise, Start and answer by Enter); no horizontal
+overflow; no console errors apart from the requests I blocked. Not tested:
+real audio, real iOS Safari or in-app browsers, screen readers.
+
+**Files changed.** `content/pairs/minimal-pairs-practice/index.html`,
+`src/seo-page.js`, `scripts/validate-seo-exercise.mjs`,
+`scripts/seo-exercise-ux.test.mjs`,
+`scripts/seo-exercise-training-rollout.test.mjs`, this file, and
+`docs/growth-portfolio-materials.md` (committed unchanged from the previous
+session).
+
+**Remaining blockers and approvals before deploy:** owner review of the
+branch; approval to push and deploy (and to record the commit and UTC time
+here); the `exercise_complete` timing note above; and a decision on a generic
+English in-exercise CTA. Merging ships only this branch's changes on top of `b8e31f3`.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:
@@ -244,13 +357,21 @@ Decisions made on 2026-11-13:
 | Select S-01, D-1 and A-1 as the three bets | Highest score in each workstream; S-01 also gives D-1 a page worth linking | Section C |
 | Local `main` fast-forwarded to `origin/main` (`b8e31f3`) before editing | Three checkpoint commits existed only on the remote | `git log` |
 
+Decisions made on 2026-11-14:
+
+| Decision | Why | Evidence |
+| --- | --- | --- |
+| **T-1 approved**; EXP-HUB-1 observational; hub restriction lifted | Owner approval; the link-only comparison was never readable | Hub: 4 landings in 27 days; 2026-10-23 confounders |
+| Fix speech playback hang with a 6 s watchdog | A silent browser could trap a learner with disabled answers | Reproduced with stubbed speech; regression tests |
+| No CTA change | English summary CTA absence follows the capability design; changing it is a product decision | Section D2 |
+
 **Proposed transitions. None is in force until the owner approves it.** All
 historical findings, dates and confounders below stay in the record. The
 2026-12-11 hub readout stays as a reporting checkpoint, read as directional.
 
 | ID | Item | Proposal | Evidence | What we give up | What it frees |
 | --- | --- | --- | --- | --- | --- |
-| T-1 | EXP-HUB-1 | DOWNGRADE TO OBSERVATIONAL; end the hub page freeze now | 4 hub landings in 27 days against 15–18 before; mixed exposure since 2026-10-23 | A link-only attribution that could not be obtained anyway | S-01, D-2 on the hub |
+| T-1 | EXP-HUB-1 | **APPROVED 2026-11-14.** DOWNGRADE TO OBSERVATIONAL; end the hub page freeze now | 4 hub landings in 27 days against 15–18 before; mixed exposure since 2026-10-23 | A link-only attribution that could not be obtained anyway | S-01, D-2 on the hub |
 | T-2 | EXP-HUB-2 | DOWNGRADE TO OBSERVATIONAL; one readout on 2026-12-11 with EXP-HUB-1 | Live since 2026-10-23T01:09Z; hub 5 clicks / 161 impressions after | Nothing; it has no control | No separate bookkeeping |
 | T-3 | EXP-LIVE-1 | DOWNGRADE TO OBSERVATIONAL; one readout on 2026-12-11 | Live since 2026-10-23T01:09Z; meaning and difference queries 1,251 impressions, 0 clicks; pronunciation queries 302 impressions, 2 clicks | Nothing | `/live-vs-leave/` copy can change again |
 | T-4 | `conversion_serp_cta_v1` | CLOSE AS INCONCLUSIVE; leave both treatment pages as they are; remove the registry entry and the presentation freeze in a separate approved change | 2026-09-02 → 2026-11-10 organic landings: treatment 36 sessions, 9 starts, 2 store clicks; control 39, 7, 1. Control copy changed 2026-10-23 | The only controlled test on the site; it would need years to read | S-04: five routes, 39% of impressions; ends the Class-1 snippet exclusion |
@@ -285,11 +406,11 @@ referral sessions ≥4 a week.
 
 | # | Action | Who | Approval |
 | --- | --- | --- | --- |
-| 1 | Decide T-1 (end the hub freeze). On approval, Lead builds S-01 and D-2 on a branch, runs all gates and browser checks, and presents the diff | Owner decides; Lead builds | **Needed.** Deploy is a second approval |
-| 2 | Review outreach drafts A and B and the target list; send the first eight after S-01 is live | Owner | **Needed** to send |
-| 3 | Recruit two learners and run the first two A-1 sessions with the protocol | Owner | Not needed; only a public recruiting post or a paid thank-you would need one |
+| 1 | Review branch `growth/hub-exercise-and-speech-reliability`; decide whether to merge and deploy S-01 and the speech fix. Record commit and UTC time here after deploy | Owner | **Needed** (merge, push, deploy) |
+| 2 | Review outreach drafts A and B and the target list; send the first eight once S-01 is live | Owner | **Needed** to send |
+| 3 | Recruit two learners and run the first two A-1 sessions, including one on an iPhone with the silent switch on | Owner | Not needed |
 
-Also awaiting the owner: T-2 to T-5, the objective and guardrail in section
+Also awaiting the owner: T-2 to T-5, an English in-exercise App Store CTA decision, the `exercise_complete` timing note (D2), the objective and guardrail in section
 A, and the 40/35/25 effort split.
 
 ---
@@ -391,7 +512,7 @@ Known limitations:
 | Confounders | Query, country and device mix; ranking changes; destination-page changes; small n (about 20 sessions per 28 days); returning visitors. `/ship-vs-sheep/` is a frozen `conversion_serp_cta_v1` route, and the hub was already linked to it twice. A third link adds a little hub-referred traffic there; landing-page metrics for that experiment are unaffected, but `pagePath` metrics are not. |
 | Production verification (2026-10-16) | Live HTML contains the three links directly after the definition, before the Examples list; `/ship-vs-sheep/`, `/full-vs-fool/`, `/bad-vs-bed/` return 200; title and canonical unchanged; gtag instrumentation present and unchanged (no JS/CSS/event changes in the commit). Production browser check at 390 px and 1280 px was not rerun (no Playwright in the deploy session); preview-build checks are recorded under P1-HUB. |
 | Outcome | Pending |
-| Decision | Pending. This change is directional. A significance test is not achievable at this traffic. |
+| Decision | Pending. This change is directional. A significance test is not achievable at this traffic. **2026-11-14: downgraded to observational (T-1); the hub restriction is lifted.** |
 
 ### EXP-RU-WATCH: `/ru/ship-vs-sheep/` organic growth (observation, no treatment)
 
@@ -406,6 +527,10 @@ Known limitations:
 | Outcome | Pending (first readout after 2026-11-10 plus ~3 days GSC lag) |
 
 ### EXP-HUB-2 and EXP-LIVE-1: GSC-driven content edits
+
+> 2026-11-14: the hub dependency below ("must stay unchanged until the
+> EXP-HUB-1 readout") is lifted by T-1; both edits were already live from
+> 2026-10-23. The `/live-vs-leave/` dependency is unchanged.
 
 **Release authorization — 2026-10-23 (Asia/Bangkok):** the owner explicitly
 requested committing and pushing all worktree changes. This supersedes the
@@ -570,8 +695,8 @@ EXP-LIVE-1 (`/live-vs-leave/`) deploys only when all are true:
 
 ## Next action
 
-*2026-11-13: current next actions are in Growth Portfolio section G. The
-restriction below stays in force until the owner approves transition T-1.*
+*2026-11-14: T-1 was approved, so the restriction below is lifted. The text
+is kept as history. Current next actions are in Growth Portfolio section G.*
 
 EXP-HUB-1 is live (`76e3de3`, 2026-10-16T12:53Z). Make no other page changes to
 `/minimal-pairs-practice/` or its metadata until the readout, so it stays
