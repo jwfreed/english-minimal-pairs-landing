@@ -101,7 +101,7 @@ function createLifecycle(t, contrastId) {
       return gate.answer(() => exercise.answer(index));
     },
     next() {
-      cancelSpeechPlayback({ didPlay: true });
+      cancelSpeechPlayback();
       gate.reset();
       return exercise.nextRound();
     },
@@ -134,6 +134,7 @@ function createLifecycle(t, contrastId) {
         utterance.handled = true;
         const outcome = policy(utterance);
         if (outcome === 'end') {
+          utterance.onstart();
           utterance.onend();
         } else if (outcome === 'error') {
           utterance.onerror();
@@ -177,6 +178,42 @@ async function playRound(lifecycle, { correct = true } = {}) {
 }
 
 for (const { label, contrastId } of SUBJECTS) {
+  test(`${label}: end without start never opens answering, and double-tap retry stays in the same round`, async (t) => {
+    const lc = createLifecycle(t, contrastId);
+    const first = lc.actions.start();
+    assert.equal(lc.utterances.length, 1); // No asynchronous hop before speak().
+    lc.utterances[0].onend();
+    await first;
+    assert.equal(lc.snapshot().stage, 'preview');
+    assert.equal(lc.guessesAvailable(), false);
+    assert.equal((await lc.exercise.answer(0)).accepted, false);
+    const retry = lc.actions.start();
+    const duplicate = lc.actions.start();
+    assert.equal(retry, duplicate);
+    assert.equal(lc.utterances.length, 2);
+    lc.utterances[1].onstart();
+    assert.equal((await lc.exercise.answer(0)).accepted, false);
+    lc.utterances[1].onend();
+    await retry;
+    assert.equal(lc.snapshot().canAnswer, true);
+    assert.equal(lc.snapshot().round, 1);
+    assert.deepEqual(lc.gtagEvents, ['exercise_start']);
+  });
+
+  test(`${label}: a failed target replay closes answering and permits an unscored retry`, async (t) => {
+    const lc = createLifecycle(t, contrastId);
+    await lc.pump(lc.actions.start());
+    const replay = lc.actions.playSample();
+    assert.equal((await lc.exercise.answer(0)).accepted, false);
+    await lc.pump(replay, () => 'error');
+    assert.equal(lc.snapshot().stage, 'preview');
+    assert.equal(lc.snapshot().correct, 0);
+    assert.equal(lc.snapshot().round, 1);
+    await lc.pump(lc.actions.start());
+    assert.equal(lc.snapshot().canAnswer, true);
+    assert.deepEqual(lc.gtagEvents, ['exercise_start']);
+  });
+
   test(`${label}: normal audio completes both rounds once and scores them`, async (t) => {
     const lc = createLifecycle(t, contrastId);
 
@@ -285,6 +322,7 @@ for (const { label, contrastId } of SUBJECTS) {
     assert.equal(lc.guessesAvailable(), false);
     assert.equal(lc.snapshot().stage, 'test');
 
+    lc.utterances[1].onstart();
     lc.utterances[1].onend();
     assert.equal((await lc.pump(retry)).done, true);
     assert.equal(lc.snapshot().round, 1);
@@ -356,6 +394,7 @@ for (const { label, contrastId } of SUBJECTS) {
     const started = lc.actions.start();
     await flush();
     const first = lc.utterances[0];
+    first.onstart();
     first.onend();
     first.onerror();
     first.onend();
@@ -369,6 +408,7 @@ for (const { label, contrastId } of SUBJECTS) {
     assert.deepEqual(await secondGuess, { accepted: false });
 
     const noisy = (utterance) => {
+      utterance.onstart();
       utterance.onend();
       utterance.onerror();
       utterance.onend();

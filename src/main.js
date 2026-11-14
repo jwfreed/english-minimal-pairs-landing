@@ -1,3 +1,5 @@
+import { speakWord as playSpeech, cancelSpeechPlayback } from './speech-playback.js';
+import { getSeoExerciseCopy } from './seo-exercise-translations.js';
 import './style.css';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
@@ -218,19 +220,6 @@ function applyDirectionalSafety(element, isRtl) {
   }
 }
 
-function getEnglishVoice() {
-  const voices = window.speechSynthesis?.getVoices?.() ?? [];
-
-  return (
-    voices.find((voice) => voice.lang === 'en-US')
-    || voices.find((voice) => voice.lang.startsWith('en-US'))
-    || voices.find((voice) => voice.lang === 'en-GB')
-    || voices.find((voice) => voice.lang.startsWith('en-GB'))
-    || voices.find((voice) => /^en(-|$)/i.test(voice.lang))
-    || null
-  );
-}
-
 function markUserInteraction() {
   heroExercise?.unlockAudio();
   syncHeroDemoState();
@@ -257,47 +246,9 @@ function updatePrimaryCtaText() {
   dom.heroPrimaryCtaText.textContent = getTranslation(heroDemoState.runtimeLocale, 'ctaPrimary');
 }
 
-function setButtonBusy(button, isBusy) {
-  if (!button) {
-    return;
-  }
-
-  button.classList.toggle('is-playing', isBusy);
-  button.setAttribute('aria-busy', String(isBusy));
-}
-
 function speakWord(text, activeButton) {
-  const synthesis = window.speechSynthesis;
-
-  if (!synthesis || !heroDemoState.audioUnlocked) {
-    return Promise.resolve(false);
-  }
-
-  synthesis.cancel();
-
-  return new Promise((resolve) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    const englishVoice = getEnglishVoice();
-    utterance.lang = englishVoice?.lang || 'en-US';
-    utterance.rate = 0.82;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-
-    if (englishVoice) {
-      utterance.voice = englishVoice;
-    }
-
-    const complete = () => {
-      setButtonBusy(activeButton, false);
-      resolve(true);
-    };
-
-    utterance.onend = complete;
-    utterance.onerror = complete;
-
-    setButtonBusy(activeButton, true);
-    synthesis.speak(utterance);
-  });
+  if (!heroDemoState.audioUnlocked) return Promise.resolve(false);
+  return playSpeech(text, activeButton);
 }
 
 function createHeroExercise() {
@@ -325,6 +276,10 @@ function createHeroExercise() {
         renderDemo();
       },
       onPlaybackReady: unlockPrimaryCta,
+      onAudioUnavailable: () => {
+        announce(getSeoExerciseCopy(heroDemoState.runtimeLocale)?.audioUnavailable
+          || getSeoExerciseCopy('en').audioUnavailable);
+      },
       onListenPrompt: () => {
         announce(getTranslation(heroDemoState.runtimeLocale, 'demoListenPrompt'));
       },
@@ -577,6 +532,9 @@ function renderDemo() {
   dom.heroDemoTitle.style.unicodeBidi = 'plaintext';
 
   renderWordButtons();
+  dom.heroDemoGuessWords.querySelectorAll('button').forEach((button) => {
+    button.disabled = !heroExercise?.getSnapshot().canAnswer;
+  });
   renderReplayButtons();
   renderSummary();
   renderShareBlock();
@@ -603,6 +561,7 @@ async function handleGuess(selectedIndex) {
 }
 
 function nextRound() {
+  cancelSpeechPlayback();
   updateExerciseContext();
   heroExercise?.nextRound();
 }
@@ -620,6 +579,7 @@ function syncLanguageMenu(runtimeLocale) {
 }
 
 function resetHeroDemoState() {
+  cancelSpeechPlayback();
   updateExerciseContext();
 
   if (heroExercise) {

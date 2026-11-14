@@ -230,7 +230,7 @@ function createEnvironment(pathname) {
     getVoices: () => [],
     speak(utterance) {
       spoken.push(utterance.text);
-      queueMicrotask(() => utterance.onend?.());
+      queueMicrotask(() => { utterance.onstart?.(); utterance.onend?.(); });
     },
   };
   const window = {

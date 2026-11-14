@@ -1,3 +1,5 @@
+import { speakWord, cancelSpeechPlayback } from './speech-playback.js';
+export { speakWord, cancelSpeechPlayback, SPEECH_PLAYBACK_TIMEOUT_MS } from './speech-playback.js';
 import { getContrastById, getRelatedContrasts } from './contrast-catalog.js';
 import { createExercise } from './exercise-engine.js';
 import setupFunnelTracking from './funnel-tracking.js';
@@ -145,110 +147,6 @@ function showStage(element, isVisible) {
   }
 
   element.hidden = !isVisible;
-}
-
-function getEnglishVoice() {
-  const voices = window.speechSynthesis?.getVoices?.() ?? [];
-
-  return (
-    voices.find((voice) => voice.lang === 'en-US')
-    || voices.find((voice) => voice.lang.startsWith('en-US'))
-    || voices.find((voice) => voice.lang === 'en-GB')
-    || voices.find((voice) => voice.lang.startsWith('en-GB'))
-    || voices.find((voice) => /^en(-|$)/i.test(voice.lang))
-    || null
-  );
-}
-
-// A browser may accept speak() and then never report onend or onerror (silent
-// switch, in-app browsers, a stalled voice load). One word needs about a second,
-// so a playback that has not settled by this bound is treated as unavailable
-// instead of leaving the exercise waiting forever.
-export const SPEECH_PLAYBACK_TIMEOUT_MS = 6000;
-
-let activeSpeechPlayback = null;
-let speechPlaybackSequence = 0;
-
-function setButtonBusy(button, isBusy, { automaticReplay = false } = {}) {
-  if (!button) {
-    return;
-  }
-
-  button.classList.toggle('is-playing', isBusy);
-  button.classList.toggle('is-auto-playing', isBusy && automaticReplay);
-  button.setAttribute('aria-busy', String(isBusy));
-}
-
-export function cancelSpeechPlayback({ didPlay = false } = {}) {
-  const playback = activeSpeechPlayback;
-
-  if (playback) {
-    playback.complete(didPlay);
-  }
-
-  window.speechSynthesis?.cancel?.();
-}
-
-export function speakWord(text, activeButton, {
-  automaticReplay = false,
-  timeoutMs = SPEECH_PLAYBACK_TIMEOUT_MS,
-} = {}) {
-  const synthesis = window.speechSynthesis;
-
-  if (!synthesis) {
-    return Promise.resolve(false);
-  }
-
-  cancelSpeechPlayback();
-  const playbackId = ++speechPlaybackSequence;
-
-  return new Promise((resolve) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    const englishVoice = getEnglishVoice();
-    utterance.lang = englishVoice?.lang || 'en-US';
-    utterance.rate = 0.82;
-    utterance.pitch = 1;
-    utterance.volume = 1;
-
-    if (englishVoice) {
-      utterance.voice = englishVoice;
-    }
-
-    let settled = false;
-    let watchdog = null;
-    const complete = (didPlay) => {
-      if (settled) {
-        return;
-      }
-
-      settled = true;
-      clearTimeout(watchdog);
-      if (activeSpeechPlayback?.id === playbackId) {
-        setButtonBusy(activeButton, false, { automaticReplay });
-        activeSpeechPlayback = null;
-      }
-      resolve(didPlay);
-    };
-
-    activeSpeechPlayback = {
-      id: playbackId,
-      button: activeButton,
-      automaticReplay,
-      complete,
-    };
-
-    utterance.onend = () => complete(true);
-    utterance.onerror = () => complete(false);
-
-    setButtonBusy(activeButton, true, { automaticReplay });
-    synthesis.speak(utterance);
-    watchdog = setTimeout(() => {
-      // Settle first so a late onend cannot report success for a word the
-      // learner was told did not play, then stop the stalled utterance.
-      complete(false);
-      synthesis.cancel?.();
-    }, timeoutMs);
-  });
 }
 
 function focusWithoutScroll(element) {
@@ -582,6 +480,7 @@ export function createSeoExercise(
     showStage(feedback, snapshot.stage === 'feedback' || snapshot.stage === 'summary');
     showStage(summary, snapshot.stage === 'summary');
     showStage(nextButton, snapshot.stage === 'feedback' && snapshot.round < snapshot.total);
+    inputGate.sync(snapshot);
     summaryCta.sync(snapshot);
 
     if (snapshot.stage === 'feedback') {
@@ -739,7 +638,7 @@ export function createSeoExercise(
 
   nextButton.addEventListener('click', () => {
     markInteraction();
-    cancelSpeechPlayback({ didPlay: true });
+    cancelSpeechPlayback();
     inputGate.reset();
     exercise.nextRound();
   });

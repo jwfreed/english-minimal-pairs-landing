@@ -503,6 +503,183 @@ arguments).
   reports or App Store Connect referrer counts.
 - Rollback: none needed; only this documentation section was added.
 
+### D5. Mobile speech investigation and release hold (2026-11-14)
+
+**Release verdict: BLOCKED — awaiting device verification.** Implementation and
+local checks are complete. No iPhone, iOS Safari/Firefox, or remote Web Inspector
+was available. Desktop events and emulation cannot verify audible iPhone speech.
+The owner reports Chrome iOS audible and Safari/Firefox silent on the same phone;
+those observations have not been independently reproduced here. D3 (Release Check
+1) and D4 (App Store investigation) above remain historical records, unchanged.
+
+**Root cause: unresolved for physical silence; confirmed for unsafe success.**
+
+- Both production and branch SEO code accepted `onend` without requiring
+  `onstart`. The homepage additionally accepted `onerror` as success and exposed
+  answers while the target was pending. Three regression probes failed before
+  editing: deferred Start, end-without-start success, and pending-answer scoring.
+- SEO Start used `Promise.resolve().then(startRound)` before speech. This is a
+  confirmed asynchronous boundary, **not proof that iOS lost activation**.
+  [WebKit's speech implementation](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/Modules/speech/SpeechSynthesis.cpp)
+  checks a user gesture when opening an iOS speech session. Keeping the original
+  synchronous call path removes that avoidable boundary; the affected device
+  must establish whether it caused this report.
+- Both players queried voices synchronously, selected the first matching US/UK/
+  other English voice, assigned its language and submitted a new utterance after
+  unconditional cancellation. The branch's SEO player added a 6 s watchdog;
+  production and the homepage had none. Neither used resume loops. Homepage
+  voice warming only queried again on `voiceschanged`; it did not start speech.
+- Read-only GitHub inspection confirmed remote main at `b8e31f3`. Direct live
+  asset reads confirmed the older behavior in `seo-page-unkCYzwh.js` and
+  `main--BA7HdV9.js`. Thus the unsafe success logic exists in both versions;
+  whether the iPhone's silence occurs in both versions is still unknown.
+
+**Hypotheses, probes, and choice.**
+
+| Candidate | Discriminating evidence | Decision |
+| --- | --- | --- |
+| Gesture loss before first speech | Compare tap activation and callback trace on affected iPhone before/after synchronous Start; unit probe proves call-stack preservation only | Preserve synchronous Start; device causality unconfirmed |
+| Voices empty, delayed, removed or incompatible | Record voice list and selected voice; retry after `voiceschanged`; compare default-English behavior when no matching voice is exposed | Fresh lookup per tap, existing English preference and language default retained; no asynchronous wait or automatic retry |
+| Cancellation interrupts initialization or a prior utterance leaks callbacks | Log cancel/submit ordering and stale callbacks; deterministic tests deliver callbacks during/after cancellation | Cancel active/pending speech only; cancellation always fails the old attempt; idle cancellation removed without claiming it caused silence |
+| Silent success, stalled/errored speech, paused engine | Log start/end/error/timing and speaking/pending/paused; test end-only, start/error, no callbacks and missing end | Require start then end; errors, exceptions, cancellation and watchdog fail closed; no speculative resume loop |
+| Mute, output route or browser/device settings | Compare the same phone, volume, output destination, Silent Mode and browser settings; human reports actual sound | Unresolved locally; JavaScript cannot inspect physical output |
+
+Waiting for voices before `speak()` was rejected because it introduces another
+asynchronous first-play boundary without device evidence. Forcing every browser
+to a different voice, arbitrary delays, repeated speech, and UA-specific hacks
+were rejected for lack of evidence. A normal start/end sequence can still be
+silent; if the device shows that trace without sound, stop release and evaluate
+a small learner-confirmed audio check separately. No such UX is included here.
+
+**Implementation.**
+
+- `src/speech-playback.js`: shared homepage/SEO player, strong utterance reference,
+  fresh voice selection, synchronous submission, start-before-end requirement,
+  exception/error handling, idempotent settlement, and the existing 6 s timeout.
+  Watchdog is armed before `speak()` so synchronous callbacks clear it correctly.
+- `src/seo-page.js` and `src/seo-exercise-input-gate.js`: call Start immediately,
+  synchronize answer availability with engine readiness, and cancel on Next
+  without reporting success. Existing exports remain available to callers/tests.
+- `src/exercise-engine.js`: reject pending/failed target answers on either
+  surface, close readiness during target replay, retain the round on failure,
+  and ignore stale playback/session completion. Final replay failure still
+  settles completion exactly once; completion timing remains after replay.
+- `src/main.js`: use the same player because the same missing-start validation
+  affects this demo too; disable pending guesses, announce failures using existing
+  localized copy, and cancel interrupted/reset playback. Other homepage features,
+  scoring math, attribution, URLs, SEO content and analytics names are unchanged.
+- `src/speech-diagnostics.js`: opt-in **development-only** panel and
+  `window.soundwiseSpeechDiagnostics.snapshot()` / `.clear()`. Captures browser,
+  platform, English voice descriptors/count, selected voice/language, callback
+  timing/sequence, state flags, error names/codes and settlement/watchdog reasons.
+  At most 200 records in page memory; no utterance text, personal identifiers,
+  storage, upload or analytics. Vite excludes the panel module from release builds.
+
+**Local verification.** Node `v22.21.0`; clean initial branch
+`growth/hub-exercise-and-speech-reliability` at `6a65395`.
+
+```bash
+rtk proxy node --test --test-reporter=spec scripts/speech-playback.test.mjs scripts/exercise-lifecycle-speech.test.mjs scripts/seo-exercise-ux.test.mjs scripts/exercise-engine.test.mjs scripts/seo-exercise-adapter.test.mjs
+# PASS: 81 tests, 0 failures
+rtk proxy npm test
+# PASS: 270 tests, 0 failures
+rtk proxy npm run validate:landing-copy
+rtk proxy npm run validate:funnel-tracking
+rtk proxy npm run validate:app-store-tracking
+rtk proxy npm run validate:seo-conversion-matrix
+rtk proxy npm run validate:seo-exercise
+# All PASS; landing-copy retains its existing RTL guidance
+rtk proxy npm run validate:localized -- --page ja/ship-vs-sheep --page zh/ship-vs-sheep --page es/ship-vs-sheep --page pt/ship-vs-sheep --page id/ship-vs-sheep --page ru/ship-vs-sheep --page tr/ship-vs-sheep --page ar/pat-vs-bat --page yue/right-vs-light --page ko/right-vs-light --page vi/right-vs-light --page hi-ur/vest-vs-west --page fa/vest-vs-west --page th/thin-vs-tin
+# PASS: all 14 localized pair pages
+rtk proxy npm run build
+# PASS: prebuild, Vite and all postbuild gates
+rtk git diff --check
+# PASS
+```
+
+The bare localized command exits with usage: explicit page arguments are required.
+An exploratory run including hubs failed on pair-specific UTM/self-link
+expectations; those hubs and validator are unchanged. The applicable pair-page
+run above passes. An initial build also rejected downloaded production HTML
+stored as `.html` under `output/`; these read-only captures now use `.txt` and
+are not website source. No validation rule was weakened. Build retains the
+existing internal-link warning about 746 localized-to-English fallback edges.
+
+Desktop Chromium 157, macOS, real speech engine: 180 voices; selected Samantha
+`en-US`; observed normal start/end and delayed answer availability on homepage
+and bad/bed. Audibility was **not** independently checked. At 390 px, browser
+checks on production preview exercised both surfaces with controlled speech:
+end-only failure, error during target replay, deliberate retry, two rounds,
+hung final replay, summary recovery, one `exercise_start`, one
+`exercise_complete`, and one `app_store_click`. External analytics requests and
+App Store navigation were blocked. A delayed synthetic `voiceschanged` updated
+the dev panel without auto-speaking, and a subsequent tap selected the new voice.
+Diagnostic globals and panel strings were absent from production output even
+with `?speechDebug=1`. Only blocked third-party requests appeared as console errors.
+
+Browser harness/screenshots are local, ignored artifacts in `output/playwright/`:
+`check-audio.js`, `check-audio-result.txt`, `seo-audio-native.png`,
+`home-audio-summary.png`, `pair-audio-summary.png`, `speech-diagnostics.png`.
+Run the browser harness in a fresh session so init scripts/listeners do not
+accumulate. The existing homepage summary CTA overflows at 390 px (495 px scroll
+width); its markup/CSS were not changed. No redesign is included.
+
+**Affected-iPhone procedure (no deployment).**
+
+1. Record iPhone/iOS and Safari/Firefox/Chrome app versions manually. First compare
+   the original production URL in all three, recording actual audibility and
+   page URL. Chrome's result is not proof of Safari/Firefox voice availability.
+2. On the Mac, run `rtk proxy npm run dev -- --host 0.0.0.0`. On the same Wi-Fi,
+   use the printed LAN address (not iPhone localhost). Open
+   `http://<Mac-LAN-IP>:5173/?speechDebug=1` and
+   `http://<Mac-LAN-IP>:5173/content/pairs/bad-vs-bed/index.html?speechDebug=1`.
+   Dev clean `/bad-vs-bed/` falls back to the homepage; use this source path.
+   Also check the new hub via `/content/pairs/minimal-pairs-practice/index.html`.
+3. Wait for the bottom "Speech diagnostics" panel. Tap Start once, listen,
+   replay, answer both rounds, then test interruption by switching apps/locking
+   during playback and deliberately tapping Start again if it fails. Do not
+   answer an unheard word. Failure must retain the round/score and allow retry.
+4. Open the panel and copy its JSON (or use remote Web Inspector and
+   `JSON.stringify(window.soundwiseSpeechDiagnostics.snapshot(), null, 2)`).
+   Record the selected voice, voice count, submit/start/end/error timing,
+   paused/pending/speaking flags, timeout, and separately **heard / silent**.
+   Repeat cold-load and retry after voices arrive. Logs stay on the device.
+5. Compare baseline settings first; then diagnose with Silent Mode off, media
+   volume raised while speech plays, and Bluetooth/AirPlay disconnected so output
+   uses the phone speaker. Note any setting-dependent change; do not infer that
+   successful callbacks mean audibility or diagnose mute from JavaScript alone.
+6. Run `rtk proxy npm run preview -- --host 0.0.0.0 --port 4173` after the passing
+   build. Repeat the acceptance matrix on LAN port 4173 using production routes
+   `/`, `/bad-vs-bed/`, and `/minimal-pairs-practice/`. Debug panel is absent here.
+   Verify the outbound CTA independently; D4's English summary-CTA capability
+   decision is unchanged, so use the existing page CTA where applicable.
+
+Each cell requires human-confirmed sound on that same physical iPhone. All are
+pending, across the homepage demo and at least bad/bed; include the hub too.
+
+| Acceptance test | Safari iOS | Firefox iOS | Chrome iOS |
+| --- | --- | --- | --- |
+| Initial Start is audible | Pending — required | Pending — required | Pending — required |
+| Replay is audible | Pending — required | Pending — required | Pending — required |
+| Multiple rounds play correctly | Pending — required | Pending — required | Pending — required |
+| Retry after interruption works | Pending — required | Pending — required | Pending — required |
+| Completion and CTA work | Pending — required | Pending — required | Pending — required |
+
+**Risk and handoff.** Start/end is browser-reported playback success, never
+confirmation that sound reached the listener. The 6 s bound can reject a slow
+voice startup. A browser emitting no start now correctly fails closed. Leaving
+before a final replay settles can still omit completion, as D3 records. Device
+output routing, OS voice availability, private browsing/settings and iOS behavior
+remain unverified. No push, merge or deployment has been performed.
+
+The local implementation commit is titled `fix: fail closed on incomplete speech playback`;
+resolve its SHA with `git log -1 --format=%H --grep='fix: fail closed on incomplete speech playback'`.
+Rollback after preserving any later work: `git revert <that-local-commit-SHA>` and
+rerun `npm test` / `npm run build`. This restores the previous behavior, including
+its known unsafe success handling; it is not a remedy for the original silence.
+Release stays **BLOCKED** until Safari and Firefox are audible on the affected
+phone and all three browsers pass the matrix. No production success is claimed.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:

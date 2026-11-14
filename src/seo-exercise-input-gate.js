@@ -14,6 +14,9 @@ export function createSeoExerciseInputGate({
   };
 
   return {
+    sync(snapshot) {
+      setGuessesAvailable(snapshot.stage === 'test' && snapshot.canAnswer);
+    },
     areGuessesAvailable() {
       return guessesAvailable;
     },
@@ -24,10 +27,17 @@ export function createSeoExerciseInputGate({
       }
 
       setGuessesAvailable(false, { force: true });
-      startPromise = Promise.resolve()
-        .then(startRound)
+      // Invoke immediately: iOS speech must retain the tap's gesture context.
+      // Keep thrown errors on the same Promise-based interface.
+      let result;
+      try {
+        result = startRound();
+      } catch (error) {
+        result = Promise.reject(error);
+      }
+      startPromise = Promise.resolve(result)
         .then((snapshot) => {
-          setGuessesAvailable(snapshot?.stage === 'test');
+          setGuessesAvailable(snapshot?.stage === 'test' && snapshot.canAnswer);
           return snapshot;
         })
         .finally(() => {

@@ -80,6 +80,7 @@ export function createExercise({
   };
 
   const wait = mount.wait || createDefaultWait();
+  let roundSequence = 0;
   const state = {
     round: 1,
     correct: 0,
@@ -87,6 +88,7 @@ export function createExercise({
     stage: 'preview',
     playbackToken: 0,
     audioUnlocked: false,
+    canAnswer: false,
     hasCompletedDemo: false,
     currentPair: currentTrainingPairs[0],
     pairsSeen: [currentTrainingPairs[0].id],
@@ -175,10 +177,12 @@ export function createExercise({
     },
 
     reset({ notify = true } = {}) {
+      roundSequence += 1;
       state.round = 1;
       state.correct = 0;
       state.targetIndex = null;
       state.stage = 'preview';
+      state.canAnswer = false;
       state.hasCompletedDemo = false;
       state.playbackToken += 1;
       resetRoundPairs();
@@ -203,9 +207,25 @@ export function createExercise({
         return false;
       }
 
+      const isStimulus = state.stage === 'test';
+      const playbackToken = isStimulus ? ++state.playbackToken : state.playbackToken;
+      if (isStimulus) {
+        state.canAnswer = false;
+        notifyState('playback_started');
+      }
       mount.onPlaybackReady?.(getSnapshot());
       const didPlay = await playContrastWord(word, activeTarget);
 
+      if (playbackToken !== state.playbackToken) return false;
+
+      if (isStimulus && state.stage === 'test') {
+        state.canAnswer = didPlay;
+        if (!didPlay) {
+          state.stage = 'preview';
+          state.targetIndex = null;
+        }
+        notifyState('playback_settled');
+      }
       if (!didPlay) {
         mount.onAudioUnavailable?.(getSnapshot());
       }
@@ -238,7 +258,10 @@ export function createExercise({
     },
 
     async startRound(activeTarget) {
+      if (state.stage !== 'preview' || !state.audioUnlocked) return getSnapshot();
+      const roundId = ++roundSequence;
       state.stage = 'test';
+      state.canAnswer = false;
       state.targetIndex = normalizeTargetIndex(
         mount.getTargetIndex?.(state.currentPair, getSnapshot()) ?? Math.round(Math.random()),
         state.currentPair.words.length
@@ -255,9 +278,10 @@ export function createExercise({
         mount.onListenPrompt?.(getSnapshot());
         const didPlay = await controller.playWord(state.targetIndex, activeTarget);
 
-        if (!didPlay) {
+        if (!didPlay && roundId === roundSequence && state.stage === 'test') {
           state.stage = 'preview';
           state.targetIndex = null;
+          state.canAnswer = false;
           notifyState('audio_unavailable');
         }
       }
@@ -266,7 +290,7 @@ export function createExercise({
     },
 
     async answer(selectedIndex) {
-      if (state.stage !== 'test' || state.targetIndex === null) {
+      if (state.stage !== 'test' || state.targetIndex === null || !state.canAnswer) {
         return {
           accepted: false,
           correct: false,
@@ -275,6 +299,8 @@ export function createExercise({
       }
 
       const isCorrect = selectedIndex === state.targetIndex;
+      const roundId = roundSequence;
+      state.canAnswer = false;
 
       if (isCorrect) {
         state.correct += 1;
@@ -302,7 +328,7 @@ export function createExercise({
       mount.onFeedbackReady?.(feedback, getSnapshot());
       await controller.replayContrast();
 
-      if (state.hasCompletedDemo) {
+      if (state.hasCompletedDemo && roundId === roundSequence) {
         dispatchExerciseEvent(
           currentOptions.challengeMode ? 'challenge_completed' : 'demo_completed',
           {
@@ -324,10 +350,12 @@ export function createExercise({
         return getSnapshot();
       }
 
+      roundSequence += 1;
       state.playbackToken += 1;
       state.round += 1;
       state.targetIndex = null;
       state.stage = 'preview';
+      state.canAnswer = false;
       enterRoundPair();
 
       notifyFeedback(null);

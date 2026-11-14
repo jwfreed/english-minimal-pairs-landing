@@ -76,6 +76,51 @@ function createHarness({ challengeMode = false, targetIndexes = [1, 0], shouldPl
   };
 }
 
+test('reset during pending Start prevents an old failure from closing a new round', async () => {
+  const pending = [];
+  const exercise = createExercise({
+    contrast: getContrastById('ship-vs-sheep'),
+    mount: { playWord: () => new Promise((resolve) => pending.push(resolve)) },
+  });
+  exercise.unlockAudio();
+  const first = exercise.startRound();
+  exercise.reset();
+  const retry = exercise.startRound();
+  pending[0](false);
+  await first;
+  assert.equal(exercise.getSnapshot().stage, 'test');
+  assert.equal(exercise.getSnapshot().canAnswer, false);
+  pending[1](true);
+  await retry;
+  assert.equal(exercise.getSnapshot().canAnswer, true);
+});
+
+test('an earlier session replay settling after a new completion cannot duplicate completion', async () => {
+  const events = [];
+  let releaseOldReplay;
+  let plays = 0;
+  const exercise = createExercise({
+    contrast: getContrastById('ship-vs-sheep'),
+    options: { maxRounds: 1 },
+    mount: {
+      dispatchEvent: (name) => events.push(name),
+      playWord: () => ++plays === 2
+        ? new Promise((resolve) => { releaseOldReplay = resolve; }) : true,
+      wait: () => Promise.resolve(),
+    },
+  });
+  exercise.unlockAudio();
+  await exercise.startRound();
+  const oldAnswer = exercise.answer(0);
+  exercise.reset();
+  await exercise.startRound();
+  await exercise.answer(0);
+  assert.equal(events.filter((name) => name === 'demo_completed').length, 1);
+  releaseOldReplay(false);
+  await oldAnswer;
+  assert.equal(events.filter((name) => name === 'demo_completed').length, 1);
+});
+
 test('contrast catalog exposes canonical URL-addressable contrast data', () => {
   const contrast = getContrastById('ship-vs-sheep');
 

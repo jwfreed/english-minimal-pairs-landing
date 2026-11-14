@@ -68,7 +68,7 @@ test('the input gate rejects answers while target playback is pending and accept
   assert.equal(answerCalls, 0);
   assert.equal(gate.areGuessesAvailable(), false);
 
-  resolvePlayback({ stage: 'test' });
+  resolvePlayback({ stage: 'test', canAnswer: true });
   await firstStart;
   assert.equal(gate.areGuessesAvailable(), true);
 
@@ -93,6 +93,43 @@ test('the input gate stays closed when target playback fails closed to preview',
   await gate.start(async () => ({ stage: 'preview' }));
 
   assert.equal(gate.areGuessesAvailable(), false);
+});
+
+test('Start invokes playback inside the caller gesture stack', async () => {
+  const gate = createSeoExerciseInputGate();
+  let inGesture = true;
+  let sawGesture;
+  const started = gate.start(() => {
+    sawGesture = inGesture;
+    return { stage: 'test', canAnswer: true };
+  });
+  inGesture = false;
+  await started;
+  assert.equal(sawGesture, true);
+});
+
+test('an end callback without a start is unavailable, never a playable stimulus', async (t) => {
+  const { utterances } = installHangingSpeech(t);
+  const playback = speakWord('ship');
+  utterances[0].onend();
+  assert.equal(await playback, false);
+});
+
+test('the engine rejects an answer before target playback settles, including on the homepage', async () => {
+  let settle;
+  const exercise = createExercise({
+    contrast: { id: 'test', words: [{ text: 'ship' }, { text: 'sheep' }] },
+    mount: { playWord: () => new Promise((resolve) => { settle = resolve; }) },
+  });
+  exercise.unlockAudio();
+  const started = exercise.startRound();
+  const answer = exercise.answer(0);
+  assert.equal(exercise.getSnapshot().stage, 'test');
+  assert.equal((await answer).accepted, false);
+  assert.equal(exercise.getSnapshot().correct, 0);
+  settle(false);
+  await started;
+  assert.equal(exercise.getSnapshot().stage, 'preview');
 });
 
 test('published pair routes resolve in the current locale without English fallback', () => {
@@ -174,6 +211,7 @@ test('superseded and explicitly cancelled speech settles without browser callbac
   assert.equal(await firstPlayback, false);
   assert.equal(firstButton.classes.get('is-auto-playing'), false);
 
+  utterances.at(-1).onstart();
   utterances.at(-1).onend();
   assert.equal(await secondPlayback, true);
 
@@ -197,7 +235,7 @@ test('the SEO adapter keeps one persistent error announcement and cancels playba
   );
   assert.match(
     source,
-    /nextButton\.addEventListener\('click', \(\) => \{\s*markInteraction\(\);\s*cancelSpeechPlayback\(\{ didPlay: true \}\);\s*inputGate\.reset\(\);\s*exercise\.nextRound\(\);/u
+    /nextButton\.addEventListener\('click', \(\) => \{\s*markInteraction\(\);\s*cancelSpeechPlayback\(\);\s*inputGate\.reset\(\);\s*exercise\.nextRound\(\);/u
   );
 });
 
@@ -263,6 +301,7 @@ test('speech that never reports completion settles as unavailable and ignores a 
   // or leave playback state behind for the next word.
   utterances[0].onend();
   const next = speakWord('sheep', button, { timeoutMs: 1000 });
+  utterances[1].onstart();
   utterances[1].onend();
   assert.equal(await next, true);
 });
@@ -293,6 +332,7 @@ test('a hung first word returns the learner to preview, accepts no answer, and a
   const retry = gate.start(() => exercise.startRound());
   await new Promise((resolve) => setImmediate(resolve));
   assert.equal(utterances.length, spoken + 1);
+  utterances.at(-1).onstart();
   utterances.at(-1).onend();
   const retrySnapshot = await retry;
 
@@ -309,6 +349,7 @@ test('a hung replay after the final answer still completes once, after both roun
   const answerRound = async () => {
     const started = exercise.startRound();
     await new Promise((resolve) => setImmediate(resolve));
+    utterances.at(-1).onstart();
     utterances.at(-1).onend();
     await started;
     return exercise.answer(1);
