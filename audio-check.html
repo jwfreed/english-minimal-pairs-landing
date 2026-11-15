@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="data:,">
+  <title>Soundwise audio check</title>
+  <style>
+    body{font:17px/1.5 system-ui,sans-serif;max-width:42rem;margin:2rem auto;padding:0 1rem;color:#17212b;background:#fff}
+    button,select{box-sizing:border-box;font:inherit;padding:.7rem;margin:.3rem 0;max-width:100%}button{cursor:pointer}
+    label{display:block;margin-top:.5rem}textarea{box-sizing:border-box;width:100%;height:18rem;font:12px/1.4 monospace}fieldset{min-inline-size:0;margin:1rem 0}
+  </style>
+</head>
+<body>
+  <h1>Soundwise audio check</h1>
+  <p>This page diagnoses sound on your device. It has no exercises or scoring. Reports stay on this page until you copy and send them. There is no analytics, upload, microphone access or saved report.</p>
+  <p>First test with Silent Mode <strong>on</strong>. Tap one test at a time, then choose “Heard it” or “Silent”. After all three, copy the report. Reload and repeat with Silent Mode off.</p>
+  <fieldset><legend>1. Plain browser speech (“ship”)</legend>
+    <label>Audio session <select id="session"><option value="auto">Browser automatic</option><option value="playback">Request playback</option></select></label>
+    <label>Voice <select id="voice"><option value="">Browser default English voice</option></select></label>
+    <button type="button" data-test="plain">Play plain speech</button>
+    <button type="button" data-outcome="heard" data-probe="plain">Heard it — plain speech</button>
+    <button type="button" data-outcome="silent" data-probe="plain">Silent — plain speech</button>
+  </fieldset>
+  <fieldset><legend>2. Current exercise player (“ship”)</legend>
+    <p>Uses the same playback function as the live exercises, including its playback-session request and voice selection.</p>
+    <button type="button" data-test="exercise">Play exercise speech</button>
+    <button type="button" data-outcome="heard" data-probe="exercise">Heard it — exercise speech</button>
+    <button type="button" data-outcome="silent" data-probe="exercise">Silent — exercise speech</button>
+  </fieldset>
+  <fieldset><legend>3. Media audio</legend>
+    <p>A short, quiet test tone through an audio element. This tests a different audio path from speech.</p>
+    <button type="button" data-test="tone">Play test tone</button>
+    <button type="button" data-outcome="heard" data-probe="tone">Heard it — test tone</button>
+    <button type="button" data-outcome="silent" data-probe="tone">Silent — test tone</button>
+  </fieldset>
+  <p id="status" role="status">Ready. Audio callbacks do not prove you heard sound.</p>
+  <button type="button" id="copy">Copy report</button>
+  <label for="report">Report (you can also select and copy this text)</label>
+  <textarea id="report" readonly spellcheck="false"></textarea>
+  <script type="module" src="/src/audio-check.js"></script>
+</body>
+</html>

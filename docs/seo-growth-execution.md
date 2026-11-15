@@ -771,6 +771,62 @@ The new commit is titled `fix: request playback audio session before speech`.
 Rollback: `git revert <that-commit-SHA>` and redeploy via the unchanged workflow.
 D3, D4 and D5 are preserved as historical records.
 
+### D7. Failed session candidate; isolated phone diagnostics (2026-11-15)
+
+**Release FAIL for the reported mobile behavior; diagnosis awaits phone logs.**
+After deployment of `0ba4357`, the owner still reports no audio in Safari and
+Firefox mobile. Safari now shows an audio playback error; Firefox does not.
+The exact Safari message and whether Silent Mode off still works on this new
+build are pending. Do not infer identical callback sequences from both browsers.
+The session request is therefore not a verified remedy. D6's prior Silent Mode
+off observation applies to the previous device test, not automatically this one.
+
+Rather than change the speech policy again, this deployment adds only a
+standalone support diagnostic at `/audio-check.html`. `vite.config.js` explicitly
+registers it; robots metadata is `noindex, nofollow`, it is omitted from the
+sitemap, and no marketing page links to it. It has no canonical because the
+architecture gate prohibits canonical targets that are non-indexable. The gate
+initially caught that conflict and the page was corrected; no validator changed.
+
+`src/audio-check.js` records browser/platform, available English voices,
+selection, session type/state, activation, callback timings, errors and timeouts.
+Three explicit user-triggered probes compare plain speech (default or chosen
+voice, auto/playback session), the actual production `speakWord` function, and a
+quiet generated PCM WAV through HTML audio. The raw probe is intentionally
+separate from exercise orchestration. A bounded timeout releases controls on
+failure. User-reported Heard/Silent results are kept distinct from browser
+callbacks. The page has no exercise, scoring, microphone, analytics, third-party
+scripts, upload or persistent storage. It retains at most 200 records in page
+memory and provides a copyable report, with selectable text as clipboard fallback.
+It does not autoplay or prime a media session for the normal exercises.
+
+This is a deliberate, isolated hosted diagnostic for the owner's deployment/test
+workflow: the original inline diagnostic remains development-only. Production
+exercise code and playback policy are unchanged in this deployment. Remove the
+support page/module/build entry after the physical-device cause is resolved.
+
+**Verification:** `npm test` (275), `validate:landing-copy`,
+`validate:funnel-tracking`, `validate:app-store-tracking`,
+`validate:seo-conversion-matrix`, and `npm run build` pass. Build includes all
+source and dist gates and preserves the existing fallback-link warning.
+Desktop Chromium exercises all three probes, report copying/listener outcomes,
+control recovery and 390 px layout. Controlled errors/timeouts are also exercised
+in-browser. These are diagnostic-function checks, not iPhone audibility evidence.
+No independent physical iPhone or Web Inspector is available here.
+
+**Phone procedure:** In Safari, open `/audio-check.html` with Silent Mode on.
+Leave the plain-speech selectors at their defaults. Run the three tests in order,
+mark each Heard/Silent, and copy the report into the conversation. Reload and
+repeat with Silent Mode off. Repeat in Firefox. If plain speech works but the
+exercise player does not, compare the same explicit voice and requested session
+using the selectors; otherwise leave those controls unchanged for the first run.
+A test tone playing with silent speech isolates media output from the speech
+path; it does not by itself identify the cause. Browser error codes will guide
+the next correction. Do not declare a fix from desktop callbacks.
+
+Commit title: `diagnostics: add isolated mobile audio check`. Rollback is reverting
+that commit and redeploying. Earlier release checks/investigations remain intact.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:

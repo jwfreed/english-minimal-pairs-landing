@@ -274,6 +274,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         support: 'support.html',
+        audioCheck: 'audio-check.html',
         ...localizedHomepageEntries,
         ...seoPageEntries,
         ...legalPageEntries,
