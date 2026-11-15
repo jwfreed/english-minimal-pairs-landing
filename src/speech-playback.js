@@ -70,6 +70,19 @@ export function speakWord(text, activeButton, {
     };
 
     try {
+      // iOS Silent Mode can suppress speech despite successful callbacks.
+      // Request intentional media playback at the tap, before speech starts.
+      // The optional API is not available in every browser.
+      try {
+        const session = window.navigator?.audioSession;
+        if (session) {
+          if (session.type !== 'playback') session.type = 'playback';
+          diagnose('audio-session', { id, type: session.type, state: session.state });
+        }
+      } catch (error) {
+        // A rejected session preference must not break otherwise working TTS.
+        diagnose('audio-session-error', { id, error: error?.name || 'Error' });
+      }
       const utterance = new SpeechSynthesisUtterance(text);
       // Query each time; never retain a voice from an old voiceschanged list.
       const voices = synthesis.getVoices?.() ?? [];

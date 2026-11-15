@@ -680,6 +680,97 @@ its known unsafe success handling; it is not a remedy for the original silence.
 Release stays **BLOCKED** until Safari and Firefox are audible on the affected
 phone and all three browsers pass the matrix. No production success is claimed.
 
+### D6. iOS 27.2 Silent Mode reproduction (2026-11-15)
+
+**Baseline FAIL; candidate BLOCKED — awaiting device verification.** The owner
+retested deployed `5077762` and reports Safari and Firefox remain silent on
+mobile while desktop works. On the affected iPhone running **iOS 27.2**, both
+the homepage and practice pages are affected. In the Safari follow-up, answer
+buttons become available despite silence; **turning Silent Mode off makes speech
+audible**. This is device evidence from the owner, not an automated observation.
+Firefox's Silent Mode-off result has not been separately confirmed.
+
+The prior patch repaired unsafe callback/state handling but did not remedy
+Silent Mode-dependent output. Root cause is now confirmed at the behavioral
+level for Safari: physical output depends on Silent Mode even when the browser
+reports completed speech. The precise OS/session category remains an inference.
+Voice-loading and gesture-loss explanations are lower priority for this specific
+reproduction because the same page speaks when that one device setting changes.
+
+**Candidate correction: request playback session before speech.**
+
+- `src/speech-playback.js` requests `window.navigator.audioSession.type =
+  'playback'` synchronously before constructing/submitting an utterance, if that
+  API exists and the type is not already playback. No startup audio session
+  change occurs merely from loading the page. Retry rechecks the preference.
+- Unsupported API or rejected getter/setter preserves the existing speech path;
+  this is a compatibility fallback, not evidence that muted output is solved.
+  Start-before-end, watchdog, cancellation, scoring and completion safeguards
+  remain in place. No voice, timing, analytics, URL, content or exercise-UX change.
+- `src/speech-diagnostics.js` adds session type/state and state-change events to
+  the existing development-only local panel. Session configuration errors are
+  distinguished from speech errors. Nothing is uploaded or added to analytics.
+- [WebKit maps the browser's playback type to MediaPlayback](https://github.com/WebKit/WebKit/blob/main/Source/WebCore/Modules/audiosession/DOMAudioSession.cpp).
+  [Apple documents that its playback category continues through Silent Mode](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback).
+  This supports the candidate; it does not prove that the affected browser's
+  speech synthesizer uses the page's requested session. That requires retesting.
+
+**Alternatives.** Leaving session policy unchanged and requiring Silent Mode off
+is the confirmed workaround. A silent HTML audio warmup would add a second player
+and asset plus new activation/cancellation behavior without a website reproduction
+proving it necessary; defer it. Waiting for voices, changing voices or adding
+resume/delay loops does not address the newly observed Silent Mode dependence.
+The standard session preference is the smallest causal change to test first.
+
+**Validation.** The new production-function regression failed before this change
+(`auto` was still selected at `speak()`) and passes after it. Five added tests
+cover synchronous session setup, already-configured sessions, rejected getter,
+rejected setter, and retry after the browser changes the preference.
+
+```bash
+rtk proxy node --test --test-reporter=spec scripts/speech-playback.test.mjs scripts/exercise-lifecycle-speech.test.mjs scripts/seo-exercise-ux.test.mjs scripts/exercise-engine.test.mjs scripts/seo-exercise-adapter.test.mjs
+# PASS: 86 tests
+rtk proxy npm test
+# PASS: 275 tests
+rtk proxy npm run validate:landing-copy
+rtk proxy npm run validate:funnel-tracking
+rtk proxy npm run validate:app-store-tracking
+rtk proxy npm run validate:seo-conversion-matrix
+rtk proxy npm run build
+# PASS, including all build gates; existing RTL/fallback-link guidance remains
+```
+
+The D5 `validate:localized` command was repeated verbatim: all 14 pair pages pass.
+Desktop Chromium with the real speech engine reports start/end successfully on
+the API-unavailable compatibility path. At 390 px, the production-preview browser
+harness uses controlled speech and a session stub: every utterance must observe
+`playback` at submission, and both surfaces must recover through end-only/error
+failures, retry and hung final replay with exactly-once tracking. This verifies
+wiring/state behavior, not Silent Mode or audible iPhone output. Attempted desktop
+WebKit automation could not run because its browser executable is not installed;
+no iOS-browser verification is inferred from Chromium. Local harness/evidence:
+`output/playwright/check-audio-session.js` and `check-audio-session-result.txt`.
+
+**Acceptance and risks.** Reload the deployed candidate in Safari, Firefox and
+Chrome on the same iPhone. With **Silent Mode on**, verify audible initial Start,
+sample replay, both rounds, interruption/retry, summary and CTA on `/` and
+`/bad-vs-bed/`; repeat with Silent Mode off. All candidate device checks remain
+pending, and the D5 matrix is not passed. The current workaround is Silent Mode
+off. A normal start/end sequence still cannot prove physical audibility.
+
+The playback preference is page-wide and may interrupt music from another app.
+The OS may ignore it for speech; a successful setter or session state of active
+is not proof of sound. If the device remains silent with this candidate, stop
+stacking workarounds and inspect the new session diagnostics; consider a small
+explicit hearing check before scoring because silent success is now demonstrated.
+
+Deployment for device testing follows the owner's existing push/deploy request;
+this is not an acceptance PASS. The previous production deployment of `5077762`
+succeeded in [run 43664915161](https://github.com/jwfreed/english-minimal-pairs-landing/actions/runs/43664915161).
+The new commit is titled `fix: request playback audio session before speech`.
+Rollback: `git revert <that-commit-SHA>` and redeploy via the unchanged workflow.
+D3, D4 and D5 are preserved as historical records.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:

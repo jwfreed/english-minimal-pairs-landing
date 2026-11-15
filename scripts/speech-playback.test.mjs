@@ -33,6 +33,68 @@ function installSpeech(t) {
 
 const endNormally = (utterance) => { utterance.onstart(); utterance.onend(); };
 
+test('speech requests a playback audio session in the gesture stack before submitting the utterance', async (t) => {
+  const { synthesis } = installSpeech(t);
+  const session = { type: 'auto', state: 'inactive' };
+  globalThis.window.navigator = { audioSession: session };
+  let inGesture = true;
+  let submittedType;
+  let submittedInGesture;
+  synthesis.speak = (utterance) => {
+    submittedType = session.type;
+    submittedInGesture = inGesture;
+    endNormally(utterance);
+  };
+  const playback = speakWord('ship');
+  inGesture = false;
+  assert.equal(await playback, true);
+  assert.equal(submittedType, 'playback');
+  assert.equal(submittedInGesture, true);
+});
+
+test('an existing playback preference is left alone', async (t) => {
+  const { synthesis } = installSpeech(t);
+  let sessionChanges = 0;
+  globalThis.window.navigator = {
+    audioSession: {
+      get type() { return 'playback'; },
+      set type(_value) { sessionChanges += 1; },
+    },
+  };
+  synthesis.speak = endNormally;
+  assert.equal(await speakWord('ship'), true);
+  assert.equal(sessionChanges, 0);
+});
+
+for (const operation of ['get', 'set']) {
+  test(`a rejected audio-session ${operation} preserves working speech`, async (t) => {
+    const { synthesis, records } = installSpeech(t);
+    globalThis.window.navigator = operation === 'get'
+      ? { get audioSession() { throw new DOMException('Blocked', 'SecurityError'); } }
+      : { audioSession: {
+        get type() { return 'auto'; },
+        set type(_value) { throw new DOMException('Blocked', 'NotSupportedError'); },
+      } };
+    synthesis.speak = endNormally;
+    assert.equal(await speakWord('ship'), true);
+    assert.ok(records.some(({ event }) => event === 'audio-session-error'));
+  });
+}
+
+test('retry re-requests playback after the browser changes the audio-session preference', async (t) => {
+  const { synthesis, utterances } = installSpeech(t);
+  const session = { type: 'ambient' };
+  globalThis.window.navigator = { audioSession: session };
+  const failed = speakWord('ship');
+  utterances[0].onerror({ error: 'interrupted' });
+  assert.equal(await failed, false);
+  session.type = 'auto';
+  const retry = speakWord('ship');
+  assert.equal(session.type, 'playback');
+  endNormally(utterances[1]);
+  assert.equal(await retry, true);
+});
+
 test('empty voices uses the language default immediately without cancelling idle synthesis', async (t) => {
   const { utterances, synthesis } = installSpeech(t);
   const playback = speakWord('ship');

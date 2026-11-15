@@ -8,6 +8,8 @@ export function setupSpeechDiagnostics(setListener) {
     paused: synthesis?.paused,
     userActivation: navigator.userActivation?.isActive,
     visibility: document.visibilityState,
+    audioSessionType: navigator.audioSession?.type,
+    audioSessionState: navigator.audioSession?.state,
   });
   const snapshot = () => {
     const voices = synthesis?.getVoices?.() ?? [];
@@ -40,6 +42,7 @@ export function setupSpeechDiagnostics(setListener) {
     voiceCount: synthesis.getVoices().length,
   }));
   document.addEventListener('visibilitychange', () => record('visibilitychange'));
+  navigator.audioSession?.addEventListener('statechange', () => record('audio-session-statechange'));
   panel.addEventListener('toggle', render);
   window.soundwiseSpeechDiagnostics = { snapshot, clear: () => { records.length = 0; render(); } };
   const mount = () => { document.body.append(panel); record('ready'); };
