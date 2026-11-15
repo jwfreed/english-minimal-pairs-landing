@@ -14,6 +14,48 @@ function diagnose(event, detail = {}) {
   diagnosticListener?.(event, detail);
 }
 
+// iOS mutes speech in Silent Mode unless page media is playing: WebKit derives
+// the page's playback audio category from active media elements, not from
+// speechSynthesis or the audioSession preference alone. Loop silence during
+// speech so the category ignores the ringer switch. Reuse one element so later
+// automatic replays keep the activation granted by the first tap.
+let mediaKeepalive = null;
+
+function silentWavUrl() {
+  const samples = 4000; // 0.5 s of 8-bit 8 kHz mono silence (midpoint 128).
+  const bytes = new Uint8Array(44 + samples).fill(128, 44);
+  const view = new DataView(bytes.buffer);
+  const text = (offset, value) => [...value].forEach((c, i) => view.setUint8(offset + i, c.charCodeAt(0)));
+  text(0, 'RIFF'); view.setUint32(4, 36 + samples, true); text(8, 'WAVEfmt ');
+  view.setUint32(16, 16, true); view.setUint16(20, 1, true); view.setUint16(22, 1, true);
+  view.setUint32(24, 8000, true); view.setUint32(28, 8000, true);
+  view.setUint16(32, 1, true); view.setUint16(34, 8, true);
+  text(36, 'data'); view.setUint32(40, samples, true);
+  return URL.createObjectURL(new Blob([bytes], { type: 'audio/wav' }));
+}
+
+function startMediaKeepalive(id) {
+  try {
+    if (typeof window.Audio !== 'function') return;
+    if (!mediaKeepalive) {
+      mediaKeepalive = new window.Audio(silentWavUrl());
+      mediaKeepalive.loop = true;
+    }
+    // Do not await: speech must be submitted in the same gesture stack.
+    Promise.resolve(mediaKeepalive.play()).then(
+      () => diagnose('media-keepalive', { id }),
+      (error) => diagnose('media-keepalive-error', { id, error: error?.name || 'Error' }),
+    );
+  } catch (error) {
+    // Media is a Silent Mode aid; its failure must not block speech.
+    diagnose('media-keepalive-error', { id, error: error?.name || 'Error' });
+  }
+}
+
+function stopMediaKeepalive() {
+  try { mediaKeepalive?.pause(); } catch { /* best effort */ }
+}
+
 function setButtonBusy(button, busy, automaticReplay) {
   button?.classList.toggle('is-playing', busy);
   button?.classList.toggle('is-auto-playing', busy && automaticReplay);
@@ -63,6 +105,7 @@ export function speakWord(text, activeButton, {
       clearTimeout(watchdog);
       if (activePlayback?.id === id) {
         activePlayback = null;
+        stopMediaKeepalive();
         setButtonBusy(activeButton, false, automaticReplay);
       }
       diagnose('settled', { id, didPlay, reason });
@@ -123,6 +166,7 @@ export function speakWord(text, activeButton, {
         complete(false, 'timeout');
         synthesis.cancel?.();
       }, timeoutMs);
+      startMediaKeepalive(id);
       diagnose('submit', { id });
       synthesis.speak(utterance);
     } catch (error) {

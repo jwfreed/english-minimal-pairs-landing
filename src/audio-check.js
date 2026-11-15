@@ -30,7 +30,7 @@ function record(event, detail = {}) {
     userActivation: navigator.userActivation?.isActive, visibility: document.visibilityState,
     plainActive: Boolean(activeUtterance) });
   if (records.length > 200) records.shift();
-  report.value = JSON.stringify({ build: 'audio-check-v1', browser: navigator.userAgent,
+  report.value = JSON.stringify({ build: 'audio-check-v2', browser: navigator.userAgent,
     platform: navigator.platform, voiceCount: allVoices().length,
     englishVoices: voices().map(({ name, lang, localService }) => ({ name, lang, localService })), records }, null, 2);
 }

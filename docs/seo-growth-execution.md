@@ -827,6 +827,34 @@ the next correction. Do not declare a fix from desktop callbacks.
 Commit title: `diagnostics: add isolated mobile audio check`. Rollback is reverting
 that commit and redeploying. Earlier release checks/investigations remain intact.
 
+### D8. Silent media keepalive candidate (2026-11-15)
+
+**Candidate; awaiting device verification.** The owner confirms Safari and
+Firefox mobile are silent only while Silent Mode is on. The `0ba4357` session
+preference alone did not change output. WebKit derives the page's iOS audio
+category from playing media elements; `speechSynthesis` is not one, so the
+ambient (ringer-switch-muted) category stays in effect.
+
+- `src/speech-playback.js` now plays one reused, looping, unmuted HTML audio
+  element of generated silence (0.5 s, 8-bit 8 kHz WAV blob) synchronously
+  before `speak()` and pauses it at settlement (end, error, timeout, cancel,
+  exception). It is not awaited, so speech stays in the tap's gesture stack.
+  Reuse lets automatic replays keep the first tap's media activation. A
+  rejected `play()` is diagnosed and never blocks speech. The playback session
+  request is kept. No voice, timing, scoring, analytics or content change.
+- Risk: like the session request, playing media can pause another app's music.
+- Tests: three regressions (order play → speak → pause and element reuse;
+  rejected play; timeout stops media) fail on `fb8fc9b` and pass now.
+  `npm test` (278), the four release validators and `npm run build` pass.
+  Desktop Chromium preview at 390 px: `/audio-check.html` exercise probe
+  records `media-keepalive` and `settled:ended` with no page errors. This is not
+  iPhone audibility evidence.
+
+**Acceptance:** with Silent Mode on, in Safari and Firefox on the iPhone,
+`/audio-check.html` (`audio-check-v2`) exercise probe audible while plain speech
+stays silent; then `/` and `/bad-vs-bed/` initial Start, replay, both rounds and
+summary audible. Repeat with Silent Mode off. Rollback: revert the commit.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:

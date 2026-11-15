@@ -220,3 +220,59 @@ test('a browser rejecting an incompatible explicit voice fails closed; retry can
   endNormally(utterances[0]);
   assert.equal(await retry, true);
 });
+
+// One shared fake: the module reuses a single media element across playbacks.
+class FakeAudio {
+  static instances = [];
+  static log = [];
+  static reject = false;
+  constructor(src) { this.src = src; this.loop = false; this.muted = false; FakeAudio.instances.push(this); }
+  play() {
+    FakeAudio.log.push('play');
+    return FakeAudio.reject ? Promise.reject(new DOMException('No gesture', 'NotAllowedError')) : Promise.resolve();
+  }
+  pause() { FakeAudio.log.push('pause'); }
+}
+
+test('silent looping media plays in the gesture stack before speech and stops at settlement', async (t) => {
+  const { synthesis } = installSpeech(t);
+  globalThis.window.Audio = FakeAudio;
+  FakeAudio.log = [];
+  synthesis.speak = (utterance) => {
+    FakeAudio.log.push('speak');
+    endNormally(utterance);
+  };
+  assert.equal(await speakWord('ship'), true);
+  assert.deepEqual(FakeAudio.log, ['play', 'speak', 'pause']);
+  assert.equal(FakeAudio.instances.length, 1);
+  const [element] = FakeAudio.instances;
+  assert.equal(element.loop, true);
+  assert.equal(element.muted, false);
+
+  // Replays reuse the same element so its first-tap activation carries over.
+  FakeAudio.log = [];
+  assert.equal(await speakWord('sheep'), true);
+  assert.deepEqual(FakeAudio.log, ['play', 'speak', 'pause']);
+  assert.equal(FakeAudio.instances.length, 1);
+});
+
+test('rejected silent media preserves working speech and is diagnosed', async (t) => {
+  const { synthesis, records } = installSpeech(t);
+  globalThis.window.Audio = FakeAudio;
+  FakeAudio.reject = true;
+  t.after(() => { FakeAudio.reject = false; });
+  synthesis.speak = endNormally;
+  assert.equal(await speakWord('ship'), true);
+  await Promise.resolve();
+  assert.ok(records.some(({ event, error }) => event === 'media-keepalive-error' && error === 'NotAllowedError'));
+});
+
+test('a timed-out utterance also stops the silent media', async (t) => {
+  installSpeech(t);
+  globalThis.window.Audio = FakeAudio;
+  FakeAudio.log = [];
+  const playback = speakWord('ship');
+  t.mock.timers.tick(SPEECH_PLAYBACK_TIMEOUT_MS);
+  assert.equal(await playback, false);
+  assert.deepEqual(FakeAudio.log, ['play', 'pause']);
+});
