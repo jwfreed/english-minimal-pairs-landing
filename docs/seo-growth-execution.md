@@ -956,11 +956,11 @@ remains the release blocker. The pilot commit can be reverted locally.
 voices. Plain speech used the browser default English voice. It reported
 start and end with user activation present, but the listener marked it
 **silent**. The prerecorded `ship.m4a` and the independent HTML audio tone
-both completed and the listener marked both **heard**. This isolates the
-observed silence to the live speech path in that run and validates the
-recorded clip as an audible alternative on Firefox. The trace does not record
-the position of the Silent Mode switch. Confirmation of that setting, Safari
-and Chrome probe results, and full exercise acceptance remain pending.
+both completed and the listener marked both **heard**. The owner confirmed
+Silent Mode was on during this run. This isolates the observed silence to
+the live speech path in Firefox under that setting and validates the recorded
+clip as an audible alternative. Safari and Chrome probe results and full
+exercise acceptance remain pending.
 
 **Production voice candidate.** Evaluate Piper `en_US-ljspeech-medium`
 offline. Its card identifies training from scratch on the public-domain LJ
