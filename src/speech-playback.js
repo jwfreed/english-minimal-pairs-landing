@@ -56,6 +56,20 @@ function stopMediaKeepalive() {
   try { mediaKeepalive?.pause(); } catch { /* best effort */ }
 }
 
+// Evaluate two existing synthetic clips on the LAN dev server only.
+let clipPlayer = null;
+
+function previewClipUrl(text) {
+  if (!import.meta.env?.DEV || !new URLSearchParams(window.location.search).has('recordedAudio')) {
+    return undefined;
+  }
+
+  const word = text.toLowerCase();
+  if (word === 'ship' || word === 'sheep') {
+    return `/.generated/word-audio/${word}.m4a`;
+  }
+}
+
 function setButtonBusy(button, busy, automaticReplay) {
   button?.classList.toggle('is-playing', busy);
   button?.classList.toggle('is-auto-playing', busy && automaticReplay);
@@ -68,7 +82,8 @@ export function cancelSpeechPlayback() {
   // Cancellation is never evidence of successful playback. Settle before
   // cancel(), which can synchronously deliver callbacks on some engines.
   playback?.complete(false, 'cancelled');
-  if (playback || synthesis?.speaking || synthesis?.pending) {
+  if (playback?.player) playback.player.pause();
+  if (playback?.utterance || synthesis?.speaking || synthesis?.pending) {
     diagnose('cancel');
     synthesis?.cancel?.();
   }
@@ -86,9 +101,11 @@ function getEnglishVoice(voices) {
 export function speakWord(text, activeButton, {
   automaticReplay = false,
   timeoutMs = SPEECH_PLAYBACK_TIMEOUT_MS,
+  clipUrl = previewClipUrl(text),
 } = {}) {
   const synthesis = window.speechSynthesis;
-  if (!synthesis || typeof SpeechSynthesisUtterance === 'undefined') {
+  const useClip = Boolean(clipUrl) && typeof window.Audio === 'function';
+  if (!useClip && (!synthesis || typeof SpeechSynthesisUtterance === 'undefined')) {
     diagnose('unavailable');
     return Promise.resolve(false);
   }
@@ -99,18 +116,67 @@ export function speakWord(text, activeButton, {
     let started = false;
     let settled = false;
     let watchdog;
+    let player;
     const complete = (didPlay, reason) => {
       if (settled) return;
       settled = true;
       clearTimeout(watchdog);
       if (activePlayback?.id === id) {
         activePlayback = null;
-        stopMediaKeepalive();
         setButtonBusy(activeButton, false, automaticReplay);
+      }
+      if (player) {
+        player.onended = null;
+        player.onerror = null;
+      } else {
+        stopMediaKeepalive();
       }
       diagnose('settled', { id, didPlay, reason });
       resolve(didPlay);
     };
+
+    const callback = (event, detail = {}) => {
+      diagnose(event, { id, stale: settled, ...detail });
+      return !settled;
+    };
+
+    if (useClip) {
+      try {
+        player = clipPlayer ??= new window.Audio();
+        activePlayback = { id, complete, player };
+        player.onended = () => {
+          // Reused elements can deliver events queued by a previous source.
+          if (player.ended && callback('end')) {
+            complete(started, started ? 'ended' : 'end-without-start');
+          }
+        };
+        player.onerror = () => {
+          if (player.error && callback('error', { error: player.error.code })) {
+            complete(false, 'error');
+          }
+        };
+        setButtonBusy(activeButton, true, automaticReplay);
+        watchdog = setTimeout(() => {
+          complete(false, 'timeout');
+          player.pause();
+        }, timeoutMs);
+        if (!player.error && player.src.endsWith(clipUrl)) player.currentTime = 0;
+        else player.src = clipUrl;
+        diagnose('submit', { id, clip: clipUrl });
+        // This attempt's promise is tied to its own play request. A queued
+        // media event from the previous source cannot mark this request started.
+        player.play().then(
+          () => { if (callback('start')) started = true; },
+          (error) => {
+            if (callback('error', { error: error?.name || 'Error' })) complete(false, 'error');
+          },
+        );
+      } catch (error) {
+        diagnose('exception', { id, error: error?.name || 'Error' });
+        complete(false, 'exception');
+      }
+      return;
+    }
 
     try {
       // iOS Silent Mode can suppress speech despite successful callbacks.
@@ -144,10 +210,6 @@ export function speakWord(text, activeButton, {
 
       // Keep the utterance alive until settlement, including on mobile engines.
       activePlayback = { id, utterance, complete };
-      const callback = (event, detail = {}) => {
-        diagnose(event, { id, stale: settled, ...detail });
-        return !settled;
-      };
       utterance.onstart = () => {
         if (callback('start')) started = true;
       };

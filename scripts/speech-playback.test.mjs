@@ -276,3 +276,78 @@ test('a timed-out utterance also stops the silent media', async (t) => {
   assert.equal(await playback, false);
   assert.deepEqual(FakeAudio.log, ['play', 'pause']);
 });
+
+
+class FakeClipPlayer {
+  static instances = [];
+  static startError = null;
+
+  constructor() {
+    FakeClipPlayer.instances.push(this);
+    this.src = '';
+    this.ended = false;
+    this.error = null;
+    this.paused = true;
+  }
+
+  play() {
+    this.ended = false;
+    this.error = null;
+    this.paused = false;
+    return FakeClipPlayer.startError ? Promise.reject(FakeClipPlayer.startError) : Promise.resolve();
+  }
+
+  pause() { this.paused = true; }
+}
+
+test('the opt-in recorded player reuses the media element and ignores an old end during retry', async (t) => {
+  const { synthesis } = installSpeech(t);
+  globalThis.window.Audio = FakeClipPlayer;
+  synthesis.speak = () => assert.fail('Recorded preview must use media');
+  const initial = speakWord('ship', null, { clipUrl: '/fixtures/ship.m4a' });
+  assert.equal(FakeClipPlayer.instances.length, 1);
+  const [player] = FakeClipPlayer.instances;
+  assert.equal(player.src, '/fixtures/ship.m4a');
+  const oldEnd = player.onended;
+  cancelSpeechPlayback();
+  assert.equal(await initial, false);
+  assert.equal(player.paused, true);
+
+  const retry = speakWord('sheep', null, { clipUrl: '/fixtures/sheep.m4a' });
+  assert.equal(FakeClipPlayer.instances.length, 1);
+  assert.equal(player.src, '/fixtures/sheep.m4a');
+  await Promise.resolve(); // The new play request has been fulfilled.
+  oldEnd();
+  player.onended(); // A queued event on the reused element, which is still playing.
+  assert.equal(typeof player.onended, 'function');
+  player.ended = true;
+  player.onended();
+  assert.equal(await retry, true);
+});
+
+test('recorded media errors and a missing completion fail closed and leave retry usable', async (t) => {
+  installSpeech(t);
+  globalThis.window.Audio = FakeClipPlayer;
+  const options = { clipUrl: '/fixtures/ship.m4a' };
+  FakeClipPlayer.startError = new DOMException('No gesture', 'NotAllowedError');
+  t.after(() => { FakeClipPlayer.startError = null; });
+  assert.equal(await speakWord('ship', null, options), false);
+  FakeClipPlayer.startError = null;
+  const [player] = FakeClipPlayer.instances;
+
+  const missing = speakWord('ship', null, options);
+  player.error = { code: 4 };
+  player.onerror();
+  assert.equal(await missing, false);
+
+  const hung = speakWord('ship', null, options);
+  t.mock.timers.tick(SPEECH_PLAYBACK_TIMEOUT_MS);
+  assert.equal(await hung, false);
+  assert.equal(player.paused, true);
+
+  const retry = speakWord('ship', null, options);
+  await Promise.resolve();
+  player.ended = true;
+  player.onended();
+  assert.equal(await retry, true);
+});

@@ -855,6 +855,102 @@ ambient (ringer-switch-muted) category stays in effect.
 stays silent; then `/` and `/bad-vs-bed/` initial Start, replay, both rounds and
 summary audible. Repeat with Silent Mode off. Rollback: revert the commit.
 
+### D9. Private prerecorded TTS pilot (2026-11-18)
+
+**Release verdict is BLOCKED.** The production audio-check page still serves
+the silent-media keepalive implementation at `bc19189`. The reports confirm
+that Safari on the affected iPhone can speak with Silent Mode off. Earlier
+tests reported silence with Silent Mode on in Safari and Firefox, and audible
+speech in Chrome. The owner has no tone result or browser report to compare.
+The latest keepalive build and the local recorded-audio pilot still need
+audibility testing on that iPhone. The browser-to-browser difference and the
+underlying session or routing behavior remain unresolved.
+
+The recorded-audio draft was present in the working tree but would select
+recorded playback in any browser with HTML audio, despite having no word files.
+The draft would cause every clip request to fail. Restrict the draft to an
+explicit development preview for **ship/sheep**, using two existing TTS samples
+from the private VoiceStudio pilot. The playback code calls HTML media
+`play()` synchronously, waits for its own start promise and end, and keeps the
+timeout and cancellation safeguards. A late event from a prior source cannot
+complete an active clip that is still playing. Failed media is retried only
+from the existing user controls. The diagnostic page can compare this path
+with plain Web Speech and the generated tone. The production build continues
+to use the current Web Speech path and contains neither pilot recording.
+
+**Architecture decision.** Use the device comparison to determine whether
+prerecorded TTS through HTML audio solves the Silent Mode reproduction.
+Browser TTS has no word-asset maintenance and uses the user's installed voices,
+but gesture, voice selection and session tweaks have not demonstrated reliable
+Silent Mode output. Prerecorded TTS decouples pronunciation and playback from
+the device's speech synthesis. This adds asset review and publishing. Apple
+documents AAC support on Safari for iOS. Confirm the same media path in Firefox
+and Chrome and on the target desktop browsers.
+([Safari supported media](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html))
+
+The catalog and all homepage locales together use 50 distinct words. The
+app uses device TTS and has only silent warmup audio. VoiceStudio's nearby
+private pilot covers eight word types overall and has no approved output
+redistribution or human pronunciation review. The nearby Azure and Polly
+research also leaves production rights open. The owner prefers TTS. If
+HTML audio is audible on the iPhone, source all missing clips from a cleared
+TTS voice and confirm redistribution terms before generating the full set.
+The proposed workflow is to use a consistent English voice for each contrast,
+review both takes for audible contrast and comparable level/rate, and record
+voice, source, licensing, IPA, and file hashes. Resolve ambiguous words such
+as `live` (/lɪv/) explicitly and review dialect-specific vowels against the
+page's intended contrast. Encode comparable mono AAC and validate the complete
+catalog and homepage inventory before activating it. A new word must come
+with a reviewed clip. The two 24 kHz samples total 16,712 bytes, approximately
+0.4 MB for 50 clips of comparable size. Load only requested words and allow
+normal browser caching. The site has no offline guarantee for uncached files.
+Full asset acquisition and production activation remain outside this pilot.
+
+**Run the private pilot on trusted LAN Wi-Fi.** In the landing repo, use the
+existing adjacent local VoiceStudio pilot. The converted files live in ignored
+`.generated`, outside Vite's public directory. Run on the same Mac and
+Wi-Fi as the iPhone.
+
+```sh
+rtk proxy mkdir -p .generated/word-audio
+rtk proxy afconvert -f m4af -d aac -b 48000 ../english-minimal-pairs-voicestudio-pilot-2026-10-19/audio/candidate/candidate-ivsi-v01-ship-t01.wav .generated/word-audio/ship.m4a
+rtk proxy afconvert -f m4af -d aac -b 48000 ../english-minimal-pairs-voicestudio-pilot-2026-10-19/audio/candidate/candidate-ivsi-v01-sheep-t01.wav .generated/word-audio/sheep.m4a
+rtk proxy npm run dev -- --host 0.0.0.0 --port 5180 --strictPort
+```
+
+With Silent Mode on, open `http://<Mac-LAN-IP>:5180/audio-check.html?recordedAudio`
+in Safari, Firefox, and Chrome. Compare plain speech, exercise speech (the
+recorded clip), and the test tone, recording Heard or Silent for each. Repeat
+with Silent Mode off. If the recordings are audible, verify pronunciation,
+Start, replay, two rounds, recovery, summary and CTA on these Vite source URLs
+with `?recordedAudio&speechDebug` appended. Select English on the homepage
+so the preview targets ship/sheep.
+
+- Homepage `/`
+- English hub `/content/pairs/minimal-pairs-practice/index.html`
+- English pair `/content/pairs/ship-vs-sheep/index.html`
+- Japanese pair `/content/locales/ja/ship-vs-sheep/index.html`
+
+The controller's callbacks establish playback state only. Record what can
+actually be heard before declaring device acceptance. If both the tone and the
+recording are silent, investigate the phone's media output before adopting
+recorded audio. If only the Web Speech path is silent, the recording avoids
+that path. No real-device result is available yet.
+
+**Initial verification.** The focused suite
+(`rtk proxy node --test --test-reporter=spec scripts/speech-playback.test.mjs scripts/exercise-lifecycle-speech.test.mjs scripts/seo-exercise-adapter.test.mjs`)
+passes 52 tests. `rtk proxy npm test` passes 280 tests.
+`rtk proxy npm run build` and
+`npm run validate:landing-copy`, `npm run validate:funnel-tracking`,
+`npm run validate:app-store-tracking`, and `npm run validate:seo-conversion-matrix`
+pass, as does `npm run validate:localized -- --page ja/ship-vs-sheep`.
+Chromium at 390 px loaded the actual AAC files on all four routes above,
+recovered from an injected clip request failure, replayed the stimulus and
+completed both rounds. Each run emitted one exercise start, one completion
+and one App Store click to a local tracking stub. The build includes the usual
+localized-link warning and omits the pilot media. The existing device failure
+remains the release blocker. The pilot commit can be reverted locally.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:
