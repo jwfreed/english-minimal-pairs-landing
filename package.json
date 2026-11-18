@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run generate:localized-homepages && npm run validate:content-routes && npm run validate:breadcrumbs && npm run validate:seo-exercise",
+    "prebuild": "npm run generate:localized-homepages && npm run validate:content-routes && npm run validate:breadcrumbs && npm run validate:seo-exercise && npm run validate:word-audio",
     "build": "vite build",
     "postbuild": "npm run validate:breadcrumbs:dist && npm run validate:localized-homepages && npm run validate:seo-architecture && npm run validate:internal-links",
     "generate:localized-homepages": "node scripts/generate-localized-homepages.mjs",
@@ -20,6 +20,7 @@
     "validate:funnel-tracking": "node scripts/validate-funnel-tracking.mjs",
     "validate:seo-conversion-matrix": "node scripts/validate-seo-page-conversion-matrix.mjs",
     "validate:seo-exercise": "node scripts/validate-seo-exercise.mjs",
+    "validate:word-audio": "node --test scripts/word-audio-assets.test.mjs",
     "preview": "vite preview",
     "validate:landing-copy": "node scripts/validate-landing-copy.mjs",
     "validate:localized-homepages": "node scripts/validate-localized-homepages.mjs",

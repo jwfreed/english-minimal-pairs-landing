@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { fakeWordAudio } from './fake-word-audio.mjs';
 
 import { getContrastById } from '../src/contrast-catalog.js';
 import { getSeoExerciseCopy } from '../src/seo-exercise-translations.js';
@@ -225,17 +226,16 @@ function createEnvironment(pathname) {
   };
   root.ownerDocument = document;
   const spoken = [];
-  const speechSynthesis = {
-    cancel() {},
-    getVoices: () => [],
-    speak(utterance) {
-      spoken.push(utterance.text);
-      queueMicrotask(() => { utterance.onstart?.(); utterance.onend?.(); });
-    },
-  };
   const window = {
     location: { pathname },
-    speechSynthesis,
+    Audio: fakeWordAudio({
+      onPlay(attempt) {
+        spoken.push(attempt.text);
+        attempt.onstart();
+        // Completion is a later media task, after the play promise resolves.
+        setImmediate(attempt.onend);
+      },
+    }),
     dispatchEvent() {},
     setTimeout(callback) {
       queueMicrotask(callback);
@@ -253,7 +253,6 @@ function findButton(mount, text) {
 function installEnvironment(t, pathname) {
   const originals = {
     CustomEvent: globalThis.CustomEvent,
-    SpeechSynthesisUtterance: globalThis.SpeechSynthesisUtterance,
     document: globalThis.document,
     window: globalThis.window,
   };
@@ -267,12 +266,6 @@ function installEnvironment(t, pathname) {
       this.detail = options?.detail;
     }
   };
-  globalThis.SpeechSynthesisUtterance = class {
-    constructor(text) {
-      this.text = text;
-    }
-  };
-
   t.after(() => {
     Object.assign(globalThis, originals);
   });

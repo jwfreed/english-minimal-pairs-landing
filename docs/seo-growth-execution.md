@@ -998,6 +998,78 @@ approval, generate the full set locally and validate each AAC file and its
 catalog mapping against a pronunciation manifest. The deployable artifacts
 are the reviewed audio files and player code. Synthesis runs offline.
 
+### D10. Recorded TTS release candidate (2026-11-18)
+
+**Device evidence.** The owner confirmed Silent Mode was on during both the
+Firefox and Safari probes. In both browsers live speech finished silently
+while the recorded `ship` and the test tone were audible. The test establishes
+that recorded media bypasses the observed live-speech failure on those
+browsers. The owner approved local generation of the complete vocabulary.
+
+**Playback.** Homepage, hub and pair exercises use the same recorded-clip
+player, including for preview and feedback replay. The first tap issues
+`Audio.play()` synchronously. Replays reuse the media element. Scoring still
+requires the current play request to start and end. Cancelled, stale, rejected
+or timed-out requests leave the attempt unscored. The independent plain speech
+and tone controls remain on the unindexed audio-check page for diagnosis.
+
+**Source and regeneration.** The 50 clips in `public/audio/words/` were
+generated offline using Piper 1.8.0 and ONNX Runtime 1.23.2. The pinned LJ
+Speech medium model and config hashes are recorded in
+`scripts/generate-word-audio.py`. The model author lists this voice as public
+domain and the source dataset is public domain. The pinned model card records
+training from scratch. Only synthesized audio and its manifest are served.
+([Author's voice and license notes](https://brycebeattie.com/files/tts/),
+[pinned model card](https://huggingface.co/rhasspy/piper-voices/blob/0ca208afc2a2ee102b1e961e72e0a7e4907be3d0/en/en_US/ljspeech/medium/MODEL_CARD),
+[LJ Speech dataset](https://keithito.com/LJ-Speech-Dataset/))
+
+The generator reads the catalog, uses US English phonemes and forces the verb
+`live` to /lɪv/. It matches clip levels with linear gain, encodes mono AAC, and
+writes the catalog IPA, actual phoneme input and file checksum to the manifest.
+All 50 built clips decode as 22.05 kHz mono audio. Decoded duration is
+0.29–0.74 seconds and RMS is −20.30 to −19.97 dBFS with peak below clipping.
+The clips total 364,870 bytes. The player requests one word at a time. The
+build checks coverage and checksums against the current catalog and homepage
+configuration.
+
+```sh
+rtk proxy /tmp/soundwise-piper-audition-venv/bin/python scripts/generate-word-audio.py /tmp/soundwise-piper-audition-model/en_US-ljspeech-medium.onnx public/audio/words
+rtk proxy node --test scripts/speech-playback.test.mjs scripts/exercise-lifecycle-speech.test.mjs scripts/seo-exercise-adapter.test.mjs scripts/seo-exercise-ux.test.mjs
+rtk proxy npm test
+rtk proxy npm run build
+rtk proxy npm run validate:landing-copy
+rtk proxy npm run validate:funnel-tracking
+rtk proxy npm run validate:app-store-tracking
+rtk proxy npm run validate:seo-conversion-matrix
+rtk proxy npm run validate:localized -- --page ja/ship-vs-sheep
+```
+
+The focused suite passed 45 tests and the full suite passed 259. The build and
+all listed validators passed. The total test count decreased because the
+exercise player no longer has voice selection, live speech callbacks or the
+silent-media keepalive. Lifecycle regressions still cover retries, cancellation,
+focus, scores and exactly-once tracking through a controlled media player.
+
+Chromium at 390 px exercised the built homepage, English hub, bad/bed and
+Japanese ship/sheep pages. Each flow recovered from a blocked clip request,
+replayed a stimulus and finished both rounds. Each recorded one start, one
+completion and one App Store click against a local tracking stub. Chromium
+also decoded every clip in the manifest. These checks establish usable files
+and correct state transitions, while pronunciation and audibility require
+listening.
+
+**Acceptance before merge.** Serve the built site with
+`rtk proxy npm run preview -- --host 0.0.0.0 --port 4180 --strictPort`.
+On the affected iPhone with Silent Mode on, complete both rounds and replay
+the sample in Safari, Firefox and Chrome. Check the homepage, practice hub,
+`/bad-vs-bed/` and `/ja/ship-vs-sheep/` as representative routes. Confirm the
+words match the intended pronunciations and the result opens after both
+answers. The LAN development server has a side-by-side listening review at
+`/.generated/word-review.html` for the entire set. Initial physical-device
+probes passed in Safari and Firefox, and the final build is awaiting device
+acceptance. Release remains **BLOCKED**. Rollback is reverting the recorded
+audio commit. Production still serves the previous implementation.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:

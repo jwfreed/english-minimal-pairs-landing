@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { installWordAudio } from './fake-word-audio.mjs';
 
 import { getContrastById } from '../src/contrast-catalog.js';
 import { createExercise } from '../src/exercise-engine.js';
@@ -11,9 +12,9 @@ import {
   speakWord,
 } from '../src/seo-page.js';
 
-// Release Check 1: the exercise must stay correct when browser speech synthesis
+// Release Check 1: the exercise must stay correct when browser audio playback
 // misbehaves. The harness wires the same pieces seo-page.js wires (engine,
-// input gate, speakWord, funnel tracking) and drives them with a manual speech
+// input gate, speakWord, funnel tracking) and drives them with a manual media
 // stub and mock timers, then asserts on externally observable behaviour:
 // scores, rounds, stage, accepted answers, and event counts.
 //
@@ -29,26 +30,14 @@ const flush = () => new Promise((resolve) => setImmediate(resolve));
 function createLifecycle(t, contrastId) {
   t.mock.timers.enable({ apis: ['setTimeout'] });
 
-  const originalWindow = globalThis.window;
-  const originalUtterance = globalThis.SpeechSynthesisUtterance;
-  const utterances = [];
+  const { attempts, pauses: cancelCalls } = installWordAudio(t);
   const listeners = new Map();
   const dispatched = [];
   const gtagEvents = [];
   const unavailable = { count: 0 };
-  const cancelCalls = { count: 0 };
   let guessesAvailable = false;
 
-  globalThis.window = {
-    speechSynthesis: {
-      cancel() {
-        cancelCalls.count += 1;
-      },
-      getVoices: () => [],
-      speak(utterance) {
-        utterances.push(utterance);
-      },
-    },
+  Object.assign(globalThis.window, {
     addEventListener(name, listener) {
       listeners.set(name, listener);
     },
@@ -60,16 +49,6 @@ function createLifecycle(t, contrastId) {
     gtag(_command, name) {
       gtagEvents.push(name);
     },
-  };
-  globalThis.SpeechSynthesisUtterance = class {
-    constructor(text) {
-      this.text = text;
-    }
-  };
-  t.after(() => {
-    cancelSpeechPlayback();
-    globalThis.window = originalWindow;
-    globalThis.SpeechSynthesisUtterance = originalUtterance;
   });
 
   setupFunnelTracking();
@@ -114,7 +93,7 @@ function createLifecycle(t, contrastId) {
     },
   };
 
-  // Answers every not-yet-handled utterance according to `policy` until the
+  // Answers every not-yet-handled attempt according to `policy` until the
   // promise settles or nothing more can happen. 'hang' leaves it unanswered.
   const pump = async (promise, policy = () => 'end') => {
     let done = false;
@@ -126,18 +105,18 @@ function createLifecycle(t, contrastId) {
 
     for (let i = 0; i < 30 && !done; i += 1) {
       await flush();
-      for (const utterance of utterances) {
-        if (utterance.handled) {
+      for (const attempt of attempts) {
+        if (attempt.handled) {
           continue;
         }
 
-        utterance.handled = true;
-        const outcome = policy(utterance);
+        attempt.handled = true;
+        const outcome = policy(attempt);
         if (outcome === 'end') {
-          utterance.onstart();
-          utterance.onend();
+          attempt.onstart();
+          attempt.onend();
         } else if (outcome === 'error') {
-          utterance.onerror();
+          attempt.onerror();
         }
       }
     }
@@ -163,7 +142,7 @@ function createLifecycle(t, contrastId) {
     snapshot: () => exercise.getSnapshot(),
     t,
     unavailable,
-    utterances,
+    attempts,
   };
 }
 
@@ -181,8 +160,8 @@ for (const { label, contrastId } of SUBJECTS) {
   test(`${label}: end without start never opens answering, and double-tap retry stays in the same round`, async (t) => {
     const lc = createLifecycle(t, contrastId);
     const first = lc.actions.start();
-    assert.equal(lc.utterances.length, 1); // No asynchronous hop before speak().
-    lc.utterances[0].onend();
+    assert.equal(lc.attempts.length, 1); // No asynchronous hop before play().
+    lc.attempts[0].onend();
     await first;
     assert.equal(lc.snapshot().stage, 'preview');
     assert.equal(lc.guessesAvailable(), false);
@@ -190,10 +169,10 @@ for (const { label, contrastId } of SUBJECTS) {
     const retry = lc.actions.start();
     const duplicate = lc.actions.start();
     assert.equal(retry, duplicate);
-    assert.equal(lc.utterances.length, 2);
-    lc.utterances[1].onstart();
+    assert.equal(lc.attempts.length, 2);
+    lc.attempts[1].onstart();
     assert.equal((await lc.exercise.answer(0)).accepted, false);
-    lc.utterances[1].onend();
+    lc.attempts[1].onend();
     await retry;
     assert.equal(lc.snapshot().canAnswer, true);
     assert.equal(lc.snapshot().round, 1);
@@ -283,11 +262,11 @@ for (const { label, contrastId } of SUBJECTS) {
       snapshot: lc.snapshot(),
       counts: lc.counts(),
       gtag: [...lc.gtagEvents],
-      spoken: lc.utterances.length,
+      spoken: lc.attempts.length,
       unavailable: lc.unavailable.count,
     };
 
-    const [stale] = lc.utterances;
+    const [stale] = lc.attempts;
     stale.onend();
     stale.onerror();
     stale.onend();
@@ -296,7 +275,7 @@ for (const { label, contrastId } of SUBJECTS) {
     assert.deepEqual(lc.snapshot(), before.snapshot);
     assert.deepEqual(lc.counts(), before.counts);
     assert.deepEqual(lc.gtagEvents, before.gtag);
-    assert.equal(lc.utterances.length, before.spoken);
+    assert.equal(lc.attempts.length, before.spoken);
     assert.equal(lc.unavailable.count, before.unavailable);
     assert.equal(lc.guessesAvailable(), false);
   });
@@ -307,11 +286,11 @@ for (const { label, contrastId } of SUBJECTS) {
     await lc.pump(failed, () => 'hang');
     t.mock.timers.tick(SPEECH_PLAYBACK_TIMEOUT_MS);
     await lc.pump(failed, () => 'hang');
-    const [stale] = lc.utterances;
+    const [stale] = lc.attempts;
 
     const retry = lc.actions.start();
     await flush();
-    assert.equal(lc.utterances.length, 2);
+    assert.equal(lc.attempts.length, 2);
     assert.equal(lc.snapshot().stage, 'test');
 
     // The old attempt's callbacks arrive while the new playback is pending.
@@ -322,8 +301,8 @@ for (const { label, contrastId } of SUBJECTS) {
     assert.equal(lc.guessesAvailable(), false);
     assert.equal(lc.snapshot().stage, 'test');
 
-    lc.utterances[1].onstart();
-    lc.utterances[1].onend();
+    lc.attempts[1].onstart();
+    lc.attempts[1].onend();
     assert.equal((await lc.pump(retry)).done, true);
     assert.equal(lc.snapshot().round, 1);
     assert.equal(lc.snapshot().stage, 'test');
@@ -360,7 +339,7 @@ for (const { label, contrastId } of SUBJECTS) {
 
     await lc.pump(lc.actions.start());
     const { targetIndex } = lc.snapshot();
-    const spokenBefore = lc.utterances.length;
+    const spokenBefore = lc.attempts.length;
     const final = lc.actions.guess(targetIndex);
     await lc.pump(final, () => 'hang');
 
@@ -376,9 +355,9 @@ for (const { label, contrastId } of SUBJECTS) {
     assert.deepEqual(lc.counts(), { started: 2, rounds: 2, completed: 1 });
     assert.deepEqual(lc.gtagEvents, ['exercise_start', 'exercise_complete']);
     // A stuck first replay word ends the replay; it does not retry or skip on.
-    assert.equal(lc.utterances.length, spokenBefore + 1);
+    assert.equal(lc.attempts.length, spokenBefore + 1);
 
-    const stale = lc.utterances.at(-1);
+    const stale = lc.attempts.at(-1);
     stale.onend();
     stale.onerror();
     await flush();
@@ -393,7 +372,7 @@ for (const { label, contrastId } of SUBJECTS) {
     const lc = createLifecycle(t, contrastId);
     const started = lc.actions.start();
     await flush();
-    const first = lc.utterances[0];
+    const first = lc.attempts[0];
     first.onstart();
     first.onend();
     first.onerror();
@@ -407,11 +386,11 @@ for (const { label, contrastId } of SUBJECTS) {
     const secondGuess = lc.actions.guess(targetIndex);
     assert.deepEqual(await secondGuess, { accepted: false });
 
-    const noisy = (utterance) => {
-      utterance.onstart();
-      utterance.onend();
-      utterance.onerror();
-      utterance.onend();
+    const noisy = (attempt) => {
+      attempt.onstart();
+      attempt.onend();
+      attempt.onerror();
+      attempt.onend();
       return 'handled';
     };
     assert.equal((await lc.pump(firstGuess, noisy)).value.accepted, true);
@@ -471,7 +450,7 @@ for (const { label, contrastId } of SUBJECTS) {
     assert.equal(lc.snapshot().correct, 1);
     assert.equal(lc.counts().completed, 0);
 
-    const stale = lc.utterances.at(-1);
+    const stale = lc.attempts.at(-1);
     stale.onend();
     stale.onerror();
     await flush();

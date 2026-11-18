@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import test from 'node:test';
+import { installWordAudio } from './fake-word-audio.mjs';
 
 import {
   SEO_EXERCISE_PRESENTATION_FREEZE_ROUTES,
@@ -109,9 +110,9 @@ test('Start invokes playback inside the caller gesture stack', async () => {
 });
 
 test('an end callback without a start is unavailable, never a playable stimulus', async (t) => {
-  const { utterances } = installHangingSpeech(t);
+  const { attempts } = installWordAudio(t);
   const playback = speakWord('ship');
-  utterances[0].onend();
+  attempts[0].onend();
   assert.equal(await playback, false);
 });
 
@@ -168,24 +169,7 @@ test('feedback marks the correct word and only a selected wrong word', () => {
 });
 
 test('superseded and explicitly cancelled speech settles without browser callbacks', async (t) => {
-  const originalWindow = globalThis.window;
-  const originalUtterance = globalThis.SpeechSynthesisUtterance;
-  const utterances = [];
-  const synthesis = {
-    cancel() {},
-    getVoices: () => [],
-    speak(utterance) {
-      utterances.push(utterance);
-    },
-  };
-
-  t.after(() => {
-    globalThis.window = originalWindow;
-    globalThis.SpeechSynthesisUtterance = originalUtterance;
-  });
-
-  globalThis.window = { speechSynthesis: synthesis };
-  globalThis.SpeechSynthesisUtterance = class {};
+  const { attempts } = installWordAudio(t);
 
   const createButton = () => ({
     attributes: new Map(),
@@ -211,8 +195,8 @@ test('superseded and explicitly cancelled speech settles without browser callbac
   assert.equal(await firstPlayback, false);
   assert.equal(firstButton.classes.get('is-auto-playing'), false);
 
-  utterances.at(-1).onstart();
-  utterances.at(-1).onend();
+  attempts.at(-1).onstart();
+  attempts.at(-1).onend();
   assert.equal(await secondPlayback, true);
 
   const cancelledPlayback = speakWord('pull', firstButton);
@@ -239,34 +223,9 @@ test('the SEO adapter keeps one persistent error announcement and cancels playba
   );
 });
 
-// Regression coverage for a browser that accepts speak() but never reports
+// Regression coverage for a browser that accepts play() but never reports
 // onend or onerror. Before the watchdog, the exercise waited on that promise
 // forever: guesses stayed disabled and the gate ignored every later Start.
-function installHangingSpeech(t) {
-  const originalWindow = globalThis.window;
-  const originalUtterance = globalThis.SpeechSynthesisUtterance;
-  const utterances = [];
-  const synthesis = {
-    cancelCalls: 0,
-    cancel() {
-      this.cancelCalls += 1;
-    },
-    getVoices: () => [],
-    speak(utterance) {
-      utterances.push(utterance);
-    },
-  };
-
-  globalThis.window = { speechSynthesis: synthesis };
-  globalThis.SpeechSynthesisUtterance = class {};
-  t.after(() => {
-    globalThis.window = originalWindow;
-    globalThis.SpeechSynthesisUtterance = originalUtterance;
-  });
-
-  return { synthesis, utterances };
-}
-
 function createTestExercise({ events, unavailable }) {
   const contrast = {
     id: 'ship-vs-sheep',
@@ -291,23 +250,23 @@ test('the default speech watchdog is long enough for one word and short enough t
 });
 
 test('speech that never reports completion settles as unavailable and ignores a late end', async (t) => {
-  const { synthesis, utterances } = installHangingSpeech(t);
+  const { pauses, attempts } = installWordAudio(t);
   const button = { classList: { toggle() {} }, setAttribute() {} };
 
   assert.equal(await speakWord('ship', button, { timeoutMs: 10 }), false);
-  assert.equal(synthesis.cancelCalls >= 1, true);
+  assert.equal(pauses.count >= 1, true);
 
   // A callback arriving after the timeout must not change the settled result
   // or leave playback state behind for the next word.
-  utterances[0].onend();
+  attempts[0].onend();
   const next = speakWord('sheep', button, { timeoutMs: 1000 });
-  utterances[1].onstart();
-  utterances[1].onend();
+  attempts[1].onstart();
+  attempts[1].onend();
   assert.equal(await next, true);
 });
 
 test('a hung first word returns the learner to preview, accepts no answer, and allows retry', async (t) => {
-  const { utterances } = installHangingSpeech(t);
+  const { attempts } = installWordAudio(t);
   const events = [];
   const unavailable = [];
   const exercise = createTestExercise({ events, unavailable });
@@ -328,12 +287,12 @@ test('a hung first word returns the learner to preview, accepts no answer, and a
   assert.equal(events.includes('demo_round_completed'), false);
 
   // Retry is possible: the gate is not stuck on the hung promise.
-  const spoken = utterances.length;
+  const spoken = attempts.length;
   const retry = gate.start(() => exercise.startRound());
   await new Promise((resolve) => setImmediate(resolve));
-  assert.equal(utterances.length, spoken + 1);
-  utterances.at(-1).onstart();
-  utterances.at(-1).onend();
+  assert.equal(attempts.length, spoken + 1);
+  attempts.at(-1).onstart();
+  attempts.at(-1).onend();
   const retrySnapshot = await retry;
 
   assert.equal(retrySnapshot.stage, 'test');
@@ -341,7 +300,7 @@ test('a hung first word returns the learner to preview, accepts no answer, and a
 });
 
 test('a hung replay after the final answer still completes once, after both rounds were answered', async (t) => {
-  const { utterances } = installHangingSpeech(t);
+  const { attempts } = installWordAudio(t);
   const events = [];
   const exercise = createTestExercise({ events, unavailable: [] });
 
@@ -349,8 +308,8 @@ test('a hung replay after the final answer still completes once, after both roun
   const answerRound = async () => {
     const started = exercise.startRound();
     await new Promise((resolve) => setImmediate(resolve));
-    utterances.at(-1).onstart();
-    utterances.at(-1).onend();
+    attempts.at(-1).onstart();
+    attempts.at(-1).onend();
     await started;
     return exercise.answer(1);
   };

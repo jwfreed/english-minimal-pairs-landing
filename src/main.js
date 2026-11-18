@@ -1013,17 +1013,6 @@ function setupPerformanceMonitoring() {
   performanceObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 }
 
-function warmSpeechVoices() {
-  if (!window.speechSynthesis) {
-    return;
-  }
-
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.addEventListener('voiceschanged', () => {
-    window.speechSynthesis.getVoices();
-  });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   const challengeParams = readChallengeParams();
   const staticRuntimeLocale = resolveRuntimeLocale(document.body.dataset.initialRuntimeLocale);
@@ -1073,7 +1062,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupDemoPhoneMockup();
     setupScrollAnimations();
     setupPerformanceMonitoring();
-    warmSpeechVoices();
 
     if (heroDemoState.isChallengeMode) {
       dispatchDemoEvent('challenge_opened', {

@@ -1,0 +1,256 @@
+{
+  "model": "en_US-ljspeech-medium",
+  "revision": "0ca208afc2a2ee102b1e961e72e0a7e4907be3d0",
+  "clips": {
+    "back": {
+      "ipa": "/bæk/",
+      "piperPhonemes": "bˈæk",
+      "sha256": "2a495708a2a3eac321ae3bbc32de1e08c853c272b4a9ee905bac8630785c9240"
+    },
+    "bad": {
+      "ipa": "/bæd/",
+      "piperPhonemes": "bˈæd",
+      "sha256": "0f93b37f5d80a5b44a770b526f675212b6bca307340def9229c1276d7f863f61"
+    },
+    "bat": {
+      "ipa": "/bæt/",
+      "piperPhonemes": "bˈæt",
+      "sha256": "8b71a3e70e3e4264b7690ebe3bba5bd87261efe58295944e6fd02e857323f2e2"
+    },
+    "beat": {
+      "ipa": "/biːt/",
+      "piperPhonemes": "bˈiːt",
+      "sha256": "5b5729b70a93dc5c87dd28363ba7ccc64c5af574f1c1b425c25d9bb7f6d66eee"
+    },
+    "bed": {
+      "ipa": "/bɛd/",
+      "piperPhonemes": "bˈɛd",
+      "sha256": "409e6920d6aafca2520ff6a8cc636b915f012cffb6592fc1d112b392d1e0ac05"
+    },
+    "bet": {
+      "ipa": "/bɛt/",
+      "piperPhonemes": "bˈɛt",
+      "sha256": "cf7a29ad16e037083a30c8bdc5f033abee49e3b3ee74e02d474248af99c771f8"
+    },
+    "bit": {
+      "ipa": "/bɪt/",
+      "piperPhonemes": "bˈɪt",
+      "sha256": "68fca7f0a685b2dd479fcabcccce5c7e4b89d0f3ea848c1ea4c8a95ea7d93bf2"
+    },
+    "cap": {
+      "ipa": "/kæp/",
+      "piperPhonemes": "kˈæp",
+      "sha256": "c4dcbef6cd735db7d96cc5ad7d5ce23731cd2a6f0e45ebe5f5f662a0505cf7f4"
+    },
+    "cop": {
+      "ipa": "/kɑp/",
+      "piperPhonemes": "kˈɑːp",
+      "sha256": "b580ed396ccb8c7d016d1061aad4eb16a819158719a40e61ed615a9c9f52e12c"
+    },
+    "cup": {
+      "ipa": "/kʌp/",
+      "piperPhonemes": "kˈʌp",
+      "sha256": "895efa09ca5d71325fa374ff9bfe3435f1fe2fd5300f4e7d56e9342ac96e6f9e"
+    },
+    "day": {
+      "ipa": "/deɪ/",
+      "piperPhonemes": "dˈeɪ",
+      "sha256": "ed22cdbe6e8e80d95bfb4d939db9d49e6226a2df8f78b92aa9422241c81b4b81"
+    },
+    "fan": {
+      "ipa": "/fæn/",
+      "piperPhonemes": "fˈæn",
+      "sha256": "6ac9351bebabd62ebc271d7a266cee2b304dd0691519b32be4585d49da7304e0"
+    },
+    "feel": {
+      "ipa": "/fiːl/",
+      "piperPhonemes": "fˈiːl",
+      "sha256": "ba158711f3ca9b3c957ba78410da1aa073a6d04ef4f4a82fe0a2b02a8da37a3c"
+    },
+    "fill": {
+      "ipa": "/fɪl/",
+      "piperPhonemes": "fˈɪl",
+      "sha256": "55837d1ded1a959908ecf3eb7e08790b07fda708bd47e05658caa6f1a284dfb1"
+    },
+    "fool": {
+      "ipa": "/fuːl/",
+      "piperPhonemes": "fˈuːl",
+      "sha256": "7bc0c08c43520bfbaaf3e2fea9c541ac91a6614e1532677bdd0f2c4dbca0ffe7"
+    },
+    "full": {
+      "ipa": "/fʊl/",
+      "piperPhonemes": "fˈʊl",
+      "sha256": "a937f3fa48ef17563fedaa45d2c533b99e6e3c30a717a7e7edf23440bc6a5e31"
+    },
+    "heart": {
+      "ipa": "/hɑːt/",
+      "piperPhonemes": "hˈɑːɹt",
+      "sha256": "24bcc3a8b9b5324512a3975dabc72decf3c3dac8e6d8c1ffbe63fbe12200e317"
+    },
+    "hurt": {
+      "ipa": "/hɜːt/",
+      "piperPhonemes": "hˈɜːt",
+      "sha256": "ea4561887b8295edb3f65f1004c0abfe1aa53d1c676df07056cf22730c38f9e3"
+    },
+    "law": {
+      "ipa": "/lɔː/",
+      "piperPhonemes": "lˈɔː",
+      "sha256": "73360e94277b4939253565d2d76a1d4e72a9557f7ec0017e8ae8cb05ac1c9e7b"
+    },
+    "leave": {
+      "ipa": "/liːv/",
+      "piperPhonemes": "lˈiːv",
+      "sha256": "65842275bf407886f0340830905eade11bb8b057b2c8e45b2123001d8dac5f92"
+    },
+    "lice": {
+      "ipa": "/laɪs/",
+      "piperPhonemes": "lˈaɪs",
+      "sha256": "46abf78448de084a57546b1ed3747a6009745a258198ed647f1c7966959fb82e"
+    },
+    "light": {
+      "ipa": "/laɪt/",
+      "piperPhonemes": "lˈaɪt",
+      "sha256": "abd76709ca6e9c9fa42977d5b65425f599ee5c6f8f0a070a7375a9947efff59f"
+    },
+    "live": {
+      "ipa": "/lɪv/",
+      "piperPhonemes": "lˈɪv",
+      "sha256": "dc273016adcd1ef88616106d382aeb554db7e33f53a04ac09cb21e34e5847c7d"
+    },
+    "low": {
+      "ipa": "/loʊ/",
+      "piperPhonemes": "lˈoʊ",
+      "sha256": "38d0b91e59a26a511ebec6a93c9f30d4d568eb009cf0bbe7c7016107b060caa2"
+    },
+    "man": {
+      "ipa": "/mæn/",
+      "piperPhonemes": "mˈæn",
+      "sha256": "04b63e2f608ea3743a321b0b1247c77c61d48e3978e9d5c1492223d1f19a4bd8"
+    },
+    "men": {
+      "ipa": "/mɛn/",
+      "piperPhonemes": "mˈɛn",
+      "sha256": "9e4e4aadd8dda68cdf0f0b32b8eee2f02b17991e2bada28c941513be63df73e8"
+    },
+    "night": {
+      "ipa": "/naɪt/",
+      "piperPhonemes": "nˈaɪt",
+      "sha256": "9f43efbb713aa875bcd542664cc21ced5318301bf60b46bac359e4eeeec6a38c"
+    },
+    "pack": {
+      "ipa": "/pæk/",
+      "piperPhonemes": "pˈæk",
+      "sha256": "dea350e831578093183f77d5fc5d9424687b58d78aea6354cba22c3bf27a29ae"
+    },
+    "pan": {
+      "ipa": "/pæn/",
+      "piperPhonemes": "pˈæn",
+      "sha256": "7d9f03fd0d12df139cebf2c9d0a6aa47e2a17c7c094d33f7a01e6915a9bc0f7f"
+    },
+    "pat": {
+      "ipa": "/pæt/",
+      "piperPhonemes": "pˈæt",
+      "sha256": "57568acddf7fad216368b5a2298da1905180ed579cdc6ba0763a9eabb20082fa"
+    },
+    "pool": {
+      "ipa": "/puːl/",
+      "piperPhonemes": "pˈuːl",
+      "sha256": "8caca69a967694f8865c0b626674e5cae63dfe4e09d41259143deca565b5cc3d"
+    },
+    "pull": {
+      "ipa": "/pʊl/",
+      "piperPhonemes": "pˈʊl",
+      "sha256": "9649c9425b7f688fcb5af54d0174959159b9f28a48601f548457cdae4b6072c0"
+    },
+    "rice": {
+      "ipa": "/raɪs/",
+      "piperPhonemes": "ɹˈaɪs",
+      "sha256": "83de14e5b811c1299049cfa99557bdd35b69511c9361c633816af0dadae9966a"
+    },
+    "right": {
+      "ipa": "/raɪt/",
+      "piperPhonemes": "ɹˈaɪt",
+      "sha256": "b5c7e1d1d4b10a35eafd8d781b20fa86d8bdb4d16b2fa2d472dcfb4464e2f1ff"
+    },
+    "seat": {
+      "ipa": "/siːt/",
+      "piperPhonemes": "sˈiːt",
+      "sha256": "7765498a40e3a41e2438de4f0bbc2d1635d51ce1b404210aa11a94b53b79a37b"
+    },
+    "sheep": {
+      "ipa": "/ʃiːp/",
+      "piperPhonemes": "ʃˈiːp",
+      "sha256": "825c1ea3329b7fd6697457f9fb82553192e79d1e365eccefc014c3bcf5136584"
+    },
+    "ship": {
+      "ipa": "/ʃɪp/",
+      "piperPhonemes": "ʃˈɪp",
+      "sha256": "ad61c2b06356bde44834a1310a6a9cdcfd1121361ee52b37ee427de4b31b4fe8"
+    },
+    "sink": {
+      "ipa": "/sɪŋk/",
+      "piperPhonemes": "sˈɪŋk",
+      "sha256": "21850483ae1798253897c66e17c918e6226cb3c8d6dc3b91a1004e5d872ccc48"
+    },
+    "sit": {
+      "ipa": "/sɪt/",
+      "piperPhonemes": "sˈɪt",
+      "sha256": "0b032efe7ace62bb887c1aab4f746e0abfbbc87087df59e4b16ebc47a7ab265a"
+    },
+    "they": {
+      "ipa": "/ðeɪ/",
+      "piperPhonemes": "ðeɪ",
+      "sha256": "a93d7d5f3a61b22d0a943a8feb717f06202caa2d778937342c8af238e7ae2d11"
+    },
+    "thin": {
+      "ipa": "/θɪn/",
+      "piperPhonemes": "θˈɪn",
+      "sha256": "4f460469a5064a3817a612551f00b084169bbd38b7a721cade42f5ba2107bc72"
+    },
+    "think": {
+      "ipa": "/θɪŋk/",
+      "piperPhonemes": "θˈɪŋk",
+      "sha256": "db3e1d6e7d02635cd38e5146db2a6158269bd0e86ee7022036dbd66b0f4e22a9"
+    },
+    "three": {
+      "ipa": "/θriː/",
+      "piperPhonemes": "θɹˈiː",
+      "sha256": "22aff0b47d085f8c6bb8937921defaa336c335f74b64b96e6d4d8236d66a9f5e"
+    },
+    "tin": {
+      "ipa": "/tɪn/",
+      "piperPhonemes": "tˈɪn",
+      "sha256": "f367ddcb87ee79605859604caab9a61bbc5e08fb1950669df612330d9ec219c5"
+    },
+    "tree": {
+      "ipa": "/triː/",
+      "piperPhonemes": "tɹˈiː",
+      "sha256": "74c99856c4394fa932cc98f8764da74cc86b9c76861c482bedd00a27dc11e219"
+    },
+    "van": {
+      "ipa": "/væn/",
+      "piperPhonemes": "vˈæn",
+      "sha256": "6c1415eb9a101d8b652e56da2886f7079ae7053eca33a41fd1840f92649651fe"
+    },
+    "vest": {
+      "ipa": "/vest/",
+      "piperPhonemes": "vˈɛst",
+      "sha256": "0164f9c27eabdc0ddfe1b648173d8cf46a76507683ceacb1c0e4e5e22152a15e"
+    },
+    "vine": {
+      "ipa": "/vaɪn/",
+      "piperPhonemes": "vˈaɪn",
+      "sha256": "085ffa1c4dbccfaed5d7a35ee346f144088b43f6c36f690967b54420d60953bb"
+    },
+    "west": {
+      "ipa": "/west/",
+      "piperPhonemes": "wˈɛst",
+      "sha256": "98324161c76f0d68207933abbc792770ddcd86107c67ca207bc6c29238a5d7a4"
+    },
+    "wine": {
+      "ipa": "/waɪn/",
+      "piperPhonemes": "wˈaɪn",
+      "sha256": "4b62b7db612cc369e6a6756ec52c58f9be6b04348a52dfb42f3c2411e28db373"
+    }
+  }
+}
