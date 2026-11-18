@@ -1109,6 +1109,26 @@ regenerating the exercise assets. Then review all words and recheck the
 full exercise on the iPhone. The comparison page and takes are local
 artifacts outside the build. Release remains **BLOCKED**.
 
+**Targeted pronunciation review (2026-11-18).** The owner accepted A for
+`bed` and `thin`, and A or B for `ship/sheep`, `live/leave`, `law/low`,
+`heart/hurt` and `tin`. All three takes of `bad` were rejected. Keep the
+accepted A clips. The `bad` manifest entry records the intended phonemes
+`bˈæd`. The input does not establish how clearly the generated vowel and
+consonants come through.
+
+The private review at `/.generated/bad-pronunciation/index.html` keeps the
+accepted `bed` and current `bad` for comparison. All three new takes use
+voice A and the same level matching and encoding:
+
+- D stretches the isolated synthesis to 1.20 times the default length.
+- E synthesizes “Now say bad.” and trims the earlier words at the model's
+  phoneme boundary, retaining the full final word and tail.
+- F uses the voice's more open `a` phoneme in an isolated take and needs
+  particular review for its fit with the exercise's /æ/ target.
+
+Generating the samples did not change the catalog or the exercise files.
+The `bad` replacement is pending listener acceptance.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:
