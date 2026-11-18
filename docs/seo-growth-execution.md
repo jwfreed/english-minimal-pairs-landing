@@ -861,10 +861,9 @@ summary audible. Repeat with Silent Mode off. Rollback: revert the commit.
 the silent-media keepalive implementation at `bc19189`. The reports confirm
 that Safari on the affected iPhone can speak with Silent Mode off. Earlier
 tests reported silence with Silent Mode on in Safari and Firefox, and audible
-speech in Chrome. The Firefox pilot result below distinguishes audibility
-on the two playback paths. The latest keepalive build and Safari/Chrome
-pilot still need audibility testing on that iPhone. The browser-to-browser
-difference and underlying session or routing behavior remain unresolved.
+speech in Chrome. The Firefox and Safari pilot results below distinguish
+audibility on the two playback paths. The full exercise and Chrome pilot
+still need testing on that iPhone.
 
 The recorded-audio draft was present in the working tree but would select
 recorded playback in any browser with HTML audio, despite having no word files.
@@ -959,8 +958,21 @@ start and end with user activation present, but the listener marked it
 both completed and the listener marked both **heard**. The owner confirmed
 Silent Mode was on during this run. This isolates the observed silence to
 the live speech path in Firefox under that setting and validates the recorded
-clip as an audible alternative. Safari and Chrome probe results and full
-exercise acceptance remain pending.
+clip as an audible alternative.
+
+**Safari physical-device result (2026-11-18).** The owner's
+`audio-check-dev` report identifies Safari 27.2. User activation was present
+and the browser default voice reported start and end. The listener marked
+plain speech **silent**, and marked the same prerecorded `ship.m4a` and HTML
+audio tone **heard**. This reproduces Firefox's separation between live
+speech and file playback. Silent Mode was requested for this check, but the
+Safari report itself contains no hardware Silent Mode reading.
+
+**Selected playback path.** Prerecorded TTS through HTML audio is the release
+candidate for scored exercises. An audible file and tone on both affected
+browsers establish that the phone can play the stimuli over this path. Playback
+events alone cannot establish audibility. Chrome and end-to-end acceptance
+for the final clips remain pending.
 
 **Production voice candidate.** Evaluate Piper `en_US-ljspeech-medium`
 offline. Its card identifies training from scratch on the public-domain LJ
@@ -973,14 +985,18 @@ before release.
 [Piper commercial-use list](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/COMMERCIAL_USE.md),
 [Piper licensing](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md))
 
-Pending approval for the 50-word set, first review isolated-word takes for
-`ship/sheep`, `live/leave` and `law/low`. These exercise vowel length,
-the homograph `live`, and dialect-dependent vowel quality. Pin the model
-revision and manifest of expected pronunciations. If the takes pass a
-listening review, generate the full set locally and validate each AAC file
-and its catalog mapping. Deploy only the reviewed audio files and the
-playback code. The live site would use neither an inference runtime nor an
-external synthesis service.
+The six private audition clips for `ship/sheep`, `live/leave` and `law/low`
+are available at `/.generated/piper-audition/index.html` on the LAN preview.
+They use Piper 1.8.0 with the model repository pinned to
+`0ca208afc2a2ee102b1e961e72e0a7e4907be3d0` and the verified model SHA-256
+`6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22`.
+The `live` clip uses the explicit eSpeak phonemes `lˈɪv`. These three pairs
+check vowel length, the homograph `live`, and dialect-dependent vowel quality.
+The samples use mono AAC at 22.05 kHz, range from 0.42 to 0.53 seconds before
+encoding, and total 44,983 bytes. A listening review is pending. After owner
+approval, generate the full set locally and validate each AAC file and its
+catalog mapping against a pronunciation manifest. The deployable artifacts
+are the reviewed audio files and player code. Synthesis runs offline.
 
 ### E. Decision log and proposed transitions
 
