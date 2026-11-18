@@ -1070,6 +1070,45 @@ probes passed in Safari and Firefox, and the final build is awaiting device
 acceptance. Release remains **BLOCKED**. Rollback is reverting the recorded
 audio commit. Production still serves the previous implementation.
 
+### D11. Silent Mode passed, pronunciation rejected (2026-11-18)
+
+The owner heard the full recorded-audio build with Silent Mode on in Safari
+and Firefox on the affected iPhone. The owner also reported that many words
+sound wrong. Keep the recorded playback path. Pronunciation acceptance
+failed for `c2f2da8` and is now the release blocker. Chrome playback and
+the full exercise acceptance sequence are still pending.
+
+The exact words and perceived pronunciations have been requested. Three
+possible causes have different checks:
+
+- Incorrect word selection or phoneme input. Compare the requested file and
+  the manifest entry for each affected word. If every voice produces the
+  same wrong contrast, inspect and correct the phoneme input.
+- Voice quality on isolated words. Compare voices using the same word,
+  phoneme input, encoding and level matching. A clearer contrast in one
+  voice supports changing the synthesis model.
+- A cutoff in the served file or player. Compare the same file on the review
+  page and in the exercise. Decoding all 50 current AACs shows the loudest
+  first 20 ms at −34.2 dBFS RMS and the loudest final 20 ms at −43.7 dBFS RMS.
+  That makes a wholesale encoding cutoff less likely. It does not rule out
+  weak or missing consonants in the synthesis.
+
+The private review page at `/.generated/pronunciation-comparison/index.html`
+compares six pairs. A uses the current LJ Speech files. B uses Piper
+`en_US-kristin-medium` and C uses `en_US-norman-medium`, both pinned to
+`0ca208afc2a2ee102b1e961e72e0a7e4907be3d0`. The 24 alternate clips use the
+same phoneme inputs and mono AAC encoding with the same level matching.
+Chromium at 390 px fetched and played an example from each voice.
+The model author lists both voices as public domain.
+([Kristin model card](https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/kristin/medium/MODEL_CARD),
+[Norman model card](https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/norman/medium/MODEL_CARD),
+[author's voice notes](https://brycebeattie.com/files/tts/))
+
+Record which contrasts fail and which alternate take passes before
+regenerating the exercise assets. Then review all words and recheck the
+full exercise on the iPhone. The comparison page and takes are local
+artifacts outside the build. Release remains **BLOCKED**.
+
 ### E. Decision log and proposed transitions
 
 Decisions made on 2026-11-13:
