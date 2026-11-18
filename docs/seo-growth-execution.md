@@ -861,10 +861,10 @@ summary audible. Repeat with Silent Mode off. Rollback: revert the commit.
 the silent-media keepalive implementation at `bc19189`. The reports confirm
 that Safari on the affected iPhone can speak with Silent Mode off. Earlier
 tests reported silence with Silent Mode on in Safari and Firefox, and audible
-speech in Chrome. The owner has no tone result or browser report to compare.
-The latest keepalive build and the local recorded-audio pilot still need
-audibility testing on that iPhone. The browser-to-browser difference and the
-underlying session or routing behavior remain unresolved.
+speech in Chrome. The Firefox pilot result below distinguishes audibility
+on the two playback paths. The latest keepalive build and Safari/Chrome
+pilot still need audibility testing on that iPhone. The browser-to-browser
+difference and underlying session or routing behavior remain unresolved.
 
 The recorded-audio draft was present in the working tree but would select
 recorded playback in any browser with HTML audio, despite having no word files.
@@ -935,7 +935,7 @@ The controller's callbacks establish playback state only. Record what can
 actually be heard before declaring device acceptance. If both the tone and the
 recording are silent, investigate the phone's media output before adopting
 recorded audio. If only the Web Speech path is silent, the recording avoids
-that path. No real-device result is available yet.
+that path. Record each browser's device results separately.
 
 **Initial verification.** The focused suite
 (`rtk proxy node --test --test-reporter=spec scripts/speech-playback.test.mjs scripts/exercise-lifecycle-speech.test.mjs scripts/seo-exercise-adapter.test.mjs`)
@@ -950,6 +950,37 @@ completed both rounds. Each run emitted one exercise start, one completion
 and one App Store click to a local tracking stub. The build includes the usual
 localized-link warning and omits the pilot media. The existing device failure
 remains the release blocker. The pilot commit can be reverted locally.
+
+**Firefox physical-device result (2026-11-18).** In the owner's
+`audio-check-dev` report, Firefox for iOS (UA token `FxiOS/160.0`) exposed 71
+voices. Plain speech used the browser default English voice. It reported
+start and end with user activation present, but the listener marked it
+**silent**. The prerecorded `ship.m4a` and the independent HTML audio tone
+both completed and the listener marked both **heard**. This isolates the
+observed silence to the live speech path in that run and validates the
+recorded clip as an audible alternative on Firefox. The trace does not record
+the position of the Silent Mode switch. Confirmation of that setting, Safari
+and Chrome probe results, and full exercise acceptance remain pending.
+
+**Production voice candidate.** Evaluate Piper `en_US-ljspeech-medium`
+offline. Its card identifies training from scratch on the public-domain LJ
+Speech dataset. Piper's commercial-use list corroborates the dataset
+provenance and its licensing guide distinguishes the training data terms
+from model and output rights. Verify the exact model revision and terms
+before release.
+([Voice card](https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/ljspeech/medium/MODEL_CARD),
+[LJ Speech source](https://keithito.com/LJ-Speech-Dataset/),
+[Piper commercial-use list](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/COMMERCIAL_USE.md),
+[Piper licensing](https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/LICENSING.md))
+
+Pending approval for the 50-word set, first review isolated-word takes for
+`ship/sheep`, `live/leave` and `law/low`. These exercise vowel length,
+the homograph `live`, and dialect-dependent vowel quality. Pin the model
+revision and manifest of expected pronunciations. If the takes pass a
+listening review, generate the full set locally and validate each AAC file
+and its catalog mapping. Deploy only the reviewed audio files and the
+playback code. The live site would use neither an inference runtime nor an
+external synthesis service.
 
 ### E. Decision log and proposed transitions
 
