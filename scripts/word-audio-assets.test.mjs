@@ -25,5 +25,6 @@ test('every exercise stimulus maps to exactly one manifest-verified media asset'
     assert.equal(createHash('sha256').update(clip).digest('hex'), manifest.clips[word].sha256, word);
     assert.equal(manifest.clips[word].ipa, ipa, word);
   }
+  assert.equal(manifest.clips.bad.piperPhonemes, 'bˈad');
   assert.equal(manifest.clips.live.piperPhonemes, 'lˈɪv');
 });

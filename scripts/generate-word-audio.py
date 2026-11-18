@@ -17,6 +17,10 @@ from piper import PiperVoice
 MODEL_REVISION = "0ca208afc2a2ee102b1e961e72e0a7e4907be3d0"
 MODEL_SHA256 = "6f52a751e2349abe7a76735eb09dc1875298c77ea2342ffd2fef79ff81b87f22"
 CONFIG_SHA256 = "141d612cc0a95ed7efc1ca936b845c2364967f2e9217c5dbfcf69fc4d6c65860"
+PHONEME_OVERRIDES = {
+    "bad": "bˈad",  # Audition F uses a more open vowel for this voice.
+    "live": "lˈɪv",  # The exercise uses the verb, which rhymes with “give”.
+}
 
 
 def sha256(path):
@@ -61,8 +65,7 @@ def main():
     manifest = {"model": "en_US-ljspeech-medium", "revision": MODEL_REVISION, "clips": {}}
     with tempfile.TemporaryDirectory() as tmp:
         for word, ipa in sorted(words.items()):
-            # The exercise uses the verb, which rhymes with “give”.
-            text = "[[lˈɪv]]" if word == "live" else word
+            text = f"[[{PHONEME_OVERRIDES[word]}]]" if word in PHONEME_OVERRIDES else word
             phonemes = "".join(phoneme for sentence in voice.phonemize(text) for phoneme in sentence)
             if not phonemes or set(phonemes).difference(voice.config.phoneme_id_map):
                 raise ValueError(f"Unsupported phonemes for {word}: {phonemes}")

@@ -1127,7 +1127,22 @@ voice A and the same level matching and encoding:
   particular review for its fit with the exercise's /æ/ target.
 
 Generating the samples did not change the catalog or the exercise files.
-The `bad` replacement is pending listener acceptance.
+The owner subsequently accepted F. The exercise now uses the exact audition
+file for `bad`. It was synthesized in isolation with ONNX Runtime seed
+`20261118` and the explicit Piper input `[[bˈad]]`. The generator now uses
+those phonemes for `bad`. A batch regeneration produces different audio
+bytes, so retain the reviewed file unless a replacement is auditioned. The
+manifest records its checksum and the teaching target remains /bæd/. The
+other 49 clips are byte-for-byte identical to the previous build.
+
+The production build and the focused and full suites passed. The LAN preview
+served the same `bad.m4a` bytes as the audition. Chromium played that file
+from the exercise and passed the four-route checks for replay, retry,
+completion and event counts described above. Physical playback is confirmed
+in Silent Mode in Safari and Firefox on the preceding build. The updated
+exercise still needs the physical-device acceptance sequence in Safari,
+Firefox and Chrome, and pronunciation review for any remaining reported
+words. Release remains **BLOCKED** pending those checks.
 
 ### E. Decision log and proposed transitions
 
